@@ -6,6 +6,7 @@ export interface TranslationSchema {
     solutions: string;
     help: string;
     contact: string;
+    backToCatalog: string;
   };
   hero: {
     title: string;
@@ -19,11 +20,16 @@ export interface TranslationSchema {
     partnerBannerTitle: string;
     partnerBannerDesc: string;
   };
-  detailsModal: {
-    overview: string;
-    keyFeatures: string;
-    subdomain: string;
+  fullPageDetails: {
+    backBtn: string;
+    overviewTitle: string;
+    technicalArchitecture: string;
+    targetAudienceTitle: string;
+    keyCapabilitiesTitle: string;
+    officialSubdomain: string;
     launchRealApp: string;
+    contactWhatsApp: string;
+    folderOrigin: string;
     close: string;
   };
   cookies: {
@@ -62,7 +68,9 @@ export interface TranslationSchema {
     description: string;
     features: string[];
     detailsContent: string;
+    technicalHighlights: string[];
     targetAudience: string;
+    whatsappMessage: string;
   }>;
 }
 
@@ -72,7 +80,8 @@ export const translations: Record<Language, TranslationSchema> = {
       institutional: 'Institucional',
       solutions: 'Soluções',
       help: 'Ajuda & Suporte',
-      contact: 'Contato'
+      contact: 'Contato',
+      backToCatalog: '← Voltar ao Catálogo'
     },
     hero: {
       title: 'Todas as Soluções Digitais HelpUS',
@@ -81,16 +90,21 @@ export const translations: Record<Language, TranslationSchema> = {
     },
     catalog: {
       title: 'Soluções Organizadas por Categoria',
-      subtitle: 'Clique em "Experimente Agora" em qualquer solução para abrir os detalhes e telas antes de acessar a aplicação real.',
+      subtitle: 'Clique em "Experimente Agora" para abrir a página explicativa completa com telas e detalhes de cada aplicação.',
       tryNow: 'Experimente Agora',
       partnerBannerTitle: 'Rede de Parceiros em Breve',
       partnerBannerDesc: 'Atualmente apresentamos apenas as aplicações próprias da HelpUS. Em breve, abriremos espaço para a inclusão de parceiros homologados.'
     },
-    detailsModal: {
-      overview: 'Visão Geral & Telas do Sistema',
-      keyFeatures: 'Destaques & Capacidades Técnicas',
-      subdomain: 'Endereço Oficial na Web:',
-      launchRealApp: 'Ir para a Aplicação Real 🚀',
+    fullPageDetails: {
+      backBtn: '← Voltar ao Catálogo de Soluções',
+      overviewTitle: 'Visão Geral & Engenharia da Solução',
+      technicalArchitecture: 'Arquitetura & Recursos Técnicos',
+      targetAudienceTitle: 'Público Alvo Recomendado',
+      keyCapabilitiesTitle: 'Funcionalidades & Destaques',
+      officialSubdomain: 'Endereço Oficial na Web:',
+      launchRealApp: 'Acessar Aplicação Real 🚀',
+      contactWhatsApp: 'Atendimento WhatsApp para esta Solução',
+      folderOrigin: 'Projeto Mapeado:',
       close: 'Fechar'
     },
     cookies: {
@@ -129,104 +143,168 @@ export const translations: Record<Language, TranslationSchema> = {
         subtitle: 'Desenvolvimento de Software Sob Medida & Engenharia de Sistemas',
         description: 'Fábrica de software especializada na criação de plataformas SaaS, sistemas web responsivos, APIs de alto desempenho e aplicativos corporativos sob medida.',
         features: [
-          'Engenharia de Software Full-Stack (React, Node.js, Python, PostgreSQL)',
-          'Arquitetura de APIs RESTful e GraphQL Seguras',
+          'Engenharia Full-Stack (React, Node.js, Express, PostgreSQL, Python)',
+          'Arquitetura de APIs RESTful e GraphQL Criptografadas',
           'Deploy Automatizado na Nuvem (Vercel, AWS, Railway)',
-          'Design System Personalizado & UX/UI de Alta Performance'
+          'Painel de Venda de Produtos Digitais com Integração de Pagamento',
+          'Design System Exclusivo & Experiência de Usuário (UX/UI) Fluida'
         ],
-        detailsContent: 'O serviço de Desenvolvimento de Software da HelpUS projeta e constrói soluções digitais customizadas para empresas de todos os portes. Desde a concepção do banco de dados relacional até a entrega de aplicativos web e mobile completos com integração contínua (CI/CD).',
-        targetAudience: 'Empresas, startups e fundadores que precisam transformar ideias em sistemas robustos e escaláveis.'
+        detailsContent: 'O serviço de Desenvolvimento de Software da HelpUS projeta e constrói soluções digitais customizadas para empresas de todos os portes. Desde o desenho do banco de dados relacional até a entrega de aplicativos web e mobile completos com integração contínua (CI/CD) e suporte pós-lançamento.',
+        technicalHighlights: [
+          'Banco de Dados Relacional PostgreSQL no Railway',
+          'Autenticação Segura via JWT & Middleware de Permissões',
+          'Infraestrutura Serverless Escalável na Vercel e Railway',
+          'Documentação Completa de API via Swagger UI'
+        ],
+        targetAudience: 'Empresas, startups, consultórios e fundadores que precisam transformar ideias em sistemas corporativos robustos.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de um orçamento para desenvolvimento de software sob medida.'
       },
       'nexosai': {
         name: 'Nexos AI',
         subtitle: 'Inteligência Artificial & Agentes Autônomos',
         description: 'Plataforma avançada de IA para criação de agentes virtuais autônomos, automação de processos de negócio e integração via WhatsApp e Webchat.',
         features: [
-          'Agentes de IA Treinados com Dados da Empresa',
-          'Automação de Atendimento 24 horas por dia',
-          'Integração Oficial com WhatsApp Business API',
-          'Qualificação Automática de Leads e Agendamentos'
+          'Agentes de IA Treinados com a Base de Conhecimento da Empresa',
+          'Automação de Atendimento 24 horas por dia, 7 dias por semana',
+          'Integração Oficial com WhatsApp Business API & Webchat',
+          'Qualificação Automática de Leads & Agendamento de Reuniões',
+          'Processamento de Linguagem Natural Avançado com LLMs'
         ],
-        detailsContent: 'O Nexos AI permite que sua empresa crie atendentes virtuais inteligentes capazes de responder dúvidas complexas, qualificar clientes em potencial e agendar reuniões de forma autônoma e humanizada.',
-        targetAudience: 'Equipes de vendas, suporte e atendimento que desejam escalar operações sem aumentar custos.'
+        detailsContent: 'O Nexos AI permite que sua empresa crie atendentes virtuais inteligentes capazes de responder dúvidas complexas, qualificar clientes em potencial e agendar compromissos de forma autônoma e humanizada, reduzindo custos operacionais de atendimento.',
+        technicalHighlights: [
+          'Desenvolvido em Next.js App Router com Prisma ORM',
+          'Arquitetura de Embeddings e Busca Vetorial para RAG',
+          'Conexão Direta com a API Oficial do WhatsApp Business',
+          'Painel de Métricas e Análise de Retenção em Tempo Real'
+        ],
+        targetAudience: 'Equipes de vendas, suporte e atendimento que desejam escalar operações com inteligência artificial.',
+        whatsappMessage: 'Olá HelpUS! Tenho interesse nos Agentes de IA da plataforma Nexos AI.'
       },
       'usmle': {
         name: 'USMLE Prep',
         subtitle: 'Preparatório & Plataforma Médica Internacional',
         description: 'Plataforma especializada de estudos e simulados interativos para médicos e estudantes se prepararem para o exame de revalidação médica USMLE nos EUA.',
         features: [
-          'Banco de Questões Atualizado com Explicações Clínicas',
-          'Simulados de Exame no Formato Real do USMLE',
+          'Banco de Questões Atualizado com Explicações Clínicas Ricas',
+          'Simulados no Formato e Tempo Reais do Exame NBME / USMLE',
           'Relatórios de Desempenho por Especialidade Médica',
-          'Repetição Espaçada de Flashcards Médicos'
+          'Repetição Espaçada de Flashcards com Conceitos Chave',
+          'Trilhas Guiadas para Step 1, Step 2 CK e Step 3'
         ],
-        detailsContent: 'O USMLE Prep oferece um ambiente imersivo com relatórios estatísticos detalhados de evolução, ajudando médicos brasileiros e internacionais a conquistar a revalidação médica nos Estados Unidos.',
-        targetAudience: 'Médicos e estudantes de medicina focados na carreira e revalidação médica nos EUA.'
+        detailsContent: 'O USMLE Prep oferece um ambiente imersivo com relatórios estatísticos detalhados de evolução por disciplina médica (Cardiologia, Pediatria, Cirurgia, etc.), ajudando médicos brasileiros e internacionais a conquistar a revalidação nos EUA.',
+        technicalHighlights: [
+          'Interface Responsiva Otimizada para Estudo Intensivo',
+          'Algoritmo Estatístico de Desempenho e Diagnóstico de Lacunas',
+          'Interface no Padrão Exato Utilizado no Exame Oficial Americano',
+          'Sincronização em Tempo Real de Progresso de Simulados'
+        ],
+        targetAudience: 'Médicos formados e estudantes de medicina focados na carreira e revalidação médica nos Estados Unidos.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre o preparatório USMLE Prep.'
       },
       'saude': {
         name: 'Saúde',
         subtitle: 'Telemedicina & Gestão Integrada de Saúde',
         description: 'Sistema completo para clínicas e profissionais da saúde. Oferece agendamento de consultas, prontuário eletrônico e atendimento por telemedicina.',
         features: [
-          'Prontuário Eletrônico do Paciente Criptografado',
+          'Prontuário Eletrônico do Paciente (PEP) Criptografado',
           'Agendamento de Consultas Presenciais e Online',
-          'Sala de Atendimento por Telemedicina HD Segura',
-          'Prescrição Digital de Medicamentos e Exames'
+          'Sala de Atendimento por Telemedicina HD Segura (HIPAA Compliant)',
+          'Prescrição Digital de Medicamentos e Exames com Assinatura ICP',
+          'Gestão Financeira e Controle de Receitas Médicas'
         ],
-        detailsContent: 'O HelpUS Saúde digitaliza a operação clínica: desde o agendamento no site até a consulta remota com transmissão criptografada e emissão de atestados e receitas digitais.',
-        targetAudience: 'Clínicas médicas, consultórios particulares e profissionais de saúde autônomos.'
+        detailsContent: 'O HelpUS Saúde digitaliza toda a operação clínica: desde a marcação da consulta no site até o atendimento médico remoto com transmissão de vídeo criptografada e emissão de atestados e receitas aceitos em todo o Brasil.',
+        technicalHighlights: [
+          'Conformidade com Normas da LGPD e Protocolo HIPAA de Saúde',
+          'Vídeo HD de Baixa Latência Integrado via WebRTC Segura',
+          'Assinatura Digital de Documentos Médicos ICP-Brasil',
+          'Prontuário com Histórico Clínico de Evolução em Nuvem'
+        ],
+        targetAudience: 'Clínicas médicas, consultórios particulares, redes hospitalares e profissionais da saúde autônomos.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de consultar sobre o HelpUS Saúde para minha clínica.'
       },
       'wagnerdriver-site': {
         name: 'Executive Driver',
         subtitle: 'Mobilidade Executiva & Transporte VIP',
         description: 'Solução digital para agendamento de transporte executivo, transfer vip, viagens particulares e gestão de corridas corporativas.',
         features: [
-          'Agendamento Prévio de Transfere e Viagens VIP',
-          'Frota Executiva Monitorada em Tempo Real',
+          'Agendamento Prévia de Transfer Aeroporto e Viagens VIP',
+          'Frota de Veículos Executivos Monitorada em Tempo Real',
           'Faturamento Corporativo Mensal Centralizado',
-          'Atendimento Exclusivo para Executivos e Eventos'
+          'Atendimento Exclusivo com Motoristas Bilíngues para Eventos',
+          'Receção com Placa Personalizada em Terminais de Desembarque'
         ],
-        detailsContent: 'Sistema corporativo de mobilidade para recepção de executivos em aeroportos, transporte VIP para eventos e viagens intermunicipais com total conforto e pontualidade.',
-        targetAudience: 'Executivos, empresas, hotéis e passageiros que exigem transporte VIP de alta padrão.'
+        detailsContent: 'Sistema corporativo de mobilidade para recepção de executivos em aeroportos, transporte VIP para eventos e viagens intermunicipais com total conforto, segurança e pontualidade.',
+        technicalHighlights: [
+          'Painel de Agendamento Prévio com Confirmação Instantânea',
+          'Rastreamento Teleférico e Alerta de Chegada do Veículo',
+          'Emissão de Relatórios de Viagens para Departamentos Corporativos',
+          'Design Premium Adaptável para Smartphones'
+        ],
+        targetAudience: 'Executivos, empresas, hotéis 5 estrelas e passageiros exigentes por mobilidade VIP.',
+        whatsappMessage: 'Olá HelpUS! Tenho interesse no serviço Executive Driver para agendamentos VIP.'
       },
       'pizza': {
         name: 'Pizza & Delivery',
         subtitle: 'Gestão & Pedidos Online para Pizzarias',
         description: 'Plataforma completa de delivery e gestão para pizzarias. Inclui cardápio digital interativo, pedidos na mesa e integração de entregas.',
         features: [
-          'Cardápio Digital Interativo via QR Code',
-          'Montador de Pizzas Meio-a-Meio e Adicionais',
-          'Painel de Comandas de Cozinha (KDS)',
-          'Rastreamento de Entregas e Motoboys'
+          'Cardápio Digital Interativo Acessível via QR Code na Mesa',
+          'Montador Flexível de Pizzas Meio-a-Meio e Borda Recheada',
+          'Painel de Comandas de Cozinha (KDS) em Tempo Real',
+          'Despacho e Rastreamento de Entregadores em Mapa',
+          'Relatório de Vendas e Controle de Estoque de Ingredientes'
         ],
-        detailsContent: 'O Pizza & Delivery moderniza pizzarias reduzindo erros nos pedidos de sabores fracionados, otimizando o fluxo da cozinha e aumentando o ticket médio das vendas online.',
-        targetAudience: 'Pizzarias, restaurantes, hamburguerias e estabelecimentos de gastronomia e delivery.'
+        detailsContent: 'O Pizza & Delivery moderniza a operação de pizzarias reduzindo erros no lançamento de sabores fracionados, otimizando o fluxo da cozinha e aumentando o faturamento através de vendas online sem comissões de terceiros.',
+        technicalHighlights: [
+          'Interface Fluida para Pedidos em Dispositivos Móveis',
+          'Atualização de Status do Pedido em Tempo Real via WebSockets',
+          'Montador de Sabores Fracionados com Cálculo Automático',
+          'Painel de Gestão para Operadores de Cozinha e Caixa'
+        ],
+        targetAudience: 'Pizzarias, restaurantes, hamburguerias e estabelecimentos de delivery gastronômico.',
+        whatsappMessage: 'Olá HelpUS! Quero conhecer o sistema Pizza & Delivery para meu estabelecimento.'
       },
       'jobs': {
         name: 'Jobs',
         subtitle: 'Marketplace Multilíngue de Empregos',
         description: 'Plataforma global multilíngue para conexão de trabalhadores, recrutadores e oportunidades de emprego com foco em carreiras internacionais.',
         features: [
-          'Busca Multilíngue de Vagas em Vários Países',
-          'Match Inteligente de Perfil do Candidato com a Vaga',
-          'Currículos Padronizados e Verificação de Habilidades',
-          'Painel de Gestão de Processos Seletivos para RH'
+          'Busca Multilíngue de Vagas em Múltiplos Países',
+          'Match Inteligente por IA entre Perfil do Candidato e Vaga',
+          'Currículos Padronizados e Testes de Verificação de Habilidades',
+          'Painel ATS de Gestão de Processos Seletivos para RH',
+          'Notificações Automáticas de Novas Oportunidades'
         ],
-        detailsContent: 'Conecta talentos a empresas contratantes em escala global. Oferece tradução automática de currículos e testes de perfil profissional.',
-        targetAudience: 'Profissionais em busca de vagas e recrutadores contratando talentos locais e remotos.'
+        detailsContent: 'Conecta talentos a empresas contratantes em escala global. Oferece tradução automática de currículos, testes de aptidão técnica e algoritmo de recomendação direcionado para oportunidades internacionais.',
+        technicalHighlights: [
+          'Algoritmo de IA para Pontuação de Compatibilidade Candidato-Vaga',
+          'Suporte Multilíngue Nativo em Mais de 10 Idiomas',
+          'Funil de Seleção de Candidatos (ATS) em Tempo Real',
+          'Perfis Verificados com Validação de Certificados'
+        ],
+        targetAudience: 'Profissionais em busca de vagas e recrutadores contratando talentos locais e remotos.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de entender mais sobre a plataforma Jobs.'
       },
       'visa': {
         name: 'Visa & Imigração',
         subtitle: 'Assessoria de Vistos, Passaportes & Processos',
         description: 'Plataforma de consulta e acompanhamento de processos de vistos, imigração, agendamento de passaportes e documentação internacional.',
         features: [
-          'Checklist Inteligente de Documentação Consular',
-          'Guia de Preenchimento de Formulários (DS-160 e outros)',
+          'Checklist Inteligente de Documentação Consular Exigida',
+          'Guia Passo a Passo para Preenchimento de Formulários (DS-160)',
           'Monitoramento de Vagas e Datas nos Consulados',
-          'Suporte Direto com Especialistas em Imigração'
+          'Consultoria Imigratória Direta com Especialistas',
+          'Acompanhamento de Status de Envio e Deferimento de Vistos'
         ],
-        detailsContent: 'Simplifica a burocracia de vistos e imigração com checklists automáticos, validação de documentos e acompanhamento de etapas consulares.',
-        targetAudience: 'Viajantes, estudantes e imigrantes com destino aos EUA, Europa e outros países.'
+        detailsContent: 'Simplifica a burocracia de vistos e imigração com checklists automáticos, validação preventiva de documentos e acompanhamento especializado de etapas consulares para vistos dos EUA, Europa e outros países.',
+        technicalHighlights: [
+          'Gerador de Checklist Automatizado de Acordo com o Tipo de Visto',
+          'Alerta de Vagas Consulares Disponíveis por Notificação',
+          'Armazenamento Seguro de Documentos Pessoais',
+          'Interface Didática para Agendamento de Entrevistas'
+        ],
+        targetAudience: 'Viajantes, estudantes, profissionais e famílias em processos de visto e passaporte.',
+        whatsappMessage: 'Olá HelpUS! Preciso de assessoria para visto ou passaporte no Visa & Imigração.'
       },
       'memoria-viva': {
         name: 'Memória Viva',
@@ -234,25 +312,41 @@ export const translations: Record<Language, TranslationSchema> = {
         description: 'Plataforma afetiva para registro, organização e preservação da história de vida de famílias, acervos biográficos e memórias inesquecíveis.',
         features: [
           'Linha do Tempo Biográfica Interativa',
-          'Acervo Digital de Fotos, Vídeos e Depoimentos em Áudio',
-          'Livros Virtuais de Biografia de Família',
-          'Acesso Privado e Seguro para Gerações Futuras'
+          'Acervo Digital Seguro para Fotos Antigas, Vídeos e Áudios',
+          'Livros Virtuais de Biografia e Memórias Familiares',
+          'Compartilhamento Privado Exclusivo para Membros da Família',
+          'Transcrição de Depoimentos de Voz por Inteligência Artificial'
         ],
-        detailsContent: 'Uma plataforma dedicada a registrar momentos marcantes, histórias familiares e legados pessoais em um acervo digital seguro e perene.',
-        targetAudience: 'Famílias, biógrafos e pessoas que desejam eternizar suas histórias e de seus entes queridos.'
+        detailsContent: 'Uma plataforma dedicada a registrar momentos marcantes, histórias familiares e legados pessoais em um acervo digital seguro, permitindo que futuras gerações conheçam e revivam a história de seus antepassados.',
+        technicalHighlights: [
+          'Arquitetura DER com Suporte a IA para Transcrição de Áudio',
+          'Armazenamento Criptografado de Mídia em Nuvem',
+          'Controle Estrito de Privacidade e Permissões Familiares',
+          'Interface Afetiva e Acessível para Idosos'
+        ],
+        targetAudience: 'Famílias, biógrafos e pessoas que desejam eternizar suas histórias e legados familiares.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de conhecer a plataforma Memória Viva.'
       },
       'brayyan': {
         name: 'Brayyan',
         subtitle: 'Branding Pessoal & Portfólio de Soluções',
         description: 'Portfólio de apresentação institucional e consultoria de branding pessoal para executivos, fundadores e projetos especiais da marca.',
         features: [
-          'Design de Portfólio Executivo de Alto Impacto',
-          'Estratégia de Posicionamento e Presença Digital',
-          'Apresentação de Projetos Especiais e Investimentos',
-          'Consultoria Direta em Desenvolvimento de Negócios'
+          'Design de Portfólio Executivo de Alto Impacto Visual',
+          'Estratégia de Posicionamento de Marca e Presença Digital',
+          'Apresentação de Projetos Especiais, Pitch Decks e Investimentos',
+          'Consultoria Direta em Desenvolvimento de Negócios',
+          'Integração com Redes Sociais Executivas (LinkedIn)'
         ],
-        detailsContent: 'Solução sob medida de branding e estratégia de imagem executiva para lideranças corporativas, investidores e criadores de projetos inovadores.',
-        targetAudience: 'Executivos, fundadores, consultores e líderes que necessitam de presença digital refinada.'
+        detailsContent: 'Solução sob medida de branding e estratégia de imagem executiva para lideranças corporativas, investidores e criadores de projetos inovadores que exigem um posicionamento impecável no mercado.',
+        technicalHighlights: [
+          'Design System Responsivo de Altíssimo Padrão Estético',
+          'Carregamento Ultrarrápido e Otimização para Redes Sociais',
+          'Apresentações Interativas de Projetos Corporativos',
+          'Estratégia Integrada de Autoridade de Marca'
+        ],
+        targetAudience: 'Executivos, fundadores, consultores e líderes que necessitam de presença digital refinada.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre a consultoria de branding executivo Brayyan.'
       }
     }
   },
@@ -261,7 +355,8 @@ export const translations: Record<Language, TranslationSchema> = {
       institutional: 'About HelpUS',
       solutions: 'Solutions',
       help: 'Help & Support',
-      contact: 'Contact'
+      contact: 'Contact',
+      backToCatalog: '← Back to Catalog'
     },
     hero: {
       title: 'All HelpUS Digital Solutions',
@@ -270,16 +365,21 @@ export const translations: Record<Language, TranslationSchema> = {
     },
     catalog: {
       title: 'Solutions Organized by Category',
-      subtitle: 'Click "Try Now" on any solution to view system details and screens before launching the real app.',
+      subtitle: 'Click "Try Now" on any solution to open the dedicated full-page presentation before launching the live application.',
       tryNow: 'Try Now',
       partnerBannerTitle: 'Partner Network Coming Soon',
       partnerBannerDesc: 'Currently displaying proprietary HelpUS applications. Certified partner solutions will be introduced soon.'
     },
-    detailsModal: {
-      overview: 'System Overview & Screenshots',
-      keyFeatures: 'Highlights & Technical Capabilities',
-      subdomain: 'Official Web Address:',
-      launchRealApp: 'Go to Real Application 🚀',
+    fullPageDetails: {
+      backBtn: '← Back to Solutions Catalog',
+      overviewTitle: 'Overview & Solution Engineering',
+      technicalArchitecture: 'Architecture & Technical Stack',
+      targetAudienceTitle: 'Target Audience',
+      keyCapabilitiesTitle: 'Features & Technical Highlights',
+      officialSubdomain: 'Official Web Address:',
+      launchRealApp: 'Access Live Application 🚀',
+      contactWhatsApp: 'WhatsApp Inquiries for this Solution',
+      folderOrigin: 'Mapped Project Folder:',
       close: 'Close'
     },
     cookies: {
@@ -289,7 +389,7 @@ export const translations: Record<Language, TranslationSchema> = {
     },
     modals: {
       institutionalTitle: 'About HelpUS Technology',
-      institutionalDesc: 'HelpUS Technology Solutions is dedicated to custom software development, web/mobile platforms, and digital ecosystem governance, unifying support and engineering.',
+      institutionalDesc: 'HelpUS Technology Solutions is dedicated to custom software development, web/mobile platforms, and digital ecosystem governance.',
       helpTitle: 'Help & Support Center',
       helpDesc: 'Need technical support or have questions regarding our applications? Speak with our central team via WhatsApp or official email.',
       privacyTitle: 'Privacy Policy & Terms of Service',
@@ -318,13 +418,21 @@ export const translations: Record<Language, TranslationSchema> = {
         subtitle: 'Custom Software Development & Systems Engineering',
         description: 'Specialized software engineering team building custom SaaS platforms, responsive web apps, high-performance APIs, and enterprise systems.',
         features: [
-          'Full-Stack Software Engineering (React, Node.js, Python, PostgreSQL)',
-          'Secure RESTful & GraphQL API Architecture',
+          'Full-Stack Software Engineering (React, Node.js, Express, PostgreSQL, Python)',
+          'Secure Encrypted RESTful & GraphQL API Architecture',
           'Automated Cloud Deployment (Vercel, AWS, Railway)',
-          'Custom Design System & High Performance UX/UI'
+          'Digital Products Storefront with Payment Integration',
+          'Custom Design System & Smooth User Experience (UX/UI)'
         ],
         detailsContent: 'HelpUS Software Development designs and builds custom software solutions for businesses of all sizes, from relational database design to full web & mobile apps with CI/CD.',
-        targetAudience: 'Businesses, startups, and founders needing robust, scalable digital systems.'
+        technicalHighlights: [
+          'PostgreSQL Relational Database hosted on Railway',
+          'Secure Authentication via JWT & Permission Middleware',
+          'Scalable Serverless Infrastructure on Vercel and Railway',
+          'Complete API Documentation via Swagger UI'
+        ],
+        targetAudience: 'Businesses, startups, and founders needing robust, scalable digital systems.',
+        whatsappMessage: 'Hello HelpUS! I would like a quote for custom software development.'
       },
       'nexosai': {
         name: 'Nexos AI',
@@ -334,23 +442,39 @@ export const translations: Record<Language, TranslationSchema> = {
           'AI Agents Trained on Business Knowledge Base',
           '24/7 Automated Customer Assistance',
           'Official WhatsApp Business API Integration',
-          'Automatic Lead Qualification & Scheduling'
+          'Automatic Lead Qualification & Scheduling',
+          'Advanced Natural Language Processing with LLMs'
         ],
         detailsContent: 'Nexos AI enables businesses to create intelligent virtual agents capable of answering complex inquiries and booking meetings autonomously.',
-        targetAudience: 'Sales, support, and customer success teams looking to scale without ballooning costs.'
+        technicalHighlights: [
+          'Built with Next.js App Router and Prisma ORM',
+          'Vector Embeddings & RAG Search Architecture',
+          'Direct Connection with Official WhatsApp Business API',
+          'Real-time Retention Analytics Dashboard'
+        ],
+        targetAudience: 'Sales, support, and customer success teams looking to scale without ballooning costs.',
+        whatsappMessage: 'Hello HelpUS! I am interested in Nexos AI virtual agents.'
       },
       'usmle': {
         name: 'USMLE Prep',
         subtitle: 'International Medical Exam Prep Platform',
         description: 'Specialized study and interactive question bank platform for physicians and medical students preparing for the USMLE in the USA.',
         features: [
-          'Updated Question Bank with Clinical Rationales',
-          'Real Exam Simulation Interface',
+          'Updated Question Bank with Rich Clinical Rationales',
+          'Real Exam Simulation Interface matching NBME',
           'Performance Analytics by Medical Specialty',
-          'Spaced Repetition Medical Flashcards'
+          'Spaced Repetition Medical Flashcards',
+          'Guided Tracks for Step 1, Step 2 CK, and Step 3'
         ],
         detailsContent: 'USMLE Prep offers an immersive environment with statistical evolution reports to help international physicians achieve medical licensing in the USA.',
-        targetAudience: 'Doctors and medical students pursuing US medical licensing.'
+        technicalHighlights: [
+          'Responsive UI Optimized for Intensive Study',
+          'Statistical Gap Diagnosis & Evolution Engine',
+          'Exact Match Interface to Official American Board Exam',
+          'Real-time Sync of Exam Progress'
+        ],
+        targetAudience: 'Doctors and medical students pursuing US medical licensing.',
+        whatsappMessage: 'Hello HelpUS! I would like to know more about USMLE Prep.'
       },
       'saude': {
         name: 'Saúde',
@@ -359,11 +483,19 @@ export const translations: Record<Language, TranslationSchema> = {
         features: [
           'Encrypted Electronic Health Records (EHR)',
           'In-Person & Online Appointment Booking',
-          'Secure HD Telemedicine Suite',
-          'Digital Prescriptions & Lab Order Issuance'
+          'Secure HD Telemedicine Suite (HIPAA Compliant)',
+          'Digital Prescriptions & Lab Order Issuance',
+          'Financial & Revenue Management'
         ],
         detailsContent: 'HelpUS Saúde digitizes clinical operations from online booking to encrypted remote consultations and digital prescriptions.',
-        targetAudience: 'Medical clinics, private practices, and independent healthcare providers.'
+        technicalHighlights: [
+          'LGPD & HIPAA Compliant Data Security Protocol',
+          'Low Latency HD Video Suite Integrated via WebRTC',
+          'ICP-Brasil Digital Signature for Prescriptions',
+          'Cloud Electronic Health Records System'
+        ],
+        targetAudience: 'Medical clinics, private practices, and independent healthcare providers.',
+        whatsappMessage: 'Hello HelpUS! I would like to inquire about HelpUS Saúde for clinics.'
       },
       'wagnerdriver-site': {
         name: 'Executive Driver',
@@ -373,10 +505,18 @@ export const translations: Record<Language, TranslationSchema> = {
           'Advance VIP Transfer & Ride Scheduling',
           'Real-Time Monitored Executive Fleet',
           'Centralized Monthly Corporate Billing',
-          'Exclusive Assistance for Executives & Events'
+          'Bilingual Chauffeur Support for Events',
+          'Personalized Terminal Greeting Services'
         ],
         detailsContent: 'Corporate mobility platform for airport pickups, VIP event transfers, and intercity travel with complete comfort and punctuality.',
-        targetAudience: 'Executives, corporate teams, hotels, and VIP passengers.'
+        technicalHighlights: [
+          'Instant Confirmation Advance Ride Booking Engine',
+          'Real-Time Fleet Telemetry & Chauffeur Tracking',
+          'Monthly Corporate Account Reporting',
+          'Mobile First Premium UI'
+        ],
+        targetAudience: 'Executives, corporate teams, hotels, and VIP passengers.',
+        whatsappMessage: 'Hello HelpUS! I am interested in Executive Driver VIP services.'
       },
       'pizza': {
         name: 'Pizza & Delivery',
@@ -386,10 +526,18 @@ export const translations: Record<Language, TranslationSchema> = {
           'Interactive Digital QR Code Menu',
           'Half-and-Half Pizza Customizer',
           'Kitchen Display System (KDS)',
-          'Courier Dispatching & Delivery Tracking'
+          'Courier Dispatching & Delivery Tracking',
+          'Sales Reporting & Inventory Management'
         ],
         detailsContent: 'Gastronomy management system modernizing pizzerias by streamlining fractional flavor orders and kitchen workflows.',
-        targetAudience: 'Pizzerias, restaurants, burger joints, and food delivery businesses.'
+        technicalHighlights: [
+          'Mobile Optimized Ordering Interface',
+          'Real-Time Order Status Updates via WebSockets',
+          'Fractional Flavor Price Calculation Engine',
+          'Kitchen Display System Panel'
+        ],
+        targetAudience: 'Pizzerias, restaurants, burger joints, and food delivery businesses.',
+        whatsappMessage: 'Hello HelpUS! I want to learn more about Pizza & Delivery.'
       },
       'jobs': {
         name: 'Jobs',
@@ -399,10 +547,18 @@ export const translations: Record<Language, TranslationSchema> = {
           'Multilingual Global Job Search',
           'AI-Powered Candidate Matching',
           'Standardized Resumes & Skill Verification',
-          'Recruiter ATS Pipeline Dashboard'
+          'Recruiter ATS Pipeline Dashboard',
+          'Automated Opportunity Alerts'
         ],
         detailsContent: 'Connects talent with hiring companies worldwide with automated resume translation and skill matching.',
-        targetAudience: 'Job seekers and recruiters hiring local and remote talent.'
+        technicalHighlights: [
+          'AI Compatibility Scoring Engine',
+          'Native Multilingual Support in 10+ Languages',
+          'Real-Time ATS Hiring Pipeline',
+          'Verified Candidate Profiles'
+        ],
+        targetAudience: 'Job seekers and recruiters hiring local and remote talent.',
+        whatsappMessage: 'Hello HelpUS! I would like to know more about Jobs.'
       },
       'visa': {
         name: 'Visa & Imigração',
@@ -412,10 +568,18 @@ export const translations: Record<Language, TranslationSchema> = {
           'Smart Consular Document Checklist',
           'Form Filling Guidance (DS-160 and more)',
           'Consular Appointment Monitoring',
-          'Direct Expert Immigration Advisory'
+          'Direct Expert Immigration Advisory',
+          'Visa Status Tracking & Alerts'
         ],
         detailsContent: 'Simplifies visa bureaucracy with automatic document checklists and consular stage tracking.',
-        targetAudience: 'Travelers, students, and immigrants relocating to the US, Europe, and worldwide.'
+        technicalHighlights: [
+          'Dynamic Checklist Generator by Visa Type',
+          'Consular Appointment Availability Monitor',
+          'Secure Personal Document Storage',
+          'Step-by-Step Interview Guidance'
+        ],
+        targetAudience: 'Travelers, students, and immigrants relocating to the US, Europe, and worldwide.',
+        whatsappMessage: 'Hello HelpUS! I need assistance with Visa & Immigration.'
       },
       'memoria-viva': {
         name: 'Memória Viva',
@@ -425,10 +589,18 @@ export const translations: Record<Language, TranslationSchema> = {
           'Interactive Biographical Timeline',
           'Digital Archive for Photos, Videos & Audio Statements',
           'Virtual Family Biography Books',
-          'Private & Secure Access for Future Generations'
+          'Private & Secure Access for Future Generations',
+          'AI Voice Statement Transcription'
         ],
         detailsContent: 'A dedicated digital archive for families to record life stories, oral histories, and family legacies for generations to come.',
-        targetAudience: 'Families, biographers, and individuals preserving personal histories.'
+        technicalHighlights: [
+          'AI Audio Transcription Pipeline',
+          'Encrypted Cloud Media Storage',
+          'Strict Family Privacy Controls',
+          'Senior-Friendly Interface Design'
+        ],
+        targetAudience: 'Families, biographers, and individuals preserving personal histories.',
+        whatsappMessage: 'Hello HelpUS! I would like to explore Memória Viva.'
       },
       'brayyan': {
         name: 'Brayyan',
@@ -438,10 +610,18 @@ export const translations: Record<Language, TranslationSchema> = {
           'High-Impact Executive Portfolio Design',
           'Brand Positioning & Digital Presence Strategy',
           'Special Projects & Investment Showcase',
-          'Direct Business Development Advisory'
+          'Direct Business Development Advisory',
+          'Executive LinkedIn Integration'
         ],
         detailsContent: 'Tailored executive brand positioning and digital strategy for corporate leaders, investors, and founders.',
-        targetAudience: 'Executives, founders, consultants, and leaders needing a refined digital presence.'
+        technicalHighlights: [
+          'Ultra High Aesthetic Responsive Design System',
+          'Fast Loading Social Media Optimization',
+          'Interactive Pitch Deck Presentations',
+          'Integrated Brand Authority Strategy'
+        ],
+        targetAudience: 'Executives, founders, consultants, and leaders needing a refined digital presence.',
+        whatsappMessage: 'Hello HelpUS! I would like to know more about Brayyan advisory.'
       }
     }
   },
@@ -450,7 +630,8 @@ export const translations: Record<Language, TranslationSchema> = {
       institutional: 'Sobre HelpUS',
       solutions: 'Soluciones',
       help: 'Ayuda y Soporte',
-      contact: 'Contacto'
+      contact: 'Contacto',
+      backToCatalog: '← Volver al Catálogo'
     },
     hero: {
       title: 'Todas las Soluciones Digitales HelpUS',
@@ -459,16 +640,21 @@ export const translations: Record<Language, TranslationSchema> = {
     },
     catalog: {
       title: 'Soluciones Organizadas por Categoría',
-      subtitle: 'Haga clic en "Experimente Ahora" en cualquier solución para abrir los detalles y capturas antes de ir a la aplicación real.',
+      subtitle: 'Haga clic en "Experimente Ahora" para abrir la presentación completa antes de ir a la aplicación real.',
       tryNow: 'Experimente Ahora',
       partnerBannerTitle: 'Red de Socios Próximamente',
       partnerBannerDesc: 'Actualmente mostramos las aplicaciones propias de HelpUS. Próximamente abriremos espacio para socios homologados.'
     },
-    detailsModal: {
-      overview: 'Visión General y Capturas del Sistema',
-      keyFeatures: 'Aspectos Destacados y Capacidades Técnicas',
-      subdomain: 'Dirección Web Oficial:',
-      launchRealApp: 'Ir a la Aplicación Real 🚀',
+    fullPageDetails: {
+      backBtn: '← Volver al Catálogo de Soluciones',
+      overviewTitle: 'Visión General e Ingeniería',
+      technicalArchitecture: 'Arquitectura y Recursos Técnicos',
+      targetAudienceTitle: 'Público Objetivo',
+      keyCapabilitiesTitle: 'Aspectos Destacados',
+      officialSubdomain: 'Dirección Web Oficial:',
+      launchRealApp: 'Acceder a la Aplicación Real 🚀',
+      contactWhatsApp: 'Atención por WhatsApp para esta Solución',
+      folderOrigin: 'Proyecto Mapeado:',
       close: 'Cerrar'
     },
     cookies: {
@@ -507,13 +693,21 @@ export const translations: Record<Language, TranslationSchema> = {
         subtitle: 'Desarrollo de Software a Medida e Ingeniería de Sistemas',
         description: 'Fábrica de software especializada en la creación de plataformas SaaS, sistemas web responsivos, APIs de alto rendimiento y aplicaciones corporativas.',
         features: [
-          'Ingeniería de Software Full-Stack (React, Node.js, Python, PostgreSQL)',
-          'Arquitectura de APIs RESTful y GraphQL Seguras',
+          'Ingeniería Full-Stack (React, Node.js, Express, PostgreSQL, Python)',
+          'Arquitectura de APIs RESTful y GraphQL Encriptadas',
           'Despliegue Automatizado en la Nube (Vercel, AWS, Railway)',
+          'Tienda de Productos Digitales e Integración de Pagos',
           'Diseño de Experiencia de Usuario (UX/UI) de Alto Rendimiento'
         ],
         detailsContent: 'El servicio de Desarrollo de Software de HelpUS diseña y construye soluciones digitales personalizadas para empresas de todos los tamaños.',
-        targetAudience: 'Empresas, startups y emprendedores que necesitan sistemas digitales sólidos y escalables.'
+        technicalHighlights: [
+          'Base de Datos PostgreSQL en Railway',
+          'Autenticación Segura mediante JWT',
+          'Infraestructura Escalable en Vercel y Railway',
+          'Documentación Completa de API con Swagger UI'
+        ],
+        targetAudience: 'Empresas, startups y emprendedores que necesitan sistemas digitales sólidos y escalables.',
+        whatsappMessage: '¡Hola HelpUS! Quisiera un presupuesto para desarrollo de software a medida.'
       },
       'nexosai': {
         name: 'Nexos AI',
@@ -523,23 +717,39 @@ export const translations: Record<Language, TranslationSchema> = {
           'Agentes de IA Entrenados con Datos Empresariales',
           'Atención Automatizada 24/7',
           'Integración Oficial con WhatsApp Business API',
-          'Cualificación Automática de Clientes'
+          'Cualificación Automática de Clientes',
+          'Procesamiento de Lenguaje Natural con LLMs'
         ],
         detailsContent: 'Cree asistentes virtuales inteligentes entrenados con la base de conocimientos de su empresa para atención automatizada.',
-        targetAudience: 'Equipos de ventas y atención que desean escalar operaciones sin aumentar costos.'
+        technicalHighlights: [
+          'Desarrollado en Next.js App Router con Prisma ORM',
+          'Arquitectura de Búsqueda Vectorial RAG',
+          'Conexión Directa con WhatsApp Business API',
+          'Panel de Métricas en Tiempo Real'
+        ],
+        targetAudience: 'Equipos de ventas y atención que desean escalar operaciones sin aumentar costos.',
+        whatsappMessage: '¡Hola HelpUS! Tengo interés en los Agentes de IA de Nexos AI.'
       },
       'usmle': {
         name: 'USMLE Prep',
         subtitle: 'Plataforma Médica Internacional y Examen USMLE',
-        description: 'Plataforma especializada de estudios y simulados interactivos para médicos y estudiantes preparándose para el examen USMLE en EE. UU.',
+        description: 'Plataforma especializada de estudios y simulados interactivos para médicos y estudantes preparándose para el examen USMLE en EE. UU.',
         features: [
           'Banco de Preguntas Actualizado con Justificaciones Clínicas',
           'Simulación de Examen en Formato Real',
           'Reportes de Rendimiento Estadístico',
-          'Flashcards de Repetición Espaciada'
+          'Flashcards de Repetición Espaciada',
+          'Rutas Guiadas para Step 1, Step 2 CK y Step 3'
         ],
         detailsContent: 'Incluye banco de preguntas actualizado, métricas de rendimiento y recursos de aprendizaje para la revalidación médica en EE. UU.',
-        targetAudience: 'Médicos y estudiantes preparando la revalidación médica en EE. UU.'
+        technicalHighlights: [
+          'Interfaz Responsiva Optimizada para Estudio',
+          'Motor Estadístico de Diagnósticos',
+          'Formato Idéntico al Examen Oficial Americano',
+          'Sincronización en Tiempo Real'
+        ],
+        targetAudience: 'Médicos y estudiantes preparando la revalidación médica en EE. UU.',
+        whatsappMessage: '¡Hola HelpUS! Quisiera saber más sobre USMLE Prep.'
       },
       'saude': {
         name: 'Saúde',
@@ -548,11 +758,19 @@ export const translations: Record<Language, TranslationSchema> = {
         features: [
           'Historia Clínica Electrónica Encriptada',
           'Reserva de Citas Presenciales y Online',
-          'Sala de Telemedicina HD Segura',
-          'Emisión Digital de Recetas y Exámenes'
+          'Sala de Telemedicina HD Segura (HIPAA)',
+          'Emisión Digital de Recetas y Exámenes',
+          'Gestión Financiera de Salud'
         ],
         detailsContent: 'Software clínico completo con agenda online, expediente digital encriptado y consultas virtuales seguras.',
-        targetAudience: 'Clínicas médicas, consultorios privados y profesionales de la salud.'
+        technicalHighlights: [
+          'Seguridad Compatible con LGPD y HIPAA',
+          'Video HD de Baja Latencia vía WebRTC',
+          'Firma Digital de Documentos Médicos',
+          'Historial Clínico en la Nube'
+        ],
+        targetAudience: 'Clínicas médicas, consultorios privados y profesionales de la salud.',
+        whatsappMessage: '¡Hola HelpUS! Quisiera consultar sobre HelpUS Saúde para mi clínica.'
       },
       'wagnerdriver-site': {
         name: 'Executive Driver',
@@ -562,10 +780,18 @@ export const translations: Record<Language, TranslationSchema> = {
           'Reserva Anticipada de Viajes VIP',
           'Flota Ejecutiva Monitoreada en Tiempo Real',
           'Facturación Corporativa Mensual Centralizada',
-          'Atención Exclusiva para Ejecutivos'
+          'Choferes Bilingües para Eventos',
+          'Recepción Personalizada en Aeropuertos'
         ],
         detailsContent: 'Gestione reservas VIP de vehículos ejecutivos, control de itinerarios y traslados corporativos en tiempo real.',
-        targetAudience: 'Ejecutivos, empresas, hoteles y pasajeros VIP.'
+        technicalHighlights: [
+          'Confirmación Instantánea de Reservas',
+          'Telemetría de Flota y Rastreo en Tiempo Real',
+          'Reportes Mensuales Corporativos',
+          'Diseño Móvil de Alto Nivel'
+        ],
+        targetAudience: 'Ejecutivos, empresas, hoteles y pasajeros VIP.',
+        whatsappMessage: '¡Hola HelpUS! Tengo interés en Executive Driver.'
       },
       'pizza': {
         name: 'Pizza & Delivery',
@@ -575,10 +801,18 @@ export const translations: Record<Language, TranslationSchema> = {
           'Menú Digital Interactivo mediante Código QR',
           'Personalizador de Sabores Mitad y Mitad',
           'Sistema de Pantalla de Cocina (KDS)',
-          'Gestión y Seguimiento de Repartidores'
+          'Gestión y Seguimiento de Repartidores',
+          'Reportes de Ventas e Inventario'
         ],
         detailsContent: 'Sistema de gestión gastronómica con menú QR, personalizador interactivo de sabores y gestión de repartidores.',
-        targetAudience: 'Pizzerías, restaurantes y negocios de comida a domicilio.'
+        technicalHighlights: [
+          'Interfaz Móvil Fluida para Pedidos',
+          'Estados de Pedido en Tiempo Real vía WebSockets',
+          'Cálculo Automático de Precios Fraccionados',
+          'Panel de Gestión de Cocina'
+        ],
+        targetAudience: 'Pizzerías, restaurantes y negocios de comida a domicilio.',
+        whatsappMessage: '¡Hola HelpUS! Quiero conocer Pizza & Delivery.'
       },
       'jobs': {
         name: 'Jobs',
@@ -588,10 +822,18 @@ export const translations: Record<Language, TranslationSchema> = {
           'Búsqueda Multilingüe de Empleos Globales',
           'Match Inteligente Candidato-Vacante',
           'Curriculum Estandarizado y Verificación',
-          'Panel de Gestión de Procesos de Selección'
+          'Panel ATS de Selección de Personal',
+          'Alertas Automáticas de Vacantes'
         ],
         detailsContent: 'Conecta a profesionales con empleo internacional y local mediante algoritmos avanzados de coincidencia.',
-        targetAudience: 'Buscadores de empleo y reclutadores contratando talento local y remoto.'
+        technicalHighlights: [
+          'Puntuación de Compatibilidad por IA',
+          'Soporte Multilingüe en 10+ Idiomas',
+          'Funel de Reclutamiento ATS en Tiempo Real',
+          'Perfiles Profesionales Verificados'
+        ],
+        targetAudience: 'Buscadores de empleo y reclutadores contratando talento local y remoto.',
+        whatsappMessage: '¡Hola HelpUS! Quisiera entender más sobre Jobs.'
       },
       'visa': {
         name: 'Visa & Imigração',
@@ -601,10 +843,18 @@ export const translations: Record<Language, TranslationSchema> = {
           'Checklist Inteligente de Documentación Consular',
           'Guía para Cumplimentar Formularios (DS-160)',
           'Monitoreo de Citas Consulares',
-          'Asesoría Directa de Expertos'
+          'Asesoría Directa de Expertos',
+          'Seguimiento de Estado del Visado'
         ],
         detailsContent: 'Portal de asesoría de inmigración con guías de documentación y seguimiento de citas consulares.',
-        targetAudience: 'Viajeros, estudiantes e inmigrantes con destino a EE. UU. y Europa.'
+        technicalHighlights: [
+          'Generador Dinámico de Checklists',
+          'Monitor de Disponibilidad de Citas Consulares',
+          'Almacenamiento Seguro de Documentos',
+          'Guía Paso a Paso para Entrevistas'
+        ],
+        targetAudience: 'Viajeros, estudiantes e inmigrantes con destino a EE. UU. y Europa.',
+        whatsappMessage: '¡Hola HelpUS! Necesito ayuda con Visa & Imigração.'
       },
       'memoria-viva': {
         name: 'Memória Viva',
@@ -614,10 +864,18 @@ export const translations: Record<Language, TranslationSchema> = {
           'Línea de Tiempo Biográfica Interactiva',
           'Archivo Digital de Fotos, Videos y Audio',
           'Libros Virtuales de Biografía Familiar',
-          'Acceso Privado y Seguro'
+          'Acceso Privado y Seguro',
+          'Transcripción de Audio por Inteligencia Artificial'
         ],
         detailsContent: 'Espacio dedicado a conservar memorias familiares, audios históricos y libros de biografías para futuras generaciones.',
-        targetAudience: 'Familias y personas interesadas en preservar su historia personal.'
+        technicalHighlights: [
+          'Arquitectura con Transcripción de Audio por IA',
+          'Almacenamiento Encriptado en la Nube',
+          'Controles Estrictos de Privacidad Familiar',
+          'Diseño Accesible para Personas Mayores'
+        ],
+        targetAudience: 'Familias y personas interesadas en preservar su historia personal.',
+        whatsappMessage: '¡Hola HelpUS! Quisiera conocer Memória Viva.'
       },
       'brayyan': {
         name: 'Brayyan',
@@ -626,11 +884,19 @@ export const translations: Record<Language, TranslationSchema> = {
         features: [
           'Diseño de Portafolio Ejecutivo de Alto Impacto',
           'Estrategia de Posicionamiento y Presencia Digital',
-          'Presentación de Proyectos Especiales',
-          'Consultoría Directa de Desarrollo de Negocios'
+          'Presentación de Proyectos Especiales e Inversiones',
+          'Consultoría Directa de Desarrollo de Negocios',
+          'Integración con LinkedIn Executivo'
         ],
         detailsContent: 'Solución personalizada de marca ejecutiva y consultoría de negocios para líderes y emprendedores.',
-        targetAudience: 'Ejecutivos, fundadores y consultores que requieren presencia digital de alto nivel.'
+        technicalHighlights: [
+          'Diseño Responsivo de Altísimo Nivel Estético',
+          'Carga Rápida y Optimización para Redes Sociales',
+          'Presentaciones Interactivas de Proyectos',
+          'Estrategia Integrada de Autoridad de Marca'
+        ],
+        targetAudience: 'Ejecutivos, fundadores y consultores que requieren presencia digital de alto nivel.',
+        whatsappMessage: '¡Hola HelpUS! Quisiera saber más sobre Brayyan.'
       }
     }
   }
