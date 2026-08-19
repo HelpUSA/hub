@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { 
-  ShieldCheck, 
   Stethoscope, 
   Car, 
   Pizza, 
@@ -10,7 +9,6 @@ import {
   Globe, 
   BookOpen, 
   UserCheck, 
-  Search, 
   MessageSquare, 
   Sparkles, 
   Check, 
@@ -18,9 +16,11 @@ import {
   ExternalLink,
   ChevronLeft,
   ChevronRight,
-  PhoneCall,
   Layers,
-  Globe2
+  Globe2,
+  Menu,
+  X,
+  Send
 } from 'lucide-react';
 
 import { translations, type Language } from './i18n/translations';
@@ -39,17 +39,17 @@ interface AppItem {
 export function App() {
   const [lang, setLang] = useState<Language>('pt');
   const [activeCategory, setActiveCategory] = useState<string>('todos');
-  const [searchQuery, setSearchQuery] = useState<string>('');
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
   const t = translations[lang];
 
-  // Número oficial de WhatsApp
+  // WhatsApp oficial HelpUS
   const whatsappNumber = '5583998721848';
   const whatsappFormatted = '(83) 99872-1848';
   const helpusEmail = 'contato@helpusbr.com';
 
-  // Lista de dados base das 10 aplicações
+  // Lista de dados base das 10 aplicações mapeadas
   const applications: AppItem[] = [
     {
       id: 'helpus-site',
@@ -158,6 +158,14 @@ export function App() {
     return () => clearInterval(timer);
   }, [featuredApps.length]);
 
+  const categoryGroups = [
+    { id: 'tecnologia', label: t.categories.tecnologia, icon: Bot },
+    { id: 'saude', label: t.categories.saude, icon: Stethoscope },
+    { id: 'servicos', label: t.categories.servicos, icon: Car },
+    { id: 'gastronomia', label: t.categories.gastronomia, icon: Pizza },
+    { id: 'cultura', label: t.categories.cultura, icon: BookOpen }
+  ];
+
   const categoryPills = [
     { id: 'todos', label: t.categories.todos },
     { id: 'tecnologia', label: t.categories.tecnologia },
@@ -166,17 +174,6 @@ export function App() {
     { id: 'gastronomia', label: t.categories.gastronomia },
     { id: 'cultura', label: t.categories.cultura }
   ];
-
-  const filteredApps = applications.filter(app => {
-    const appTrans = t.apps[app.id];
-    const matchesCategory = activeCategory === 'todos' || app.category === activeCategory;
-    const matchesSearch = searchQuery === '' || 
-      (appTrans && appTrans.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
-      app.domain.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (appTrans && appTrans.subtitle.toLowerCase().includes(searchQuery.toLowerCase())) ||
-      (appTrans && appTrans.description.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesCategory && matchesSearch;
-  });
 
   const openWhatsApp = (msg: string) => {
     const encoded = encodeURIComponent(msg);
@@ -194,74 +191,89 @@ export function App() {
         <div className="hub-container">
           <div className="hub-header-inner">
             
-            {/* Logo */}
-            <div className="hub-logo">
-              <div className="hub-logo-icon">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="hub-logo-text">
-                  Help<span>US</span> <span className="hub-logo-badge">HUB</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Search Input */}
-            <div className="hidden md:flex items-center relative" style={{ width: '260px' }}>
-              <Search className="w-4 h-4 text-slate-400 absolute left-3 pointer-events-none" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={lang === 'pt' ? "Buscar subdomínio ou serviço..." : "Search subdomain or service..."}
-                style={{
-                  width: '100%',
-                  paddingLeft: '36px',
-                  paddingRight: '12px',
-                  paddingTop: '8px',
-                  paddingBottom: '8px',
-                  fontSize: '0.85rem',
-                  border: '1px solid var(--border-light)',
-                  borderRadius: '8px',
-                  outline: 'none',
-                  backgroundColor: '#ffffff'
-                }}
+            {/* Official Uploaded HelpUS Logo Image */}
+            <a href="#" className="hub-logo-img-link">
+              <img
+                src="/images/helpus_logo.png"
+                alt="HelpUS Logo"
+                className="hub-logo-img"
               />
-            </div>
+            </a>
 
-            {/* Native Language Switcher & Contact CTA */}
+            {/* Desktop Category Navigation */}
+            <nav className="hub-nav-links">
+              {categoryPills.map(cat => (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={`hub-nav-btn ${activeCategory === cat.id ? 'active' : ''}`}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </nav>
+
+            {/* Native Language Switcher (PT | EN | ES) */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               
-              {/* Native Language Switcher Pill */}
               <div className="hub-lang-switcher">
                 <button
                   onClick={() => setLang('pt')}
                   className={`hub-lang-btn ${lang === 'pt' ? 'active' : ''}`}
+                  title="Português"
                 >
-                  🇧🇷 PT
+                  PT
                 </button>
                 <button
                   onClick={() => setLang('en')}
                   className={`hub-lang-btn ${lang === 'en' ? 'active' : ''}`}
+                  title="English"
                 >
-                  🇺🇸 EN
+                  EN
+                </button>
+                <button
+                  onClick={() => setLang('es')}
+                  className={`hub-lang-btn ${lang === 'es' ? 'active' : ''}`}
+                  title="Español"
+                >
+                  ES
                 </button>
               </div>
 
-              <button 
-                onClick={() => openWhatsApp(t.apps['helpus-site'].whatsappMessage)}
-                className="hub-btn-primary"
+              {/* Mobile Menu Toggle Button */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="hub-mobile-menu-btn"
               >
-                <MessageSquare className="w-4 h-4" />
-                <span>{t.nav.whatsappButton}</span>
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
+
             </div>
 
           </div>
         </div>
+
+        {/* Mobile Navigation Drawer */}
+        {mobileMenuOpen && (
+          <div className="hub-mobile-drawer open">
+            {categoryPills.map(cat => (
+              <button
+                key={cat.id}
+                onClick={() => {
+                  setActiveCategory(cat.id);
+                  setMobileMenuOpen(false);
+                }}
+                className={`hub-nav-btn ${activeCategory === cat.id ? 'active' : ''}`}
+                style={{ width: '100%', justifyContent: 'flex-start' }}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        )}
       </header>
 
-      {/* Hero Section */}
+      {/* Hero Section (Zoho All Products Inspired) */}
       <section className="hub-hero">
         <div className="hub-container">
           <div className="hub-hero-badge">
@@ -270,14 +282,14 @@ export function App() {
           </div>
 
           <h1 className="hub-hero-title">
-            {t.hero.titleStart}<span>{t.hero.titleSpan}</span>
+            {t.hero.title}
           </h1>
 
           <p className="hub-hero-desc">
-            {t.hero.desc}
+            {t.hero.subtitle}
           </p>
 
-          {/* Featured Interactive Carousel */}
+          {/* Featured Interactive Carousel Showcase */}
           <div className="hub-carousel-wrapper">
             <div className="hub-carousel">
               <div className="hub-carousel-inner">
@@ -285,7 +297,7 @@ export function App() {
                 {/* Left Side: App Details */}
                 <div className="hub-carousel-content">
                   <span className="hub-carousel-tag">
-                    {t.carousel.featuredTag} ({currentSlideIndex + 1}/{featuredApps.length})
+                    ★ Destaque ({currentSlideIndex + 1}/{featuredApps.length})
                   </span>
                   
                   <h2 className="hub-carousel-title">{activeCarouselTrans?.name}</h2>
@@ -302,7 +314,7 @@ export function App() {
                       rel="noopener noreferrer"
                       className="hub-btn-primary"
                     >
-                      <span>{t.carousel.accessButton} {activeCarouselApp.domain}</span>
+                      <span>{t.catalog.accessApp} ({activeCarouselApp.domain})</span>
                       <ExternalLink className="w-4 h-4" />
                     </a>
                     
@@ -311,7 +323,7 @@ export function App() {
                       className="hub-btn-secondary"
                     >
                       <MessageSquare className="w-4 h-4 text-emerald-600" />
-                      <span>{t.carousel.talkButton}</span>
+                      <span>{t.catalog.whatsappContact}</span>
                     </button>
                   </div>
                 </div>
@@ -357,14 +369,14 @@ export function App() {
                   <button
                     onClick={() => setCurrentSlideIndex((prev) => (prev - 1 + featuredApps.length) % featuredApps.length)}
                     className="hub-carousel-arrow"
-                    title="Previous"
+                    title="Anterior"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
                   <button
                     onClick={() => setCurrentSlideIndex((prev) => (prev + 1) % featuredApps.length)}
                     className="hub-carousel-arrow"
-                    title="Next"
+                    title="Próximo"
                   >
                     <ChevronRight className="w-5 h-5" />
                   </button>
@@ -377,97 +389,105 @@ export function App() {
         </div>
       </section>
 
-      {/* Main Catalog Section */}
+      {/* Main Catalog Section (Zoho Inspired Category Groups) */}
       <section className="hub-section">
         <div className="hub-container">
           
-          <div className="hub-section-header" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <div>
-              <span className="hub-section-subtitle">{t.catalog.subtitle}</span>
-              <h2 className="hub-section-title">{t.catalog.title}</h2>
-              <p className="hub-section-desc">{t.catalog.desc}</p>
-            </div>
-
-            {/* Category Filter Pills */}
-            <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '8px' }}>
-              {categoryPills.map(cat => (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`hub-nav-btn ${activeCategory === cat.id ? 'active' : ''}`}
-                  style={{ whiteSpace: 'nowrap' }}
-                >
-                  {cat.label}
-                </button>
-              ))}
-            </div>
+          <div className="hub-section-header">
+            <span className="hub-section-subtitle">HelpUS Ecosystem</span>
+            <h2 className="hub-section-title">{t.catalog.title}</h2>
+            <p className="hub-section-desc">{t.catalog.subtitle}</p>
           </div>
 
-          {/* Cards Grid */}
-          <div className="hub-cards-grid">
-            {filteredApps.map(app => {
-              const IconComponent = app.icon;
-              const appTrans = t.apps[app.id];
-              if (!appTrans) return null;
+          {/* Render Categories grouped or filtered */}
+          {categoryGroups.map(group => {
+            if (activeCategory !== 'todos' && activeCategory !== group.id) return null;
+            
+            const groupApps = applications.filter(a => a.category === group.id);
+            if (groupApps.length === 0) return null;
 
-              return (
-                <div key={app.id} className="hub-card">
-                  <div>
-                    <div className="hub-card-top">
-                      <div className="hub-card-icon">
-                        <IconComponent className="w-6 h-6" />
-                      </div>
-                      <span className={`hub-card-badge ${app.status === 'Plataforma Ativa' ? 'hub-badge-green' : 'hub-badge-blue'}`}>
-                        {app.status}
-                      </span>
-                    </div>
+            const GroupIcon = group.icon;
 
-                    <h3 className="hub-card-title">{appTrans.name}</h3>
-                    <span className="hub-card-subdomain">{app.domain}</span>
-                    <p className="hub-card-subtitle">{appTrans.subtitle}</p>
-                    <p className="hub-card-desc">{appTrans.description}</p>
-
-                    <ul className="hub-card-features">
-                      {appTrans.features.map((feat, idx) => (
-                        <li key={idx}>
-                          <Check className="w-4 h-4" />
-                          <span>{feat}</span>
-                        </li>
-                      ))}
-                    </ul>
+            return (
+              <div key={group.id} className="hub-category-group">
+                
+                {/* Category Header Bar */}
+                <div className="hub-category-header">
+                  <div className="hub-category-header-icon">
+                    <GroupIcon className="w-5 h-5" />
                   </div>
-
-                  <div className="hub-card-bottom">
-                    <div className="hub-card-action-row">
-                      <a
-                        href={app.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hub-btn-access"
-                      >
-                        <span>{t.catalog.accessSite} {app.domain}</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-
-                      <button
-                        onClick={() => openWhatsApp(appTrans.whatsappMessage)}
-                        className="hub-btn-whatsapp"
-                      >
-                        <MessageSquare className="w-3.5 h-3.5" />
-                        <span>{t.catalog.whatsapp}</span>
-                      </button>
-                    </div>
-                  </div>
-
+                  <h3 className="hub-category-header-title">{t.categories[group.id as keyof typeof t.categories]}</h3>
                 </div>
-              );
-            })}
-          </div>
 
-          {/* Partner Roadmap Announcement Banner */}
+                {/* Grid of Cards */}
+                <div className="hub-cards-grid">
+                  {groupApps.map(app => {
+                    const IconComponent = app.icon;
+                    const appTrans = t.apps[app.id];
+                    if (!appTrans) return null;
+
+                    return (
+                      <div key={app.id} className="hub-card">
+                        <div>
+                          <div className="hub-card-top">
+                            <div className="hub-card-icon">
+                              <IconComponent className="w-6 h-6" />
+                            </div>
+                            <span className={`hub-card-badge ${app.status === 'Plataforma Ativa' ? 'hub-badge-green' : 'hub-badge-blue'}`}>
+                              {app.status}
+                            </span>
+                          </div>
+
+                          <h3 className="hub-card-title">{appTrans.name}</h3>
+                          <span className="hub-card-subdomain">{app.domain}</span>
+                          <p className="hub-card-subtitle">{appTrans.subtitle}</p>
+                          <p className="hub-card-desc">{appTrans.description}</p>
+
+                          <ul className="hub-card-features">
+                            {appTrans.features.map((feat, idx) => (
+                              <li key={idx}>
+                                <Check className="w-4 h-4" />
+                                <span>{feat}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div className="hub-card-bottom">
+                          <div className="hub-card-action-row">
+                            <a
+                              href={app.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hub-btn-access"
+                            >
+                              <span>{t.catalog.accessApp}</span>
+                              <ExternalLink className="w-3.5 h-3.5" />
+                            </a>
+
+                            <button
+                              onClick={() => openWhatsApp(appTrans.whatsappMessage)}
+                              className="hub-btn-whatsapp-card"
+                            >
+                              <MessageSquare className="w-3.5 h-3.5" />
+                              <span>WhatsApp</span>
+                            </button>
+                          </div>
+                        </div>
+
+                      </div>
+                    );
+                  })}
+                </div>
+
+              </div>
+            );
+          })}
+
+          {/* Partner Roadmap Banner */}
           <div style={{ 
             marginTop: '40px', 
-            padding: '20px', 
+            padding: '24px', 
             borderRadius: '16px', 
             background: '#ffffff', 
             border: '1px solid var(--border-light)', 
@@ -480,28 +500,10 @@ export function App() {
               <Layers className="w-6 h-6" />
             </div>
             <div>
-              <h4 style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-dark)' }}>{t.catalog.partnerBannerTitle}</h4>
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '2px' }}>
+              <h4 style={{ fontSize: '1rem', fontWeight: '700', color: 'var(--text-dark)' }}>{t.catalog.partnerBannerTitle}</h4>
+              <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginTop: '2px' }}>
                 {t.catalog.partnerBannerDesc}
               </p>
-            </div>
-          </div>
-
-          {/* Contact Direct Callout Box */}
-          <div className="hub-contact-card">
-            <div className="hub-contact-info">
-              <h3>{t.catalog.customContactTitle}</h3>
-              <p>{t.catalog.customContactDesc}</p>
-            </div>
-            <div>
-              <button 
-                onClick={() => openWhatsApp('Olá HelpUS! Gostaria de agendar uma conversa sobre os sistemas do ecossistema.')}
-                className="hub-btn-primary"
-                style={{ background: '#ffffff', color: '#0f172a', fontWeight: '700' }}
-              >
-                <PhoneCall className="w-4 h-4 text-blue-600" />
-                <span>{t.catalog.customContactCta}</span>
-              </button>
             </div>
           </div>
 
@@ -512,15 +514,41 @@ export function App() {
       <footer className="hub-footer">
         <div className="hub-container">
           <div className="hub-footer-inner">
-            <div>
-              <strong>HelpUS Technology Solutions</strong> © 2026 — 10 Mapped Applications.
+            <div className="hub-footer-brand">
+              <img
+                src="/images/helpus_logo.png"
+                alt="HelpUS Logo"
+                className="hub-footer-logo"
+              />
+              <div>
+                <p style={{ fontWeight: '700', color: 'var(--text-dark)' }}>{t.footer.rights}</p>
+                <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>10 Aplicações em Operação & Desenvolvimento</p>
+              </div>
             </div>
-            <div>
-              {t.footer.contact}: <strong style={{ color: 'var(--text-dark)' }}>{whatsappFormatted}</strong> | Email: <a href={`mailto:${helpusEmail}`} style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: '600' }}>{helpusEmail}</a>
+
+            <div style={{ textAlign: 'right' }}>
+              <p style={{ fontWeight: '700', color: 'var(--text-dark)' }}>{t.footer.contactTitle}</p>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                {t.footer.whatsapp}: <strong style={{ color: 'var(--primary)' }}>{whatsappFormatted}</strong>
+              </p>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                Email: <a href={`mailto:${helpusEmail}`} style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: '600' }}>{helpusEmail}</a>
+              </p>
             </div>
           </div>
         </div>
       </footer>
+
+      {/* Floating Animated WhatsApp Icon Button in Bottom-Right Corner */}
+      <a
+        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Olá HelpUS! Gostaria de falar com o atendimento pelo portal.')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hub-whatsapp-floating"
+        title="Falar no WhatsApp HelpUS"
+      >
+        <Send className="w-7 h-7" />
+      </a>
 
     </div>
   );

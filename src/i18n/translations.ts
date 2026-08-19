@@ -1,4 +1,4 @@
-export type Language = 'pt' | 'en';
+export type Language = 'pt' | 'en' | 'es';
 
 export interface TranslationSchema {
   nav: {
@@ -6,40 +6,31 @@ export interface TranslationSchema {
     tech: string;
     health: string;
     services: string;
-    ai: string;
-    whatsappButton: string;
+    gastronomy: string;
+    culture: string;
   };
   hero: {
     badge: string;
-    titleStart: string;
-    titleSpan: string;
-    desc: string;
-    metric1: string;
-    metric2: string;
-    metric3: string;
-    whatsappCta: string;
-  };
-  carousel: {
-    featuredTag: string;
-    accessButton: string;
-    talkButton: string;
+    title: string;
+    subtitle: string;
+    appsCount: string;
+    exploreBtn: string;
   };
   catalog: {
-    subtitle: string;
     title: string;
-    desc: string;
+    subtitle: string;
+    accessApp: string;
+    whatsappContact: string;
     developedBy: string;
-    accessSite: string;
-    whatsapp: string;
     partnerBannerTitle: string;
     partnerBannerDesc: string;
-    customContactTitle: string;
-    customContactDesc: string;
-    customContactCta: string;
   };
   footer: {
     rights: string;
-    contact: string;
+    contactTitle: string;
+    contactDesc: string;
+    whatsapp: string;
+    email: string;
   };
   categories: {
     todos: string;
@@ -61,44 +52,35 @@ export interface TranslationSchema {
 export const translations: Record<Language, TranslationSchema> = {
   pt: {
     nav: {
-      allServices: 'Todos os Serviços',
+      allServices: 'Todas as Soluções',
       tech: 'Tecnologia & IA',
-      health: 'Saúde',
-      services: 'Serviços',
-      ai: 'Inteligência Artificial',
-      whatsappButton: 'WhatsApp (83) 99872-1848'
+      health: 'Saúde & Medicina',
+      services: 'Serviços & Mobilidade',
+      gastronomy: 'Alimentação & Delivery',
+      culture: 'Cultura & Biografia'
     },
     hero: {
-      badge: 'Ecossistema Oficial de Aplicações HelpUS',
-      titleStart: 'Plataformas e Serviços ',
-      titleSpan: 'HelpUS',
-      desc: 'Acesse diretamente os sites e sistemas desenvolvidos pela HelpUS. O hub central para coordenação de serviços, suporte e atendimento corporativo pelo WhatsApp (83) 99872-1848.',
-      metric1: '⚡ 10 Soluções Próprias',
-      metric2: '🛡️ Atendimento Direto HelpUS',
-      metric3: '🌐 hub.helpusbr.com',
-      whatsappCta: 'Contato Direto no WhatsApp'
-    },
-    carousel: {
-      featuredTag: '★ Destaque do Ecossistema',
-      accessButton: 'Acessar',
-      talkButton: 'Falar sobre este Sistema'
+      badge: 'Ecossistema Oficial de Aplicações',
+      title: 'Todas as Soluções Digitais HelpUS',
+      subtitle: 'Conheça o catálogo completo das aplicações e plataformas desenvolvidas e gerenciadas diretamente pela HelpUS.',
+      appsCount: '10 Aplicações Próprias',
+      exploreBtn: 'Explorar Catálogo'
     },
     catalog: {
-      subtitle: 'Aplicações Próprias',
-      title: 'Catálogo Completo dos 10 Serviços HelpUS',
-      desc: 'Acesse o subdomínio direto de cada sistema ou entre em contato com nosso atendimento para suporte e contratação.',
-      developedBy: 'Desenvolvido por',
-      accessSite: 'Acessar',
-      whatsapp: 'WhatsApp',
+      title: 'Soluções Organizadas por Categoria',
+      subtitle: 'Selecione uma área para navegar entre nossos sistemas ou acesse a aplicação diretamente.',
+      accessApp: 'Acessar Aplicação',
+      whatsappContact: 'Atendimento WhatsApp',
+      developedBy: 'Desenvolvido por HelpUS',
       partnerBannerTitle: 'Rede de Parceiros em Breve',
-      partnerBannerDesc: 'Atualmente este catálogo exibe exclusivamente as 10 aplicações próprias da HelpUS mapeadas nos servidores. Em breve, abriremos espaço para novos parceiros homologados.',
-      customContactTitle: 'Deseja contratar ou integrar uma dessas soluções?',
-      customContactDesc: 'Fale diretamente com a equipe da HelpUS pelo WhatsApp (83) 99872-1848 para tirar dúvidas, agendar apresentações ou solicitar personalizações.',
-      customContactCta: 'Atendimento WhatsApp (83) 99872-1848'
+      partnerBannerDesc: 'Atualmente apresentamos apenas as aplicações próprias da HelpUS. Em breve, abriremos espaço para a inclusão de parceiros homologados.'
     },
     footer: {
-      rights: 'HelpUS Technology Solutions © 2026 — 10 Aplicações Mapeadas.',
-      contact: 'Atendimento WhatsApp'
+      rights: 'HelpUS Technology Solutions © 2026 — Todos os direitos reservados.',
+      contactTitle: 'Fale com a HelpUS',
+      contactDesc: 'Atendimento direto pelo WhatsApp ou email corporativo para contratação e suporte.',
+      whatsapp: 'WhatsApp (83) 99872-1848',
+      email: 'contato@helpusbr.com'
     },
     categories: {
       todos: 'Todas as Soluções (10)',
@@ -183,44 +165,35 @@ export const translations: Record<Language, TranslationSchema> = {
   },
   en: {
     nav: {
-      allServices: 'All Services',
+      allServices: 'All Solutions',
       tech: 'Tech & AI',
       health: 'Healthcare',
       services: 'Services',
-      ai: 'Artificial Intelligence',
-      whatsappButton: 'WhatsApp +55 (83) 99872-1848'
+      gastronomy: 'Food & Delivery',
+      culture: 'Culture'
     },
     hero: {
-      badge: 'Official HelpUS Applications Ecosystem',
-      titleStart: 'Platforms & Services ',
-      titleSpan: 'HelpUS',
-      desc: 'Directly access the websites and systems built by HelpUS. The central hub for service management, support, and corporate assistance via WhatsApp +55 (83) 99872-1848.',
-      metric1: '⚡ 10 In-House Solutions',
-      metric2: '🛡️ Direct HelpUS Support',
-      metric3: '🌐 hub.helpusbr.com',
-      whatsappCta: 'Direct Contact on WhatsApp'
-    },
-    carousel: {
-      featuredTag: '★ Ecosystem Spotlight',
-      accessButton: 'Access Site',
-      talkButton: 'Inquire About This System'
+      badge: 'Official Applications Ecosystem',
+      title: 'All HelpUS Digital Solutions',
+      subtitle: 'Discover the full catalog of applications and platforms developed and managed directly by HelpUS.',
+      appsCount: '10 In-House Applications',
+      exploreBtn: 'Explore Catalog'
     },
     catalog: {
-      subtitle: 'Proprietary Applications',
-      title: 'Complete Catalog of the 10 HelpUS Services',
-      desc: 'Access the direct subdomain of each system or contact our team for support and deployment.',
-      developedBy: 'Developed by',
-      accessSite: 'Access',
-      whatsapp: 'WhatsApp',
+      title: 'Solutions Organized by Category',
+      subtitle: 'Select a category to browse our systems or access the application directly.',
+      accessApp: 'Access Application',
+      whatsappContact: 'WhatsApp Support',
+      developedBy: 'Developed by HelpUS',
       partnerBannerTitle: 'Partner Network Coming Soon',
-      partnerBannerDesc: 'Currently this catalog exclusively displays the 10 proprietary HelpUS applications. Certified partner solutions will be introduced soon.',
-      customContactTitle: 'Need a custom solution or enterprise integration?',
-      customContactDesc: 'Speak directly with the HelpUS team on WhatsApp +55 (83) 99872-1848 to ask questions, schedule demos, or request custom features.',
-      customContactCta: 'WhatsApp Support +55 (83) 99872-1848'
+      partnerBannerDesc: 'Currently displaying proprietary HelpUS applications. Certified partner solutions will be introduced soon.'
     },
     footer: {
-      rights: 'HelpUS Technology Solutions © 2026 — 10 Mapped Applications.',
-      contact: 'WhatsApp Support'
+      rights: 'HelpUS Technology Solutions © 2026 — All rights reserved.',
+      contactTitle: 'Contact HelpUS',
+      contactDesc: 'Direct assistance via WhatsApp or corporate email for deployments and support.',
+      whatsapp: 'WhatsApp +55 (83) 99872-1848',
+      email: 'contato@helpusbr.com'
     },
     categories: {
       todos: 'All Solutions (10)',
@@ -300,6 +273,119 @@ export const translations: Record<Language, TranslationSchema> = {
         description: 'Executive presentation portfolio and personal branding advisory for founders, executives, and special brand projects.',
         features: ['Special Projects Showcase', 'Branding & Digital Presence', 'Business Consulting'],
         whatsappMessage: 'Hello HelpUS! I would like to know more about HelpUS Brayyan advisory services.'
+      }
+    }
+  },
+  es: {
+    nav: {
+      allServices: 'Todas las Soluciones',
+      tech: 'Tecnología e IA',
+      health: 'Salud y Medicina',
+      services: 'Servicios y Movilidad',
+      gastronomy: 'Alimentación y Delivery',
+      culture: 'Cultura y Biografía'
+    },
+    hero: {
+      badge: 'Ecosistema Oficial de Aplicaciones',
+      title: 'Todas las Soluciones Digitales HelpUS',
+      subtitle: 'Conozca el catálogo completo de aplicaciones y plataformas desarrolladas y gestionadas directamente por HelpUS.',
+      appsCount: '10 Aplicaciones Propias',
+      exploreBtn: 'Explorar Catálogo'
+    },
+    catalog: {
+      title: 'Soluciones Organizadas por Categoría',
+      subtitle: 'Seleccione un área para navegar entre nuestros sistemas o acceda a la aplicación directamente.',
+      accessApp: 'Acceder a la Aplicación',
+      whatsappContact: 'Atención WhatsApp',
+      developedBy: 'Desarrollado por HelpUS',
+      partnerBannerTitle: 'Red de Socios Próximamente',
+      partnerBannerDesc: 'Actualmente mostramos las aplicaciones propias de HelpUS. Próximamente abriremos espacio para socios homologados.'
+    },
+    footer: {
+      rights: 'HelpUS Technology Solutions © 2026 — Todos los derechos reservados.',
+      contactTitle: 'Hable con HelpUS',
+      contactDesc: 'Atención directa por WhatsApp o correo electrónico corporativo para soporte e integración.',
+      whatsapp: 'WhatsApp +55 (83) 99872-1848',
+      email: 'contato@helpusbr.com'
+    },
+    categories: {
+      todos: 'Todas las Soluciones (10)',
+      tecnologia: 'Tecnología e IA',
+      saude: 'Salud y Medicina',
+      servicos: 'Servicios y Movilidad',
+      gastronomia: 'Alimentación y Delivery',
+      cultura: 'Cultura y Biografía'
+    },
+    apps: {
+      'helpus-site': {
+        name: 'HelpUS Platform',
+        subtitle: 'Portal Institucional e Infraestructura Central',
+        description: 'Hub institucional de HelpUS responsable de la coordinación de servicios, gestión de clientes, infraestructura y gobernanza de aplicaciones.',
+        features: ['Centro de Servicios', 'Gestión de Clientes', 'Soporte Técnico Coordinado'],
+        whatsappMessage: '¡Hola HelpUS! Quisiera obtener más información sobre la plataforma institucional HelpUS.'
+      },
+      'nexosai': {
+        name: 'Nexos AI by HelpUS',
+        subtitle: 'Inteligencia Artificial y Agentes Autónomos',
+        description: 'Plataforma avanzada de IA para la creación de agentes virtuales autónomos, automatización de procesos e integración con WhatsApp.',
+        features: ['Agentes de IA Entrenados', 'Automatización 24/7', 'Integración Oficial con WhatsApp'],
+        whatsappMessage: '¡Hola HelpUS! Tengo interés en los Agentes de IA de la plataforma Nexos AI.'
+      },
+      'usmle': {
+        name: 'HelpUS USMLE Prep',
+        subtitle: 'Plataforma Médica Internacional y Examen USMLE',
+        description: 'Plataforma especializada de estudios y simulados interactivos para médicos y estudiantes preparándose para el examen USMLE en EE. UU.',
+        features: ['Simulados y Banco de Preguntas', 'Seguimiento de Rendimiento', 'Recursos para Revalidación Médica'],
+        whatsappMessage: '¡Hola HelpUS! Quisiera saber más sobre la plataforma HelpUS USMLE Prep.'
+      },
+      'saude': {
+        name: 'HelpUS Saúde',
+        subtitle: 'Telemedicina y Gestión Integrada de Salud',
+        description: 'Sistema completo para clínicas y profesionales de la salud. Ofrece reserva de citas online, historia clínica electrónica y telemedicina.',
+        features: ['Historia Clínica Electrónica', 'Reserva de Citas Online', 'Telemedicina Segura'],
+        whatsappMessage: '¡Hola HelpUS! Quisiera consultar sobre HelpUS Saúde para clínicas/profesionales.'
+      },
+      'wagnerdriver-site': {
+        name: 'HelpUS Executive Driver',
+        subtitle: 'Movilidad Ejecutiva y Transporte VIP',
+        description: 'Solución digital para reserva de transporte ejecutivo, transfer VIP, viajes privados y gestión de viajes corporativos.',
+        features: ['Reserva de Viajes VIP', 'Atención Corporativa Exclusiva', 'Gestión de Rutas y Tarifas'],
+        whatsappMessage: '¡Hola HelpUS! Tengo interés en la solución HelpUS Executive Driver.'
+      },
+      'pizza': {
+        name: 'HelpUS Pizza & Delivery',
+        subtitle: 'Gestión y Pedidos Online para Pizzerías',
+        description: 'Plataforma completa de delivery y gestión para pizzerías. Incluye menú digital interactivo, pedidos en mesa y gestión de delivery.',
+        features: ['Menú Digital QR', 'Personalizador de Sabores', 'Gestión de Comandas y Delivery'],
+        whatsappMessage: '¡Hola HelpUS! Quiero conocer la solución HelpUS Pizza & Delivery para mi negocio.'
+      },
+      'jobs': {
+        name: 'HelpUS Jobs',
+        subtitle: 'Marketplace Multilingüe de Empleos',
+        description: 'Plataforma global multilingüe para conectar trabajadores, reclutadores y oportunidades laborales internacionales.',
+        features: ['Búsqueda Multilingüe de Empleos', 'Match Inteligente', 'Perfiles Profesionales Verificados'],
+        whatsappMessage: '¡Hola HelpUS! Quisiera entender más sobre la plataforma HelpUS Jobs.'
+      },
+      'visa': {
+        name: 'HelpUS Visa & Imigração',
+        subtitle: 'Asesoría de Visados, Pasaportes y Procesos',
+        description: 'Plataforma de consulta y seguimiento de trámites de visados, inmigración, pasaportes y documentación internacional.',
+        features: ['Checklist de Documentación', 'Seguimiento de Estado de Visado', 'Consultoría de Inmigración Directa'],
+        whatsappMessage: '¡Hola HelpUS! Necesito ayuda con visados en HelpUS Visa.'
+      },
+      'memoria-viva': {
+        name: 'HelpUS Memória Viva',
+        subtitle: 'Preservación de Legado, Biografías e Historias',
+        description: 'Plataforma digital afectiva para registrar, organizar y preservar historias de vida familiares, biografías y recuerdos.',
+        features: ['Línea de Tiempo Biográfica', 'Archivo Digital de Fotos y Audio', 'Uso Familiar Seguro'],
+        whatsappMessage: '¡Hola HelpUS! Quisiera conocer el proyecto HelpUS Memória Viva.'
+      },
+      'brayyan': {
+        name: 'HelpUS Brayyan',
+        subtitle: 'Branding Personal y Portafolio de Soluciones',
+        description: 'Portafolio de presentación ejecutiva y consultoría de branding personal para fundadores y proyectos especiales.',
+        features: ['Presentación de Proyectos Especiales', 'Branding y Presencia Digital', 'Consultoría de Negocios'],
+        whatsappMessage: '¡Hola HelpUS! Quisiera saber más sobre la consultoría HelpUS Brayyan.'
       }
     }
   }

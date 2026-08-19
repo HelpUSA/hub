@@ -49,6 +49,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   background-color: var(--bg-main);
+  position: relative;
 }
 
 .hub-container {
@@ -60,7 +61,7 @@ body {
 
 /* Header Navbar */
 .hub-header {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-light);
   position: sticky;
@@ -72,50 +73,31 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  height: 76px;
 }
 
-.hub-logo {
+/* Official HelpUS Logo Image */
+.hub-logo-img-link {
   display: flex;
   align-items: center;
-  gap: 12px;
   text-decoration: none;
-  cursor: pointer;
 }
 
-.hub-logo-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--indigo) 100%);
+.hub-logo-img {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.hub-logo-img-link:hover .hub-logo-img {
+  transform: scale(1.03);
+}
+
+.hub-nav-links {
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
-}
-
-.hub-logo-text {
-  font-size: 1.35rem;
-  font-weight: 800;
-  color: var(--text-dark);
-  letter-spacing: -0.02em;
-}
-
-.hub-logo-text span {
-  color: var(--primary);
-}
-
-.hub-logo-badge {
-  font-size: 0.65rem;
-  font-weight: 700;
-  background: #eff6ff;
-  color: var(--primary);
-  border: 1px solid #bfdbfe;
-  padding: 2px 6px;
-  border-radius: 6px;
-  margin-left: 6px;
-  vertical-align: middle;
+  gap: 6px;
 }
 
 .hub-nav-btn {
@@ -188,7 +170,7 @@ body {
   border-color: var(--border-hover);
 }
 
-/* Sleek Native Language Toggle Button */
+/* Native Language Switcher Pill (PT | EN | ES) */
 .hub-lang-switcher {
   display: flex;
   align-items: center;
@@ -202,8 +184,8 @@ body {
 .hub-lang-btn {
   background: transparent;
   border: none;
-  padding: 4px 10px;
-  font-size: 0.75rem;
+  padding: 5px 10px;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--text-muted);
   border-radius: 7px;
@@ -217,9 +199,38 @@ body {
   box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
 }
 
-/* Hero Section */
+/* Mobile Hamburger Menu Toggle */
+.hub-mobile-menu-btn {
+  display: none;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-dark);
+}
+
+/* Mobile Drawer Navigation */
+.hub-mobile-drawer {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  background: #ffffff;
+  padding: 16px;
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+}
+
+.hub-mobile-drawer.open {
+  display: flex;
+}
+
+/* Hero Section (Zoho Inspired) */
 .hub-hero {
-  padding: 48px 0 32px;
+  padding: 44px 0 32px;
   text-align: center;
   background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%);
   border-bottom: 1px solid var(--border-light);
@@ -240,7 +251,7 @@ body {
 }
 
 .hub-hero-title {
-  font-size: 2.5rem;
+  font-size: 2.6rem;
   font-weight: 800;
   color: var(--text-dark);
   line-height: 1.2;
@@ -265,7 +276,7 @@ body {
 
 /* Featured Carousel Showcase */
 .hub-carousel-wrapper {
-  margin: 32px 0 16px;
+  margin: 28px 0 16px;
 }
 
 .hub-carousel {
@@ -396,40 +407,45 @@ body {
   color: var(--primary);
 }
 
-/* Cards Section */
+/* Zoho-Style Category Grouping Section */
 .hub-section {
-  padding: 48px 0;
+  padding: 44px 0;
 }
 
-.hub-section-header {
-  margin-bottom: 32px;
+.hub-category-group {
+  margin-bottom: 48px;
 }
 
-.hub-section-subtitle {
-  font-size: 0.8rem;
-  font-weight: 700;
+.hub-category-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.hub-category-header-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #eff6ff;
   color: var(--primary);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hub-section-title {
-  font-size: 1.75rem;
+.hub-category-header-title {
+  font-size: 1.35rem;
   font-weight: 800;
   color: var(--text-dark);
-  margin-top: 4px;
-}
-
-.hub-section-desc {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  margin-top: 4px;
 }
 
 /* Cards Grid */
 .hub-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   gap: 24px;
 }
 
@@ -461,8 +477,8 @@ body {
 }
 
 .hub-card-icon {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: 12px;
   background: #eff6ff;
   color: var(--primary);
@@ -561,7 +577,7 @@ body {
   border: 1px solid #bfdbfe;
   font-weight: 700;
   font-size: 0.82rem;
-  padding: 8px 12px;
+  padding: 10px 12px;
   border-radius: 8px;
   text-decoration: none;
   display: flex;
@@ -577,14 +593,14 @@ body {
   border-color: var(--primary);
 }
 
-.hub-btn-whatsapp {
+.hub-btn-whatsapp-card {
   flex: 1;
   background: #059669;
   color: #ffffff;
   border: none;
   font-weight: 700;
   font-size: 0.82rem;
-  padding: 8px 12px;
+  padding: 10px 12px;
   border-radius: 8px;
   cursor: pointer;
   display: flex;
@@ -594,37 +610,42 @@ body {
   transition: all 0.2s ease;
 }
 
-.hub-btn-whatsapp:hover {
+.hub-btn-whatsapp-card:hover {
   background: #047857;
   box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
 }
 
-/* Contact Box / HelpUS Direct */
-.hub-contact-card {
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+/* Floating Animated WhatsApp Button in Bottom-Right Corner */
+.hub-whatsapp-floating {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  background: #25d366;
   color: #ffffff;
-  border-radius: 20px;
-  padding: 40px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
   display: flex;
-  flex-direction: column;
-  md-flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  box-shadow: var(--shadow-lg);
-  margin-top: 32px;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: pulseWhatsApp 3s infinite;
+  text-decoration: none;
 }
 
-.hub-contact-info h3 {
-  font-size: 1.75rem;
-  font-weight: 800;
-  margin-bottom: 8px;
+.hub-whatsapp-floating:hover {
+  transform: scale(1.12);
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.6);
+  background: #20ba5a;
 }
 
-.hub-contact-info p {
-  font-size: 0.95rem;
-  color: #94a3b8;
-  max-width: 540px;
+@keyframes pulseWhatsApp {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+  70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
 /* Footer */
@@ -632,27 +653,41 @@ body {
   margin-top: auto;
   background: #ffffff;
   border-top: 1px solid var(--border-light);
-  padding: 32px 0;
+  padding: 40px 0;
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.88rem;
 }
 
 .hub-footer-inner {
   display: flex;
   flex-direction: column;
-  sm-flex-direction: row;
+  md-flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 20px;
 }
 
-/* Responsive utilities */
-@media (max-width: 768px) {
+.hub-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hub-footer-logo {
+  height: 48px;
+  width: auto;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 868px) {
   .hub-hero-title {
-    font-size: 2rem;
+    font-size: 2.1rem;
   }
-  .hub-header-inner {
-    height: 64px;
+  .hub-nav-links {
+    display: none;
+  }
+  .hub-mobile-menu-btn {
+    display: flex;
   }
   .hub-carousel-inner {
     grid-template-columns: 1fr;
