@@ -9,8 +9,6 @@ import {
   Globe, 
   BookOpen, 
   UserCheck, 
-  MessageSquare, 
-  Sparkles, 
   Check, 
   Building2,
   ExternalLink,
@@ -20,7 +18,10 @@ import {
   Globe2,
   Menu,
   X,
-  Send
+  Send,
+  Info,
+  HelpCircle,
+  FileText
 } from 'lucide-react';
 
 import { translations, type Language } from './i18n/translations';
@@ -42,6 +43,11 @@ export function App() {
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
+  // Modal States
+  const [selectedAppForDetail, setSelectedAppForDetail] = useState<AppItem | null>(null);
+  const [activeInfoModal, setActiveInfoModal] = useState<'institutional' | 'help' | 'privacy' | null>(null);
+  const [cookiesAccepted, setCookiesAccepted] = useState<boolean>(false);
+
   const t = translations[lang];
 
   // WhatsApp oficial HelpUS
@@ -49,7 +55,7 @@ export function App() {
   const whatsappFormatted = '(83) 99872-1848';
   const helpusEmail = 'contato@helpusbr.com';
 
-  // Lista de dados base das 10 aplicações mapeadas
+  // Lista de dados base das 10 aplicações (com nomes limpos)
   const applications: AppItem[] = [
     {
       id: 'helpus-site',
@@ -175,11 +181,6 @@ export function App() {
     { id: 'cultura', label: t.categories.cultura }
   ];
 
-  const openWhatsApp = (msg: string) => {
-    const encoded = encodeURIComponent(msg);
-    window.open(`https://wa.me/${whatsappNumber}?text=${encoded}`, '_blank');
-  };
-
   const activeCarouselApp = featuredApps[currentSlideIndex] || featuredApps[0];
   const activeCarouselTrans = t.apps[activeCarouselApp.id];
 
@@ -191,7 +192,7 @@ export function App() {
         <div className="hub-container">
           <div className="hub-header-inner">
             
-            {/* Official Uploaded HelpUS Logo Image */}
+            {/* Official Uploaded HelpUS Logo Image (SEM a palavra HUB) */}
             <a href="#" className="hub-logo-img-link">
               <img
                 src="/images/helpus_logo.png"
@@ -200,17 +201,39 @@ export function App() {
               />
             </a>
 
-            {/* Desktop Category Navigation */}
+            {/* Header Standard Navigation Links (Institucional, Soluções, Ajuda, Contato) */}
             <nav className="hub-nav-links">
-              {categoryPills.map(cat => (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`hub-nav-btn ${activeCategory === cat.id ? 'active' : ''}`}
-                >
-                  {cat.label}
-                </button>
-              ))}
+              <button
+                onClick={() => setActiveInfoModal('institutional')}
+                className="hub-nav-btn"
+              >
+                <Info className="w-4 h-4 text-blue-600" />
+                <span>{t.nav.institutional}</span>
+              </button>
+
+              <a
+                href="#solucoes"
+                className="hub-nav-btn"
+              >
+                <Layers className="w-4 h-4 text-indigo-600" />
+                <span>{t.nav.solutions}</span>
+              </a>
+
+              <button
+                onClick={() => setActiveInfoModal('help')}
+                className="hub-nav-btn"
+              >
+                <HelpCircle className="w-4 h-4 text-cyan-600" />
+                <span>{t.nav.help}</span>
+              </button>
+
+              <a
+                href="#contato-footer"
+                className="hub-nav-btn"
+              >
+                <Send className="w-4 h-4 text-emerald-600" />
+                <span>{t.nav.contact}</span>
+              </a>
             </nav>
 
             {/* Native Language Switcher (PT | EN | ES) */}
@@ -240,12 +263,13 @@ export function App() {
                 </button>
               </div>
 
-              {/* Mobile Menu Toggle Button */}
+              {/* Mobile Hamburger Menu Toggle Button (Três Tracinhos) */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="hub-mobile-menu-btn"
+                title="Menu"
               >
-                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
 
             </div>
@@ -253,33 +277,59 @@ export function App() {
           </div>
         </div>
 
-        {/* Mobile Navigation Drawer */}
+        {/* Mobile Navigation Drawer for Smartphones */}
         {mobileMenuOpen && (
           <div className="hub-mobile-drawer open">
-            {categoryPills.map(cat => (
-              <button
-                key={cat.id}
-                onClick={() => {
-                  setActiveCategory(cat.id);
-                  setMobileMenuOpen(false);
-                }}
-                className={`hub-nav-btn ${activeCategory === cat.id ? 'active' : ''}`}
-                style={{ width: '100%', justifyContent: 'flex-start' }}
-              >
-                {cat.label}
-              </button>
-            ))}
+            <button
+              onClick={() => {
+                setActiveInfoModal('institutional');
+                setMobileMenuOpen(false);
+              }}
+              className="hub-nav-btn"
+              style={{ width: '100%', justifyContent: 'flex-start' }}
+            >
+              <Info className="w-4 h-4 text-blue-600" />
+              <span>{t.nav.institutional}</span>
+            </button>
+
+            <a
+              href="#solucoes"
+              onClick={() => setMobileMenuOpen(false)}
+              className="hub-nav-btn"
+              style={{ width: '100%', justifyContent: 'flex-start' }}
+            >
+              <Layers className="w-4 h-4 text-indigo-600" />
+              <span>{t.nav.solutions}</span>
+            </a>
+
+            <button
+              onClick={() => {
+                setActiveInfoModal('help');
+                setMobileMenuOpen(false);
+              }}
+              className="hub-nav-btn"
+              style={{ width: '100%', justifyContent: 'flex-start' }}
+            >
+              <HelpCircle className="w-4 h-4 text-cyan-600" />
+              <span>{t.nav.help}</span>
+            </button>
+
+            <a
+              href="#contato-footer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="hub-nav-btn"
+              style={{ width: '100%', justifyContent: 'flex-start' }}
+            >
+              <Send className="w-4 h-4 text-emerald-600" />
+              <span>{t.nav.contact}</span>
+            </a>
           </div>
         )}
       </header>
 
-      {/* Hero Section (Zoho All Products Inspired) */}
+      {/* Hero Section */}
       <section className="hub-hero">
         <div className="hub-container">
-          <div className="hub-hero-badge">
-            <Sparkles className="w-4 h-4" />
-            <span>{t.hero.badge}</span>
-          </div>
 
           <h1 className="hub-hero-title">
             {t.hero.title}
@@ -289,7 +339,7 @@ export function App() {
             {t.hero.subtitle}
           </p>
 
-          {/* Featured Interactive Carousel Showcase */}
+          {/* Featured Interactive Carousel Showcase (Zoho Style) */}
           <div className="hub-carousel-wrapper">
             <div className="hub-carousel">
               <div className="hub-carousel-inner">
@@ -317,13 +367,13 @@ export function App() {
                       <span>{t.catalog.accessApp} ({activeCarouselApp.domain})</span>
                       <ExternalLink className="w-4 h-4" />
                     </a>
-                    
+
                     <button
-                      onClick={() => openWhatsApp(activeCarouselTrans?.whatsappMessage || '')}
+                      onClick={() => setSelectedAppForDetail(activeCarouselApp)}
                       className="hub-btn-secondary"
                     >
-                      <MessageSquare className="w-4 h-4 text-emerald-600" />
-                      <span>{t.catalog.whatsappContact}</span>
+                      <Info className="w-4 h-4 text-blue-600" />
+                      <span>{t.catalog.viewDetails}</span>
                     </button>
                   </div>
                 </div>
@@ -390,13 +440,29 @@ export function App() {
       </section>
 
       {/* Main Catalog Section (Zoho Inspired Category Groups) */}
-      <section className="hub-section">
+      <section id="solucoes" className="hub-section">
         <div className="hub-container">
           
-          <div className="hub-section-header">
-            <span className="hub-section-subtitle">HelpUS Ecosystem</span>
-            <h2 className="hub-section-title">{t.catalog.title}</h2>
-            <p className="hub-section-desc">{t.catalog.subtitle}</p>
+          <div className="hub-section-header" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div>
+              <span className="hub-section-subtitle">Aplicações Próprias</span>
+              <h2 className="hub-section-title">{t.catalog.title}</h2>
+              <p className="hub-section-desc">{t.catalog.subtitle}</p>
+            </div>
+
+            {/* Category Filter Pills */}
+            <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '8px' }}>
+              {categoryPills.map(cat => (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={`hub-nav-btn ${activeCategory === cat.id ? 'active' : ''}`}
+                  style={{ whiteSpace: 'nowrap' }}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Render Categories grouped or filtered */}
@@ -453,6 +519,7 @@ export function App() {
                           </ul>
                         </div>
 
+                        {/* Dual Action Row: Access Application & View Details (SEM botão de whatsapp no card) */}
                         <div className="hub-card-bottom">
                           <div className="hub-card-action-row">
                             <a
@@ -466,11 +533,11 @@ export function App() {
                             </a>
 
                             <button
-                              onClick={() => openWhatsApp(appTrans.whatsappMessage)}
-                              className="hub-btn-whatsapp-card"
+                              onClick={() => setSelectedAppForDetail(app)}
+                              className="hub-btn-details"
                             >
-                              <MessageSquare className="w-3.5 h-3.5" />
-                              <span>WhatsApp</span>
+                              <Info className="w-3.5 h-3.5 text-blue-600" />
+                              <span>{t.catalog.viewDetails}</span>
                             </button>
                           </div>
                         </div>
@@ -510,8 +577,8 @@ export function App() {
         </div>
       </section>
 
-      {/* Clean Light Footer */}
-      <footer className="hub-footer">
+      {/* Clean Light Footer (Sem duplicação de telefone) */}
+      <footer id="contato-footer" className="hub-footer">
         <div className="hub-container">
           <div className="hub-footer-inner">
             <div className="hub-footer-brand">
@@ -522,14 +589,21 @@ export function App() {
               />
               <div>
                 <p style={{ fontWeight: '700', color: 'var(--text-dark)' }}>{t.footer.rights}</p>
-                <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>10 Aplicações em Operação & Desenvolvimento</p>
+                <div style={{ display: 'flex', gap: '12px', fontSize: '0.8rem', marginTop: '4px' }}>
+                  <button onClick={() => setActiveInfoModal('institutional')} style={{ background: 'none', border: 'none', color: 'var(--primary)', cursor: 'pointer', fontWeight: '600' }}>{t.nav.institutional}</button>
+                  <span>•</span>
+                  <button onClick={() => setActiveInfoModal('privacy')} style={{ background: 'none', border: 'none', color: 'var(--primary)', cursor: 'pointer', fontWeight: '600' }}>{t.footer.privacy}</button>
+                  <span>•</span>
+                  <button onClick={() => setActiveInfoModal('privacy')} style={{ background: 'none', border: 'none', color: 'var(--primary)', cursor: 'pointer', fontWeight: '600' }}>{t.footer.terms}</button>
+                </div>
               </div>
             </div>
 
+            {/* Single Contact Entry */}
             <div style={{ textAlign: 'right' }}>
               <p style={{ fontWeight: '700', color: 'var(--text-dark)' }}>{t.footer.contactTitle}</p>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                {t.footer.whatsapp}: <strong style={{ color: 'var(--primary)' }}>{whatsappFormatted}</strong>
+                {t.footer.whatsapp} ({whatsappFormatted})
               </p>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
                 Email: <a href={`mailto:${helpusEmail}`} style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: '600' }}>{helpusEmail}</a>
@@ -539,16 +613,129 @@ export function App() {
         </div>
       </footer>
 
+      {/* Pre-Landing Application Detail Modal (Zoho Style) */}
+      {selectedAppForDetail && (
+        <div className="hub-modal-overlay" onClick={() => setSelectedAppForDetail(null)}>
+          <div className="hub-modal-box" onClick={(e) => e.stopPropagation()}>
+            
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px', paddingBottom: '12px', borderBottom: '1px solid var(--border-light)' }}>
+              <div>
+                <span style={{ fontSize: '0.75rem', fontWeight: '700', color: 'var(--primary)', textTransform: 'uppercase' }}>
+                  {t.detailsModal.overview}
+                </span>
+                <h2 style={{ fontSize: '1.75rem', fontWeight: '800', color: 'var(--text-dark)' }}>
+                  {t.apps[selectedAppForDetail.id]?.name}
+                </h2>
+              </div>
+              <button 
+                onClick={() => setSelectedAppForDetail(null)}
+                style={{ background: 'var(--bg-subtle)', border: '1px solid var(--border-light)', padding: '8px', borderRadius: '10px', cursor: 'pointer' }}
+              >
+                <X className="w-5 h-5 text-slate-600" />
+              </button>
+            </div>
+
+            {/* Screenshot Preview Frame */}
+            <div style={{ borderRadius: '16px', overflow: 'hidden', height: '240px', border: '1px solid var(--border-light)', marginBottom: '20px', background: '#0f172a' }}>
+              <img src={selectedAppForDetail.image} alt={selectedAppForDetail.domain} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
+
+            <div style={{ marginBottom: '20px' }}>
+              <p style={{ fontSize: '0.85rem', fontWeight: '700', color: 'var(--primary)', fontFamily: 'monospace', marginBottom: '4px' }}>
+                {t.detailsModal.subdomain} <a href={selectedAppForDetail.liveUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)' }}>{selectedAppForDetail.domain}</a>
+              </p>
+              <h4 style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--text-dark)', marginBottom: '8px' }}>
+                {t.apps[selectedAppForDetail.id]?.subtitle}
+              </h4>
+              <p style={{ fontSize: '0.95rem', color: 'var(--text-body)', lineHeight: '1.6', marginBottom: '16px' }}>
+                {t.apps[selectedAppForDetail.id]?.detailsContent}
+              </p>
+
+              <h5 style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--text-dark)', marginBottom: '8px' }}>
+                {t.detailsModal.keyFeatures}:
+              </h5>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                {t.apps[selectedAppForDetail.id]?.features.map((feat, idx) => (
+                  <li key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', color: 'var(--text-muted)' }}>
+                    <Check className="w-4 h-4 text-emerald-600" />
+                    <span>{feat}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end', paddingTop: '16px', borderTop: '1px solid var(--border-light)' }}>
+              <button onClick={() => setSelectedAppForDetail(null)} className="hub-btn-secondary">
+                {t.detailsModal.close}
+              </button>
+              <a href={selectedAppForDetail.liveUrl} target="_blank" rel="noopener noreferrer" className="hub-btn-primary">
+                <span>{t.detailsModal.launchApp}</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* Info Modals (Institucional, Ajuda, Privacidade) */}
+      {activeInfoModal && (
+        <div className="hub-modal-overlay" onClick={() => setActiveInfoModal(null)}>
+          <div className="hub-modal-box" onClick={(e) => e.stopPropagation()}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px', paddingBottom: '12px', borderBottom: '1px solid var(--border-light)' }}>
+              <h3 style={{ fontSize: '1.4rem', fontWeight: '800', color: 'var(--text-dark)' }}>
+                {activeInfoModal === 'institutional' && t.modals.institutionalTitle}
+                {activeInfoModal === 'help' && t.modals.helpTitle}
+                {activeInfoModal === 'privacy' && t.modals.privacyTitle}
+              </h3>
+              <button onClick={() => setActiveInfoModal(null)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+                <X className="w-5 h-5 text-slate-600" />
+              </button>
+            </div>
+            <p style={{ fontSize: '0.95rem', color: 'var(--text-body)', lineHeight: '1.6', marginBottom: '24px' }}>
+              {activeInfoModal === 'institutional' && t.modals.institutionalDesc}
+              {activeInfoModal === 'help' && t.modals.helpDesc}
+              {activeInfoModal === 'privacy' && t.modals.privacyDesc}
+            </p>
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <button onClick={() => setActiveInfoModal(null)} className="hub-btn-primary">
+                {t.detailsModal.close}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Floating Animated WhatsApp Icon Button in Bottom-Right Corner */}
       <a
         href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Olá HelpUS! Gostaria de falar com o atendimento pelo portal.')}`}
         target="_blank"
         rel="noopener noreferrer"
         className="hub-whatsapp-floating"
-        title="Falar no WhatsApp HelpUS"
+        title="Atendimento WhatsApp HelpUS"
       >
         <Send className="w-7 h-7" />
       </a>
+
+      {/* Cookie Notice Banner Toast */}
+      {!cookiesAccepted && (
+        <div className="hub-cookie-banner">
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+            <FileText className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+            <p style={{ fontSize: '0.82rem', color: '#cbd5e1', lineHeight: '1.4' }}>
+              {t.cookies.text}{' '}
+              <button onClick={() => setActiveInfoModal('privacy')} style={{ color: '#60a5fa', textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}>
+                {t.cookies.privacyLink}
+              </button>.
+            </p>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <button onClick={() => setCookiesAccepted(true)} className="hub-btn-primary" style={{ padding: '6px 12px', fontSize: '0.78rem' }}>
+              {t.cookies.accept}
+            </button>
+          </div>
+        </div>
+      )}
 
     </div>
   );

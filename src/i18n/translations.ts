@@ -2,28 +2,43 @@ export type Language = 'pt' | 'en' | 'es';
 
 export interface TranslationSchema {
   nav: {
-    allServices: string;
-    tech: string;
-    health: string;
-    services: string;
-    gastronomy: string;
-    culture: string;
+    institutional: string;
+    solutions: string;
+    help: string;
+    contact: string;
   };
   hero: {
-    badge: string;
     title: string;
     subtitle: string;
-    appsCount: string;
     exploreBtn: string;
   };
   catalog: {
     title: string;
     subtitle: string;
     accessApp: string;
-    whatsappContact: string;
-    developedBy: string;
+    viewDetails: string;
     partnerBannerTitle: string;
     partnerBannerDesc: string;
+  };
+  detailsModal: {
+    overview: string;
+    keyFeatures: string;
+    subdomain: string;
+    launchApp: string;
+    close: string;
+  };
+  cookies: {
+    text: string;
+    accept: string;
+    privacyLink: string;
+  };
+  modals: {
+    institutionalTitle: string;
+    institutionalDesc: string;
+    helpTitle: string;
+    helpDesc: string;
+    privacyTitle: string;
+    privacyDesc: string;
   };
   footer: {
     rights: string;
@@ -31,6 +46,8 @@ export interface TranslationSchema {
     contactDesc: string;
     whatsapp: string;
     email: string;
+    privacy: string;
+    terms: string;
   };
   categories: {
     todos: string;
@@ -45,45 +62,62 @@ export interface TranslationSchema {
     subtitle: string;
     description: string;
     features: string[];
-    whatsappMessage: string;
+    detailsContent: string;
   }>;
 }
 
 export const translations: Record<Language, TranslationSchema> = {
   pt: {
     nav: {
-      allServices: 'Todas as Soluções',
-      tech: 'Tecnologia & IA',
-      health: 'Saúde & Medicina',
-      services: 'Serviços & Mobilidade',
-      gastronomy: 'Alimentação & Delivery',
-      culture: 'Cultura & Biografia'
+      institutional: 'Institucional',
+      solutions: 'Soluções',
+      help: 'Ajuda & Suporte',
+      contact: 'Contato'
     },
     hero: {
-      badge: 'Ecossistema Oficial de Aplicações',
       title: 'Todas as Soluções Digitais HelpUS',
       subtitle: 'Conheça o catálogo completo das aplicações e plataformas desenvolvidas e gerenciadas diretamente pela HelpUS.',
-      appsCount: '10 Aplicações Próprias',
-      exploreBtn: 'Explorar Catálogo'
+      exploreBtn: 'Explorar Soluções'
     },
     catalog: {
       title: 'Soluções Organizadas por Categoria',
       subtitle: 'Selecione uma área para navegar entre nossos sistemas ou acesse a aplicação diretamente.',
       accessApp: 'Acessar Aplicação',
-      whatsappContact: 'Atendimento WhatsApp',
-      developedBy: 'Desenvolvido por HelpUS',
+      viewDetails: 'Ver Detalhes do Sistema',
       partnerBannerTitle: 'Rede de Parceiros em Breve',
       partnerBannerDesc: 'Atualmente apresentamos apenas as aplicações próprias da HelpUS. Em breve, abriremos espaço para a inclusão de parceiros homologados.'
+    },
+    detailsModal: {
+      overview: 'Visão Geral & Telas do Sistema',
+      keyFeatures: 'Principais Recursos & Funcionalidades',
+      subdomain: 'Subdomínio Oficial DNS:',
+      launchApp: 'Acessar Sistema Agora',
+      close: 'Fechar'
+    },
+    cookies: {
+      text: 'Utilizamos cookies para oferecer a melhor experiência de navegação e garantir a segurança das aplicações.',
+      accept: 'Entendido & Aceitar',
+      privacyLink: 'Política de Privacidade'
+    },
+    modals: {
+      institutionalTitle: 'Institucional — HelpUS Technology',
+      institutionalDesc: 'A HelpUS Technology Solutions é uma empresa focada no desenvolvimento, gestão e governança de ecossistemas digitais, unificando suporte, infraestrutura e inovação em múltiplos segmentos.',
+      helpTitle: 'Central de Ajuda & Suporte',
+      helpDesc: 'Precisa de suporte técnico ou tem dúvidas sobre a utilização das aplicações? Fale com a nossa equipe central pelo WhatsApp ou pelo e-mail oficial.',
+      privacyTitle: 'Política de Privacidade & Termos de Uso',
+      privacyDesc: 'Garantimos o tratamento transparente de dados pessoais, em conformidade com a LGPD e regulamentações internacionais de privacidade. Seus dados são protegidos por criptografia e jamais são compartilhados com terceiros sem autorização.'
     },
     footer: {
       rights: 'HelpUS Technology Solutions © 2026 — Todos os direitos reservados.',
       contactTitle: 'Fale com a HelpUS',
-      contactDesc: 'Atendimento direto pelo WhatsApp ou email corporativo para contratação e suporte.',
-      whatsapp: 'WhatsApp (83) 99872-1848',
-      email: 'contato@helpusbr.com'
+      contactDesc: 'Atendimento direto para suporte, dúvidas e contratação de sistemas.',
+      whatsapp: 'WhatsApp: (83) 99872-1848',
+      email: 'contato@helpusbr.com',
+      privacy: 'Privacidade & LGPD',
+      terms: 'Termos de Uso'
     },
     categories: {
-      todos: 'Todas as Soluções (10)',
+      todos: 'Todas as Soluções',
       tecnologia: 'Tecnologia & IA',
       saude: 'Saúde & Medicina',
       servicos: 'Serviços & Mobilidade',
@@ -92,111 +126,128 @@ export const translations: Record<Language, TranslationSchema> = {
     },
     apps: {
       'helpus-site': {
-        name: 'HelpUS Platform',
+        name: 'Platform',
         subtitle: 'Portal Institucional & Infraestrutura Central',
         description: 'Hub institucional da HelpUS responsável pela coordenação de serviços, gestão de clientes, infraestrutura e governança das aplicações.',
         features: ['Central de Serviços', 'Gestão de Clientes', 'Suporte Técnico Coordenado'],
-        whatsappMessage: 'Olá HelpUS! Gostaria de obter mais informações sobre a plataforma institucional HelpUS.'
+        detailsContent: 'A plataforma central HelpUS integra o gerenciamento de contas, infraestrutura em nuvem, controle de acessos unificado e painel corporativo de governança.'
       },
       'nexosai': {
-        name: 'Nexos AI by HelpUS',
+        name: 'Nexos AI',
         subtitle: 'Inteligência Artificial & Agentes Autônomos',
         description: 'Plataforma avançada de IA para criação de agentes virtuais autônomos, automação de processos de negócio e integração via WhatsApp e Webchat.',
         features: ['Agentes de IA Treinados', 'Automação de Atendimento 24/7', 'Integração Oficial com WhatsApp'],
-        whatsappMessage: 'Olá HelpUS! Tenho interesse nos Agentes de IA da plataforma Nexos AI.'
+        detailsContent: 'Permite criar atendentes virtuais inteligentes treinados com a base de conhecimento da sua empresa para qualificação de leads, agendamentos e suporte.'
       },
       'usmle': {
-        name: 'HelpUS USMLE Prep',
+        name: 'USMLE Prep',
         subtitle: 'Preparatório & Plataforma Médica Internacional',
         description: 'Plataforma especializada de estudos e simulados interativos para médicos e estudantes se prepararem para o exame de revalidação médica USMLE nos EUA.',
         features: ['Simulados e Questões Comentadas', 'Acompanhamento de Desempenho', 'Recursos para Revalidação Médica'],
-        whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre a plataforma HelpUS USMLE Prep.'
+        detailsContent: 'Conta com banco de questões atualizado, relatórios de desempenho estatístico, flashcards intervalados e trilhas de aprendizado para aprovação na revalidação médica americana.'
       },
       'saude': {
-        name: 'HelpUS Saúde',
+        name: 'Saúde',
         subtitle: 'Telemedicina & Gestão Integrada de Saúde',
         description: 'Sistema completo para clínicas e profissionais da saúde. Oferece agendamento de consultas, prontuário eletrônico e atendimento por telemedicina.',
         features: ['Prontuário Eletrônico do Paciente', 'Agendamento Online de Consultas', 'Plataforma de Telemedicina Segura'],
-        whatsappMessage: 'Olá HelpUS! Gostaria de consultar sobre o HelpUS Saúde para clínicas/profissionais.'
+        detailsContent: 'Software completo de gestão clínica com agendamento online de consultas, prontuário digital criptografado, prescrição eletrônica e sala virtual de telemedicina.'
       },
       'wagnerdriver-site': {
-        name: 'HelpUS Executive Driver',
+        name: 'Executive Driver',
         subtitle: 'Mobilidade Executiva & Transporte VIP',
         description: 'Solução digital para agendamento de transporte executivo, transfer vip, viagens particulares e gestão de corridas corporativas.',
         features: ['Agendamento de Viagens VIP', 'Atendimento Corporativo Exclusivo', 'Gestão de Rotas e Tarifas'],
-        whatsappMessage: 'Olá HelpUS! Tenho interesse na solução HelpUS Executive Driver.'
+        detailsContent: 'Oferece agendamento prévio de veículos executivos, controle de horários, faturamento corporativo mensal e acompanhamento em tempo real para passageiros VIP.'
       },
       'pizza': {
-        name: 'HelpUS Pizza & Delivery',
+        name: 'Pizza & Delivery',
         subtitle: 'Gestão & Pedidos Online para Pizzarias',
         description: 'Plataforma completa de delivery e gestão para pizzarias. Inclui cardápio digital interativo, pedidos na mesa e integração de entregas.',
         features: ['Cardápio Digital de Pizzas & Bebidas', 'Montagem de Sabores Meio-a-Meio', 'Gestão de Comandas & Delivery'],
-        whatsappMessage: 'Olá HelpUS! Quero conhecer a solução HelpUS Pizza & Delivery para meu estabelecimento.'
+        detailsContent: 'Sistema de gestão gastronômica com cardápio via QR Code, montador interativo de pizzas de 2 ou mais sabores, controle de estoque da cozinha e integração de motoboys.'
       },
       'jobs': {
-        name: 'HelpUS Jobs',
+        name: 'Jobs',
         subtitle: 'Marketplace Multilíngue de Empregos',
         description: 'Plataforma global multilíngue para conexão de trabalhadores, recrutadores e oportunidades de emprego com foco em carreiras internacionais.',
         features: ['Busca Multilíngue de Vagas', 'Match Inteligente Candidato-Vaga', 'Perfis Profissionais Verificados'],
-        whatsappMessage: 'Olá HelpUS! Gostaria de entender mais sobre a plataforma HelpUS Jobs.'
+        detailsContent: 'Conecta profissionais a oportunidades de trabalho locais e internacionais com currículos multilíngues, testes de habilidades e algoritmos de recomendação.'
       },
       'visa': {
-        name: 'HelpUS Visa & Imigração',
+        name: 'Visa & Imigração',
         subtitle: 'Assessoria de Vistos, Passaportes & Processos',
         description: 'Plataforma de consulta e acompanhamento de processos de vistos, imigração, agendamento de passaportes e documentação internacional.',
         features: ['Checklist de Documentação', 'Acompanhamento de Status de Visto', 'Consultoria Imigratória Direta'],
-        whatsappMessage: 'Olá HelpUS! Preciso de ajuda com vistos e processos no HelpUS Visa.'
+        detailsContent: 'Portal de assessoria imigratória com guias de preenchimento do formulário DS-160, checklist automatizado de documentos e monitoramento de agendamentos consulares.'
       },
       'memoria-viva': {
-        name: 'HelpUS Memória Viva',
+        name: 'Memória Viva',
         subtitle: 'Preservação de Legado, Biografias & Histórias',
         description: 'Plataforma afetiva para registro, organização e preservação da história de vida de famílias, acervos biográficos e memórias inesquecíveis.',
         features: ['Linha do Tempo Biográfica', 'Acervo Digital de Fotos e Áudios', 'Compartilhamento Familiar Seguro'],
-        whatsappMessage: 'Olá HelpUS! Gostaria de conhecer o projeto HelpUS Memória Viva.'
+        detailsContent: 'Espaço exclusivo para gravar e organizar memórias familiares, depoimentos em áudio, livros virtuais de biografias e acervos históricos privados para gerações futuras.'
       },
       'brayyan': {
-        name: 'HelpUS Brayyan',
+        name: 'Brayyan',
         subtitle: 'Branding Pessoal & Portfólio de Soluções',
         description: 'Portfólio de apresentação institucional e consultoria de branding pessoal para executivos, fundadores e projetos especiais da marca.',
         features: ['Apresentação de Projetos Especiais', 'Branding e Presença Digital', 'Consultoria de Negócios'],
-        whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre as consultorias HelpUS Brayyan.'
+        detailsContent: 'Solução personalizada de posicionamento de marca, design de portfólio executivo e consultoria estratégica para fundadores e lideranças corporativas.'
       }
     }
   },
   en: {
     nav: {
-      allServices: 'All Solutions',
-      tech: 'Tech & AI',
-      health: 'Healthcare',
-      services: 'Services',
-      gastronomy: 'Food & Delivery',
-      culture: 'Culture'
+      institutional: 'About HelpUS',
+      solutions: 'Solutions',
+      help: 'Help & Support',
+      contact: 'Contact'
     },
     hero: {
-      badge: 'Official Applications Ecosystem',
       title: 'All HelpUS Digital Solutions',
-      subtitle: 'Discover the full catalog of applications and platforms developed and managed directly by HelpUS.',
-      appsCount: '10 In-House Applications',
-      exploreBtn: 'Explore Catalog'
+      subtitle: 'Explore the complete catalog of applications and platforms developed and managed directly by HelpUS.',
+      exploreBtn: 'Explore Solutions'
     },
     catalog: {
       title: 'Solutions Organized by Category',
       subtitle: 'Select a category to browse our systems or access the application directly.',
       accessApp: 'Access Application',
-      whatsappContact: 'WhatsApp Support',
-      developedBy: 'Developed by HelpUS',
+      viewDetails: 'View System Details',
       partnerBannerTitle: 'Partner Network Coming Soon',
       partnerBannerDesc: 'Currently displaying proprietary HelpUS applications. Certified partner solutions will be introduced soon.'
+    },
+    detailsModal: {
+      overview: 'System Overview & Screenshots',
+      keyFeatures: 'Key Features & Capabilities',
+      subdomain: 'Official Subdomain DNS:',
+      launchApp: 'Launch System Now',
+      close: 'Close'
+    },
+    cookies: {
+      text: 'We use cookies to ensure the best browsing experience and security across our applications.',
+      accept: 'Accept & Close',
+      privacyLink: 'Privacy Policy'
+    },
+    modals: {
+      institutionalTitle: 'About HelpUS Technology',
+      institutionalDesc: 'HelpUS Technology Solutions is an enterprise dedicated to building, managing, and governing digital ecosystems, unifying support, infrastructure, and innovation across key market verticals.',
+      helpTitle: 'Help & Support Center',
+      helpDesc: 'Need technical support or have questions regarding our applications? Speak with our central team via WhatsApp or official email.',
+      privacyTitle: 'Privacy Policy & Terms of Service',
+      privacyDesc: 'We guarantee transparent data handling in compliance with GDPR, LGPD, and international privacy standards. Your data is encrypted and never shared without authorization.'
     },
     footer: {
       rights: 'HelpUS Technology Solutions © 2026 — All rights reserved.',
       contactTitle: 'Contact HelpUS',
-      contactDesc: 'Direct assistance via WhatsApp or corporate email for deployments and support.',
-      whatsapp: 'WhatsApp +55 (83) 99872-1848',
-      email: 'contato@helpusbr.com'
+      contactDesc: 'Direct support and corporate inquiry channels.',
+      whatsapp: 'WhatsApp: +55 (83) 99872-1848',
+      email: 'contato@helpusbr.com',
+      privacy: 'Privacy Policy',
+      terms: 'Terms of Use'
     },
     categories: {
-      todos: 'All Solutions (10)',
+      todos: 'All Solutions',
       tecnologia: 'Tech & AI',
       saude: 'Healthcare & Medicine',
       servicos: 'Services & Mobility',
@@ -205,111 +256,128 @@ export const translations: Record<Language, TranslationSchema> = {
     },
     apps: {
       'helpus-site': {
-        name: 'HelpUS Platform',
+        name: 'Platform',
         subtitle: 'Institutional Portal & Core Infrastructure',
         description: 'Institutional hub for HelpUS responsible for service coordination, client management, infrastructure, and application governance.',
         features: ['Service Desk', 'Client Management', 'Coordinated Support'],
-        whatsappMessage: 'Hello HelpUS! I would like more information about the HelpUS institutional platform.'
+        detailsContent: 'Central HelpUS platform integrating account management, cloud infrastructure, unified access control, and corporate governance dashboards.'
       },
       'nexosai': {
-        name: 'Nexos AI by HelpUS',
+        name: 'Nexos AI',
         subtitle: 'Artificial Intelligence & Autonomous Agents',
         description: 'Advanced AI platform for building autonomous virtual agents, business process automation, and WhatsApp/Webchat integrations.',
         features: ['Trained AI Agents', '24/7 Support Automation', 'Official WhatsApp Integration'],
-        whatsappMessage: 'Hello HelpUS! I am interested in Nexos AI virtual agents.'
+        detailsContent: 'Build intelligent virtual assistants trained on your company knowledge base for lead qualification, scheduling, and automated support.'
       },
       'usmle': {
-        name: 'HelpUS USMLE Prep',
+        name: 'USMLE Prep',
         subtitle: 'International Medical Exam Prep Platform',
         description: 'Specialized study and interactive question bank platform for physicians and medical students preparing for the USMLE in the USA.',
         features: ['Practice Exams & Question Bank', 'Performance Analytics', 'Medical Licensing Resources'],
-        whatsappMessage: 'Hello HelpUS! I would like to know more about the HelpUS USMLE Prep platform.'
+        detailsContent: 'Includes updated question bank, statistical performance reports, spaced flashcards, and learning tracks for American medical revalidation.'
       },
       'saude': {
-        name: 'HelpUS Saúde',
+        name: 'Saúde',
         subtitle: 'Telemedicine & Integrated Healthcare Management',
         description: 'Complete system for medical clinics and healthcare providers. Features online appointment booking, EHR, and secure telemedicine.',
         features: ['Electronic Health Records (EHR)', 'Online Appointment Scheduling', 'Secure Telemedicine Suite'],
-        whatsappMessage: 'Hello HelpUS! I would like to inquire about HelpUS Saúde for clinics/physicians.'
+        detailsContent: 'Comprehensive clinical software featuring online booking, encrypted digital health records, e-prescriptions, and virtual consultation rooms.'
       },
       'wagnerdriver-site': {
-        name: 'HelpUS Executive Driver',
+        name: 'Executive Driver',
         subtitle: 'Executive Mobility & VIP Transport',
         description: 'Digital platform for executive transport booking, VIP transfers, private rides, and corporate travel management.',
         features: ['VIP Ride Booking', 'Exclusive Corporate Support', 'Route & Tariff Management'],
-        whatsappMessage: 'Hello HelpUS! I am interested in the HelpUS Executive Driver mobility platform.'
+        detailsContent: 'Schedule executive vehicles, manage passenger itineraries, handle monthly corporate billing, and track VIP rides in real time.'
       },
       'pizza': {
-        name: 'HelpUS Pizza & Delivery',
+        name: 'Pizza & Delivery',
         subtitle: 'Ordering & Management Platform for Pizzerias',
         description: 'Complete delivery and management software for pizzerias. Features digital QR menu, table ordering, and delivery tracking.',
         features: ['Digital QR Menu', 'Half & Half Flavor Customizer', 'Order & Delivery Management'],
-        whatsappMessage: 'Hello HelpUS! I want to learn more about HelpUS Pizza & Delivery for my business.'
+        detailsContent: 'Gastronomy management system featuring QR menus, interactive pizza builders, kitchen inventory tracking, and courier dispatching.'
       },
       'jobs': {
-        name: 'HelpUS Jobs',
+        name: 'Jobs',
         subtitle: 'Multilingual Employment Marketplace',
         description: 'Global multilingual platform connecting workers, recruiters, and employment opportunities with a focus on international careers.',
         features: ['Multilingual Job Search', 'AI Candidate Matching', 'Verified Professional Profiles'],
-        whatsappMessage: 'Hello HelpUS! I would like to know more about the HelpUS Jobs platform.'
+        detailsContent: 'Connects professionals to local and international jobs with multilingual resumes, skill assessments, and AI matching algorithms.'
       },
       'visa': {
-        name: 'HelpUS Visa & Immigration',
+        name: 'Visa & Imigração',
         subtitle: 'Visa, Passport & Immigration Assistance',
         description: 'Platform for checking and tracking visa applications, immigration processes, passport scheduling, and international documentation.',
         features: ['Documentation Checklist', 'Visa Status Tracking', 'Direct Immigration Consulting'],
-        whatsappMessage: 'Hello HelpUS! I need assistance with visas and immigration on HelpUS Visa.'
+        detailsContent: 'Immigration advisory portal offering DS-160 filling guides, automated document checklists, and consular appointment monitoring.'
       },
       'memoria-viva': {
-        name: 'HelpUS Memória Viva',
+        name: 'Memória Viva',
         subtitle: 'Legacy Preservation, Biographies & Life Stories',
         description: 'Heartfelt digital platform for recording, organizing, and preserving family life stories, biographical archives, and memories.',
         features: ['Biographical Timeline', 'Digital Photo & Audio Archive', 'Secure Family Sharing'],
-        whatsappMessage: 'Hello HelpUS! I would like to explore the HelpUS Memória Viva project.'
+        detailsContent: 'Dedicated space to record and organize family memories, audio interviews, virtual biographical books, and private historical archives.'
       },
       'brayyan': {
-        name: 'HelpUS Brayyan',
+        name: 'Brayyan',
         subtitle: 'Personal Branding & Solutions Portfolio',
         description: 'Executive presentation portfolio and personal branding advisory for founders, executives, and special brand projects.',
         features: ['Special Projects Showcase', 'Branding & Digital Presence', 'Business Consulting'],
-        whatsappMessage: 'Hello HelpUS! I would like to know more about HelpUS Brayyan advisory services.'
+        detailsContent: 'Custom brand positioning solutions, executive portfolio design, and strategic consulting for corporate founders and leaders.'
       }
     }
   },
   es: {
     nav: {
-      allServices: 'Todas las Soluciones',
-      tech: 'Tecnología e IA',
-      health: 'Salud y Medicina',
-      services: 'Servicios y Movilidad',
-      gastronomy: 'Alimentación y Delivery',
-      culture: 'Cultura y Biografía'
+      institutional: 'Sobre HelpUS',
+      solutions: 'Soluciones',
+      help: 'Ayuda y Soporte',
+      contact: 'Contacto'
     },
     hero: {
-      badge: 'Ecosistema Oficial de Aplicaciones',
       title: 'Todas las Soluciones Digitales HelpUS',
       subtitle: 'Conozca el catálogo completo de aplicaciones y plataformas desarrolladas y gestionadas directamente por HelpUS.',
-      appsCount: '10 Aplicaciones Propias',
-      exploreBtn: 'Explorar Catálogo'
+      exploreBtn: 'Explorar Soluciones'
     },
     catalog: {
       title: 'Soluciones Organizadas por Categoría',
       subtitle: 'Seleccione un área para navegar entre nuestros sistemas o acceda a la aplicación directamente.',
       accessApp: 'Acceder a la Aplicación',
-      whatsappContact: 'Atención WhatsApp',
-      developedBy: 'Desarrollado por HelpUS',
+      viewDetails: 'Ver Detalles del Sistema',
       partnerBannerTitle: 'Red de Socios Próximamente',
       partnerBannerDesc: 'Actualmente mostramos las aplicaciones propias de HelpUS. Próximamente abriremos espacio para socios homologados.'
+    },
+    detailsModal: {
+      overview: 'Visión General y Capturas del Sistema',
+      keyFeatures: 'Principales Recursos y Funciones',
+      subdomain: 'Subdominio Oficial DNS:',
+      launchApp: 'Acceder al Sistema Ahora',
+      close: 'Cerrar'
+    },
+    cookies: {
+      text: 'Utilizamos cookies para garantizar la mejor experiencia de navegación y seguridad en nuestras aplicaciones.',
+      accept: 'Aceptar y Cerrar',
+      privacyLink: 'Política de Privacidad'
+    },
+    modals: {
+      institutionalTitle: 'Sobre HelpUS Technology',
+      institutionalDesc: 'HelpUS Technology Solutions es una empresa dedicada a desarrollar, gestionar y gobernar ecosistemas digitales, unificando soporte e infraestructura.',
+      helpTitle: 'Centro de Ayuda y Soporte',
+      helpDesc: '¿Necesita soporte técnico o tiene preguntas? Hable con nuestro equipo central por WhatsApp o correo electrónico oficial.',
+      privacyTitle: 'Política de Privacidad y Términos',
+      privacyDesc: 'Garantizamos el tratamiento transparente de datos personales de acuerdo con las normativas internacionales de privacidad.'
     },
     footer: {
       rights: 'HelpUS Technology Solutions © 2026 — Todos los derechos reservados.',
       contactTitle: 'Hable con HelpUS',
-      contactDesc: 'Atención directa por WhatsApp o correo electrónico corporativo para soporte e integración.',
-      whatsapp: 'WhatsApp +55 (83) 99872-1848',
-      email: 'contato@helpusbr.com'
+      contactDesc: 'Atención directa por WhatsApp o correo electrónico corporativo.',
+      whatsapp: 'WhatsApp: +55 (83) 99872-1848',
+      email: 'contato@helpusbr.com',
+      privacy: 'Privacidad y Protección de Datos',
+      terms: 'Términos de Uso'
     },
     categories: {
-      todos: 'Todas las Soluciones (10)',
+      todos: 'Todas las Soluciones',
       tecnologia: 'Tecnología e IA',
       saude: 'Salud y Medicina',
       servicos: 'Servicios y Movilidad',
@@ -318,74 +386,74 @@ export const translations: Record<Language, TranslationSchema> = {
     },
     apps: {
       'helpus-site': {
-        name: 'HelpUS Platform',
+        name: 'Platform',
         subtitle: 'Portal Institucional e Infraestructura Central',
         description: 'Hub institucional de HelpUS responsable de la coordinación de servicios, gestión de clientes, infraestructura y gobernanza de aplicaciones.',
         features: ['Centro de Servicios', 'Gestión de Clientes', 'Soporte Técnico Coordinado'],
-        whatsappMessage: '¡Hola HelpUS! Quisiera obtener más información sobre la plataforma institucional HelpUS.'
+        detailsContent: 'Plataforma central de HelpUS que integra gestión de cuentas, infraestructura en la nube y gobernanza corporativa.'
       },
       'nexosai': {
-        name: 'Nexos AI by HelpUS',
+        name: 'Nexos AI',
         subtitle: 'Inteligencia Artificial y Agentes Autónomos',
         description: 'Plataforma avanzada de IA para la creación de agentes virtuales autónomos, automatización de procesos e integración con WhatsApp.',
         features: ['Agentes de IA Entrenados', 'Automatización 24/7', 'Integración Oficial con WhatsApp'],
-        whatsappMessage: '¡Hola HelpUS! Tengo interés en los Agentes de IA de la plataforma Nexos AI.'
+        detailsContent: 'Cree asistentes virtuales inteligentes entrenados con la base de conocimientos de su empresa para atención automatizada.'
       },
       'usmle': {
-        name: 'HelpUS USMLE Prep',
+        name: 'USMLE Prep',
         subtitle: 'Plataforma Médica Internacional y Examen USMLE',
         description: 'Plataforma especializada de estudios y simulados interactivos para médicos y estudiantes preparándose para el examen USMLE en EE. UU.',
         features: ['Simulados y Banco de Preguntas', 'Seguimiento de Rendimiento', 'Recursos para Revalidación Médica'],
-        whatsappMessage: '¡Hola HelpUS! Quisiera saber más sobre la plataforma HelpUS USMLE Prep.'
+        detailsContent: 'Incluye banco de preguntas actualizado, métricas de rendimiento y recursos de aprendizaje para la revalidación médica en EE. UU.'
       },
       'saude': {
-        name: 'HelpUS Saúde',
+        name: 'Saúde',
         subtitle: 'Telemedicina y Gestión Integrada de Salud',
         description: 'Sistema completo para clínicas y profesionales de la salud. Ofrece reserva de citas online, historia clínica electrónica y telemedicina.',
         features: ['Historia Clínica Electrónica', 'Reserva de Citas Online', 'Telemedicina Segura'],
-        whatsappMessage: '¡Hola HelpUS! Quisiera consultar sobre HelpUS Saúde para clínicas/profesionales.'
+        detailsContent: 'Software clínico completo con agenda online, expediente digital encriptado y consultas virtuales seguras.'
       },
       'wagnerdriver-site': {
-        name: 'HelpUS Executive Driver',
+        name: 'Executive Driver',
         subtitle: 'Movilidad Ejecutiva y Transporte VIP',
         description: 'Solución digital para reserva de transporte ejecutivo, transfer VIP, viajes privados y gestión de viajes corporativos.',
         features: ['Reserva de Viajes VIP', 'Atención Corporativa Exclusiva', 'Gestión de Rutas y Tarifas'],
-        whatsappMessage: '¡Hola HelpUS! Tengo interés en la solución HelpUS Executive Driver.'
+        detailsContent: 'Gestione reservas VIP de vehículos ejecutivos, control de itinerarios y traslados corporativos en tiempo real.'
       },
       'pizza': {
-        name: 'HelpUS Pizza & Delivery',
+        name: 'Pizza & Delivery',
         subtitle: 'Gestión y Pedidos Online para Pizzerías',
         description: 'Plataforma completa de delivery y gestión para pizzerías. Incluye menú digital interactivo, pedidos en mesa y gestión de delivery.',
         features: ['Menú Digital QR', 'Personalizador de Sabores', 'Gestión de Comandas y Delivery'],
-        whatsappMessage: '¡Hola HelpUS! Quiero conocer la solución HelpUS Pizza & Delivery para mi negocio.'
+        detailsContent: 'Sistema de gestión gastronómica con menú QR, personalizador interactivo de sabores y gestión de repartidores.'
       },
       'jobs': {
-        name: 'HelpUS Jobs',
+        name: 'Jobs',
         subtitle: 'Marketplace Multilingüe de Empleos',
         description: 'Plataforma global multilingüe para conectar trabajadores, reclutadores y oportunidades laborales internacionales.',
-        features: ['Búsqueda Multilingüe de Empleos', 'Match Inteligente', 'Perfiles Profesionales Verificados'],
-        whatsappMessage: '¡Hola HelpUS! Quisiera entender más sobre la plataforma HelpUS Jobs.'
+        features: ['Búsqueda Multilingüe de Empleos', 'Match Inteligente', 'Perfis Profesionales Verificados'],
+        detailsContent: 'Conecta a profesionales con empleo internacional y local mediante algoritmos avanzados de coincidencia.'
       },
       'visa': {
-        name: 'HelpUS Visa & Imigração',
+        name: 'Visa & Imigração',
         subtitle: 'Asesoría de Visados, Pasaportes y Procesos',
         description: 'Plataforma de consulta y seguimiento de trámites de visados, inmigración, pasaportes y documentación internacional.',
         features: ['Checklist de Documentación', 'Seguimiento de Estado de Visado', 'Consultoría de Inmigración Directa'],
-        whatsappMessage: '¡Hola HelpUS! Necesito ayuda con visados en HelpUS Visa.'
+        detailsContent: 'Portal de asesoría de inmigración con guías de documentación y seguimiento de citas consulares.'
       },
       'memoria-viva': {
-        name: 'HelpUS Memória Viva',
-        subtitle: 'Preservación de Legado, Biografías e Historias',
+        name: 'Memória Viva',
+        subtitle: 'Preservación de Legado, Biografias e Historias',
         description: 'Plataforma digital afectiva para registrar, organizar y preservar historias de vida familiares, biografías y recuerdos.',
         features: ['Línea de Tiempo Biográfica', 'Archivo Digital de Fotos y Audio', 'Uso Familiar Seguro'],
-        whatsappMessage: '¡Hola HelpUS! Quisiera conocer el proyecto HelpUS Memória Viva.'
+        detailsContent: 'Espacio dedicado a conservar memorias familiares, audios históricos y libros de biografías para futuras generaciones.'
       },
       'brayyan': {
-        name: 'HelpUS Brayyan',
+        name: 'Brayyan',
         subtitle: 'Branding Personal y Portafolio de Soluciones',
         description: 'Portafolio de presentación ejecutiva y consultoría de branding personal para fundadores y proyectos especiales.',
         features: ['Presentación de Proyectos Especiales', 'Branding y Presencia Digital', 'Consultoría de Negocios'],
-        whatsappMessage: '¡Hola HelpUS! Quisiera saber más sobre la consultoría HelpUS Brayyan.'
+        detailsContent: 'Solución personalizada de marca ejecutiva y consultoría de negocios para líderes y emprendedores.'
       }
     }
   }
