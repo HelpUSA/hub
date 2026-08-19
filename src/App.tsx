@@ -1,110 +1,186 @@
 import { useState } from 'react';
 import { 
   ShieldCheck, 
-  Building2, 
-  Scissors, 
-  Ticket, 
-  Wine, 
+  Stethoscope, 
+  Car, 
+  Pizza, 
   Bot, 
-  Zap, 
-  Check, 
+  HeartPulse, 
+  Briefcase, 
+  Globe, 
+  BookOpen, 
+  UserCheck, 
+  Search, 
   MessageSquare, 
-  PhoneCall, 
   ArrowRight, 
-  Sparkles,
-  HelpCircle
+  Sparkles, 
+  Check, 
+  Building2,
+  Layers,
+  PhoneCall
 } from 'lucide-react';
 
-interface ServiceItem {
+interface AppItem {
   id: string;
   name: string;
   subtitle: string;
-  category: string;
+  category: 'tecnologia' | 'saude' | 'servicos' | 'gastronomia' | 'cultura';
+  categoryLabel: string;
   description: string;
-  status: 'Em Produção' | 'Disponível';
   icon: any;
   features: string[];
-  directLink?: string;
+  status: 'Desenvolvimento Próprio' | 'Plataforma Ativa';
   whatsappMessage: string;
 }
 
 export function App() {
-  const [activeFilter, setActiveFilter] = useState<string>('todos');
+  const [activeCategory, setActiveCategory] = useState<string>('todos');
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
-  // HelpUS Direct Contact Details
-  const whatsappNumber = '5511999999999'; // Can be customized
+  const whatsappNumber = '5511999999999'; // Número oficial de contato HelpUS
   const helpusEmail = 'contato@helpusbr.com';
 
-  const services: ServiceItem[] = [
+  // As 10 aplicações oficiais desenvolvidas pela HelpUS
+  const applications: AppItem[] = [
     {
-      id: 'imoveis',
-      name: 'HelpUS Imóveis Pro',
-      subtitle: 'Plataforma Imobiliária & CRM de Corretores',
-      category: 'imobiliario',
-      description: 'Sistema completo de gestão de imóveis, captação de leads, busca com localização em tempo real e gerador de contratos.',
-      status: 'Em Produção',
+      id: 'helpus-site',
+      name: 'HelpUS Platform',
+      subtitle: 'Portal Institucional & Infraestrutura Central',
+      category: 'tecnologia',
+      categoryLabel: 'Tecnologia & IA',
+      description: 'Hub institucional da HelpUS responsável pela coordenação de serviços, gestão de clientes, infraestrutura e governança das aplicações.',
       icon: Building2,
-      features: ['Multiusuário com permissões', 'Filtro avançado por geolocalização', 'CRM de vendas e atendimento'],
-      whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre a plataforma HelpUS Imóveis Pro.'
+      features: ['Central de Serviços', 'Gestão de Clientes', 'Suporte Técnico Coordenado'],
+      status: 'Plataforma Ativa',
+      whatsappMessage: 'Olá HelpUS! Gostaria de obter mais informações sobre a plataforma institucional HelpUS.'
     },
     {
-      id: 'barbearia',
-      name: 'HelpUS Barber & Salon',
-      subtitle: 'Sistema de Agendamento Online & Gestão',
-      category: 'beleza',
-      description: 'Plataforma completa de agendamentos 24h para clientes, comissão de profissionais, controle de caixa e relatórios.',
-      status: 'Em Produção',
-      icon: Scissors,
-      features: ['Agendamento 24/7 pelo cliente', 'Cálculo automático de comissões', 'Lembretes de horário via WhatsApp'],
-      whatsappMessage: 'Olá HelpUS! Quero ativar o sistema HelpUS Barber & Salon na minha barbearia/salão.'
+      id: 'usmle',
+      name: 'HelpUS USMLE Prep',
+      subtitle: 'Preparatório & Plataforma Médica Internacional',
+      category: 'saude',
+      categoryLabel: 'Saúde & Medicina',
+      description: 'Plataforma especializada de estudos e simulados interativos para médicos e estudantes se prepararem para o exame de revalidação médica USMLE nos EUA.',
+      icon: Stethoscope,
+      features: ['Simulados e Questões Comentadas', 'Acompanhamento de Desempenho', 'Recursos para Revalidação Médica'],
+      status: 'Desenvolvimento Próprio',
+      whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre a plataforma HelpUS USMLE Prep.'
     },
     {
-      id: 'events',
-      name: 'HelpUS Events Pass',
-      subtitle: 'Bilheteria Digital & Check-in QR Code',
-      category: 'eventos',
-      description: 'Venda de ingressos online, gestão de lotes, validação rápida por QR Code no acesso do evento e repasse de vendas.',
-      status: 'Em Produção',
-      icon: Ticket,
-      features: ['Check-in rápido por QR Code', 'Ingressos digitais anti-fraude', 'Relatório de público em tempo real'],
-      whatsappMessage: 'Olá HelpUS! Tenho interesse no HelpUS Events Pass para gestão de eventos.'
+      id: 'wagnerdriver-site',
+      name: 'HelpUS Executive Driver',
+      subtitle: 'Mobilidade Executiva & Transporte VIP',
+      category: 'servicos',
+      categoryLabel: 'Serviços & Mobilidade',
+      description: 'Solução digital para agendamento de transporte executivo, transfer vip, viagens particulares e gestão de corridas corporativas.',
+      icon: Car,
+      features: ['Agendamento de Viagens VIP', 'Atendimento Corporativo Exclusivo', 'Gestão de Rotas e Tarifas'],
+      status: 'Desenvolvimento Próprio',
+      whatsappMessage: 'Olá HelpUS! Tenho interesse na solução HelpUS Executive Driver.'
     },
     {
-      id: 'gourmet',
-      name: 'HelpUS Gourmet & Drinks',
-      subtitle: 'Cardápio Digital & Pedidos na Mesa',
+      id: 'pizza',
+      name: 'HelpUS Pizza & Delivery',
+      subtitle: 'Gestão & Pedidos Online para Pizzarias',
       category: 'gastronomia',
-      description: 'Solução para restaurantes e bares. Cardápio via QR Code, montagem interativa de receitas e comandas digitais.',
-      status: 'Disponível',
-      icon: Wine,
-      features: ['Cardápio QR Code dinâmico', 'Montagem interativa de pratos/drinks', 'Comandas individuais digitais'],
-      whatsappMessage: 'Olá HelpUS! Gostaria de implementar o HelpUS Gourmet & Drinks no meu estabelecimento.'
+      categoryLabel: 'Alimentação & Delivery',
+      description: 'Plataforma completa de delivery e gestão para pizzarias. Inclui cardápio digital interativo, pedidos na mesa e integração de entregas.',
+      icon: Pizza,
+      features: ['Cardápio Digital de Pizzas & Bebidas', 'Montagem de Sabores Meio-a-Meio', 'Gestão de Comandas & Delivery'],
+      status: 'Desenvolvimento Próprio',
+      whatsappMessage: 'Olá HelpUS! Quero conhecer a solução HelpUS Pizza & Delivery para meu estabelecimento.'
     },
     {
-      id: 'ai-agent',
-      name: 'HelpUS AI Customer Agent',
-      subtitle: 'Atendimento Autônomo 24/7 com IA',
-      category: 'ia',
-      description: 'Agentes inteligentes treinados na sua empresa para atender clientes no WhatsApp, tirar dúvidas e qualificar leads.',
-      status: 'Disponível',
+      id: 'nexosai',
+      name: 'Nexos AI by HelpUS',
+      subtitle: 'Inteligência Artificial & Agentes Autônomos',
+      category: 'tecnologia',
+      categoryLabel: 'Tecnologia & IA',
+      description: 'Plataforma avançada de IA para criação de agentes virtuais autônomos, automação de processos de negócio e integração via WhatsApp e Webchat.',
       icon: Bot,
-      features: ['Treinado com dados da sua empresa', 'Integração oficial WhatsApp', 'Transbordo para atendente humano'],
-      whatsappMessage: 'Olá HelpUS! Quero entender como colocar um Agente de IA para atender minha empresa 24/7.'
+      features: ['Agentes de IA Treinados', 'Automação de Atendimento 24/7', 'Integração Oficial com WhatsApp'],
+      status: 'Plataforma Ativa',
+      whatsappMessage: 'Olá HelpUS! Tenho interesse nos Agentes de IA da plataforma Nexos AI.'
     },
     {
-      id: 'cloud-pay',
-      name: 'HelpUS Cloud & Pay',
-      subtitle: 'Gateway de Pagamentos & Faturamento',
-      category: 'cloud',
-      description: 'Infraestrutura central de pagamentos via PIX dinâmico e cartão de crédito com cobrança recorrente automatizada.',
-      status: 'Disponível',
-      icon: Zap,
-      features: ['PIX instantâneo com QR Code', 'Faturamento recorrente mensal', 'Sincronização com os sistemas HelpUS'],
-      whatsappMessage: 'Olá HelpUS! Gostaria de consultar sobre a integração de pagamentos HelpUS Cloud & Pay.'
+      id: 'saude',
+      name: 'HelpUS Saúde',
+      subtitle: 'Telemedicina & Gestão Integrada de Saúde',
+      category: 'saude',
+      categoryLabel: 'Saúde & Medicina',
+      description: 'Sistema completo para clínicas e profissionais da saúde. Oferece agendamento de consultas, prontuário eletrônico e atendimento por telemedicina.',
+      icon: HeartPulse,
+      features: ['Prontuário Eletrônico do Paciente', 'Agendamento Online de Consultas', 'Plataforma de Telemedicina Segura'],
+      status: 'Desenvolvimento Próprio',
+      whatsappMessage: 'Olá HelpUS! Gostaria de consultar sobre o HelpUS Saúde para clínicas/profissionais.'
+    },
+    {
+      id: 'jobs',
+      name: 'HelpUS Jobs',
+      subtitle: 'Marketplace Multilíngue de Empregos',
+      category: 'servicos',
+      categoryLabel: 'Serviços & Mobilidade',
+      description: 'Plataforma global multilíngue para conexão de trabalhadores, recrutadores e oportunidades de emprego com foco em carreiras internacionais.',
+      icon: Briefcase,
+      features: ['Busca Multilíngue de Vagas', 'Match Inteligente Candidato-Vaga', 'Perfis Profissionais Verificados'],
+      status: 'Desenvolvimento Próprio',
+      whatsappMessage: 'Olá HelpUS! Gostaria de entender mais sobre a plataforma HelpUS Jobs.'
+    },
+    {
+      id: 'visa',
+      name: 'HelpUS Visa & Imigração',
+      subtitle: 'Assessoria de Vistos, Passaportes & Processos',
+      category: 'servicos',
+      categoryLabel: 'Serviços & Mobilidade',
+      description: 'Plataforma de consulta e acompanhamento de processos de vistos, imigração, agendamento de passaportes e documentação internacional.',
+      icon: Globe,
+      features: ['Checklist de Documentação', 'Acompanhamento de Status de Visto', 'Consultoria Imigratória Direta'],
+      status: 'Desenvolvimento Próprio',
+      whatsappMessage: 'Olá HelpUS! Preciso de ajuda com vistos e processos no HelpUS Visa.'
+    },
+    {
+      id: 'memoria-viva',
+      name: 'HelpUS Memória Viva',
+      subtitle: 'Preservação de Legado, Biografias & Histórias',
+      category: 'cultura',
+      categoryLabel: 'Cultura & Biografia',
+      description: 'Plataforma afetiva para registro, organização e preservação da história de vida de famílias, acervos biográficos e memórias inesquecíveis.',
+      icon: BookOpen,
+      features: ['Linha do Tempo Biográfica', 'Acervo Digital de Fotos e Áudios', 'Compartilhamento Familiar Seguro'],
+      status: 'Desenvolvimento Próprio',
+      whatsappMessage: 'Olá HelpUS! Gostaria de conhecer o projeto HelpUS Memória Viva.'
+    },
+    {
+      id: 'brayyan',
+      name: 'HelpUS Brayyan',
+      subtitle: 'Branding Pessoal & Portfólio de Soluções',
+      category: 'cultura',
+      categoryLabel: 'Cultura & Biografia',
+      description: 'Portfólio de apresentação institucional e consultoria de branding pessoal para executivos, fundadores e projetos especiais da marca.',
+      icon: UserCheck,
+      features: ['Apresentação de Projetos Especiais', 'Branding e Presença Digital', 'Consultoria de Negócios'],
+      status: 'Desenvolvimento Próprio',
+      whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre as consultorias HelpUS Brayyan.'
     }
   ];
 
-  const filteredServices = services.filter(s => activeFilter === 'todos' || s.category === activeFilter);
+  const categories = [
+    { id: 'todos', label: 'Todas as Soluções (10)' },
+    { id: 'tecnologia', label: 'Tecnologia & IA' },
+    { id: 'saude', label: 'Saúde & Medicina' },
+    { id: 'servicos', label: 'Serviços & Mobilidade' },
+    { id: 'gastronomia', label: 'Alimentação & Delivery' },
+    { id: 'cultura', label: 'Cultura & Biografia' }
+  ];
+
+  const filteredApps = applications.filter(app => {
+    const matchesCategory = activeCategory === 'todos' || app.category === activeCategory;
+    const matchesSearch = searchQuery === '' || 
+      app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      app.subtitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      app.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   const openWhatsApp = (msg: string) => {
     const encoded = encodeURIComponent(msg);
@@ -131,44 +207,33 @@ export function App() {
               </div>
             </div>
 
-            {/* Navigation */}
-            <nav className="hub-nav-links">
-              <button 
-                onClick={() => setActiveFilter('todos')} 
-                className={`hub-nav-btn ${activeFilter === 'todos' ? 'active' : ''}`}
-              >
-                Todos os Serviços
-              </button>
-              <button 
-                onClick={() => setActiveFilter('imobiliario')} 
-                className={`hub-nav-btn ${activeFilter === 'imobiliario' ? 'active' : ''}`}
-              >
-                Imobiliário
-              </button>
-              <button 
-                onClick={() => setActiveFilter('beleza')} 
-                className={`hub-nav-btn ${activeFilter === 'beleza' ? 'active' : ''}`}
-              >
-                Beleza
-              </button>
-              <button 
-                onClick={() => setActiveFilter('eventos')} 
-                className={`hub-nav-btn ${activeFilter === 'eventos' ? 'active' : ''}`}
-              >
-                Eventos
-              </button>
-              <button 
-                onClick={() => setActiveFilter('ia')} 
-                className={`hub-nav-btn ${activeFilter === 'ia' ? 'active' : ''}`}
-              >
-                Inteligência Artificial
-              </button>
-            </nav>
+            {/* Search Input */}
+            <div className="hidden md:flex items-center relative" style={{ width: '280px' }}>
+              <Search className="w-4 h-4 text-slate-400 absolute left-3 pointer-events-none" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Buscar por aplicação ou palavra..."
+                style={{
+                  width: '100%',
+                  paddingLeft: '36px',
+                  paddingRight: '12px',
+                  paddingTop: '8px',
+                  paddingBottom: '8px',
+                  fontSize: '0.85rem',
+                  border: '1px solid var(--border-light)',
+                  borderRadius: '8px',
+                  outline: 'none',
+                  backgroundColor: '#ffffff'
+                }}
+              />
+            </div>
 
-            {/* Contact CTA Header */}
+            {/* Contact CTA */}
             <div>
               <button 
-                onClick={() => openWhatsApp('Olá HelpUS! Preciso de atendimento direto.')}
+                onClick={() => openWhatsApp('Olá HelpUS! Gostaria de atendimento direto sobre os serviços.')}
                 className="hub-btn-primary"
               >
                 <MessageSquare className="w-4 h-4" />
@@ -185,67 +250,92 @@ export function App() {
         <div className="hub-container">
           <div className="hub-hero-badge">
             <Sparkles className="w-4 h-4" />
-            <span>Portal Unificado de Serviços & Soluções</span>
+            <span>Ecossistema Oficial de Aplicações Próprias HelpUS</span>
           </div>
 
           <h1 className="hub-hero-title">
-            Central de Serviços e Soluções <span>HelpUS</span>
+            Plataformas e Serviços <span>HelpUS</span>
           </h1>
 
           <p className="hub-hero-desc">
-            Acesse seus sistemas ativos ou solicite novos serviços digitais diretamente com a equipe da <strong>HelpUS</strong>. Nós coordenamos a tecnologia, o suporte e a gestão da sua empresa em um único lugar.
+            Explore a vitrine oficial das <strong>10 aplicações exclusivas</strong> desenvolvidas diretamente pela HelpUS. Conecte sua empresa, contratando ou solicitando suporte centralizado conosco.
           </p>
+
+          {/* Quick Metrics Pill */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginBottom: '24px', flexWrap: 'wrap' }}>
+            <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', background: '#ffffff', padding: '6px 14px', borderRadius: '20px', border: '1px solid var(--border-light)', fontWeight: '600' }}>
+              ⚡ 10 Soluções Próprias
+            </span>
+            <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', background: '#ffffff', padding: '6px 14px', borderRadius: '20px', border: '1px solid var(--border-light)', fontWeight: '600' }}>
+              🛡️ Atendimento Direto HelpUS
+            </span>
+            <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', background: '#ffffff', padding: '6px 14px', borderRadius: '20px', border: '1px solid var(--border-light)', fontWeight: '600' }}>
+              🌐 Em Expansão
+            </span>
+          </div>
 
           <div className="hub-hero-actions">
             <button 
-              onClick={() => openWhatsApp('Olá HelpUS! Gostaria de consultar sobre os serviços oferecidos.')}
+              onClick={() => openWhatsApp('Olá HelpUS! Gostaria de consultar sobre a contratação das aplicações.')}
               className="hub-btn-primary"
             >
-              <span>Atendimento Direto no WhatsApp</span>
+              <span>Contato Direto no WhatsApp</span>
               <ArrowRight className="w-4 h-4" />
             </button>
-            <a href="#servicos" className="hub-btn-secondary">
-              <HelpCircle className="w-4 h-4 text-blue-600" />
-              <span>Ver Serviços Disponíveis</span>
-            </a>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="servicos" className="hub-section">
+      {/* Main Catalog Section */}
+      <section className="hub-section">
         <div className="hub-container">
           
-          <div className="hub-section-header">
-            <span className="hub-section-subtitle">Catálogo Enxuto</span>
-            <h2 className="hub-section-title">Sistemas e Serviços Coordenados</h2>
-            <p className="hub-section-desc">
-              Escolha o serviço desejado e fale diretamente com a equipe da HelpUS para tirar dúvidas ou ativar no seu negócio.
-            </p>
+          <div className="hub-section-header" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div>
+              <span className="hub-section-subtitle">Catálogo Oficial</span>
+              <h2 className="hub-section-title">Aplicações em Desenvolvimento & Operação Própria</h2>
+              <p className="hub-section-desc">
+                Selecione uma área para navegar entre os nossos sistemas ou fale direto com nosso atendimento.
+              </p>
+            </div>
+
+            {/* Category Filter Pills */}
+            <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '8px' }}>
+              {categories.map(cat => (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={`hub-nav-btn ${activeCategory === cat.id ? 'active' : ''}`}
+                  style={{ whiteSpace: 'nowrap' }}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Grid of Clean Light-themed Service Cards */}
+          {/* Cards Grid */}
           <div className="hub-cards-grid">
-            {filteredServices.map(item => {
-              const IconComponent = item.icon;
+            {filteredApps.map(app => {
+              const IconComponent = app.icon;
               return (
-                <div key={item.id} className="hub-card">
+                <div key={app.id} className="hub-card">
                   <div>
                     <div className="hub-card-top">
                       <div className="hub-card-icon">
                         <IconComponent className="w-6 h-6" />
                       </div>
-                      <span className={`hub-card-badge ${item.status === 'Em Produção' ? 'hub-badge-green' : 'hub-badge-blue'}`}>
-                        {item.status}
+                      <span className={`hub-card-badge ${app.status === 'Plataforma Ativa' ? 'hub-badge-green' : 'hub-badge-blue'}`}>
+                        {app.status}
                       </span>
                     </div>
 
-                    <h3 className="hub-card-title">{item.name}</h3>
-                    <p className="hub-card-subtitle">{item.subtitle}</p>
-                    <p className="hub-card-desc">{item.description}</p>
+                    <h3 className="hub-card-title">{app.name}</h3>
+                    <p className="hub-card-subtitle">{app.subtitle}</p>
+                    <p className="hub-card-desc">{app.description}</p>
 
                     <ul className="hub-card-features">
-                      {item.features.map((feat, idx) => (
+                      {app.features.map((feat, idx) => (
                         <li key={idx}>
                           <Check className="w-4 h-4" />
                           <span>{feat}</span>
@@ -256,12 +346,12 @@ export function App() {
 
                   <div className="hub-card-bottom">
                     <div className="hub-card-price">
-                      <span>Contato Direto</span>
+                      <span>Desenvolvido por</span>
                       <div>HelpUS</div>
                     </div>
 
                     <button
-                      onClick={() => openWhatsApp(item.whatsappMessage)}
+                      onClick={() => openWhatsApp(app.whatsappMessage)}
                       className="hub-btn-primary"
                       style={{ fontSize: '0.85rem', padding: '8px 14px' }}
                     >
@@ -275,22 +365,45 @@ export function App() {
             })}
           </div>
 
+          {/* Partner Roadmap Announcement Banner */}
+          <div style={{ 
+            marginTop: '40px', 
+            padding: '20px', 
+            borderRadius: '16px', 
+            background: '#ffffff', 
+            border: '1px border-light', 
+            boxShadow: 'var(--shadow-sm)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '16px'
+          }}>
+            <div style={{ padding: '12px', borderRadius: '12px', background: '#eff6ff', color: 'var(--primary)' }}>
+              <Layers className="w-6 h-6" />
+            </div>
+            <div>
+              <h4 style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-dark)' }}>Próxima Fase do Ecossistema: Rede de Parceiros</h4>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '2px' }}>
+                Atualmente apresentamos apenas as aplicações próprias da HelpUS. Em breve, abriremos espaço para a inclusão de sites e soluções homologadas de parceiros parceiros estratégicos.
+              </p>
+            </div>
+          </div>
+
           {/* Contact Direct Callout Box */}
           <div className="hub-contact-card">
             <div className="hub-contact-info">
-              <h3>Precisa de um serviço sob medida para sua empresa?</h3>
+              <h3>Deseja contratar ou integrar uma dessas soluções?</h3>
               <p>
-                A equipe da HelpUS está pronta para desenvolver, integrar ou personalizar a solução ideal para o seu modelo de negócio.
+                Fale diretamente com o fundador e a equipe técnica da HelpUS para agendar uma demonstração ou solicitar uma versão personalizada para seu negócio.
               </p>
             </div>
             <div>
               <button 
-                onClick={() => openWhatsApp('Olá HelpUS! Gostaria de solicitar um orçamento para um serviço sob medida.')}
+                onClick={() => openWhatsApp('Olá HelpUS! Gostaria de agendar uma conversa sobre os sistemas do ecossistema.')}
                 className="hub-btn-primary"
                 style={{ background: '#ffffff', color: '#0f172a', fontWeight: '700' }}
               >
                 <PhoneCall className="w-4 h-4 text-blue-600" />
-                <span>Solicitar Orçamento no WhatsApp</span>
+                <span>Atendimento WhatsApp HelpUS</span>
               </button>
             </div>
           </div>
@@ -303,10 +416,10 @@ export function App() {
         <div className="hub-container">
           <div className="hub-footer-inner">
             <div>
-              <strong>HelpUS Technology Solutions</strong> © 2026 — Todos os direitos reservados.
+              <strong>HelpUS Technology Solutions</strong> © 2026 — 10 Aplicações Integradas.
             </div>
             <div>
-              Central de Atendimento: <a href={`mailto:${helpusEmail}`} style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: '600' }}>{helpusEmail}</a>
+              Contato Direto: <a href={`mailto:${helpusEmail}`} style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: '600' }}>{helpusEmail}</a>
             </div>
           </div>
         </div>
