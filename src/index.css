@@ -25,7 +25,7 @@
   --font-main: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
   --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
-  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.03);
+  --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.03);
 }
 
 * {
@@ -118,19 +118,13 @@ body {
   vertical-align: middle;
 }
 
-.hub-nav-links {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
 .hub-nav-btn {
   background: transparent;
   border: none;
   color: var(--text-body);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  padding: 8px 16px;
+  padding: 8px 14px;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -154,8 +148,8 @@ body {
   background: var(--primary);
   color: #ffffff;
   font-weight: 600;
-  font-size: 0.9rem;
-  padding: 10px 20px;
+  font-size: 0.88rem;
+  padding: 10px 18px;
   border-radius: 10px;
   border: none;
   cursor: pointer;
@@ -177,8 +171,8 @@ body {
   background: #ffffff;
   color: var(--text-dark);
   font-weight: 600;
-  font-size: 0.9rem;
-  padding: 10px 20px;
+  font-size: 0.88rem;
+  padding: 10px 18px;
   border-radius: 10px;
   border: 1px solid var(--border-light);
   cursor: pointer;
@@ -196,7 +190,7 @@ body {
 
 /* Hero Section */
 .hub-hero {
-  padding: 60px 0 40px;
+  padding: 48px 0 32px;
   text-align: center;
   background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%);
   border-bottom: 1px solid var(--border-light);
@@ -213,16 +207,16 @@ body {
   color: var(--primary);
   font-size: 0.8rem;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .hub-hero-title {
-  font-size: 2.75rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: var(--text-dark);
   line-height: 1.2;
   letter-spacing: -0.03em;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .hub-hero-title span {
@@ -233,22 +227,147 @@ body {
 }
 
 .hub-hero-desc {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--text-muted);
-  max-width: 680px;
-  margin: 0 auto 32px;
+  max-width: 720px;
+  margin: 0 auto 24px;
   line-height: 1.6;
 }
 
-.hub-hero-actions {
+/* Featured Carousel Showcase */
+.hub-carousel-wrapper {
+  margin: 32px 0 16px;
+}
+
+.hub-carousel {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.hub-carousel-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.hub-carousel-content {
+  text-align: left;
+}
+
+.hub-carousel-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primary);
+  background: #eff6ff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.hub-carousel-title {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.hub-carousel-subdomain {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hub-carousel-desc {
+  font-size: 0.95rem;
+  color: var(--text-body);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.hub-carousel-img-frame {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+  background: #0f172a;
+  height: 280px;
+}
+
+.hub-carousel-img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hub-carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-light);
+}
+
+.hub-carousel-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.hub-carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border-hover);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.hub-carousel-dot.active {
+  width: 28px;
+  border-radius: 10px;
+  background: var(--primary);
+}
+
+.hub-carousel-arrow {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
+  cursor: pointer;
+  color: var(--text-dark);
+  transition: all 0.2s ease;
 }
 
-/* Main Section Layout */
+.hub-carousel-arrow:hover {
+  background: var(--bg-subtle);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Cards Section */
 .hub-section {
   padding: 48px 0;
 }
@@ -295,6 +414,8 @@ body {
   justify-content: space-between;
   box-shadow: var(--shadow-sm);
   transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .hub-card:hover {
@@ -345,13 +466,22 @@ body {
   font-size: 1.2rem;
   font-weight: 800;
   color: var(--text-dark);
-  margin-bottom: 6px;
+  margin-bottom: 2px;
+}
+
+.hub-card-subdomain {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: inline-block;
 }
 
 .hub-card-subtitle {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--primary);
+  color: var(--indigo);
   margin-bottom: 10px;
 }
 
@@ -385,21 +515,59 @@ body {
   padding-top: 16px;
   border-top: 1px solid var(--border-light);
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hub-card-action-row {
+  display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  gap: 8px;
 }
 
-.hub-card-price {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--text-dark);
+.hub-btn-access {
+  flex: 1;
+  background: #eff6ff;
+  color: var(--primary);
+  border: 1px solid #bfdbfe;
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
 }
 
-.hub-card-price span {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  font-weight: 500;
+.hub-btn-access:hover {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+.hub-btn-whatsapp {
+  flex: 1;
+  background: #059669;
+  color: #ffffff;
+  border: none;
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.hub-btn-whatsapp:hover {
+  background: #047857;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
 }
 
 /* Contact Box / HelpUS Direct */
@@ -457,8 +625,11 @@ body {
   .hub-header-inner {
     height: 64px;
   }
-  .hub-nav-links {
-    display: none;
+  .hub-carousel-inner {
+    grid-template-columns: 1fr;
+  }
+  .hub-carousel-img-frame {
+    height: 200px;
   }
   .hub-cards-grid {
     grid-template-columns: 1fr;
