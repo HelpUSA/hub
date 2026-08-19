@@ -41,57 +41,6 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
-  top: 0 !important; /* Hide Google top frame shift */
-}
-
-/* Hide top Google Translate banner frame */
-.goog-te-banner-frame {
-  display: none !important;
-}
-
-body {
-  top: 0px !important;
-}
-
-/* Styled Language Translator Widget */
-#google_translate_element {
-  display: inline-block;
-}
-
-.goog-te-gadget-simple {
-  background-color: #ffffff !important;
-  border: 1px solid var(--border-light) !important;
-  padding: 4px 10px !important;
-  border-radius: 8px !important;
-  font-family: var(--font-main) !important;
-  font-size: 0.82rem !important;
-  font-weight: 600 !important;
-  color: var(--text-dark) !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 4px !important;
-  cursor: pointer !important;
-  transition: all 0.2s ease !important;
-}
-
-.goog-te-gadget-simple:hover {
-  border-color: var(--primary) !important;
-  background-color: #eff6ff !important;
-}
-
-.goog-te-gadget-simple img {
-  display: none !important; /* Hide default google icon */
-}
-
-.goog-te-menu-value {
-  color: var(--text-dark) !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 4px !important;
-}
-
-.goog-te-menu-value span {
-  color: var(--text-dark) !important;
 }
 
 /* App Container */
@@ -237,6 +186,35 @@ body {
 .hub-btn-secondary:hover {
   background: var(--bg-subtle);
   border-color: var(--border-hover);
+}
+
+/* Sleek Native Language Toggle Button */
+.hub-lang-switcher {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.hub-lang-btn {
+  background: transparent;
+  border: none;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hub-lang-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
 }
 
 /* Hero Section */

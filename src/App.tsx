@@ -20,198 +20,137 @@ import {
   ChevronRight,
   PhoneCall,
   Layers,
-  Languages
+  Globe2
 } from 'lucide-react';
+
+import { translations, type Language } from './i18n/translations';
 
 interface AppItem {
   id: string;
-  name: string;
-  subtitle: string;
   domain: string;
   liveUrl: string;
   category: 'tecnologia' | 'saude' | 'servicos' | 'gastronomia' | 'cultura';
-  categoryLabel: string;
-  description: string;
   icon: any;
   image: string;
-  features: string[];
   status: 'Plataforma Ativa' | 'Desenvolvimento Próprio';
-  whatsappMessage: string;
   featured?: boolean;
 }
 
 export function App() {
+  const [lang, setLang] = useState<Language>('pt');
   const [activeCategory, setActiveCategory] = useState<string>('todos');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
+
+  const t = translations[lang];
 
   // Número oficial de WhatsApp
   const whatsappNumber = '5583998721848';
   const whatsappFormatted = '(83) 99872-1848';
   const helpusEmail = 'contato@helpusbr.com';
 
-  // Lista oficial das 10 aplicações mapeadas diretamente com o DNS do Squarespace
+  // Lista de dados base das 10 aplicações
   const applications: AppItem[] = [
     {
       id: 'helpus-site',
-      name: 'HelpUS Platform',
-      subtitle: 'Portal Institucional & Infraestrutura Central',
       domain: 'helpusbr.com',
       liveUrl: 'https://helpusbr.com',
       category: 'tecnologia',
-      categoryLabel: 'Tecnologia & IA',
-      description: 'Hub institucional da HelpUS responsável pela coordenação de serviços, gestão de clientes, infraestrutura e governança das aplicações.',
       icon: Building2,
       image: '/images/helpus_imoveis.jpg',
-      features: ['Central de Serviços', 'Gestão de Clientes', 'Suporte Técnico Coordenado'],
       status: 'Plataforma Ativa',
-      whatsappMessage: 'Olá HelpUS! Gostaria de obter mais informações sobre a plataforma institucional HelpUS.',
       featured: true
     },
     {
       id: 'nexosai',
-      name: 'Nexos AI by HelpUS',
-      subtitle: 'Inteligência Artificial & Agentes Autônomos',
       domain: 'nexoai.helpusbr.com',
       liveUrl: 'https://nexoai.helpusbr.com',
       category: 'tecnologia',
-      categoryLabel: 'Tecnologia & IA',
-      description: 'Plataforma avançada de IA para criação de agentes virtuais autônomos, automação de processos de negócio e integração via WhatsApp e Webchat.',
       icon: Bot,
       image: '/images/helpus_ai.jpg',
-      features: ['Agentes de IA Treinados', 'Automação de Atendimento 24/7', 'Integração Oficial com WhatsApp'],
       status: 'Plataforma Ativa',
-      whatsappMessage: 'Olá HelpUS! Tenho interesse nos Agentes de IA da plataforma Nexos AI.',
       featured: true
     },
     {
       id: 'usmle',
-      name: 'HelpUS USMLE Prep',
-      subtitle: 'Preparatório & Plataforma Médica Internacional',
       domain: 'usmle.helpusbr.com',
       liveUrl: 'https://usmle.helpusbr.com',
       category: 'saude',
-      categoryLabel: 'Saúde & Medicina',
-      description: 'Plataforma especializada de estudos e simulados interativos para médicos e estudantes se prepararem para o exame de revalidação médica USMLE nos EUA.',
       icon: Stethoscope,
       image: '/images/helpus_health.jpg',
-      features: ['Simulados e Questões Comentadas', 'Acompanhamento de Desempenho', 'Recursos para Revalidação Médica'],
       status: 'Plataforma Ativa',
-      whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre a plataforma HelpUS USMLE Prep.',
       featured: true
     },
     {
       id: 'saude',
-      name: 'HelpUS Saúde',
-      subtitle: 'Telemedicina & Gestão Integrada de Saúde',
       domain: 'health.helpusbr.com',
       liveUrl: 'https://health.helpusbr.com',
       category: 'saude',
-      categoryLabel: 'Saúde & Medicina',
-      description: 'Sistema completo para clínicas e profissionais da saúde. Oferece agendamento de consultas, prontuário eletrônico e atendimento por telemedicina.',
       icon: HeartPulse,
       image: '/images/helpus_health.jpg',
-      features: ['Prontuário Eletrônico do Paciente', 'Agendamento Online de Consultas', 'Plataforma de Telemedicina Segura'],
       status: 'Desenvolvimento Próprio',
-      whatsappMessage: 'Olá HelpUS! Gostaria de consultar sobre o HelpUS Saúde para clínicas/profissionais.',
       featured: true
     },
     {
       id: 'wagnerdriver-site',
-      name: 'HelpUS Executive Driver',
-      subtitle: 'Mobilidade Executiva & Transporte VIP',
       domain: 'wagnerdriver.helpusbr.com',
       liveUrl: 'https://wagnerdriver.helpusbr.com',
       category: 'servicos',
-      categoryLabel: 'Serviços & Mobilidade',
-      description: 'Solução digital para agendamento de transporte executivo, transfer vip, viagens particulares e gestão de corridas corporativas.',
       icon: Car,
       image: '/images/helpus_events.jpg',
-      features: ['Agendamento de Viagens VIP', 'Atendimento Corporativo Exclusivo', 'Gestão de Rotas e Tarifas'],
       status: 'Plataforma Ativa',
-      whatsappMessage: 'Olá HelpUS! Tenho interesse na solução HelpUS Executive Driver.',
       featured: true
     },
     {
       id: 'pizza',
-      name: 'HelpUS Pizza & Delivery',
-      subtitle: 'Gestão & Pedidos Online para Pizzarias',
       domain: 'pizza.helpusbr.com',
       liveUrl: 'https://pizza.helpusbr.com',
       category: 'gastronomia',
-      categoryLabel: 'Alimentação & Delivery',
-      description: 'Plataforma completa de delivery e gestão para pizzarias. Inclui cardápio digital interativo, pedidos na mesa e integração de entregas.',
       icon: Pizza,
       image: '/images/helpus_barber.jpg',
-      features: ['Cardápio Digital de Pizzas & Bebidas', 'Montagem de Sabores Meio-a-Meio', 'Gestão de Comandas & Delivery'],
-      status: 'Plataforma Ativa',
-      whatsappMessage: 'Olá HelpUS! Quero conhecer a solução HelpUS Pizza & Delivery para meu estabelecimento.'
+      status: 'Plataforma Ativa'
     },
     {
       id: 'jobs',
-      name: 'HelpUS Jobs',
-      subtitle: 'Marketplace Multilíngue de Empregos',
       domain: 'jobs.helpusbr.com',
       liveUrl: 'https://jobs.helpusbr.com',
       category: 'servicos',
-      categoryLabel: 'Serviços & Mobilidade',
-      description: 'Plataforma global multilíngue para conexão de trabalhadores, recrutadores e oportunidades de emprego com foco em carreiras internacionais.',
       icon: Briefcase,
       image: '/images/helpus_events.jpg',
-      features: ['Busca Multilíngue de Vagas', 'Match Inteligente Candidato-Vaga', 'Perfis Profissionais Verificados'],
-      status: 'Plataforma Ativa',
-      whatsappMessage: 'Olá HelpUS! Gostaria de entender mais sobre a plataforma HelpUS Jobs.'
+      status: 'Plataforma Ativa'
     },
     {
       id: 'visa',
-      name: 'HelpUS Visa & Imigração',
-      subtitle: 'Assessoria de Vistos, Passaportes & Processos',
       domain: 'visa.helpusbr.com',
       liveUrl: 'https://visa.helpusbr.com',
       category: 'servicos',
-      categoryLabel: 'Serviços & Mobilidade',
-      description: 'Plataforma de consulta e acompanhamento de processos de vistos, imigração, agendamento de passaportes e documentação internacional.',
       icon: Globe,
       image: '/images/helpus_imoveis.jpg',
-      features: ['Checklist de Documentação', 'Acompanhamento de Status de Visto', 'Consultoria Imigratória Direta'],
-      status: 'Plataforma Ativa',
-      whatsappMessage: 'Olá HelpUS! Preciso de ajuda com vistos e processos no HelpUS Visa.'
+      status: 'Plataforma Ativa'
     },
     {
       id: 'memoria-viva',
-      name: 'HelpUS Memória Viva',
-      subtitle: 'Preservação de Legado, Biografias & Histórias',
       domain: 'memoriaviva.helpusbr.com',
       liveUrl: 'https://memoriaviva.helpusbr.com',
       category: 'cultura',
-      categoryLabel: 'Cultura & Biografia',
-      description: 'Plataforma afetiva para registro, organização e preservação da história de vida de famílias, acervos biográficos e memórias inesquecíveis.',
       icon: BookOpen,
       image: '/images/helpus_barber.jpg',
-      features: ['Linha do Tempo Biográfica', 'Acervo Digital de Fotos e Áudios', 'Compartilhamento Familiar Seguro'],
-      status: 'Plataforma Ativa',
-      whatsappMessage: 'Olá HelpUS! Gostaria de conhecer o projeto HelpUS Memória Viva.'
+      status: 'Plataforma Ativa'
     },
     {
       id: 'brayyan',
-      name: 'HelpUS Brayyan',
-      subtitle: 'Branding Pessoal & Portfólio de Soluções',
       domain: 'brayyan.helpusbr.com',
       liveUrl: 'https://brayyan.helpusbr.com',
       category: 'cultura',
-      categoryLabel: 'Cultura & Biografia',
-      description: 'Portfólio de apresentação institucional e consultoria de branding pessoal para executivos, fundadores e projetos especiais da marca.',
       icon: UserCheck,
       image: '/images/helpus_ai.jpg',
-      features: ['Apresentação de Projetos Especiais', 'Branding e Presença Digital', 'Consultoria de Negócios'],
-      status: 'Plataforma Ativa',
-      whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre as consultorias HelpUS Brayyan.'
+      status: 'Plataforma Ativa'
     }
   ];
 
   const featuredApps = applications.filter(a => a.featured);
 
-  // Carousel Auto-play timer
+  // Auto-play timer do carrossel
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlideIndex((prev) => (prev + 1) % featuredApps.length);
@@ -219,22 +158,23 @@ export function App() {
     return () => clearInterval(timer);
   }, [featuredApps.length]);
 
-  const categories = [
-    { id: 'todos', label: 'Todas as Soluções (10)' },
-    { id: 'tecnologia', label: 'Tecnologia & IA' },
-    { id: 'saude', label: 'Saúde & Medicina' },
-    { id: 'servicos', label: 'Serviços & Mobilidade' },
-    { id: 'gastronomia', label: 'Alimentação & Delivery' },
-    { id: 'cultura', label: 'Cultura & Biografia' }
+  const categoryPills = [
+    { id: 'todos', label: t.categories.todos },
+    { id: 'tecnologia', label: t.categories.tecnologia },
+    { id: 'saude', label: t.categories.saude },
+    { id: 'servicos', label: t.categories.servicos },
+    { id: 'gastronomia', label: t.categories.gastronomia },
+    { id: 'cultura', label: t.categories.cultura }
   ];
 
   const filteredApps = applications.filter(app => {
+    const appTrans = t.apps[app.id];
     const matchesCategory = activeCategory === 'todos' || app.category === activeCategory;
     const matchesSearch = searchQuery === '' || 
-      app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (appTrans && appTrans.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
       app.domain.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      app.subtitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      app.description.toLowerCase().includes(searchQuery.toLowerCase());
+      (appTrans && appTrans.subtitle.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (appTrans && appTrans.description.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesCategory && matchesSearch;
   });
 
@@ -244,6 +184,7 @@ export function App() {
   };
 
   const activeCarouselApp = featuredApps[currentSlideIndex] || featuredApps[0];
+  const activeCarouselTrans = t.apps[activeCarouselApp.id];
 
   return (
     <div className="hub-app">
@@ -272,7 +213,7 @@ export function App() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Buscar por subdomínio ou aplicação..."
+                placeholder={lang === 'pt' ? "Buscar subdomínio ou serviço..." : "Search subdomain or service..."}
                 style={{
                   width: '100%',
                   paddingLeft: '36px',
@@ -288,21 +229,31 @@ export function App() {
               />
             </div>
 
-            {/* Language Selector & Contact CTA */}
+            {/* Native Language Switcher & Contact CTA */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               
-              {/* Dynamic Google Translate Widget Element */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <Languages className="w-4 h-4 text-slate-500" />
-                <div id="google_translate_element" />
+              {/* Native Language Switcher Pill */}
+              <div className="hub-lang-switcher">
+                <button
+                  onClick={() => setLang('pt')}
+                  className={`hub-lang-btn ${lang === 'pt' ? 'active' : ''}`}
+                >
+                  🇧🇷 PT
+                </button>
+                <button
+                  onClick={() => setLang('en')}
+                  className={`hub-lang-btn ${lang === 'en' ? 'active' : ''}`}
+                >
+                  🇺🇸 EN
+                </button>
               </div>
 
               <button 
-                onClick={() => openWhatsApp('Olá HelpUS! Gostaria de atendimento direto sobre o ecossistema de aplicações.')}
+                onClick={() => openWhatsApp(t.apps['helpus-site'].whatsappMessage)}
                 className="hub-btn-primary"
               >
                 <MessageSquare className="w-4 h-4" />
-                <span>WhatsApp {whatsappFormatted}</span>
+                <span>{t.nav.whatsappButton}</span>
               </button>
             </div>
 
@@ -315,15 +266,15 @@ export function App() {
         <div className="hub-container">
           <div className="hub-hero-badge">
             <Sparkles className="w-4 h-4" />
-            <span>Ecossistema Oficial de Aplicações HelpUS</span>
+            <span>{t.hero.badge}</span>
           </div>
 
           <h1 className="hub-hero-title">
-            Plataformas e Serviços <span>HelpUS</span>
+            {t.hero.titleStart}<span>{t.hero.titleSpan}</span>
           </h1>
 
           <p className="hub-hero-desc">
-            Acesse diretamente os sites e sistemas desenvolvidos pela <strong>HelpUS</strong>. O hub central para coordenação de serviços, suporte e atendimento corporativo pelo WhatsApp <strong>{whatsappFormatted}</strong>.
+            {t.hero.desc}
           </p>
 
           {/* Featured Interactive Carousel */}
@@ -334,15 +285,15 @@ export function App() {
                 {/* Left Side: App Details */}
                 <div className="hub-carousel-content">
                   <span className="hub-carousel-tag">
-                    ★ Destaque do Ecossistema ({currentSlideIndex + 1}/{featuredApps.length})
+                    {t.carousel.featuredTag} ({currentSlideIndex + 1}/{featuredApps.length})
                   </span>
                   
-                  <h2 className="hub-carousel-title">{activeCarouselApp.name}</h2>
+                  <h2 className="hub-carousel-title">{activeCarouselTrans?.name}</h2>
                   <div className="hub-carousel-subdomain">
-                    <Globe className="w-4 h-4" /> {activeCarouselApp.domain}
+                    <Globe2 className="w-4 h-4" /> {activeCarouselApp.domain}
                   </div>
                   
-                  <p className="hub-carousel-desc">{activeCarouselApp.description}</p>
+                  <p className="hub-carousel-desc">{activeCarouselTrans?.description}</p>
                   
                   <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                     <a 
@@ -351,16 +302,16 @@ export function App() {
                       rel="noopener noreferrer"
                       className="hub-btn-primary"
                     >
-                      <span>Acessar {activeCarouselApp.domain}</span>
+                      <span>{t.carousel.accessButton} {activeCarouselApp.domain}</span>
                       <ExternalLink className="w-4 h-4" />
                     </a>
                     
                     <button
-                      onClick={() => openWhatsApp(activeCarouselApp.whatsappMessage)}
+                      onClick={() => openWhatsApp(activeCarouselTrans?.whatsappMessage || '')}
                       className="hub-btn-secondary"
                     >
                       <MessageSquare className="w-4 h-4 text-emerald-600" />
-                      <span>Falar sobre este Sistema</span>
+                      <span>{t.carousel.talkButton}</span>
                     </button>
                   </div>
                 </div>
@@ -369,7 +320,7 @@ export function App() {
                 <div className="hub-carousel-img-frame">
                   <img
                     src={activeCarouselApp.image}
-                    alt={activeCarouselApp.name}
+                    alt={activeCarouselTrans?.name}
                   />
                   <div style={{ 
                     position: 'absolute', 
@@ -406,14 +357,14 @@ export function App() {
                   <button
                     onClick={() => setCurrentSlideIndex((prev) => (prev - 1 + featuredApps.length) % featuredApps.length)}
                     className="hub-carousel-arrow"
-                    title="Anterior"
+                    title="Previous"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
                   <button
                     onClick={() => setCurrentSlideIndex((prev) => (prev + 1) % featuredApps.length)}
                     className="hub-carousel-arrow"
-                    title="Próximo"
+                    title="Next"
                   >
                     <ChevronRight className="w-5 h-5" />
                   </button>
@@ -432,16 +383,14 @@ export function App() {
           
           <div className="hub-section-header" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div>
-              <span className="hub-section-subtitle">Aplicações Próprias</span>
-              <h2 className="hub-section-title">Catálogo Completo dos 10 Serviços HelpUS</h2>
-              <p className="hub-section-desc">
-                Acesse o subdomínio direto de cada sistema ou entre em contato com nosso atendimento para suporte e contratação.
-              </p>
+              <span className="hub-section-subtitle">{t.catalog.subtitle}</span>
+              <h2 className="hub-section-title">{t.catalog.title}</h2>
+              <p className="hub-section-desc">{t.catalog.desc}</p>
             </div>
 
             {/* Category Filter Pills */}
             <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '8px' }}>
-              {categories.map(cat => (
+              {categoryPills.map(cat => (
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
@@ -458,6 +407,9 @@ export function App() {
           <div className="hub-cards-grid">
             {filteredApps.map(app => {
               const IconComponent = app.icon;
+              const appTrans = t.apps[app.id];
+              if (!appTrans) return null;
+
               return (
                 <div key={app.id} className="hub-card">
                   <div>
@@ -470,13 +422,13 @@ export function App() {
                       </span>
                     </div>
 
-                    <h3 className="hub-card-title">{app.name}</h3>
+                    <h3 className="hub-card-title">{appTrans.name}</h3>
                     <span className="hub-card-subdomain">{app.domain}</span>
-                    <p className="hub-card-subtitle">{app.subtitle}</p>
-                    <p className="hub-card-desc">{app.description}</p>
+                    <p className="hub-card-subtitle">{appTrans.subtitle}</p>
+                    <p className="hub-card-desc">{appTrans.description}</p>
 
                     <ul className="hub-card-features">
-                      {app.features.map((feat, idx) => (
+                      {appTrans.features.map((feat, idx) => (
                         <li key={idx}>
                           <Check className="w-4 h-4" />
                           <span>{feat}</span>
@@ -493,16 +445,16 @@ export function App() {
                         rel="noopener noreferrer"
                         className="hub-btn-access"
                       >
-                        <span>Acessar {app.domain}</span>
+                        <span>{t.catalog.accessSite} {app.domain}</span>
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
 
                       <button
-                        onClick={() => openWhatsApp(app.whatsappMessage)}
+                        onClick={() => openWhatsApp(appTrans.whatsappMessage)}
                         className="hub-btn-whatsapp"
                       >
                         <MessageSquare className="w-3.5 h-3.5" />
-                        <span>WhatsApp</span>
+                        <span>{t.catalog.whatsapp}</span>
                       </button>
                     </div>
                   </div>
@@ -528,9 +480,9 @@ export function App() {
               <Layers className="w-6 h-6" />
             </div>
             <div>
-              <h4 style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-dark)' }}>Rede de Parceiros em Breve</h4>
+              <h4 style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-dark)' }}>{t.catalog.partnerBannerTitle}</h4>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '2px' }}>
-                Atualmente este catálogo exibe exclusivamente as 10 aplicações próprias da HelpUS mapeadas nos servidores. Em breve, abriremos espaço para novos parceiros homologados.
+                {t.catalog.partnerBannerDesc}
               </p>
             </div>
           </div>
@@ -538,10 +490,8 @@ export function App() {
           {/* Contact Direct Callout Box */}
           <div className="hub-contact-card">
             <div className="hub-contact-info">
-              <h3>Deseja contratar ou integrar uma dessas soluções?</h3>
-              <p>
-                Fale diretamente com a equipe da HelpUS pelo WhatsApp <strong>{whatsappFormatted}</strong> para tirar dúvidas, agendar apresentações ou solicitar personalizações.
-              </p>
+              <h3>{t.catalog.customContactTitle}</h3>
+              <p>{t.catalog.customContactDesc}</p>
             </div>
             <div>
               <button 
@@ -550,7 +500,7 @@ export function App() {
                 style={{ background: '#ffffff', color: '#0f172a', fontWeight: '700' }}
               >
                 <PhoneCall className="w-4 h-4 text-blue-600" />
-                <span>Atendimento WhatsApp {whatsappFormatted}</span>
+                <span>{t.catalog.customContactCta}</span>
               </button>
             </div>
           </div>
@@ -563,10 +513,10 @@ export function App() {
         <div className="hub-container">
           <div className="hub-footer-inner">
             <div>
-              <strong>HelpUS Technology Solutions</strong> © 2026 — 10 Aplicações Mapeadas.
+              <strong>HelpUS Technology Solutions</strong> © 2026 — 10 Mapped Applications.
             </div>
             <div>
-              Atendimento WhatsApp: <strong style={{ color: 'var(--text-dark)' }}>{whatsappFormatted}</strong> | Email: <a href={`mailto:${helpusEmail}`} style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: '600' }}>{helpusEmail}</a>
+              {t.footer.contact}: <strong style={{ color: 'var(--text-dark)' }}>{whatsappFormatted}</strong> | Email: <a href={`mailto:${helpusEmail}`} style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: '600' }}>{helpusEmail}</a>
             </div>
           </div>
         </div>
