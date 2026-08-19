@@ -10,7 +10,7 @@ import {
   BookOpen, 
   UserCheck, 
   Check, 
-  Building2,
+  Code2,
   ExternalLink,
   ChevronLeft,
   ChevronRight,
@@ -21,7 +21,10 @@ import {
   Send,
   Info,
   HelpCircle,
-  FileText
+  FileText,
+  Sparkles,
+  Users,
+  ArrowRight
 } from 'lucide-react';
 
 import { translations, type Language } from './i18n/translations';
@@ -55,14 +58,14 @@ export function App() {
   const whatsappFormatted = '(83) 99872-1848';
   const helpusEmail = 'contato@helpusbr.com';
 
-  // Lista de dados base das 10 aplicações (com nomes limpos)
+  // Lista de dados base das 10 soluções (com Software Development no lugar do antigo Platform)
   const applications: AppItem[] = [
     {
       id: 'helpus-site',
       domain: 'helpusbr.com',
       liveUrl: 'https://helpusbr.com',
       category: 'tecnologia',
-      icon: Building2,
+      icon: Code2,
       image: '/images/helpus_imoveis.jpg',
       status: 'Plataforma Ativa',
       featured: true
@@ -192,7 +195,7 @@ export function App() {
         <div className="hub-container">
           <div className="hub-header-inner">
             
-            {/* Official Uploaded HelpUS Logo Image (SEM a palavra HUB) */}
+            {/* Official Uploaded HelpUS Logo Image */}
             <a href="#" className="hub-logo-img-link">
               <img
                 src="/images/helpus_logo.png"
@@ -263,7 +266,7 @@ export function App() {
                 </button>
               </div>
 
-              {/* Mobile Hamburger Menu Toggle Button (Três Tracinhos) */}
+              {/* Mobile Hamburger Menu Toggle Button */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="hub-mobile-menu-btn"
@@ -357,23 +360,16 @@ export function App() {
                   
                   <p className="hub-carousel-desc">{activeCarouselTrans?.description}</p>
                   
-                  <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                    <a 
-                      href={activeCarouselApp.liveUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="hub-btn-primary"
-                    >
-                      <span>{t.catalog.accessApp} ({activeCarouselApp.domain})</span>
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-
+                  {/* Single CTA Button: Experimente Agora */}
+                  <div>
                     <button
                       onClick={() => setSelectedAppForDetail(activeCarouselApp)}
-                      className="hub-btn-secondary"
+                      className="hub-btn-primary"
+                      style={{ padding: '12px 24px', fontSize: '0.95rem' }}
                     >
-                      <Info className="w-4 h-4 text-blue-600" />
-                      <span>{t.catalog.viewDetails}</span>
+                      <Sparkles className="w-4 h-4" />
+                      <span>{t.catalog.tryNow}</span>
+                      <ArrowRight className="w-4 h-4 ml-1" />
                     </button>
                   </div>
                 </div>
@@ -445,7 +441,7 @@ export function App() {
           
           <div className="hub-section-header" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div>
-              <span className="hub-section-subtitle">Aplicações Próprias</span>
+              <span className="hub-section-subtitle">Catálogo Completo</span>
               <h2 className="hub-section-title">{t.catalog.title}</h2>
               <p className="hub-section-desc">{t.catalog.subtitle}</p>
             </div>
@@ -510,7 +506,7 @@ export function App() {
                           <p className="hub-card-desc">{appTrans.description}</p>
 
                           <ul className="hub-card-features">
-                            {appTrans.features.map((feat, idx) => (
+                            {appTrans.features.slice(0, 3).map((feat, idx) => (
                               <li key={idx}>
                                 <Check className="w-4 h-4" />
                                 <span>{feat}</span>
@@ -519,27 +515,16 @@ export function App() {
                           </ul>
                         </div>
 
-                        {/* Dual Action Row: Access Application & View Details (SEM botão de whatsapp no card) */}
+                        {/* Single CTA Button: Experimente Agora */}
                         <div className="hub-card-bottom">
-                          <div className="hub-card-action-row">
-                            <a
-                              href={app.liveUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="hub-btn-access"
-                            >
-                              <span>{t.catalog.accessApp}</span>
-                              <ExternalLink className="w-3.5 h-3.5" />
-                            </a>
-
-                            <button
-                              onClick={() => setSelectedAppForDetail(app)}
-                              className="hub-btn-details"
-                            >
-                              <Info className="w-3.5 h-3.5 text-blue-600" />
-                              <span>{t.catalog.viewDetails}</span>
-                            </button>
-                          </div>
+                          <button
+                            onClick={() => setSelectedAppForDetail(app)}
+                            className="hub-btn-primary"
+                            style={{ width: '100%', justifyContent: 'center' }}
+                          >
+                            <span>{t.catalog.tryNow}</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </button>
                         </div>
 
                       </div>
@@ -577,7 +562,7 @@ export function App() {
         </div>
       </section>
 
-      {/* Clean Light Footer (Sem duplicação de telefone) */}
+      {/* Clean Light Footer */}
       <footer id="contato-footer" className="hub-footer">
         <div className="hub-container">
           <div className="hub-footer-inner">
@@ -636,40 +621,56 @@ export function App() {
             </div>
 
             {/* Screenshot Preview Frame */}
-            <div style={{ borderRadius: '16px', overflow: 'hidden', height: '240px', border: '1px solid var(--border-light)', marginBottom: '20px', background: '#0f172a' }}>
+            <div style={{ borderRadius: '16px', overflow: 'hidden', height: '260px', border: '1px solid var(--border-light)', marginBottom: '20px', background: '#0f172a' }}>
               <img src={selectedAppForDetail.image} alt={selectedAppForDetail.domain} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
 
             <div style={{ marginBottom: '20px' }}>
-              <p style={{ fontSize: '0.85rem', fontWeight: '700', color: 'var(--primary)', fontFamily: 'monospace', marginBottom: '4px' }}>
-                {t.detailsModal.subdomain} <a href={selectedAppForDetail.liveUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)' }}>{selectedAppForDetail.domain}</a>
+              <p style={{ fontSize: '0.85rem', fontWeight: '700', color: 'var(--primary)', fontFamily: 'monospace', marginBottom: '6px' }}>
+                {t.detailsModal.subdomain} <a href={selectedAppForDetail.liveUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)', textDecoration: 'underline' }}>{selectedAppForDetail.domain}</a>
               </p>
-              <h4 style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--text-dark)', marginBottom: '8px' }}>
+              
+              <h4 style={{ fontSize: '1.15rem', fontWeight: '800', color: 'var(--text-dark)', marginBottom: '10px' }}>
                 {t.apps[selectedAppForDetail.id]?.subtitle}
               </h4>
-              <p style={{ fontSize: '0.95rem', color: 'var(--text-body)', lineHeight: '1.6', marginBottom: '16px' }}>
+              
+              <p style={{ fontSize: '0.95rem', color: 'var(--text-body)', lineHeight: '1.6', marginBottom: '20px' }}>
                 {t.apps[selectedAppForDetail.id]?.detailsContent}
               </p>
 
-              <h5 style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--text-dark)', marginBottom: '8px' }}>
+              {/* Target Audience Box */}
+              {t.apps[selectedAppForDetail.id]?.targetAudience && (
+                <div style={{ background: '#f1f5f9', border: '1px solid #cbd5e1', padding: '14px 18px', borderRadius: '12px', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <Users className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                  <div>
+                    <span style={{ fontSize: '0.75rem', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Público Alvo:</span>
+                    <p style={{ fontSize: '0.88rem', fontWeight: '600', color: 'var(--text-dark)', marginTop: '1px' }}>
+                      {t.apps[selectedAppForDetail.id]?.targetAudience}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              <h5 style={{ fontSize: '0.95rem', fontWeight: '800', color: 'var(--text-dark)', marginBottom: '12px' }}>
                 {t.detailsModal.keyFeatures}:
               </h5>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {t.apps[selectedAppForDetail.id]?.features.map((feat, idx) => (
-                  <li key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', color: 'var(--text-muted)' }}>
-                    <Check className="w-4 h-4 text-emerald-600" />
+                  <li key={idx} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.9rem', color: 'var(--text-body)' }}>
+                    <Check className="w-4 h-4 text-emerald-600 flex-shrink-0" />
                     <span>{feat}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end', paddingTop: '16px', borderTop: '1px solid var(--border-light)' }}>
+            {/* Modal Bottom CTA: Go to Real Application */}
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end', paddingTop: '20px', borderTop: '1px solid var(--border-light)' }}>
               <button onClick={() => setSelectedAppForDetail(null)} className="hub-btn-secondary">
                 {t.detailsModal.close}
               </button>
-              <a href={selectedAppForDetail.liveUrl} target="_blank" rel="noopener noreferrer" className="hub-btn-primary">
-                <span>{t.detailsModal.launchApp}</span>
+              <a href={selectedAppForDetail.liveUrl} target="_blank" rel="noopener noreferrer" className="hub-btn-primary" style={{ padding: '12px 20px' }}>
+                <span>{t.detailsModal.launchRealApp}</span>
                 <ExternalLink className="w-4 h-4" />
               </a>
             </div>
