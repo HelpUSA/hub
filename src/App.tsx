@@ -340,20 +340,23 @@ export function App() {
                 </button>
 
                 {langDropdownOpen && (
-                  <div className="hub-lang-popdown" onClick={() => setLangDropdownOpen(false)}>
+                  <div className="hub-lang-popdown">
                     <button
+                      type="button"
                       onClick={() => { setLang('en'); setLangDropdownOpen(false); }}
                       className={`hub-lang-option ${lang === 'en' ? 'active' : ''}`}
                     >
                       <span style={{ fontSize: '1.1rem' }}>🇺🇸</span> <span>English</span>
                     </button>
                     <button
+                      type="button"
                       onClick={() => { setLang('es'); setLangDropdownOpen(false); }}
                       className={`hub-lang-option ${lang === 'es' ? 'active' : ''}`}
                     >
                       <span style={{ fontSize: '1.1rem' }}>🇪🇸</span> <span>Español</span>
                     </button>
                     <button
+                      type="button"
                       onClick={() => { setLang('pt'); setLangDropdownOpen(false); }}
                       className={`hub-lang-option ${lang === 'pt' ? 'active' : ''}`}
                     >
@@ -380,6 +383,31 @@ export function App() {
         {/* Mobile Navigation Drawer for Smartphones */}
         {mobileMenuOpen && (
           <div className="hub-mobile-drawer open">
+            
+            {/* Mobile Language Selection Pill */}
+            <div style={{ display: 'flex', gap: '8px', padding: '8px 0', borderBottom: '1px solid var(--border-light)', marginBottom: '8px' }}>
+              <button
+                onClick={() => { setLang('en'); setMobileMenuOpen(false); }}
+                className={`hub-nav-btn ${lang === 'en' ? 'active' : ''}`}
+                style={{ flex: 1, justifyContent: 'center' }}
+              >
+                🇺🇸 English
+              </button>
+              <button
+                onClick={() => { setLang('es'); setMobileMenuOpen(false); }}
+                className={`hub-nav-btn ${lang === 'es' ? 'active' : ''}`}
+                style={{ flex: 1, justifyContent: 'center' }}
+              >
+                🇪🇸 Español
+              </button>
+              <button
+                onClick={() => { setLang('pt'); setMobileMenuOpen(false); }}
+                className={`hub-nav-btn ${lang === 'pt' ? 'active' : ''}`}
+                style={{ flex: 1, justifyContent: 'center' }}
+              >
+                🇧🇷 PT
+              </button>
+            </div>
             {selectedAppId && (
               <button
                 onClick={() => {
