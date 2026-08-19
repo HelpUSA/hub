@@ -1,32 +1,22 @@
-# React + TypeScript + Vite
+# HelpUS Hub — Central Portal & Service Gateway
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Hub central de produtos, sistemas e serviços corporativos para a **HelpUS Technology**.
 
-Currently, two official plugins are available:
+## 🌐 Domínios & Links
+- **Domínio Oficial**: `https://hub.helpusbr.com`
+- **Repositório GitHub**: [https://github.com/HelpUSA/hub](https://github.com/HelpUSA/hub)
+- **Deploy Automático Vercel**: Ativo via GitHub CI/CD
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Arquitetura & Ecossistema
+O HelpUS Hub funciona como o ponto central único de contato, suporte, billing e SSO para os sistemas do ecossistema:
+- 🏠 **HelpUS Imóveis Pro**
+- 💈 **HelpUS Barber & Salon Hub**
+- 🎫 **HelpUS Events Pass**
+- 🍹 **HelpUS Gourmet & Drinks**
+- 🤖 **HelpUS AI Customer Agent**
+- ⚡ **HelpUS Cloud Sync & Pay**
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## 🛠️ Tecnologias
+- React 19 + TypeScript + Vite
+- Lucide Icons + Custom Glassmorphism CSS
+- Vercel Deployment Integration
