@@ -19,7 +19,8 @@ import {
   ChevronLeft,
   ChevronRight,
   PhoneCall,
-  Layers
+  Layers,
+  Languages
 } from 'lucide-react';
 
 interface AppItem {
@@ -44,7 +45,7 @@ export function App() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
 
-  // Número oficial de WhatsApp atualizado
+  // Número oficial de WhatsApp
   const whatsappNumber = '5583998721848';
   const whatsappFormatted = '(83) 99872-1848';
   const helpusEmail = 'contato@helpusbr.com';
@@ -265,7 +266,7 @@ export function App() {
             </div>
 
             {/* Search Input */}
-            <div className="hidden md:flex items-center relative" style={{ width: '280px' }}>
+            <div className="hidden md:flex items-center relative" style={{ width: '260px' }}>
               <Search className="w-4 h-4 text-slate-400 absolute left-3 pointer-events-none" />
               <input
                 type="text"
@@ -287,14 +288,21 @@ export function App() {
               />
             </div>
 
-            {/* Contact CTA */}
-            <div>
+            {/* Language Selector & Contact CTA */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              
+              {/* Dynamic Google Translate Widget Element */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Languages className="w-4 h-4 text-slate-500" />
+                <div id="google_translate_element" />
+              </div>
+
               <button 
                 onClick={() => openWhatsApp('Olá HelpUS! Gostaria de atendimento direto sobre o ecossistema de aplicações.')}
                 className="hub-btn-primary"
               >
                 <MessageSquare className="w-4 h-4" />
-                <span>Atendimento WhatsApp {whatsappFormatted}</span>
+                <span>WhatsApp {whatsappFormatted}</span>
               </button>
             </div>
 
