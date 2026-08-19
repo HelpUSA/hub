@@ -14,6 +14,7 @@ import {
   ExternalLink,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   Layers,
   Globe2,
   Menu,
@@ -47,6 +48,7 @@ interface AppItem {
 
 export function App() {
   const [lang, setLang] = useState<Language>('pt');
+  const [langDropdownOpen, setLangDropdownOpen] = useState<boolean>(false);
   const [activeCategory, setActiveCategory] = useState<string>('todos');
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -320,31 +322,45 @@ export function App() {
               )}
             </nav>
 
-            {/* Native Language Switcher (PT | EN | ES) */}
+            {/* Native Language Switcher Dropdown Popdown (🇺🇸 EN | 🇪🇸 ES | 🇧🇷 PT) */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               
-              <div className="hub-lang-switcher">
+              <div className="hub-lang-dropdown-wrapper">
                 <button
-                  onClick={() => setLang('pt')}
-                  className={`hub-lang-btn ${lang === 'pt' ? 'active' : ''}`}
-                  title="Português"
+                  onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+                  className="hub-lang-trigger"
                 >
-                  PT
+                  <Globe2 className="w-4 h-4 text-blue-600" />
+                  <span>
+                    {lang === 'en' && '🇺🇸 English (EN)'}
+                    {lang === 'es' && '🇪🇸 Español (ES)'}
+                    {lang === 'pt' && '🇧🇷 Português (PT)'}
+                  </span>
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-500" />
                 </button>
-                <button
-                  onClick={() => setLang('en')}
-                  className={`hub-lang-btn ${lang === 'en' ? 'active' : ''}`}
-                  title="English"
-                >
-                  EN
-                </button>
-                <button
-                  onClick={() => setLang('es')}
-                  className={`hub-lang-btn ${lang === 'es' ? 'active' : ''}`}
-                  title="Español"
-                >
-                  ES
-                </button>
+
+                {langDropdownOpen && (
+                  <div className="hub-lang-popdown" onClick={() => setLangDropdownOpen(false)}>
+                    <button
+                      onClick={() => { setLang('en'); setLangDropdownOpen(false); }}
+                      className={`hub-lang-option ${lang === 'en' ? 'active' : ''}`}
+                    >
+                      <span style={{ fontSize: '1.1rem' }}>🇺🇸</span> <span>English</span>
+                    </button>
+                    <button
+                      onClick={() => { setLang('es'); setLangDropdownOpen(false); }}
+                      className={`hub-lang-option ${lang === 'es' ? 'active' : ''}`}
+                    >
+                      <span style={{ fontSize: '1.1rem' }}>🇪🇸</span> <span>Español</span>
+                    </button>
+                    <button
+                      onClick={() => { setLang('pt'); setLangDropdownOpen(false); }}
+                      className={`hub-lang-option ${lang === 'pt' ? 'active' : ''}`}
+                    >
+                      <span style={{ fontSize: '1.1rem' }}>🇧🇷</span> <span>Português</span>
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* Mobile Hamburger Menu Toggle Button */}
