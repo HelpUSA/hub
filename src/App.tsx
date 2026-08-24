@@ -47,11 +47,40 @@ interface AppItem {
 }
 
 export function App() {
-  const [lang, setLang] = useState<Language>('pt');
+  const [lang, setLang] = useState<Language>('en');
   const [langDropdownOpen, setLangDropdownOpen] = useState<boolean>(false);
   const [activeCategory, setActiveCategory] = useState<string>('todos');
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+
+  // Carrega idioma preferido do usuário (padrão: Inglês 'en')
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const urlLang = params.get('lang') as Language;
+      const savedLang = localStorage.getItem('helpus_lang') as Language;
+
+      if (urlLang && ['en', 'es', 'pt'].includes(urlLang)) {
+        setLang(urlLang);
+        localStorage.setItem('helpus_lang', urlLang);
+        document.cookie = `helpus_lang=${urlLang}; path=/; max-age=31536000`;
+      } else if (savedLang && ['en', 'es', 'pt'].includes(savedLang)) {
+        setLang(savedLang);
+      }
+    }
+  }, []);
+
+  const changeLanguage = (code: Language) => {
+    setLang(code);
+    setLangDropdownOpen(false);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('helpus_lang', code);
+      document.cookie = `helpus_lang=${code}; path=/; max-age=31536000`;
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', code);
+      window.history.replaceState({}, '', url.toString());
+    }
+  };
 
   // Full-page Detail View & History Navigation State
   const [selectedAppId, setSelectedAppId] = useState<string | null>(null);
@@ -71,12 +100,12 @@ export function App() {
   const applications: AppItem[] = [
     {
       id: 'helpus-site',
-      domain: 'helpusbr.com',
-      liveUrl: 'https://helpusbr.com',
+      domain: 'www.helpusbr.com',
+      liveUrl: 'https://www.helpusbr.com',
       category: 'tecnologia',
       icon: Code2,
       image: '/images/helpus_dev_ui.jpg',
-      folderPath: 'D:\\dev\\helpus-site',
+      folderPath: 'D:\\dev\\AntiG\\helpus',
       status: 'Plataforma Ativa',
       featured: true
     },
@@ -343,21 +372,21 @@ export function App() {
                   <div className="hub-lang-popdown">
                     <button
                       type="button"
-                      onClick={() => { setLang('en'); setLangDropdownOpen(false); }}
+                      onClick={() => changeLanguage('en')}
                       className={`hub-lang-option ${lang === 'en' ? 'active' : ''}`}
                     >
                       <span style={{ fontSize: '1.1rem' }}>🇺🇸</span> <span>English</span>
                     </button>
                     <button
                       type="button"
-                      onClick={() => { setLang('es'); setLangDropdownOpen(false); }}
+                      onClick={() => changeLanguage('es')}
                       className={`hub-lang-option ${lang === 'es' ? 'active' : ''}`}
                     >
                       <span style={{ fontSize: '1.1rem' }}>🇪🇸</span> <span>Español</span>
                     </button>
                     <button
                       type="button"
-                      onClick={() => { setLang('pt'); setLangDropdownOpen(false); }}
+                      onClick={() => changeLanguage('pt')}
                       className={`hub-lang-option ${lang === 'pt' ? 'active' : ''}`}
                     >
                       <span style={{ fontSize: '1.1rem' }}>🇧🇷</span> <span>Português</span>
@@ -387,21 +416,21 @@ export function App() {
             {/* Mobile Language Selection Pill */}
             <div style={{ display: 'flex', gap: '8px', padding: '8px 0', borderBottom: '1px solid var(--border-light)', marginBottom: '8px' }}>
               <button
-                onClick={() => { setLang('en'); setMobileMenuOpen(false); }}
+                onClick={() => { changeLanguage('en'); setMobileMenuOpen(false); }}
                 className={`hub-nav-btn ${lang === 'en' ? 'active' : ''}`}
                 style={{ flex: 1, justifyContent: 'center' }}
               >
                 🇺🇸 English
               </button>
               <button
-                onClick={() => { setLang('es'); setMobileMenuOpen(false); }}
+                onClick={() => { changeLanguage('es'); setMobileMenuOpen(false); }}
                 className={`hub-nav-btn ${lang === 'es' ? 'active' : ''}`}
                 style={{ flex: 1, justifyContent: 'center' }}
               >
                 🇪🇸 Español
               </button>
               <button
-                onClick={() => { setLang('pt'); setMobileMenuOpen(false); }}
+                onClick={() => { changeLanguage('pt'); setMobileMenuOpen(false); }}
                 className={`hub-nav-btn ${lang === 'pt' ? 'active' : ''}`}
                 style={{ flex: 1, justifyContent: 'center' }}
               >
