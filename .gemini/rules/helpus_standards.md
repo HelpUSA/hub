@@ -32,6 +32,7 @@ This document formalizes the permanent technical, visual, legal, and operational
 ## 3. Brand Identity & Official Logo Standard
 - **Official Brand Name**: **HelpUS LLC** (Entity # `001-142-885`, Baldwin County, Gulf Shores, AL 36542).
 - **Official Logo**: Must use the official HelpUS Logo image (`/images/helpus_logo.png` or `/helpus_logo.png`) in:
+  - Browser Tab Favicon (`<link rel="icon" type="image/png" href="/images/helpus_logo.png" />`)
   - Desktop Header Navbar
   - Mobile Menu Drawer
   - Product Cards
