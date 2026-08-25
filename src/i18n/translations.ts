@@ -181,25 +181,27 @@ export const translations: Record<Language, TranslationSchema> = {
         whatsappMessage: 'Olá HelpUS! Tenho interesse nos Agentes de IA da plataforma Nexos AI.'
       },
       'usmle': {
-        name: 'USMLE Prep',
-        subtitle: 'Preparatório & Plataforma Médica Internacional',
-        description: 'Plataforma especializada de estudos e simulados interativos para médicos e estudantes se prepararem para o exame de revalidação médica USMLE nos EUA.',
+        name: 'USMLE Prep Platform',
+        subtitle: 'Revalidação Médica Internacional nos EUA • Step 1, Step 2 CK & Step 3',
+        description: 'Plataforma médica de alta performance com banco de questões interativo (QBank), simulados cronometrados no padrão NBME/USMLE, repetição espaçada por flashcards e busca vetorial RAG impulsionada por IA com DeepSeek-R1.',
         features: [
-          'Banco de Questões Atualizado com Explicações Clínicas Ricas',
-          'Simulados no Formato e Tempo Reais do Exame NBME / USMLE',
-          'Relatórios de Desempenho por Especialidade Médica',
-          'Repetição Espaçada de Flashcards com Conceitos Chave',
-          'Trilhas Guiadas para Step 1, Step 2 CK e Step 3'
+          'Banco de Questões QBank com +3.000 questões clínicas comentadas',
+          'Simulados Cronometrados (Blocos de 20 min) no formato oficial NBME/USMLE',
+          'Tutor Virtual RAG com DeepSeek-R1 para raciocínio diagnóstico passo a passo',
+          'Repetição Espaçada de Flashcards com conceitos chave e pérolas médicas',
+          'Relatórios de Desempenho e Diagnóstico de Lacunas por Especialidade Médica',
+          'Trilhas Guiadas e Estatísticas para Step 1, Step 2 CK e Step 3'
         ],
-        detailsContent: 'O USMLE Prep oferece um ambiente imersivo com relatórios estatísticos detalhados de evolução por disciplina médica (Cardiologia, Pediatria, Cirurgia, etc.), ajudando médicos brasileiros e internacionais a conquistar a revalidação nos EUA.',
+        detailsContent: 'O USMLE Prep foi projetado especialmente para médicos e estudantes de medicina que buscam a aprovação nos exames de revalidação americana. A plataforma integra um banco de dados relacional no PostgreSQL (Railway) com estatísticas de tempo por questão, cálculo de porcentagem de acertos por disciplina (Cardiologia, Infectologia, Cirurgia, etc.) e diagnósticos de lacunas de aprendizagem.',
         technicalHighlights: [
-          'Interface Responsiva Otimizada para Estudo Intensivo',
-          'Algoritmo Estatístico de Desempenho e Diagnóstico de Lacunas',
-          'Interface no Padrão Exato Utilizado no Exame Oficial Americano',
-          'Sincronização em Tempo Real de Progresso de Simulados'
+          'Desenvolvido em Next.js App Router com TypeScript e PostgreSQL no Railway',
+          'Motor de IA RAG com DeepSeek-R1 para tutoria e explicações clínicas de casos',
+          'Interface em conformidade com o padrão oficial dos exames do USMLE/NBME',
+          'Algoritmo estatístico de repetição espaçada para retenção de memória de longo prazo',
+          'Gerenciamento de sessões de prova cronometradas e logs de tentativas por usuário'
         ],
-        targetAudience: 'Médicos formados e estudantes de medicina focados na carreira e revalidação médica nos Estados Unidos.',
-        whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre o preparatório USMLE Prep.'
+        targetAudience: 'Médicos graduados e estudantes de medicina focados na revalidação médica nos Estados Unidos.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre a plataforma USMLE Prep.'
       },
       'saude': {
         name: 'Saúde',
@@ -456,25 +458,27 @@ export const translations: Record<Language, TranslationSchema> = {
         whatsappMessage: 'Hello HelpUS! I am interested in Nexos AI virtual agents.'
       },
       'usmle': {
-        name: 'USMLE Prep',
-        subtitle: 'International Medical Exam Prep Platform',
-        description: 'Specialized study and interactive question bank platform for physicians and medical students preparing for the USMLE in the USA.',
+        name: 'USMLE Prep Platform',
+        subtitle: 'US Medical Licensing Examination Prep • Step 1, Step 2 CK & Step 3',
+        description: 'High-performance medical learning platform with interactive QBank, timed NBME/USMLE exam blocks, spaced repetition flashcards, and RAG vector AI tutoring powered by DeepSeek-R1.',
         features: [
-          'Updated Question Bank with Rich Clinical Rationales',
-          'Real Exam Simulation Interface matching NBME',
-          'Performance Analytics by Medical Specialty',
-          'Spaced Repetition Medical Flashcards',
-          'Guided Tracks for Step 1, Step 2 CK, and Step 3'
+          'Interactive QBank with 3,000+ Clinical Vignettes & Detailed Rationales',
+          'Timed Exam Blocks (20-min blocks) matching NBME/USMLE Board Exam Standards',
+          'RAG AI Medical Tutor powered by DeepSeek-R1 for diagnostic step-by-step reasoning',
+          'Spaced Repetition Flashcard Engine for high-yield medical pearls retention',
+          'Performance Analytics & Gap Diagnosis by Medical Specialty (Cardiology, Pathology, etc.)',
+          'Guided Tracks & Progress Evolution for Step 1, Step 2 CK, and Step 3'
         ],
-        detailsContent: 'USMLE Prep offers an immersive environment with statistical evolution reports to help international physicians achieve medical licensing in the USA.',
+        detailsContent: 'USMLE Prep provides an immersive clinical learning environment for international medical graduates and US med students. The system integrates PostgreSQL on Railway with item response analytics, discipline-level accuracy tracking, and AI-assisted clinical case reasoning.',
         technicalHighlights: [
-          'Responsive UI Optimized for Intensive Study',
-          'Statistical Gap Diagnosis & Evolution Engine',
-          'Exact Match Interface to Official American Board Exam',
-          'Real-time Sync of Exam Progress'
+          'Built with Next.js App Router, TypeScript, and PostgreSQL on Railway',
+          'DeepSeek-R1 & OpenAI RAG Vector Search Engine for step-by-step medical tutoring',
+          'Exact Match UI to the Official USMLE / NBME Board Examination Interface',
+          'Statistical Spaced Repetition Algorithm for long-term memory retention',
+          'Timed Exam Block Session Management with Detailed Attempt Logging'
         ],
-        targetAudience: 'Doctors and medical students pursuing US medical licensing.',
-        whatsappMessage: 'Hello HelpUS! I would like to know more about USMLE Prep.'
+        targetAudience: 'Physicians, International Medical Graduates (IMGs), and medical students pursuing US licensing.',
+        whatsappMessage: 'Hello HelpUS! I would like to know more about the USMLE Prep Platform.'
       },
       'saude': {
         name: 'Saúde',
@@ -731,25 +735,27 @@ export const translations: Record<Language, TranslationSchema> = {
         whatsappMessage: '¡Hola HelpUS! Tengo interés en los Agentes de IA de Nexos AI.'
       },
       'usmle': {
-        name: 'USMLE Prep',
-        subtitle: 'Plataforma Médica Internacional y Examen USMLE',
-        description: 'Plataforma especializada de estudios y simulados interactivos para médicos y estudantes preparándose para el examen USMLE en EE. UU.',
+        name: 'USMLE Prep Platform',
+        subtitle: 'Revalidación Médica Internacional en EE. UU. • Step 1, Step 2 CK & Step 3',
+        description: 'Plataforma médica de alto rendimiento con banco de preguntas interactivo (QBank), simulados cronometrados en el formato NBME/USMLE, tarjetas de repetición espaciada y tutoría IA con búsqueda vectorial RAG por DeepSeek-R1.',
         features: [
-          'Banco de Preguntas Actualizado con Justificaciones Clínicas',
-          'Simulación de Examen en Formato Real',
-          'Reportes de Rendimiento Estadístico',
-          'Flashcards de Repetición Espaciada',
-          'Rutas Guiadas para Step 1, Step 2 CK y Step 3'
+          'Banco de Preguntas QBank con +3.000 casos clínicos comentados',
+          'Simulados Cronometrados (Bloques de 20 min) en el formato oficial NBME/USMLE',
+          'Tutor Virtual RAG con DeepSeek-R1 para razonamiento diagnóstico paso a paso',
+          'Flashcards de Repetición Espaciada para retención de conceptos clave',
+          'Reportes de Rendimiento Estadístico por Especialidad Médica (Cardiología, Patología, etc.)',
+          'Rutas Guiadas y Seguimiento de Progreso para Step 1, Step 2 CK y Step 3'
         ],
-        detailsContent: 'Incluye banco de preguntas actualizado, métricas de rendimiento y recursos de aprendizaje para la revalidación médica en EE. UU.',
+        detailsContent: 'USMLE Prep ofrece un entorno inmersivo de estudio clínico para médicos internacionales y estudiantes de medicina que buscan la licencia médica en EE. UU. Integra PostgreSQL en Railway con análisis estadístico de respuestas por disciplina y asistencia IA para resolución de casos.',
         technicalHighlights: [
-          'Interfaz Responsiva Optimizada para Estudio',
-          'Motor Estadístico de Diagnósticos',
-          'Formato Idéntico al Examen Oficial Americano',
-          'Sincronización en Tiempo Real'
+          'Desarrollado en Next.js App Router con TypeScript y PostgreSQL en Railway',
+          'Motor IA RAG con DeepSeek-R1 para tutoría clínica explicativa',
+          'Interfaz en conformidad idéntica al examen oficial americano NBME/USMLE',
+          'Algoritmo de repetición espaciada para retención de memoria a largo plazo',
+          'Gestión de sesiones de simulados cronometrados y registro de intentos por usuario'
         ],
-        targetAudience: 'Médicos y estudiantes preparando la revalidación médica en EE. UU.',
-        whatsappMessage: '¡Hola HelpUS! Quisiera saber más sobre USMLE Prep.'
+        targetAudience: 'Médicos y estudiantes de medicina preparando la revalidación médica en EE. UU.',
+        whatsappMessage: '¡Hola HelpUS! Quisiera saber más sobre la plataforma USMLE Prep.'
       },
       'saude': {
         name: 'Saúde',
