@@ -224,6 +224,27 @@ export const translations: Record<Language, TranslationSchema> = {
         targetAudience: 'Clínicas médicas, consultórios particulares, redes hospitalares e profissionais da saúde autônomos.',
         whatsappMessage: 'Olá HelpUS! Gostaria de consultar sobre o HelpUS Saúde para minha clínica.'
       },
+      'realestate': {
+        name: 'HelpUS RealEstate',
+        subtitle: 'Rede Imobiliária & Portal Guarda-Chuva de Corretores Credenciados',
+        description: 'Plataforma imobiliária completa que conecta corretores de imóveis credenciados (CRECI), propriedades exclusivas, buscas interativas por mapa e gerenciamento de carteira de imóveis.',
+        features: [
+          'Gestão de Imóveis para Corretores Credenciados com CRECI Verificado',
+          'Navegação e Busca Interativa por Mapa Georreferenciado',
+          'Galeria de Fotos em Alta Definição, Vídeos e Tour Virtual',
+          'Painel de Leads & Agendamento de Visitas Direto via WhatsApp',
+          'Sistema de Favoritos e Coleções de Imóveis em Destaque'
+        ],
+        detailsContent: 'O HelpUS RealEstate oferece uma infraestrutura completa para o mercado imobiliário. Permite que corretores credenciados gerenciem seus anúncios com fotos, vídeos e mapa interativo, recebendo contatos diretos de compradores e investidores.',
+        technicalHighlights: [
+          'Desenvolvido em Next.js App Router com Prisma ORM e SQLite/PostgreSQL',
+          'Integração de Mapas Interativos com React Leaflet e OpenStreetMap',
+          'Autenticação Segura de Corretores e Painel de Gestão de Anúncios',
+          'Design System Responsivo com Dark Mode Nativo'
+        ],
+        targetAudience: 'Corretores imobiliários credenciados, imobiliárias, compradores e investidores imobiliários.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre a plataforma HelpUS RealEstate.'
+      },
       'wagnerdriver-site': {
         name: 'Executive Driver',
         subtitle: 'Mobilidade Executiva & Transporte VIP',
@@ -501,6 +522,27 @@ export const translations: Record<Language, TranslationSchema> = {
         targetAudience: 'Medical clinics, private practices, and independent healthcare providers.',
         whatsappMessage: 'Hello HelpUS! I would like to inquire about HelpUS Saúde for clinics.'
       },
+      'realestate': {
+        name: 'HelpUS RealEstate',
+        subtitle: 'Premier Real Estate Network & Licensed Realtor Portal',
+        description: 'Comprehensive real estate platform connecting licensed realtors, luxury exclusive listings, interactive map search, and lead management.',
+        features: [
+          'Property Portfolio Management for Licensed Realtors',
+          'Interactive Map Search powered by Georeferenced Coordinates',
+          'HD Photo Galleries, Videos, and Virtual Property Tours',
+          'Direct WhatsApp Lead Capture & Tour Scheduling',
+          'Saved Favorites & Featured Property Collections'
+        ],
+        detailsContent: 'HelpUS RealEstate provides enterprise infrastructure for realtors and buyers, allowing verified agents to manage listings with interactive maps, photos, and direct buyer leads.',
+        technicalHighlights: [
+          'Built with Next.js App Router, Prisma ORM, and PostgreSQL/SQLite',
+          'Interactive Map Suite powered by React Leaflet & OpenStreetMap',
+          'Secure Realtor Authentication & Listing Management Portal',
+          'Responsive Design System with Native Dark Mode'
+        ],
+        targetAudience: 'Licensed realtors, agencies, homebuyers, and real estate investors.',
+        whatsappMessage: 'Hello HelpUS! I would like to know more about HelpUS RealEstate.'
+      },
       'wagnerdriver-site': {
         name: 'Executive Driver',
         subtitle: 'Executive Mobility & VIP Transport',
@@ -775,8 +817,29 @@ export const translations: Record<Language, TranslationSchema> = {
           'Firma Digital de Documentos Médicos',
           'Historial Clínico en la Nube'
         ],
-        targetAudience: 'Clínicas médicas, consultorios privados y profesionales de la salud.',
+        targetAudience: 'Clínicas médicas y profesionales independientes de salud.',
         whatsappMessage: '¡Hola HelpUS! Quisiera consultar sobre HelpUS Saúde para mi clínica.'
+      },
+      'realestate': {
+        name: 'HelpUS RealEstate',
+        subtitle: 'Red Inmobiliaria & Portal de Agentes Licenciados',
+        description: 'Plataforma inmobiliaria completa que conecta agentes licenciados, propiedades exclusivas, búsqueda interactiva por mapa y gestión de compradores.',
+        features: [
+          'Gestión de Propiedades para Agentes Inmobiliarios Licenciados',
+          'Búsqueda Interactiva por Mapa Georreferenciado',
+          'Galería de Fotos en Alta Definición y Recorridos Virtuales',
+          'Captura de Clientes y Agendamiento Directo vía WhatsApp',
+          'Guardado de Favoritos y Colecciones de Inmuebles'
+        ],
+        detailsContent: 'HelpUS RealEstate ofrece infraestructura profesional para el mercado inmobiliario, permitiendo a agentes verificados administrar anuncios con mapa interactivo y captar compradores directos.',
+        technicalHighlights: [
+          'Desarrollado en Next.js App Router con Prisma ORM y PostgreSQL/SQLite',
+          'Integración de Mapas con React Leaflet y OpenStreetMap',
+          'Portal Seguro de Autenticación de Agentes Anunciantes',
+          'Diseño Responsivo con Modo Oscuro Nativo'
+        ],
+        targetAudience: 'Agentes inmobiliarios, agencias, compradores e inversionistas.',
+        whatsappMessage: '¡Hola HelpUS! Quisiera saber más sobre HelpUS RealEstate.'
       },
       'wagnerdriver-site': {
         name: 'Executive Driver',

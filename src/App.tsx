@@ -11,6 +11,7 @@ import {
   UserCheck, 
   Check, 
   Code2,
+  Building2,
   ExternalLink,
   ChevronLeft,
   ChevronRight,
@@ -140,6 +141,17 @@ export function App() {
       image: '/images/helpus_health.jpg',
       folderPath: 'D:\\dev\\saude',
       status: 'Desenvolvimento Próprio',
+      featured: true
+    },
+    {
+      id: 'realestate',
+      domain: 'realestate.helpusbr.com',
+      liveUrl: 'https://realestate.helpusbr.com',
+      category: 'servicos',
+      icon: Building2,
+      image: '/images/helpus_dev_ui.jpg',
+      folderPath: 'D:\\dev\\AntiG\\realestate',
+      status: 'Plataforma Ativa',
       featured: true
     },
     {
