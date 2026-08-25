@@ -34,6 +34,7 @@ import {
 } from 'lucide-react';
 
 import { translations, type Language } from './i18n/translations';
+import AnimatedBackground from './components/AnimatedBackground';
 
 interface AppItem {
   id: string;
@@ -294,6 +295,7 @@ export function App() {
 
   return (
     <div className="hub-app">
+      <AnimatedBackground />
       
       {/* Header Navbar */}
       <header className="hub-header">
