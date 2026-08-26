@@ -112,6 +112,17 @@ export function App() {
       featured: true
     },
     {
+      id: 'realestate',
+      domain: 'realestate.helpusbr.com',
+      liveUrl: 'https://realestate.helpusbr.com',
+      category: 'servicos',
+      icon: Building2,
+      image: '/images/helpus_imoveis.jpg',
+      folderPath: 'D:\\dev\\AntiG\\realestate',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
       id: 'nexosai',
       domain: 'nexoai.helpusbr.com',
       liveUrl: 'https://nexoai.helpusbr.com',
@@ -142,17 +153,6 @@ export function App() {
       image: '/images/helpus_health.jpg',
       folderPath: 'D:\\dev\\saude',
       status: 'Desenvolvimento Próprio',
-      featured: true
-    },
-    {
-      id: 'realestate',
-      domain: 'realestate.helpusbr.com',
-      liveUrl: 'https://realestate.helpusbr.com',
-      category: 'servicos',
-      icon: Building2,
-      image: '/images/helpus_imoveis.jpg',
-      folderPath: 'D:\\dev\\AntiG\\realestate',
-      status: 'Plataforma Ativa',
       featured: true
     },
     {
