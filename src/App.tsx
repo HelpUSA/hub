@@ -150,7 +150,7 @@ export function App() {
       liveUrl: 'https://realestate.helpusbr.com',
       category: 'servicos',
       icon: Building2,
-      image: '/images/helpus_dev_ui.jpg',
+      image: '/images/helpus_imoveis.jpg',
       folderPath: 'D:\\dev\\AntiG\\realestate',
       status: 'Plataforma Ativa',
       featured: true
