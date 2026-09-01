@@ -9,7 +9,6 @@ import {
   Globe, 
   BookOpen, 
   UserCheck, 
-  Check, 
   Code2,
   Building2,
   ExternalLink,
@@ -20,8 +19,6 @@ import {
   Globe2,
   Menu,
   X,
-  Info,
-  HelpCircle,
   Sparkles,
   ArrowLeft,
   Search,
@@ -29,7 +26,10 @@ import {
   Scissors,
   Activity,
   Heart,
-  TrendingUp
+  TrendingUp,
+  Play,
+  CheckCircle2,
+  ArrowRight
 } from 'lucide-react';
 
 import { translations, type Language } from './i18n/translations';
@@ -51,20 +51,25 @@ interface AppItem {
 export function App() {
   const [lang, setLang] = useState<Language>('en');
   const [langDropdownOpen, setLangDropdownOpen] = useState<boolean>(false);
-  const [activeCategory, setActiveCategory] = useState<string>('todos');
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
-  // Mega-Menu Hover/Click Dropdown States
+  // Mega-Menu Hover Dropdowns
   const [activeMegaMenu, setActiveMegaMenu] = useState<'platforms' | 'services' | 'foodCulture' | null>(null);
   const megaMenuTimeoutRef = useRef<any>(null);
+
+  // Video Presentation Modal State
+  const [videoModalOpen, setVideoModalOpen] = useState<boolean>(false);
 
   // Ecosystem Modal Drawer State
   const [ecosystemModalOpen, setEcosystemModalOpen] = useState<boolean>(false);
   const [ecosystemSearch, setEcosystemSearch] = useState<string>('');
   const [ecosystemFilter, setEcosystemFilter] = useState<'all' | 'own' | 'client'>('all');
 
-  // Load user language preference (default: English 'en')
+  // Category Drawer Modal State
+  const [selectedCategoryModal, setSelectedCategoryModal] = useState<string | null>(null);
+
+  // Load language preference
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
@@ -93,10 +98,8 @@ export function App() {
     }
   };
 
-  // Full-page Detail View & History Navigation State
+  // Detail View & History State
   const [selectedAppId, setSelectedAppId] = useState<string | null>(null);
-  
-  // Info Modals (Institucional, Ajuda, Privacidade)
   const [activeInfoModal, setActiveInfoModal] = useState<'institutional' | 'help' | 'privacy' | null>(null);
 
   const t = translations[lang];
@@ -106,26 +109,15 @@ export function App() {
   const whatsappFormatted = '(83) 99872-1848';
   const helpusEmail = 'contato@helpusbr.com';
 
-  // Complete List of All Applications & Client Sites Mapped
+  // Applications & Sites
   const applications: AppItem[] = [
-    {
-      id: 'helpus-site',
-      domain: 'www.helpusbr.com',
-      liveUrl: 'https://www.helpusbr.com',
-      category: 'tecnologia',
-      icon: Code2,
-      image: '/images/helpus_dev_ui.jpg',
-      folderPath: 'D:\\dev\\AntiG\\helpus',
-      status: 'Plataforma Ativa',
-      featured: true
-    },
     {
       id: 'realestate',
       domain: 'realestate.helpusbr.com',
       liveUrl: 'https://realestate.helpusbr.com',
       category: 'servicos',
       icon: Building2,
-      image: '/images/helpus_imoveis.jpg',
+      image: '/images/helpus_imoveis_luxury.jpg',
       folderPath: 'D:\\dev\\AntiG\\realestate',
       status: 'Plataforma Ativa',
       featured: true
@@ -136,8 +128,19 @@ export function App() {
       liveUrl: 'https://nexoai.helpusbr.com',
       category: 'tecnologia',
       icon: Bot,
-      image: '/images/helpus_ai.jpg',
+      image: '/images/helpus_hero_futuristic.jpg',
       folderPath: 'D:\\dev\\nexosai',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
+      id: 'helpus-site',
+      domain: 'www.helpusbr.com',
+      liveUrl: 'https://www.helpusbr.com',
+      category: 'tecnologia',
+      icon: Code2,
+      image: '/images/helpus_dev_ui.jpg',
+      folderPath: 'D:\\dev\\AntiG\\helpus',
       status: 'Plataforma Ativa',
       featured: true
     },
@@ -224,7 +227,6 @@ export function App() {
       folderPath: 'D:\\dev\\brayyan',
       status: 'Plataforma Ativa'
     },
-    // --- Client / Specialized Sites ---
     {
       id: 'katiaxavier',
       domain: 'katiaxavier.helpusbr.com',
@@ -284,6 +286,14 @@ export function App() {
 
   const featuredApps = applications.filter(a => a.featured);
 
+  // Auto-play visual carousel every 6s
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlideIndex(prev => (prev + 1) % featuredApps.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [featuredApps.length]);
+
   // Sync with Browser History
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -330,11 +340,70 @@ export function App() {
     }, 180);
   };
 
-  // Filtered Applications for Catalog Grid
-  const filteredApps = applications.filter(app => {
-    if (activeCategory === 'todos') return true;
-    return app.category === activeCategory;
-  });
+  // Category Matrix Cards definition
+  const categoryMatrix = [
+    {
+      id: 'servicos',
+      title: 'Mercado Imobiliário',
+      subtitle: 'HelpUS RealEstate & Carteira de Imóveis',
+      icon: Building2,
+      badge: 'Plataforma Ativa',
+      count: 1,
+      color: 'from-blue-600 to-indigo-600',
+      directUrl: 'https://realestate.helpusbr.com'
+    },
+    {
+      id: 'tecnologia',
+      title: 'Inteligência Artificial & Cloud Mesh',
+      subtitle: 'NexosAI Cloud & Engenharia de IA',
+      icon: Bot,
+      badge: 'Plataforma Ativa',
+      count: 2,
+      color: 'from-cyan-600 to-blue-600',
+      directUrl: 'https://nexoai.helpusbr.com'
+    },
+    {
+      id: 'saude',
+      title: 'Saúde, Telemedicina & USMLE',
+      subtitle: 'HelpUS Saúde & Revalidação Médica',
+      icon: Stethoscope,
+      badge: 'Plataforma Ativa',
+      count: 2,
+      color: 'from-emerald-600 to-teal-600',
+      directUrl: 'https://usmle.helpusbr.com'
+    },
+    {
+      id: 'servicos_mob',
+      idCategory: 'servicos',
+      title: 'Mobilidade Executiva & Vistos',
+      subtitle: 'Executive Driver & Assessoria Internacional',
+      icon: Car,
+      badge: 'Plataforma Ativa',
+      count: 3,
+      color: 'from-purple-600 to-indigo-600',
+      directUrl: 'https://wagnerdriver.helpusbr.com'
+    },
+    {
+      id: 'gastronomia',
+      title: 'Gastronomia & Delivery',
+      subtitle: 'Cardápio Digital QR Code & Sistema Pizzaria',
+      icon: Pizza,
+      badge: 'Plataforma Ativa',
+      count: 1,
+      color: 'from-amber-500 to-orange-600',
+      directUrl: 'https://pizza.helpusbr.com'
+    },
+    {
+      id: 'cultura',
+      title: 'Cultura, Biografias & Memória',
+      subtitle: 'Memória Viva & Legados Biográficos',
+      icon: BookOpen,
+      badge: 'Plataforma Ativa',
+      count: 2,
+      color: 'from-rose-500 to-pink-600',
+      directUrl: 'https://memoriaviva.helpusbr.com'
+    }
+  ];
 
   // Filtered Applications for Ecosystem Modal Drawer
   const filteredEcosystemSites = applications.filter(app => {
@@ -356,13 +425,13 @@ export function App() {
   const selectedAppObj = selectedAppId ? applications.find(a => a.id === selectedAppId) : null;
 
   return (
-    <div className="hub-app font-sans">
+    <div className="hub-app font-sans bg-[#f8fafc] text-slate-900 min-h-screen">
       <AnimatedBackground />
 
       {/* Header Navbar */}
-      <header className="hub-header">
+      <header className="hub-header sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div className="hub-container">
-          <div className="hub-header-inner">
+          <div className="hub-header-inner flex items-center justify-between h-20">
             
             {/* HelpUS Official Logo */}
             <a 
@@ -371,21 +440,25 @@ export function App() {
                 e.preventDefault();
                 navigateBackToCatalog();
               }} 
-              className="hub-logo-img-link"
+              className="flex items-center gap-3 group"
             >
               <img
                 src="/images/helpus_logo.png"
                 alt="HelpUS Logo"
-                className="hub-logo-img"
+                className="h-12 w-auto object-contain transition-transform group-hover:scale-105"
               />
+              <div className="hidden sm:flex flex-col">
+                <span className="font-extrabold text-base text-slate-900 tracking-tight leading-none">HelpUS</span>
+                <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Technology Solutions</span>
+              </div>
             </a>
 
             {/* Desktop Mega-Menu Navigation Links */}
-            <nav className="hub-nav-links hidden md:flex items-center gap-1">
+            <nav className="hidden md:flex items-center gap-2">
               {selectedAppId ? (
                 <button
                   onClick={navigateBackToCatalog}
-                  className="hub-nav-btn active"
+                  className="px-4 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-600 font-bold text-xs flex items-center gap-2 border border-blue-200 transition-all"
                 >
                   <ArrowLeft className="w-4 h-4 text-blue-600" />
                   <span>{t.nav.backToCatalog}</span>
@@ -394,14 +467,14 @@ export function App() {
                 <>
                   {/* Mega Menu 1: Plataformas Principais */}
                   <div 
-                    className="mega-menu-trigger-wrapper"
+                    className="relative inline-block"
                     onMouseEnter={() => handleMouseEnterMega('platforms')}
                     onMouseLeave={handleMouseLeaveMega}
                   >
-                    <button className={`hub-nav-btn ${activeMegaMenu === 'platforms' ? 'active' : ''}`}>
+                    <button className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${activeMegaMenu === 'platforms' ? 'bg-blue-50 text-blue-600 border border-blue-200' : 'text-slate-700 hover:bg-slate-100'}`}>
                       <Code2 className="w-4 h-4 text-blue-600" />
                       <span>{t.megaMenu.platforms}</span>
-                      <ChevronDown className="w-3 h-3 text-slate-400" />
+                      <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
                     </button>
 
                     {activeMegaMenu === 'platforms' && (
@@ -445,14 +518,14 @@ export function App() {
 
                   {/* Mega Menu 2: Serviços & Mobilidade */}
                   <div 
-                    className="mega-menu-trigger-wrapper"
+                    className="relative inline-block"
                     onMouseEnter={() => handleMouseEnterMega('services')}
                     onMouseLeave={handleMouseLeaveMega}
                   >
-                    <button className={`hub-nav-btn ${activeMegaMenu === 'services' ? 'active' : ''}`}>
+                    <button className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${activeMegaMenu === 'services' ? 'bg-blue-50 text-blue-600 border border-blue-200' : 'text-slate-700 hover:bg-slate-100'}`}>
                       <Layers className="w-4 h-4 text-indigo-600" />
                       <span>{t.megaMenu.services}</span>
-                      <ChevronDown className="w-3 h-3 text-slate-400" />
+                      <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
                     </button>
 
                     {activeMegaMenu === 'services' && (
@@ -488,14 +561,14 @@ export function App() {
 
                   {/* Mega Menu 3: Gastronomia & Cultura */}
                   <div 
-                    className="mega-menu-trigger-wrapper"
+                    className="relative inline-block"
                     onMouseEnter={() => handleMouseEnterMega('foodCulture')}
                     onMouseLeave={handleMouseLeaveMega}
                   >
-                    <button className={`hub-nav-btn ${activeMegaMenu === 'foodCulture' ? 'active' : ''}`}>
+                    <button className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${activeMegaMenu === 'foodCulture' ? 'bg-blue-50 text-blue-600 border border-blue-200' : 'text-slate-700 hover:bg-slate-100'}`}>
                       <Pizza className="w-4 h-4 text-amber-600" />
                       <span>{t.megaMenu.foodCulture}</span>
-                      <ChevronDown className="w-3 h-3 text-slate-400" />
+                      <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
                     </button>
 
                     {activeMegaMenu === 'foodCulture' && (
@@ -532,42 +605,41 @@ export function App() {
                   {/* Button to Open All Sites Drawer */}
                   <button
                     onClick={() => setEcosystemModalOpen(true)}
-                    className="hub-nav-btn"
-                    style={{ background: 'rgba(37, 99, 235, 0.08)', color: '#2563eb', fontWeight: 700 }}
+                    className="px-4 py-2 rounded-xl bg-blue-600 text-white font-bold text-xs hover:bg-blue-500 transition-all flex items-center gap-1.5 shadow-md shadow-blue-600/30"
                   >
-                    <Globe2 className="w-4 h-4 text-blue-600" />
+                    <Globe2 className="w-4 h-4" />
                     <span>{t.nav.allSites}</span>
                   </button>
                 </>
               )}
             </nav>
 
-            {/* Language Switcher & Info Controls */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <div className="hub-lang-dropdown-wrapper">
+            {/* Language Switcher & Controls */}
+            <div className="flex items-center gap-3">
+              <div className="relative">
                 <button
                   onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                  className="hub-lang-trigger"
+                  className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs flex items-center gap-1.5 border border-slate-200 transition-all"
                 >
                   <Globe2 className="w-4 h-4 text-blue-600" />
                   <span>
-                    {lang === 'en' && '🇺🇸 EN'}
-                    {lang === 'es' && '🇪🇸 ES'}
-                    {lang === 'pt' && '🇧🇷 PT'}
+                    {lang === 'en' && 'EN'}
+                    {lang === 'es' && 'ES'}
+                    {lang === 'pt' && 'PT'}
                   </span>
                   <ChevronDown className="w-3 h-3 text-slate-400" />
                 </button>
 
                 {langDropdownOpen && (
-                  <div className="hub-lang-popdown">
-                    <button onClick={() => changeLanguage('en')} className={lang === 'en' ? 'active' : ''}>
-                      🇺🇸 English (EN)
+                  <div className="absolute right-0 top-full mt-2 w-36 bg-white rounded-xl border border-slate-200 shadow-xl p-1.5 z-50 space-y-1">
+                    <button onClick={() => changeLanguage('en')} className={`w-full text-left px-3 py-1.5 rounded-lg text-xs font-bold ${lang === 'en' ? 'bg-blue-50 text-blue-600' : 'text-slate-700 hover:bg-slate-100'}`}>
+                      🇺🇸 English
                     </button>
-                    <button onClick={() => changeLanguage('es')} className={lang === 'es' ? 'active' : ''}>
-                      🇪🇸 Español (ES)
+                    <button onClick={() => changeLanguage('es')} className={`w-full text-left px-3 py-1.5 rounded-lg text-xs font-bold ${lang === 'es' ? 'bg-blue-50 text-blue-600' : 'text-slate-700 hover:bg-slate-100'}`}>
+                      🇪🇸 Español
                     </button>
-                    <button onClick={() => changeLanguage('pt')} className={lang === 'pt' ? 'active' : ''}>
-                      🇧🇷 Português (PT)
+                    <button onClick={() => changeLanguage('pt')} className={`w-full text-left px-3 py-1.5 rounded-lg text-xs font-bold ${lang === 'pt' ? 'bg-blue-50 text-blue-600' : 'text-slate-700 hover:bg-slate-100'}`}>
+                      🇧🇷 Português
                     </button>
                   </div>
                 )}
@@ -576,7 +648,7 @@ export function App() {
               {/* Mobile Drawer Hamburger */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="hub-mobile-menu-btn md:hidden"
+                className="md:hidden p-2 rounded-xl bg-slate-100 text-slate-800"
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
@@ -586,37 +658,30 @@ export function App() {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="hub-mobile-drawer md:hidden">
+          <div className="md:hidden bg-white border-b border-slate-200 p-4 space-y-2">
             <button
               onClick={() => { setEcosystemModalOpen(true); setMobileMenuOpen(false); }}
-              className="hub-mobile-nav-link text-blue-600 font-bold"
+              className="w-full text-left px-4 py-3 rounded-xl bg-blue-50 text-blue-600 font-bold text-sm flex items-center gap-3"
             >
-              <Globe2 className="w-5 h-5" />
+              <Globe2 className="w-5 h-5 text-blue-600" />
               <span>{t.megaMenu.allSites}</span>
             </button>
             <button
-              onClick={() => { setActiveInfoModal('institutional'); setMobileMenuOpen(false); }}
-              className="hub-mobile-nav-link"
+              onClick={() => { setVideoModalOpen(true); setMobileMenuOpen(false); }}
+              className="w-full text-left px-4 py-3 rounded-xl bg-slate-100 text-slate-800 font-bold text-sm flex items-center gap-3"
             >
-              <Info className="w-5 h-5 text-blue-600" />
-              <span>{t.nav.institutional}</span>
-            </button>
-            <button
-              onClick={() => { setActiveInfoModal('help'); setMobileMenuOpen(false); }}
-              className="hub-mobile-nav-link"
-            >
-              <HelpCircle className="w-5 h-5 text-cyan-600" />
-              <span>{t.nav.help}</span>
+              <Play className="w-5 h-5 text-blue-600" />
+              <span>{t.hero.watchVideo}</span>
             </button>
           </div>
         )}
       </header>
 
       {/* Main Content Area */}
-      <main className="hub-main-content">
+      <main>
         {selectedAppId && selectedAppObj ? (
-          /* FULL-PAGE SHOWCASE DETAIL VIEW */
-          <div className="hub-container py-10">
+          /* FULL-PAGE PRESENTATION DETAIL VIEW */
+          <div className="hub-container py-12">
             <button
               onClick={navigateBackToCatalog}
               className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-xs hover:bg-slate-100 mb-6 flex items-center gap-2 shadow-sm transition-all"
@@ -625,7 +690,7 @@ export function App() {
               <span>{t.fullPageDetails.backBtn}</span>
             </button>
 
-            <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-xl space-y-8">
+            <div className="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-xl space-y-8">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-slate-100">
                 <div className="space-y-2">
                   <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-600 border border-blue-200 font-bold text-xs uppercase tracking-wider">
@@ -651,17 +716,17 @@ export function App() {
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                <div className="aspect-[16/10] rounded-2xl overflow-hidden border border-slate-200 shadow-md bg-slate-100">
+                <div className="aspect-[16/10] rounded-2xl overflow-hidden border border-slate-200 shadow-md bg-slate-900 relative group">
                   <img
                     src={selectedAppObj.image}
                     alt={(t.apps[selectedAppObj.id] || { name: selectedAppObj.id }).name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
 
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-blue-600 mb-2">
+                    <h3 className="text-xs font-bold uppercase tracking-widest text-blue-600 mb-2">
                       {t.fullPageDetails.overviewTitle}
                     </h3>
                     <p className="text-slate-700 text-sm leading-relaxed">
@@ -670,13 +735,13 @@ export function App() {
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 mb-3">
+                    <h3 className="text-xs font-bold uppercase tracking-widest text-slate-900 mb-3">
                       {t.fullPageDetails.keyCapabilitiesTitle}
                     </h3>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2.5">
                       {(t.apps[selectedAppObj.id] || { features: [] }).features.map((feat, idx) => (
                         <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 font-medium">
-                          <Check className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                           <span>{feat}</span>
                         </li>
                       ))}
@@ -687,106 +752,121 @@ export function App() {
             </div>
           </div>
         ) : (
-          /* HOMEPAGE HUB STREAM */
+          /* HOMEPAGE ENXUTA & VISUAL (LEAN HOMEPAGE STREAM) */
           <>
-            {/* Modern Hero Showcase */}
-            <section className="py-16 md:py-24 relative overflow-hidden">
-              <div className="hub-container text-center space-y-8 relative z-10">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold tracking-wider uppercase shadow-sm animate-float-badge">
+            {/* Dynamic Hero with Interactive Video & Ambient Visuals */}
+            <section className="py-20 md:py-28 relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-[#f8fafc] border-b border-slate-200">
+              <div className="hub-container relative z-10 text-center space-y-8 max-w-4xl mx-auto">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold tracking-widest uppercase shadow-sm">
                   <Sparkles className="w-4 h-4 text-blue-600" />
                   {t.hero.badge}
                 </div>
 
-                <div className="space-y-4 max-w-4xl mx-auto">
+                <div className="space-y-4">
                   <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 font-sans tracking-tight leading-tight">
                     {t.hero.title}
                   </h1>
-                  <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
+                  <p className="text-base sm:text-xl text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
                     {t.hero.subtitle}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-center gap-4">
+                <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+                  <a
+                    href="#categorias-matriz"
+                    className="px-7 py-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-xl shadow-blue-600/30 flex items-center gap-2.5 transition-all transform active:scale-95"
+                  >
+                    <span>{t.hero.exploreBtn}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+
+                  <button
+                    onClick={() => setVideoModalOpen(true)}
+                    className="px-7 py-4 rounded-2xl bg-white hover:bg-slate-100 text-slate-900 border border-slate-200 font-bold text-sm shadow-md flex items-center gap-2.5 transition-all transform active:scale-95"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center">
+                      <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+                    </div>
+                    <span>{t.hero.watchVideo}</span>
+                  </button>
+
                   <button
                     onClick={() => setEcosystemModalOpen(true)}
-                    className="px-6 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-md shadow-blue-600/30 flex items-center gap-2.5 transition-all transform active:scale-95 cursor-pointer"
+                    className="px-6 py-4 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm border border-slate-200 flex items-center gap-2 transition-all"
                   >
-                    <Globe2 className="w-5 h-5" />
-                    <span>{t.megaMenu.allSites}</span>
+                    <Globe2 className="w-4 h-4 text-blue-600" />
+                    <span>{t.nav.allSites}</span>
                   </button>
-                  <a
-                    href="#solucoes-grid"
-                    className="px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 font-bold text-sm shadow-sm transition-all"
-                  >
-                    {t.hero.exploreBtn} ↓
-                  </a>
                 </div>
               </div>
             </section>
 
-            {/* Featured Showcase Carousel */}
-            <section className="py-12 bg-white border-y border-slate-200">
-              <div className="hub-container space-y-6">
+            {/* Dynamic Visual Featured Carousel (Carrossel Interativo) */}
+            <section className="py-16 bg-white border-b border-slate-200">
+              <div className="hub-container space-y-8">
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-blue-600">{t.hero.sitesBadge}</span>
-                    <h2 className="text-2xl font-extrabold text-slate-900 font-sans">Destaques do Ecossistema</h2>
+                    <span className="text-xs font-bold uppercase tracking-widest text-blue-600">Apresentação Interativa</span>
+                    <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-sans">Destaques do Ecossistema</h2>
                   </div>
 
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => setCurrentSlideIndex(prev => (prev - 1 + featuredApps.length) % featuredApps.length)}
-                      className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200"
+                      className="p-3 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all"
                     >
                       <ChevronLeft className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => setCurrentSlideIndex(prev => (prev + 1) % featuredApps.length)}
-                      className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200"
+                      className="p-3 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all"
                     >
                       <ChevronRight className="w-5 h-5" />
                     </button>
                   </div>
                 </div>
 
-                {/* Featured Item Display */}
+                {/* Featured Carousel Card */}
                 {featuredApps[currentSlideIndex] && (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
-                    <div className="aspect-[16/10] rounded-2xl overflow-hidden border border-slate-200 bg-white">
-                      <img
-                        src={featuredApps[currentSlideIndex].image}
-                        alt={featuredApps[currentSlideIndex].id}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                  <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-xl bg-slate-900 min-h-[380px] flex items-end">
+                    <img
+                      src={featuredApps[currentSlideIndex].image}
+                      alt={featuredApps[currentSlideIndex].id}
+                      className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent"></div>
 
-                    <div className="space-y-4">
-                      <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-600 border border-blue-200 font-bold text-xs uppercase">
-                        {featuredApps[currentSlideIndex].status}
-                      </span>
-                      <h3 className="text-2xl font-extrabold text-slate-900">
+                    <div className="relative z-10 p-8 sm:p-12 space-y-4 max-w-2xl text-white">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-600/80 backdrop-blur-md text-white font-bold text-xs uppercase tracking-wider border border-blue-400/40">
+                        <Sparkles className="w-3.5 h-3.5" />
+                        <span>{featuredApps[currentSlideIndex].status}</span>
+                      </div>
+
+                      <h3 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
                         {(t.apps[featuredApps[currentSlideIndex].id] || { name: featuredApps[currentSlideIndex].id }).name}
                       </h3>
-                      <p className="text-slate-600 text-sm leading-relaxed">
+
+                      <p className="text-slate-300 text-sm sm:text-base leading-relaxed line-clamp-2">
                         {(t.apps[featuredApps[currentSlideIndex].id] || { description: '' }).description}
                       </p>
 
-                      <div className="pt-2 flex items-center gap-3">
-                        <button
-                          onClick={() => navigateToDetail(featuredApps[currentSlideIndex].id)}
-                          className="px-4 py-2.5 rounded-xl bg-blue-600 text-white font-bold text-xs shadow-md shadow-blue-600/30 hover:bg-blue-500 transition-all"
-                        >
-                          {t.catalog.tryNow}
-                        </button>
+                      <div className="pt-4 flex flex-wrap items-center gap-4">
                         <a
                           href={featuredApps[currentSlideIndex].liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-xs hover:bg-slate-100 transition-all flex items-center gap-1.5"
+                          className="px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-lg shadow-blue-600/40 flex items-center gap-2 transition-all transform active:scale-95"
                         >
-                          <ExternalLink className="w-3.5 h-3.5 text-blue-600" />
+                          <ExternalLink className="w-4 h-4" />
                           <span>{t.catalog.quickLaunch}</span>
                         </a>
+
+                        <button
+                          onClick={() => navigateToDetail(featuredApps[currentSlideIndex].id)}
+                          className="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md font-bold text-xs transition-all"
+                        >
+                          {t.catalog.tryNow}
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -794,86 +874,63 @@ export function App() {
               </div>
             </section>
 
-            {/* Catalog Solutions Grid Section */}
-            <section id="solucoes-grid" className="py-20">
+            {/* Visual Category Matrix (Navegação por Categorias Enxutas) */}
+            <section id="categorias-matriz" className="py-20 bg-[#f8fafc]">
               <div className="hub-container space-y-12">
                 <div className="text-center space-y-3 max-w-2xl mx-auto">
+                  <span className="text-xs font-bold uppercase tracking-widest text-blue-600">Navegação em Camadas</span>
                   <h2 className="text-3xl font-extrabold text-slate-900 font-sans">
-                    {t.catalog.title}
+                    Categorias & Divisões do Ecossistema
                   </h2>
                   <p className="text-slate-600 text-sm">
-                    {t.catalog.subtitle}
+                    Clique em uma categoria para expandir as plataformas disponíveis e acessar diretamente os sistemas.
                   </p>
                 </div>
 
-                {/* Filter Tabs */}
-                <div className="flex flex-wrap items-center justify-center gap-2 border-b border-slate-200 pb-4">
-                  {['todos', 'tecnologia', 'saude', 'servicos', 'gastronomia', 'cultura', 'clientes'].map((catKey) => (
-                    <button
-                      key={catKey}
-                      onClick={() => setActiveCategory(catKey)}
-                      className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-                        activeCategory === catKey
-                          ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
-                          : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
-                      }`}
-                    >
-                      {t.categories[catKey as keyof typeof t.categories] || catKey}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Grid of Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {filteredApps.map((app) => {
-                    const appData = t.apps[app.id] || { name: app.id, subtitle: '', description: '' };
-                    const AppIcon = app.icon;
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {categoryMatrix.map((cat) => {
+                    const CatIcon = cat.icon;
 
                     return (
                       <div
-                        key={app.id}
-                        className="glass-card-upgrade bg-white p-6 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-5"
+                        key={cat.id}
+                        className="bg-white p-7 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all space-y-6 flex flex-col justify-between group cursor-pointer"
+                        onClick={() => setSelectedCategoryModal(cat.idCategory || cat.id)}
                       >
                         <div className="space-y-4">
                           <div className="flex items-center justify-between">
-                            <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600">
-                              <AppIcon className="w-6 h-6" />
+                            <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm">
+                              <CatIcon className="w-7 h-7" />
                             </div>
-                            <span className={app.isClientSite ? 'site-badge-client' : 'site-badge-own'}>
-                              {app.isClientSite ? 'Cliente' : 'Oficial'}
+                            <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-700 font-bold text-[11px]">
+                              {cat.badge}
                             </span>
                           </div>
 
                           <div>
-                            <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
-                              {appData.name}
+                            <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors">
+                              {cat.title}
                             </h3>
-                            <p className="text-xs font-semibold text-blue-600 mt-0.5">
-                              {appData.subtitle}
+                            <p className="text-xs font-semibold text-slate-500 mt-1">
+                              {cat.subtitle}
                             </p>
                           </div>
-
-                          <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
-                            {appData.description}
-                          </p>
                         </div>
 
-                        <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
-                          <button
-                            onClick={() => navigateToDetail(app.id)}
-                            className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition-all"
-                          >
-                            {t.catalog.tryNow}
-                          </button>
+                        <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                          <span className="text-xs font-bold text-blue-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            Explorar Categoria ➔
+                          </span>
 
                           <a
-                            href={app.liveUrl}
+                            href={cat.directUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-sm shadow-blue-600/30 flex items-center gap-1.5 transition-all"
+                            onClick={(e) => e.stopPropagation()}
+                            className="p-2 rounded-xl bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-700 transition-colors"
+                            title="Acessar Plataforma Direta"
                           >
-                            <ExternalLink className="w-3.5 h-3.5" />
-                            <span>Acessar ↗</span>
+                            <ExternalLink className="w-4 h-4" />
                           </a>
                         </div>
                       </div>
@@ -885,6 +942,106 @@ export function App() {
           </>
         )}
       </main>
+
+      {/* INSTITUTIONAL VIDEO PRESENTATION MODAL */}
+      {videoModalOpen && (
+        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4" onClick={() => setVideoModalOpen(false)}>
+          <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl w-full max-w-3xl overflow-hidden space-y-4" onClick={(e) => e.stopPropagation()}>
+            <div className="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+              <div>
+                <h3 className="text-lg font-bold text-slate-900">{t.videoModal.title}</h3>
+                <p className="text-xs text-slate-500">{t.videoModal.subtitle}</p>
+              </div>
+              <button onClick={() => setVideoModalOpen(false)} className="p-2 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="p-6">
+              <div className="aspect-[16/9] rounded-2xl overflow-hidden bg-slate-900 border border-slate-200 relative flex items-center justify-center">
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+                  title="HelpUS Technology Presentation"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* CATEGORY MODAL DRAWER */}
+      {selectedCategoryModal && (
+        <div className="ecosystem-modal-overlay" onClick={() => setSelectedCategoryModal(null)}>
+          <div className="ecosystem-modal-box" onClick={(e) => e.stopPropagation()}>
+            <div className="ecosystem-modal-header">
+              <div>
+                <h3 className="text-lg font-bold text-slate-900">
+                  {selectedCategoryModal === 'servicos' && 'Mercado Imobiliário & Serviços'}
+                  {selectedCategoryModal === 'tecnologia' && 'Inteligência Artificial & Cloud Mesh'}
+                  {selectedCategoryModal === 'saude' && 'Saúde, Telemedicina & USMLE'}
+                  {selectedCategoryModal === 'gastronomia' && 'Gastronomia & Delivery'}
+                  {selectedCategoryModal === 'cultura' && 'Cultura, Biografias & Memória'}
+                </h3>
+                <p className="text-xs text-slate-500">Plataformas e aplicações da divisão selecionada</p>
+              </div>
+
+              <button onClick={() => setSelectedCategoryModal(null)} className="p-2 rounded-xl bg-slate-100 text-slate-600">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="ecosystem-modal-body space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {applications
+                  .filter(app => app.category === selectedCategoryModal || (selectedCategoryModal === 'servicos' && app.category === 'servicos'))
+                  .map((app) => {
+                    const appData = t.apps[app.id] || { name: app.id, subtitle: '', description: '' };
+                    const AppIcon = app.icon;
+
+                    return (
+                      <div key={app.id} className="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-400 space-y-3">
+                        <div className="flex items-center justify-between">
+                          <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center">
+                            <AppIcon className="w-5 h-5" />
+                          </div>
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-200">
+                            {app.status}
+                          </span>
+                        </div>
+
+                        <div>
+                          <h4 className="text-base font-extrabold text-slate-900">{appData.name}</h4>
+                          <p className="text-xs text-slate-600 line-clamp-2 mt-1">{appData.description}</p>
+                        </div>
+
+                        <div className="pt-2 flex items-center gap-2">
+                          <button
+                            onClick={() => { navigateToDetail(app.id); setSelectedCategoryModal(null); }}
+                            className="flex-1 py-2 rounded-xl bg-white border border-slate-200 text-slate-800 font-bold text-xs hover:bg-slate-100 text-center"
+                          >
+                            Ver Apresentação
+                          </button>
+
+                          <a
+                            href={app.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 py-2 rounded-xl bg-blue-600 text-white font-bold text-xs hover:bg-blue-500 text-center flex items-center justify-center gap-1 shadow-md shadow-blue-600/30"
+                          >
+                            <span>Acessar</span> ↗
+                          </a>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* COMPLETE ECOSYSTEM MODAL DRAWER */}
       {ecosystemModalOpen && (
@@ -910,7 +1067,6 @@ export function App() {
             </div>
 
             <div className="ecosystem-modal-body space-y-6">
-              {/* Search & Filter Controls */}
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="relative w-full sm:w-72">
                   <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -951,7 +1107,6 @@ export function App() {
                 </div>
               </div>
 
-              {/* Grid of Ecosystem Sites */}
               <div className="ecosystem-sites-grid">
                 {filteredEcosystemSites.map((site) => {
                   const siteData = t.apps[site.id] || { name: site.id, subtitle: '' };
@@ -1001,7 +1156,7 @@ export function App() {
         </div>
       )}
 
-      {/* Institutional / Support / Privacy Info Modals */}
+      {/* Institutional / Support Info Modals */}
       {activeInfoModal && (
         <div className="ecosystem-modal-overlay" onClick={() => setActiveInfoModal(null)}>
           <div className="ecosystem-modal-box max-w-lg" onClick={(e) => e.stopPropagation()}>
@@ -1034,7 +1189,7 @@ export function App() {
       )}
 
       {/* Footer */}
-      <footer id="contato-footer" className="bg-white border-t border-slate-200 py-12">
+      <footer className="bg-white border-t border-slate-200 py-12">
         <div className="hub-container text-center space-y-6">
           <div className="flex items-center justify-center gap-3">
             <img src="/images/helpus_logo.png" alt="HelpUS Logo" className="h-10 w-auto object-contain" />
