@@ -29,7 +29,8 @@ import {
   TrendingUp,
   Play,
   CheckCircle2,
-  ArrowRight
+  ArrowRight,
+  Brain
 } from 'lucide-react';
 
 import { translations, type Language } from './i18n/translations';
@@ -279,6 +280,17 @@ export function App() {
       icon: TrendingUp,
       image: '/images/helpus_ai.jpg',
       folderPath: 'D:\\dev\\trading-lab',
+      status: 'Projeto de Cliente',
+      isClientSite: true
+    },
+    {
+      id: 'neuroeduardomagalhaes',
+      domain: 'neuro.eduardomagalhaes.helpusbr.com',
+      liveUrl: 'https://neuro.eduardomagalhaes.helpusbr.com',
+      category: 'clientes',
+      icon: Brain,
+      image: '/images/helpus_health.jpg',
+      folderPath: 'D:\\dev\\AntiG\\neuro.eduardomagalhaes',
       status: 'Projeto de Cliente',
       isClientSite: true
     }

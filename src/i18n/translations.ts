@@ -472,6 +472,21 @@ export const translations: Record<Language, TranslationSchema> = {
         technicalHighlights: ['Processamento de Dados Financeiros em Tempo Real', 'Gráficos Interativos Avançados'],
         targetAudience: 'Traders, investidores e entusiastas de análise quantitativa.',
         whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre o Trading Lab Analytics.'
+      },
+      'neuroeduardomagalhaes': {
+        name: 'Dr. Eduardo Magalhães',
+        subtitle: 'Neurologia, Neurofisiologia & Portal de Laudos Digitais',
+        description: 'Plataforma médica para consultas neurológicas, exames de Eletroneuromiografia (ENMG), Eletroencefalograma (EEG), busca por palavras-chave e emissão de laudos criptografados em PDF.',
+        features: [
+          'Agendamento de Consultas & Exames de ENMG e EEG',
+          'Portal do Paciente para Acesso e Download de Laudos em PDF',
+          'Emissor de Laudos Médicos com Templates Pré-configurados',
+          'Busca Inteligente por Diagnósticos e Palavras-Chave'
+        ],
+        detailsContent: 'Sistema completo de diagnósticos neurofisiológicos, atendimento médico e portal digital de exames para a clínica Dr. Eduardo Magalhães.',
+        technicalHighlights: ['Portal Criptografado LGPD', 'Geração de PDF Timbrado & QR Code'],
+        targetAudience: 'Pacientes neurológicos e médicos solicitantes de exames neurofisiológicos.',
+        whatsappMessage: 'Olá! Gostaria de agendar um exame ou consulta na Clínica Dr. Eduardo Magalhães.'
       }
     }
   },
@@ -716,6 +731,21 @@ export const translations: Record<Language, TranslationSchema> = {
         technicalHighlights: ['Real-Time Data', 'Advanced Charts'],
         targetAudience: 'Traders and quant analysts.',
         whatsappMessage: 'Hello HelpUS! Tell me about Trading Lab.'
+      },
+      'neuroeduardomagalhaes': {
+        name: 'Dr. Eduardo Magalhães',
+        subtitle: 'Neurology, Neurophysiology & Digital Reports Portal',
+        description: 'Medical platform for neurological consultations, EMG and EEG exams, keyword search, and encrypted PDF exam report issuing.',
+        features: [
+          'Appointment Booking for EMG & EEG Exams',
+          'Patient Portal for Accessing & Downloading PDF Reports',
+          'Medical Report Issuer with Pre-configured Templates',
+          'Intelligent Diagnostic Keyword Search'
+        ],
+        detailsContent: 'Complete neurophysiological diagnostic system and digital exam portal for Dr. Eduardo Magalhães Clinic.',
+        technicalHighlights: ['Encrypted LGPD Portal', 'Official PDF Generation & QR Code'],
+        targetAudience: 'Neurology patients and referring physicians.',
+        whatsappMessage: 'Hello! I would like to book an appointment at Dr. Eduardo Magalhães Clinic.'
       }
     }
   },
@@ -960,6 +990,21 @@ export const translations: Record<Language, TranslationSchema> = {
         technicalHighlights: ['Datos Tiempo Real', 'Gráficos Avanzados'],
         targetAudience: 'Traders e inversionistas.',
         whatsappMessage: '¡Hola HelpUS! Conocer Trading Lab.'
+      },
+      'neuroeduardomagalhaes': {
+        name: 'Dr. Eduardo Magalhães',
+        subtitle: 'Neurología, Neurofisiología y Portal de Informes Digitales',
+        description: 'Plataforma médica para consultas neurológicas, exámenes ENMG y EEG, búsqueda por palabras clave y emisión de informes en PDF.',
+        features: [
+          'Reserva de Citas para Exámenes ENMG y EEG',
+          'Portal del Paciente para Descarga de Informes en PDF',
+          'Emisor de Informes Médicos con Plantillas Preconfiguradas',
+          'Búsqueda Inteligente por Diagnósticos y Palavras Clave'
+        ],
+        detailsContent: 'Sistema completo de diagnóstico neurofisiológico y portal digital para la clínica Dr. Eduardo Magalhães.',
+        technicalHighlights: ['Portal Encriptado LGPD', 'Generación de PDF Oficial y Código QR'],
+        targetAudience: 'Pacientes neurológicos y médicos remitentes.',
+        whatsappMessage: '¡Hola! Quisiera agendar un examen en la Clínica Dr. Eduardo Magalhães.'
       }
     }
   }
