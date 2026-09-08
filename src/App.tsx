@@ -30,7 +30,8 @@ import {
   Play,
   CheckCircle2,
   ArrowRight,
-  Brain
+  Brain,
+  Volume2
 } from 'lucide-react';
 
 import { translations, type Language } from './i18n/translations';
@@ -131,6 +132,17 @@ export function App() {
       icon: Bot,
       image: '/images/helpus_hero_futuristic.jpg',
       folderPath: 'D:\\dev\\nexosai',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
+      id: 'helpus-voice',
+      domain: 'voice.helpusbr.com',
+      liveUrl: 'https://voice.helpusbr.com',
+      category: 'tecnologia',
+      icon: Volume2,
+      image: '/images/helpus_hero_futuristic.jpg',
+      folderPath: 'D:\\dev\\AntiG\\helpus-voice',
       status: 'Plataforma Ativa',
       featured: true
     },
@@ -505,6 +517,14 @@ export function App() {
                             <div>
                               <div className="mega-menu-title">NexosAI Cloud</div>
                               <div className="mega-menu-desc">Orquestração de Agentes IA & Nós Locais</div>
+                            </div>
+                          </a>
+
+                          <a href="https://voice.helpusbr.com" target="_blank" rel="noopener noreferrer" className="mega-menu-item">
+                            <div className="mega-menu-icon"><Volume2 className="w-5 h-5" /></div>
+                            <div>
+                              <div className="mega-menu-title">HelpUS Voice</div>
+                              <div className="mega-menu-desc">Estúdio de Gerador de Áudio Neural com IA</div>
                             </div>
                           </a>
 

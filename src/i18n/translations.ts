@@ -239,6 +239,27 @@ export const translations: Record<Language, TranslationSchema> = {
         targetAudience: 'Empresas, equipes de TI, escritórios de advocacia, clínicas e desenvolvedores.',
         whatsappMessage: 'Olá HelpUS! Tenho interesse na plataforma NexosAI para automação com inteligência artificial.'
       },
+      'helpus-voice': {
+        name: 'HelpUS Voice SaaS',
+        subtitle: 'Estúdio de Gerador de Áudio Neural com Inteligência Artificial',
+        description: 'Gerador de áudios e vinhetas neurais ultra-realistas com suporte multi-idiomas, velocidade personalizável e integração direta com WhatsApp para empresas e atendimento.',
+        features: [
+          'Vozes Neurais Masculinas e Femininas Ultra-Realistas',
+          'Exportação Rápida em Formato MP3 320kbps em Menos de 2 Segundos',
+          'Compartilhamento Direto para Mensagens e Atendimento no WhatsApp',
+          'Interface Multi-Idiomas (Português, Inglês, Espanhol)',
+          'Modelos Prontos para Barbearias, Imóveis, Suporte e Vendas'
+        ],
+        detailsContent: 'O HelpUS Voice é o estúdio ideal para criar mensagens de áudio neurais profissionais com alta qualidade e custo reduzido.',
+        technicalHighlights: [
+          'Motor Neural TTS Integrado com Baixa Latência',
+          'Exportação de Áudio Dinâmica via Endpoints REST API',
+          'Deploy Nativo em Vercel SaaS com Subdomínio voice.helpusbr.com',
+          'Interface Responsiva React 19 + Tailwind CSS v4'
+        ],
+        targetAudience: 'Empresas, barbearias, corretores, equipes de suporte e criadores de conteúdo.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre o HelpUS Voice (voice.helpusbr.com).'
+      },
       'usmle': {
         name: 'USMLE Prep Platform',
         subtitle: 'Sistema de Preparação & Simulados para Revalidação Médica nos EUA',
@@ -602,6 +623,16 @@ export const translations: Record<Language, TranslationSchema> = {
         targetAudience: 'Enterprises and IT teams.',
         whatsappMessage: 'Hello HelpUS! Interested in NexosAI Cloud.'
       },
+      'helpus-voice': {
+        name: 'HelpUS Voice SaaS',
+        subtitle: 'AI Neural Audio Generator Studio',
+        description: 'Ultra-realistic neural voiceover studio supporting multi-language generation, customizable speaking rates, and instant WhatsApp audio export for businesses.',
+        features: ['Ultra-Realistic Neural Voices', 'Sub-2s MP3 320kbps Export', 'Direct WhatsApp Audio Sharing'],
+        detailsContent: 'High-performance audio generator for automated voice messaging.',
+        technicalHighlights: ['Low-latency TTS Engine', 'Vercel SaaS Deployment on voice.helpusbr.com'],
+        targetAudience: 'Businesses, support teams, realtors, and content creators.',
+        whatsappMessage: 'Hello HelpUS! Tell me more about HelpUS Voice (voice.helpusbr.com).'
+      },
       'usmle': {
         name: 'USMLE Prep Platform',
         subtitle: 'Medical Licensing Examination Prep & Question Bank',
@@ -860,6 +891,16 @@ export const translations: Record<Language, TranslationSchema> = {
         technicalHighlights: ['Arquitectura de Nodos', 'Vectorización RAG'],
         targetAudience: 'Empresas y equipos de TI.',
         whatsappMessage: '¡Hola HelpUS! Interés en NexosAI Cloud.'
+      },
+      'helpus-voice': {
+        name: 'HelpUS Voice SaaS',
+        subtitle: 'Estudio Generador de Audio Neural con IA',
+        description: 'Generador de locuciones de voz neural ultra realistas con soporte multi-idioma, velocidad personalizable y compartimentos en WhatsApp.',
+        features: ['Voces Neurales Ultra Realistas', 'Exportación MP3 320kbps en <2s', 'Envío Directo a WhatsApp'],
+        detailsContent: 'Estudio de audio de alto rendimiento para mensajes de voz automatizados.',
+        technicalHighlights: ['Motor Neural TTS de Baja Latencia', 'Despliegue Vercel SaaS en voice.helpusbr.com'],
+        targetAudience: 'Empresas, equipos de soporte y creadores de contenido.',
+        whatsappMessage: '¡Hola HelpUS! Quisiera saber más sobre HelpUS Voice (voice.helpusbr.com).'
       },
       'usmle': {
         name: 'USMLE Prep Platform',
