@@ -31,7 +31,8 @@ import {
   CheckCircle2,
   ArrowRight,
   Brain,
-  Volume2
+  Volume2,
+  Presentation
 } from 'lucide-react';
 
 import { translations, type Language } from './i18n/translations';
@@ -143,6 +144,39 @@ export function App() {
       icon: Volume2,
       image: '/images/helpus_hero_futuristic.jpg',
       folderPath: 'D:\\dev\\AntiG\\helpus-voice',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
+      id: 'helpus-agent',
+      domain: 'agent.helpusbr.com',
+      liveUrl: 'https://agent.helpusbr.com',
+      category: 'tecnologia',
+      icon: Bot,
+      image: '/images/helpus_hero_futuristic.jpg',
+      folderPath: 'D:\\dev\\AntiG\\ai-engine',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
+      id: 'helpus-slides',
+      domain: 'slides.helpusbr.com',
+      liveUrl: 'https://slides.helpusbr.com',
+      category: 'tecnologia',
+      icon: Presentation,
+      image: '/images/helpus_hero_futuristic.jpg',
+      folderPath: 'D:\\dev\\AntiG\\helpus-slides',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
+      id: 'helpus-search',
+      domain: 'search.helpusbr.com',
+      liveUrl: 'https://search.helpusbr.com',
+      category: 'tecnologia',
+      icon: Search,
+      image: '/images/helpus_hero_futuristic.jpg',
+      folderPath: 'D:\\dev\\AntiG\\helpus-search',
       status: 'Plataforma Ativa',
       featured: true
     },
@@ -509,6 +543,14 @@ export function App() {
                             <div>
                               <div className="mega-menu-title">HelpUS RealEstate</div>
                               <div className="mega-menu-desc">Portal de imóveis & rede de corretores credenciados</div>
+                            </div>
+                          </a>
+
+                          <a href="https://search.helpusbr.com" target="_blank" rel="noopener noreferrer" className="mega-menu-item">
+                            <div className="mega-menu-icon"><Search className="w-5 h-5" /></div>
+                            <div>
+                              <div className="mega-menu-title">HelpUS Search AI</div>
+                              <div className="mega-menu-desc">Busca inteligente por IA em todo o ecossistema</div>
                             </div>
                           </a>
 

@@ -108,5 +108,23 @@ export const PRODUCTS_DATA: Product[] = [
     demoAvailable: true,
     ssoSupported: true,
     subdomain: 'pay.helpus.app'
+  },
+  {
+    id: 'helpus-search',
+    name: 'HelpUS Universal Search Engine',
+    tagline: 'Busca Inteligente por IA em Todo o Ecossistema HelpUS',
+    category: 'ia',
+    description: 'Portal de pesquisa unificada para imóveis, consultas de saúde, vistos americanos, agentes de IA e serviços corporativos com respostas instantâneas sintetizadas por IA.',
+    iconName: 'Search',
+    image: '/images/helpus_hero_futuristic.jpg',
+    badgeText: 'Plataforma Ativa',
+    badgeType: 'featured',
+    features: ['Busca em Tempo Real', 'Síntese de Resposta com Nexos AI', 'Filtro por Categorias', 'Acesso Direto aos Subdomínios'],
+    priceMonthly: 199,
+    rating: 4.99,
+    activeClientsCount: 5200,
+    demoAvailable: true,
+    ssoSupported: true,
+    subdomain: 'search.helpusbr.com'
   }
 ];

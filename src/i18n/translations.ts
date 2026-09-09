@@ -260,6 +260,21 @@ export const translations: Record<Language, TranslationSchema> = {
         targetAudience: 'Empresas, barbearias, corretores, equipes de suporte e criadores de conteúdo.',
         whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre o HelpUS Voice (voice.helpusbr.com).'
       },
+      'helpus-search': {
+        name: 'HelpUS Universal Search Engine',
+        subtitle: 'Busca Inteligente por IA em Todo o Ecossistema HelpUS',
+        description: 'Portal de pesquisa unificada para imóveis, consultas de saúde, vistos americanos, agentes de IA e serviços corporativos com respostas instantâneas sintetizadas por IA.',
+        features: [
+          'Busca Semântica em Tempo Real por IA',
+          'Resumo de Resposta Automática com Nexos AI',
+          'Filtros por Categorias do Ecossistema',
+          'Acesso Direto com 1-Clique aos Subdomínios'
+        ],
+        detailsContent: 'O HelpUS Search centraliza a consulta de informações e serviços oferecidos pela HelpUS Technology com agilidade e precisão de IA.',
+        technicalHighlights: ['Algoritmo de Busca em Tempo Real', 'Interface Glassmorphism Responsiva', 'Suporte Multi-idioma (PT, EN, ES)'],
+        targetAudience: 'Clientes, parceiros, corretores, médicos e usuários buscando serviços HelpUS.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre o HelpUS Search Engine.'
+      },
       'usmle': {
         name: 'USMLE Prep Platform',
         subtitle: 'Sistema de Preparação & Simulados para Revalidação Médica nos EUA',
