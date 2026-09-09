@@ -119,7 +119,7 @@ export function App() {
     {
       id: 'helpus-search',
       domain: 'search.helpusbr.com',
-      liveUrl: 'https://search.helpusbr.com',
+      liveUrl: 'https://helpus-search.vercel.app',
       category: 'tecnologia',
       icon: Search,
       image: '/images/helpus_hero_futuristic.jpg',
@@ -130,7 +130,7 @@ export function App() {
     {
       id: 'helpus-agent',
       domain: 'agent.helpusbr.com',
-      liveUrl: 'https://agent.helpusbr.com',
+      liveUrl: 'https://helpus-agent.vercel.app',
       category: 'tecnologia',
       icon: Bot,
       image: '/images/helpus_hero_futuristic.jpg',
@@ -141,7 +141,7 @@ export function App() {
     {
       id: 'helpus-admin',
       domain: 'admin.helpusbr.com',
-      liveUrl: 'https://admin.helpusbr.com',
+      liveUrl: 'https://helpus-admin.vercel.app',
       category: 'tecnologia',
       icon: Activity,
       image: '/images/helpus_dev_ui.jpg',
@@ -152,7 +152,7 @@ export function App() {
     {
       id: 'helpus-pay',
       domain: 'pay.helpusbr.com',
-      liveUrl: 'https://pay.helpusbr.com',
+      liveUrl: 'https://helpus-pay.vercel.app',
       category: 'tecnologia',
       icon: Zap,
       image: '/images/helpus_events.jpg',
@@ -163,7 +163,7 @@ export function App() {
     {
       id: 'helpus-docs',
       domain: 'docs.helpusbr.com',
-      liveUrl: 'https://docs.helpusbr.com',
+      liveUrl: 'https://helpus-docs.vercel.app',
       category: 'tecnologia',
       icon: Code2,
       image: '/images/helpus_dev_ui.jpg',
@@ -174,7 +174,7 @@ export function App() {
     {
       id: 'helpus-auth',
       domain: 'auth.helpusbr.com',
-      liveUrl: 'https://auth.helpusbr.com',
+      liveUrl: 'https://helpus-auth.vercel.app',
       category: 'tecnologia',
       icon: Lock,
       image: '/images/helpus_imoveis.jpg',
@@ -185,7 +185,7 @@ export function App() {
     {
       id: 'helpus-crm',
       domain: 'crm.helpusbr.com',
-      liveUrl: 'https://crm.helpusbr.com',
+      liveUrl: 'https://helpus-crm.vercel.app',
       category: 'tecnologia',
       icon: Briefcase,
       image: '/images/helpus_dev_ui.jpg',
@@ -196,7 +196,7 @@ export function App() {
     {
       id: 'helpus-status',
       domain: 'status.helpusbr.com',
-      liveUrl: 'https://status.helpusbr.com',
+      liveUrl: 'https://helpus-status.vercel.app',
       category: 'tecnologia',
       icon: Activity,
       image: '/images/helpus_dev_ui.jpg',
@@ -207,7 +207,7 @@ export function App() {
     {
       id: 'helpus-market',
       domain: 'market.helpusbr.com',
-      liveUrl: 'https://market.helpusbr.com',
+      liveUrl: 'https://helpus-market.vercel.app',
       category: 'tecnologia',
       icon: Layers,
       image: '/images/helpus_dev_ui.jpg',
@@ -218,7 +218,7 @@ export function App() {
     {
       id: 'helpus-marketing',
       domain: 'marketing.helpusbr.com',
-      liveUrl: 'https://marketing.helpusbr.com',
+      liveUrl: 'https://helpus-marketing.vercel.app',
       category: 'tecnologia',
       icon: Sparkles,
       image: '/images/helpus_hero_futuristic.jpg',
@@ -229,7 +229,7 @@ export function App() {
     {
       id: 'helpus-app',
       domain: 'app.helpusbr.com',
-      liveUrl: 'https://app.helpusbr.com',
+      liveUrl: 'https://helpus-app.vercel.app',
       category: 'tecnologia',
       icon: Globe2,
       image: '/images/helpus_hero_futuristic.jpg',
@@ -317,7 +317,7 @@ export function App() {
     {
       id: 'wagnerdriver-site',
       domain: 'wagnerdriver.helpusbr.com',
-      liveUrl: 'https://wagnerdriver.helpusbr.com',
+      liveUrl: 'https://wagnerdriver-site.vercel.app',
       category: 'servicos',
       icon: Car,
       image: '/images/helpus_driver_real.png',
@@ -328,7 +328,7 @@ export function App() {
     {
       id: 'pizza',
       domain: 'pizza.helpusbr.com',
-      liveUrl: 'https://pizza.helpusbr.com',
+      liveUrl: 'https://pizza-nine-iota.vercel.app',
       category: 'gastronomia',
       icon: Pizza,
       image: '/images/helpus_barber.jpg',
@@ -368,7 +368,7 @@ export function App() {
     {
       id: 'brayyan',
       domain: 'brayyan.helpusbr.com',
-      liveUrl: 'https://brayyan.helpusbr.com',
+      liveUrl: 'https://brayyan.vercel.app',
       category: 'cultura',
       icon: UserCheck,
       image: '/images/helpus_ai.jpg',
@@ -378,7 +378,7 @@ export function App() {
     {
       id: 'katiaxavier',
       domain: 'katiaxavier.helpusbr.com',
-      liveUrl: 'https://katiaxavier.helpusbr.com',
+      liveUrl: 'https://katiaxavier-site.vercel.app',
       category: 'clientes',
       icon: Scale,
       image: '/images/helpus_dev_ui.jpg',
@@ -389,7 +389,7 @@ export function App() {
     {
       id: 'marciotopbarber',
       domain: 'barber.helpusbr.com',
-      liveUrl: 'https://barber.helpusbr.com',
+      liveUrl: 'https://marciotopbarber.vercel.app',
       category: 'clientes',
       icon: Scissors,
       image: '/images/helpus_barber.jpg',
@@ -422,7 +422,7 @@ export function App() {
     {
       id: 'trading-lab',
       domain: 'tradinglab.helpusbr.com',
-      liveUrl: 'https://tradinglab.helpusbr.com',
+      liveUrl: 'https://trading.helpusbr.com',
       category: 'clientes',
       icon: TrendingUp,
       image: '/images/helpus_ai.jpg',
@@ -433,7 +433,7 @@ export function App() {
     {
       id: 'neuroeduardomagalhaes',
       domain: 'neuro.eduardomagalhaes.helpusbr.com',
-      liveUrl: 'https://neuro.eduardomagalhaes.helpusbr.com',
+      liveUrl: 'https://neuroeduardomagalhaes.vercel.app',
       category: 'clientes',
       icon: Brain,
       image: '/images/helpus_health.jpg',
