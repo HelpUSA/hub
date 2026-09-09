@@ -117,35 +117,13 @@ export function App() {
   // Applications & Sites
   const applications: AppItem[] = [
     {
-      id: 'realestate',
-      domain: 'realestate.helpusbr.com',
-      liveUrl: 'https://realestate.helpusbr.com',
-      category: 'servicos',
-      icon: Building2,
-      image: '/images/helpus_imoveis_luxury.jpg',
-      folderPath: 'D:\\dev\\AntiG\\realestate',
-      status: 'Plataforma Ativa',
-      featured: true
-    },
-    {
-      id: 'nexosai',
-      domain: 'nexoai.helpusbr.com',
-      liveUrl: 'https://nexoai.helpusbr.com',
+      id: 'helpus-search',
+      domain: 'search.helpusbr.com',
+      liveUrl: 'https://search.helpusbr.com',
       category: 'tecnologia',
-      icon: Bot,
+      icon: Search,
       image: '/images/helpus_hero_futuristic.jpg',
-      folderPath: 'D:\\dev\\nexosai',
-      status: 'Plataforma Ativa',
-      featured: true
-    },
-    {
-      id: 'helpus-voice',
-      domain: 'voice.helpusbr.com',
-      liveUrl: 'https://voice.helpusbr.com',
-      category: 'tecnologia',
-      icon: Volume2,
-      image: '/images/helpus_hero_futuristic.jpg',
-      folderPath: 'D:\\dev\\AntiG\\helpus-voice',
+      folderPath: 'D:\\dev\\AntiG\\helpus-search',
       status: 'Plataforma Ativa',
       featured: true
     },
@@ -156,29 +134,7 @@ export function App() {
       category: 'tecnologia',
       icon: Bot,
       image: '/images/helpus_hero_futuristic.jpg',
-      folderPath: 'D:\\dev\\AntiG\\ai-engine',
-      status: 'Plataforma Ativa',
-      featured: true
-    },
-    {
-      id: 'helpus-slides',
-      domain: 'slides.helpusbr.com',
-      liveUrl: 'https://slides.helpusbr.com',
-      category: 'tecnologia',
-      icon: Presentation,
-      image: '/images/helpus_hero_futuristic.jpg',
-      folderPath: 'D:\\dev\\AntiG\\helpus-slides',
-      status: 'Plataforma Ativa',
-      featured: true
-    },
-    {
-      id: 'helpus-search',
-      domain: 'search.helpusbr.com',
-      liveUrl: 'https://search.helpusbr.com',
-      category: 'tecnologia',
-      icon: Search,
-      image: '/images/helpus_hero_futuristic.jpg',
-      folderPath: 'D:\\dev\\AntiG\\helpus-search',
+      folderPath: 'D:\\dev\\AntiG\\helpus-agent',
       status: 'Plataforma Ativa',
       featured: true
     },
@@ -223,6 +179,105 @@ export function App() {
       icon: Lock,
       image: '/images/helpus_imoveis.jpg',
       folderPath: 'D:\\dev\\AntiG\\helpus-auth',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
+      id: 'helpus-crm',
+      domain: 'crm.helpusbr.com',
+      liveUrl: 'https://crm.helpusbr.com',
+      category: 'tecnologia',
+      icon: Briefcase,
+      image: '/images/helpus_dev_ui.jpg',
+      folderPath: 'D:\\dev\\AntiG\\helpus-crm',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
+      id: 'helpus-status',
+      domain: 'status.helpusbr.com',
+      liveUrl: 'https://status.helpusbr.com',
+      category: 'tecnologia',
+      icon: Activity,
+      image: '/images/helpus_dev_ui.jpg',
+      folderPath: 'D:\\dev\\AntiG\\helpus-status',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
+      id: 'helpus-market',
+      domain: 'market.helpusbr.com',
+      liveUrl: 'https://market.helpusbr.com',
+      category: 'tecnologia',
+      icon: Layers,
+      image: '/images/helpus_dev_ui.jpg',
+      folderPath: 'D:\\dev\\AntiG\\helpus-market',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
+      id: 'helpus-marketing',
+      domain: 'marketing.helpusbr.com',
+      liveUrl: 'https://marketing.helpusbr.com',
+      category: 'tecnologia',
+      icon: Sparkles,
+      image: '/images/helpus_hero_futuristic.jpg',
+      folderPath: 'D:\\dev\\AntiG\\helpus-marketing',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
+      id: 'helpus-app',
+      domain: 'app.helpusbr.com',
+      liveUrl: 'https://app.helpusbr.com',
+      category: 'tecnologia',
+      icon: Globe2,
+      image: '/images/helpus_hero_futuristic.jpg',
+      folderPath: 'D:\\dev\\AntiG\\helpus-app',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
+      id: 'realestate',
+      domain: 'realestate.helpusbr.com',
+      liveUrl: 'https://realestate.helpusbr.com',
+      category: 'servicos',
+      icon: Building2,
+      image: '/images/helpus_imoveis_luxury.jpg',
+      folderPath: 'D:\\dev\\AntiG\\realestate',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
+      id: 'nexosai',
+      domain: 'nexoai.helpusbr.com',
+      liveUrl: 'https://nexoai.helpusbr.com',
+      category: 'tecnologia',
+      icon: Bot,
+      image: '/images/helpus_hero_futuristic.jpg',
+      folderPath: 'D:\\dev\\nexosai',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
+      id: 'helpus-voice',
+      domain: 'voice.helpusbr.com',
+      liveUrl: 'https://voice.helpusbr.com',
+      category: 'tecnologia',
+      icon: Volume2,
+      image: '/images/helpus_hero_futuristic.jpg',
+      folderPath: 'D:\\dev\\AntiG\\helpus-voice',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
+      id: 'helpus-slides',
+      domain: 'slides.helpusbr.com',
+      liveUrl: 'https://slides.helpusbr.com',
+      category: 'tecnologia',
+      icon: Presentation,
+      image: '/images/helpus_hero_futuristic.jpg',
+      folderPath: 'D:\\dev\\AntiG\\helpus-slides',
       status: 'Plataforma Ativa',
       featured: true
     },
@@ -584,51 +639,67 @@ export function App() {
                     {activeMegaMenu === 'platforms' && (
                       <div className="mega-menu-popup">
                         <div className="mega-menu-grid">
-                          <a href="https://realestate.helpusbr.com" target="_blank" rel="noopener noreferrer" className="mega-menu-item">
-                            <div className="mega-menu-icon"><Building2 className="w-5 h-5" /></div>
-                            <div>
-                              <div className="mega-menu-title">HelpUS RealEstate</div>
-                              <div className="mega-menu-desc">Portal de imóveis & rede de corretores credenciados</div>
-                            </div>
-                          </a>
-
                           <a href="https://search.helpusbr.com" target="_blank" rel="noopener noreferrer" className="mega-menu-item">
-                            <div className="mega-menu-icon"><Search className="w-5 h-5" /></div>
+                            <div className="mega-menu-icon"><Search className="w-5 h-5 text-blue-600" /></div>
                             <div>
                               <div className="mega-menu-title">HelpUS Search AI</div>
                               <div className="mega-menu-desc">Busca inteligente por IA em todo o ecossistema</div>
                             </div>
                           </a>
 
-                          <a href="https://nexoai.helpusbr.com" target="_blank" rel="noopener noreferrer" className="mega-menu-item">
-                            <div className="mega-menu-icon"><Bot className="w-5 h-5" /></div>
+                          <a href="https://agent.helpusbr.com" target="_blank" rel="noopener noreferrer" className="mega-menu-item">
+                            <div className="mega-menu-icon"><Bot className="w-5 h-5 text-indigo-600" /></div>
                             <div>
-                              <div className="mega-menu-title">NexosAI Cloud</div>
-                              <div className="mega-menu-desc">Orquestração de Agentes IA & Nós Locais</div>
+                              <div className="mega-menu-title">HelpUS AI Agent Studio</div>
+                              <div className="mega-menu-desc">Criador & Orquestrador de Agentes de IA 24/7</div>
+                            </div>
+                          </a>
+
+                          <a href="https://admin.helpusbr.com" target="_blank" rel="noopener noreferrer" className="mega-menu-item">
+                            <div className="mega-menu-icon"><Activity className="w-5 h-5 text-emerald-600" /></div>
+                            <div>
+                              <div className="mega-menu-title">HelpUS Admin Dashboard</div>
+                              <div className="mega-menu-desc">Monitor Master de Métricas, Uptime & Leads</div>
+                            </div>
+                          </a>
+
+                          <a href="https://pay.helpusbr.com" target="_blank" rel="noopener noreferrer" className="mega-menu-item">
+                            <div className="mega-menu-icon"><Zap className="w-5 h-5 text-amber-500" /></div>
+                            <div>
+                              <div className="mega-menu-title">HelpUS Pay Engine</div>
+                              <div className="mega-menu-desc">Gateway PIX & Cobranças Recorrentes</div>
+                            </div>
+                          </a>
+
+                          <a href="https://docs.helpusbr.com" target="_blank" rel="noopener noreferrer" className="mega-menu-item">
+                            <div className="mega-menu-icon"><Code2 className="w-5 h-5 text-purple-600" /></div>
+                            <div>
+                              <div className="mega-menu-title">HelpUS Developer Docs</div>
+                              <div className="mega-menu-desc">APIs REST, SDKs JS/Python e Webhooks</div>
+                            </div>
+                          </a>
+
+                          <a href="https://auth.helpusbr.com" target="_blank" rel="noopener noreferrer" className="mega-menu-item">
+                            <div className="mega-menu-icon"><Lock className="w-5 h-5 text-rose-600" /></div>
+                            <div>
+                              <div className="mega-menu-title">HelpUS SSO Central</div>
+                              <div className="mega-menu-desc">Login & Autenticação Única Criptografada</div>
+                            </div>
+                          </a>
+
+                          <a href="https://realestate.helpusbr.com" target="_blank" rel="noopener noreferrer" className="mega-menu-item">
+                            <div className="mega-menu-icon"><Building2 className="w-5 h-5 text-blue-500" /></div>
+                            <div>
+                              <div className="mega-menu-title">HelpUS RealEstate</div>
+                              <div className="mega-menu-desc">Portal de imóveis & rede de corretores</div>
                             </div>
                           </a>
 
                           <a href="https://voice.helpusbr.com" target="_blank" rel="noopener noreferrer" className="mega-menu-item">
-                            <div className="mega-menu-icon"><Volume2 className="w-5 h-5" /></div>
+                            <div className="mega-menu-icon"><Volume2 className="w-5 h-5 text-teal-600" /></div>
                             <div>
                               <div className="mega-menu-title">HelpUS Voice</div>
                               <div className="mega-menu-desc">Estúdio de Gerador de Áudio Neural com IA</div>
-                            </div>
-                          </a>
-
-                          <a href="https://usmle.helpusbr.com" target="_blank" rel="noopener noreferrer" className="mega-menu-item">
-                            <div className="mega-menu-icon"><Stethoscope className="w-5 h-5" /></div>
-                            <div>
-                              <div className="mega-menu-title">USMLE Prep</div>
-                              <div className="mega-menu-desc">Simulados & revalidação médica nos EUA</div>
-                            </div>
-                          </a>
-
-                          <a href="https://health.helpusbr.com" target="_blank" rel="noopener noreferrer" className="mega-menu-item">
-                            <div className="mega-menu-icon"><HeartPulse className="w-5 h-5" /></div>
-                            <div>
-                              <div className="mega-menu-title">HelpUS Saúde</div>
-                              <div className="mega-menu-desc">Telemedicina HD & prontuário eletrônico</div>
                             </div>
                           </a>
                         </div>

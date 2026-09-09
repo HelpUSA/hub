@@ -544,6 +544,96 @@ export const translations: Record<Language, TranslationSchema> = {
         technicalHighlights: ['Portal Criptografado LGPD', 'Geração de PDF Timbrado & QR Code'],
         targetAudience: 'Pacientes neurológicos e médicos solicitantes de exames neurofisiológicos.',
         whatsappMessage: 'Olá! Gostaria de agendar um exame ou consulta na Clínica Dr. Eduardo Magalhães.'
+      },
+      'helpus-admin': {
+        name: 'HelpUS Admin Dashboard',
+        subtitle: 'Painel Master de Métricas, Uptime & Leads do Ecossistema',
+        description: 'Central de controle e inteligência com status de uptime em tempo real dos 18 subdomínios, feed de leads capturados e analytics de pesquisas.',
+        features: ['Monitor de Uptime 18 Subdomínios', 'Feed de Leads Capturados', 'Métricas de Latência', 'Relatório de Tendências de Busca'],
+        detailsContent: 'Painel master de administração global para visão 360 do ecossistema HelpUS.',
+        technicalHighlights: ['WebSocket Uptime Monitor', 'Analytics Engine', 'Lead Capture Feed'],
+        targetAudience: 'Administradores, diretores e gestores HelpUS.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre o HelpUS Admin.'
+      },
+      'helpus-pay': {
+        name: 'HelpUS Pay Engine',
+        subtitle: 'Gateway de Pagamentos Recorrentes & PIX QR Code Dinâmico',
+        description: 'Infraestrutura central de pagamentos, cobrança recorrente de mensalidades, PIX instantâneo e gestão de faturas corporativas.',
+        features: ['PIX com QR Code Dinâmico', 'Cobrança Recorrente de Mensalidades', 'Sincronização em Nuvem em Tempo Real', 'Segurança Bancária TLS 1.3'],
+        detailsContent: 'Motor de cobranças e faturamento instantâneo com PIX e cartão.',
+        technicalHighlights: ['TLS 1.3 Bank Encryption', 'PIX Dynamic QR Code', 'SaaS Billing API'],
+        targetAudience: 'Empresas, estabelecimentos e clientes HelpUS.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre o HelpUS Pay.'
+      },
+      'helpus-docs': {
+        name: 'HelpUS Developer Docs & API',
+        subtitle: 'Portal de Documentação Técnica & APIs REST',
+        description: 'Referência de integração de APIs para Voz Neural TTS, Busca Semântica por IA, Webhooks WhatsApp e SDKs em cURL, JS, Python e PHP.',
+        features: ['Documentação API REST', 'Exemplos em cURL, JS, Python, PHP', 'Gerador de API Keys', 'Suporte a Webhooks'],
+        detailsContent: 'Portal completo para desenvolvedores construírem soluções com a infraestrutura HelpUS.',
+        technicalHighlights: ['Swagger OpenAPI 3.0', 'Interactive API Tester', 'SDK Generators'],
+        targetAudience: 'Desenvolvedores, parceiros de TI e agências.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de suporte para integração de APIs.'
+      },
+      'helpus-auth': {
+        name: 'HelpUS Auth Single Sign-On',
+        subtitle: 'Portal de Login & Autenticação Única SSO',
+        description: 'Central de Login Único (Single Sign-On) para acesso seguro com um clique a todos os módulos do ecossistema HelpUS.',
+        features: ['Login Único SSO', 'Autenticação Criptografada 256-bit', 'Gestão de Sessões Ativas', 'Integração OAuth/JWT'],
+        detailsContent: 'Solução central de identidade e controle de acesso unificado.',
+        technicalHighlights: ['OAuth 2.0 / OpenID Connect', 'JWT Cross-Domain Session', '2FA Security'],
+        targetAudience: 'Todos os usuários e clientes do ecossistema HelpUS.',
+        whatsappMessage: 'Olá HelpUS! Preciso de ajuda com login SSO.'
+      },
+      'helpus-crm': {
+        name: 'HelpUS CRM & Omnichannel',
+        subtitle: 'Gestão de Leads, Funil Kanban & WhatsApp Central',
+        description: 'Central de atendimento unificado e gestão de leads gerados pelos robôs de IA das 18 verticais do ecossistema.',
+        features: ['Kanban de Vendas Automático', 'Transição IA para Atendente Humano', 'WhatsApp Cloud API', 'Automação de Follow-up'],
+        detailsContent: 'CRM Omnichannel especializado em conversão de leads provenientes de inteligência artificial.',
+        technicalHighlights: ['React 19 + Vite', 'WhatsApp Baileys & Cloud Engine', 'Real-Time Pipeline'],
+        targetAudience: 'Equipes de vendas, corretores, clínicas e atendimento.',
+        whatsappMessage: 'Olá HelpUS! Quero conhecer o HelpUS CRM.'
+      },
+      'helpus-status': {
+        name: 'HelpUS Status & Uptime',
+        subtitle: 'Monitor Público de Saúde & Uptime de APIs em Tempo Real',
+        description: 'Página pública de disponibilidade dos 18 subdomínios, latência de servidores e histórico de incidentes.',
+        features: ['Status Uptime em Tempo Real', 'Medidor de Latência de APIs', 'Inscrição para Alertas por Email/SMS', 'Relatórios Mensais de SLA'],
+        detailsContent: 'Transparência total para clientes corporativos acompanharem a saúde do ecossistema.',
+        technicalHighlights: ['Synthetic Ping Monitors', 'SLA Analytics', 'Event Log Stream'],
+        targetAudience: 'Clientes corporativos, desenvolvedores e equipe técnica.',
+        whatsappMessage: 'Olá HelpUS! Consultar status do ecossistema.'
+      },
+      'helpus-market': {
+        name: 'HelpUS Integration Marketplace',
+        subtitle: 'Loja de Plugins, Webhooks & Conectores de Terceiros',
+        description: 'Mercado de integrações de 1-clique com WhatsApp, RD Station, HubSpot, Mercado Pago e Google Calendar.',
+        features: ['Conectores Prontos de 1-Clique', 'Gestor de Webhooks Globais', 'API Key Exchange', 'Loja de Extensões de IA'],
+        detailsContent: 'Expanda o poder da sua IA integrando suas ferramentas favoritas instantaneamente.',
+        technicalHighlights: ['Plugin Registry Schema', 'OAuth Webhook Handlers', 'Sandbox Env'],
+        targetAudience: 'Agências, desenvolvedores e empresas conectadas.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre integrações.'
+      },
+      'helpus-marketing': {
+        name: 'HelpUS AI Growth & Ads',
+        subtitle: 'Gerador de Anúncios com IA & Automação Social',
+        description: 'Plataforma de criação de campanhas de anúncios persuasivas e postagens para redes sociais com Inteligência Artificial.',
+        features: ['Gerador de Copies & Banners IA', 'Modelos para Negócios Locais', 'Exportação para Meta Ads e Google Ads', 'Calendário de Postagens'],
+        detailsContent: 'Acelere as vendas das 18 verticais com anúncios gerados por inteligência artificial.',
+        technicalHighlights: ['Image Generation AI', 'Persuasive Copy Engine', 'Multi-Platform Export'],
+        targetAudience: 'Marketing de empresas locais, corretores, barbearias e e-commerce.',
+        whatsappMessage: 'Olá HelpUS! Tenho interesse no HelpUS Marketing AI.'
+      },
+      'helpus-app': {
+        name: 'HelpUS SuperApp Portal',
+        subtitle: 'Portal Mobile First PWA para Consumidor Final',
+        description: 'Aplicativo unificado para o cliente final agendar serviços, fazer pedidos, consultar imóveis e pagar via PIX.',
+        features: ['Experiência Mobile PWA Nativa', 'Agendamentos & Pedidos Unificados', 'Checkout PIX em 1-Clique', 'Busca por Voz Integrada'],
+        detailsContent: 'SuperApp que conecta o consumidor final a todos os estabelecimentos do ecossistema HelpUS.',
+        technicalHighlights: ['PWA Offline Support', 'Cross-Domain SSO', 'Voice SDK Embed'],
+        targetAudience: 'Consumidores finais e clientes de estabelecimentos parceiros.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de baixar o SuperApp.'
       }
     }
   },
