@@ -27,7 +27,6 @@ import {
   TrendingUp,
   Play,
   CheckCircle2,
-  ArrowRight,
   Brain,
   Volume2,
   Presentation,
@@ -858,449 +857,435 @@ export function App() {
       {/* Main Content Area */}
       <main>
         {selectedAppId && selectedAppObj ? (
-          /* FULL-PAGE PRESENTATION DETAIL VIEW */
+          /* TIER 3: FULL-PAGE DEDICATED PRESENTATION VIEW FOR SPECIFIC APPLICATION */
           <div className="hub-container py-12">
             <button
               onClick={navigateBackToCatalog}
-              className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-xs hover:bg-slate-100 mb-6 flex items-center gap-2 shadow-sm transition-all"
+              className="px-5 py-2.5 rounded-2xl bg-white border border-slate-200 text-slate-800 font-bold text-xs hover:bg-slate-100 mb-8 flex items-center gap-2 shadow-sm transition-all"
             >
               <ArrowLeft className="w-4 h-4 text-blue-600" />
               <span>{t.fullPageDetails.backBtn}</span>
             </button>
 
-            <div className="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-xl space-y-8">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-slate-100">
-                <div className="space-y-2">
-                  <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-600 border border-blue-200 font-bold text-xs uppercase tracking-wider">
-                    {selectedAppObj.status}
-                  </span>
-                  <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-sans">
-                    {(t.apps[selectedAppObj.id] || { name: selectedAppObj.id }).name}
-                  </h1>
-                  <p className="text-slate-600 text-base font-medium max-w-2xl">
-                    {(t.apps[selectedAppObj.id] || { subtitle: '' }).subtitle}
-                  </p>
-                </div>
-
-                <a
-                  href={selectedAppObj.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-md shadow-blue-600/30 flex items-center justify-center gap-2 transition-all transform active:scale-95 shrink-0"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  <span>{t.fullPageDetails.launchRealApp}</span>
-                </a>
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                <div className="aspect-[16/10] rounded-2xl overflow-hidden border border-slate-200 shadow-md bg-slate-900 relative group">
-                  <img
-                    src={selectedAppObj.image}
-                    alt={(t.apps[selectedAppObj.id] || { name: selectedAppObj.id }).name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-blue-600 mb-2">
-                      {t.fullPageDetails.overviewTitle}
-                    </h3>
-                    <p className="text-slate-700 text-sm leading-relaxed">
-                      {(t.apps[selectedAppObj.id] || { detailsContent: '' }).detailsContent}
+              <div className="bg-white rounded-3xl p-8 sm:p-14 border border-slate-200 shadow-2xl space-y-10">
+                {/* Header Showcase */}
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-slate-200">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2">
+                      <span className="px-3.5 py-1 rounded-full bg-blue-50 text-blue-600 border border-blue-200 font-extrabold text-xs uppercase tracking-wider">
+                        {selectedAppObj.status}
+                      </span>
+                      <span className="text-xs font-bold text-slate-500">
+                        Subdomínio Oficial: <strong className="text-blue-600">{selectedAppObj.domain}</strong>
+                      </span>
+                    </div>
+                    <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-sans tracking-tight">
+                      {(t.apps[selectedAppObj.id] || { name: selectedAppObj.id }).name}
+                    </h1>
+                    <p className="text-slate-600 text-base sm:text-lg font-medium max-w-3xl leading-relaxed">
+                      {(t.apps[selectedAppObj.id] || { subtitle: '' }).subtitle}
                     </p>
                   </div>
 
-                  <div>
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-slate-900 mb-3">
-                      {t.fullPageDetails.keyCapabilitiesTitle}
-                    </h3>
-                    <ul className="space-y-2.5">
-                      {(t.apps[selectedAppObj.id] || { features: [] }).features.map((feat, idx) => (
-                        <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 font-medium">
-                          <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
-                          <span>{feat}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+                    <a
+                      href={selectedAppObj.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-7 py-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-xl shadow-blue-600/30 flex items-center justify-center gap-2 transition-all transform active:scale-95"
+                    >
+                      <ExternalLink className="w-4.5 h-4.5" />
+                      <span>{t.fullPageDetails.launchRealApp}</span>
+                    </a>
+
+                    <a
+                      href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent((t.apps[selectedAppObj.id] || { whatsappMessage: 'Olá HelpUS!' }).whatsappMessage)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-6 py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 transition-all"
+                    >
+                      <span>Falar no WhatsApp</span>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Main Media & Narrative Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+                  <div className="space-y-6">
+                    <div className="aspect-[16/10] rounded-3xl overflow-hidden border border-slate-200 shadow-xl bg-slate-900 relative group">
+                      <img
+                        src={selectedAppObj.image}
+                        alt={(t.apps[selectedAppObj.id] || { name: selectedAppObj.id }).name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+                      <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-white/90 backdrop-blur-md border border-white/40 text-xs font-bold text-slate-800">
+                        <span>Demonstração do Sistema — {selectedAppObj.domain}</span>
+                      </div>
+                    </div>
+
+                    <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+                      <h4 className="text-xs font-extrabold uppercase tracking-widest text-slate-900">
+                        {t.fullPageDetails.targetAudienceTitle}
+                      </h4>
+                      <p className="text-xs text-slate-700 leading-relaxed font-medium">
+                        {(t.apps[selectedAppObj.id] || { targetAudience: '' }).targetAudience}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-8">
+                    <div>
+                      <h3 className="text-xs font-extrabold uppercase tracking-widest text-blue-600 mb-3">
+                        {t.fullPageDetails.overviewTitle}
+                      </h3>
+                      <p className="text-slate-700 text-base leading-relaxed font-medium">
+                        {(t.apps[selectedAppObj.id] || { detailsContent: '' }).detailsContent}
+                      </p>
+                      <p className="text-slate-600 text-sm leading-relaxed mt-3">
+                        {(t.apps[selectedAppObj.id] || { description: '' }).description}
+                      </p>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-xs font-extrabold uppercase tracking-widest text-slate-900">
+                        {t.fullPageDetails.keyCapabilitiesTitle}
+                      </h3>
+                      <ul className="space-y-3">
+                        {(t.apps[selectedAppObj.id] || { features: [] }).features.map((feat, idx) => (
+                          <li key={idx} className="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-800 font-semibold">
+                            <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                            <span>{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="space-y-3 pt-2">
+                      <h3 className="text-xs font-extrabold uppercase tracking-widest text-slate-900">
+                        {t.fullPageDetails.technicalArchitecture}
+                      </h3>
+                      <div className="flex flex-wrap gap-2">
+                        {(t.apps[selectedAppObj.id] || { technicalHighlights: [] }).technicalHighlights.map((tech, idx) => (
+                          <span key={idx} className="px-3 py-1.5 rounded-lg bg-blue-50 text-blue-700 border border-blue-200 text-[11px] font-bold">
+                            ⚡ {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        ) : (
-          /* HOMEPAGE ENXUTA & VISUAL (LEAN HOMEPAGE STREAM) */
+          ) : (
+          /* HOMEPAGE INSTITUCIONAL CORPORATIVA (TIER 1 & TIER 2) */
           <>
-            {/* Dynamic Hero with Interactive Video & Ambient Visuals */}
-            <section className="py-20 md:py-28 relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-[#f8fafc] border-b border-slate-200">
-              <div className="hub-container relative z-10 text-center space-y-8 max-w-4xl mx-auto">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold tracking-widest uppercase shadow-sm">
-                  <Sparkles className="w-4 h-4 text-blue-600" />
-                  {t.hero.badge}
-                </div>
+            {/* TIER 1 - HERO INSTITUCIONAL DE APRESENTAÇÃO DA EMPRESA */}
+            <section id="a-empresa" className="py-20 md:py-32 relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-[#f8fafc] border-b border-slate-200">
+              <div className="hub-container relative z-10 space-y-12 max-w-5xl mx-auto text-center">
+                
+                <div className="space-y-6">
+                  <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-extrabold tracking-widest uppercase shadow-sm">
+                    <Sparkles className="w-4 h-4 text-blue-600" />
+                    <span>Engenharia de Software Sob Medida & Orquestração de I.A.</span>
+                  </div>
 
-                <div className="space-y-4">
                   <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 font-sans tracking-tight leading-tight">
-                    {t.hero.title}
+                    HelpUS Technology Solutions
                   </h1>
-                  <p className="text-base sm:text-xl text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
-                    {t.hero.subtitle}
+
+                  <p className="text-base sm:text-xl text-slate-600 font-medium max-w-3xl mx-auto leading-relaxed">
+                    Desenvolvemos ecossistemas corporativos inteligentes, automação autônoma no WhatsApp, sistemas web sob medida e orquestração de Inteligência Artificial para alavancar empresas de alta performance.
                   </p>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-                  <a
-                    href="#categorias-matriz"
-                    className="px-7 py-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-xl shadow-blue-600/30 flex items-center gap-2.5 transition-all transform active:scale-95"
-                  >
-                    <span>{t.hero.exploreBtn}</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </a>
+                {/* Video Presentation Banner Showcase Card */}
+                <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl bg-slate-900 max-w-4xl mx-auto group">
+                  <img
+                    src="/images/helpus_hero_futuristic.jpg"
+                    alt="HelpUS Technology Presentation"
+                    className="w-full h-[340px] sm:h-[440px] object-cover opacity-70 group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
 
-                  <button
-                    onClick={() => setVideoModalOpen(true)}
-                    className="px-7 py-4 rounded-2xl bg-white hover:bg-slate-100 text-slate-900 border border-slate-200 font-bold text-sm shadow-md flex items-center gap-2.5 transition-all transform active:scale-95"
-                  >
-                    <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center">
-                      <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 space-y-6 text-white z-10">
+                    <button
+                      onClick={() => setVideoModalOpen(true)}
+                      className="w-20 h-20 rounded-full bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center shadow-2xl shadow-blue-600/50 transition-all transform hover:scale-110 active:scale-95"
+                    >
+                      <Play className="w-8 h-8 fill-current ml-1" />
+                    </button>
+
+                    <div className="space-y-2">
+                      <span className="text-xs font-bold uppercase tracking-widest text-blue-400">Vídeo Institucional</span>
+                      <h3 className="text-2xl sm:text-3xl font-extrabold text-white">Conheça Nossas Soluções & Engenharia em Ação</h3>
+                      <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto">
+                        Clique para assistir à demonstração da nossa infraestrutura, robôs de atendimento e plataformas corporativas.
+                      </p>
                     </div>
-                    <span>{t.hero.watchVideo}</span>
-                  </button>
-
-                  <button
-                    onClick={() => setEcosystemModalOpen(true)}
-                    className="px-6 py-4 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm border border-slate-200 flex items-center gap-2 transition-all"
-                  >
-                    <Globe2 className="w-4 h-4 text-blue-600" />
-                    <span>{t.nav.allSites}</span>
-                  </button>
+                  </div>
                 </div>
+
+                {/* Corporate Pillars Metrics */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-4">
+                  <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm text-center space-y-1">
+                    <span className="text-3xl font-extrabold text-blue-600">15+</span>
+                    <p className="text-xs font-bold text-slate-700">Subdomínios Ativos no Ar</p>
+                  </div>
+                  <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm text-center space-y-1">
+                    <span className="text-3xl font-extrabold text-indigo-600">24/7</span>
+                    <p className="text-xs font-bold text-slate-700">Atendimento Autônomo com IA</p>
+                  </div>
+                  <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm text-center space-y-1">
+                    <span className="text-3xl font-extrabold text-emerald-600">100%</span>
+                    <p className="text-xs font-bold text-slate-700">Infraestrutura Serverless</p>
+                  </div>
+                  <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm text-center space-y-1">
+                    <span className="text-3xl font-extrabold text-purple-600">0s</span>
+                    <p className="text-xs font-bold text-slate-700">Sem Retrabalho de Redigitação</p>
+                  </div>
+                </div>
+
               </div>
             </section>
 
-            {/* 1. SEÇÃO DE DESTAQUE: SOLUÇÕES DE INTELIGÊNCIA ARTIFICIAL (DERIVADAS DO MBA & DESENVOLVIMENTOS RECENTES) */}
-            <section className="py-16 md:py-24 bg-white border-b border-slate-200">
-              <div className="hub-container space-y-12">
+            {/* TIER 2A - SEÇÃO DE APRESENTAÇÃO DE SOLUÇÕES DE INTELIGÊNCIA ARTIFICIAL */}
+            <section id="solucoes-ia" className="py-20 md:py-28 bg-white border-b border-slate-200">
+              <div className="hub-container space-y-16">
                 <div className="text-center space-y-4 max-w-3xl mx-auto">
-                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider">
-                    <Sparkles className="w-4 h-4 text-blue-600" />
-                    <span>Inovações Recentes de Inteligência Artificial</span>
-                  </div>
+                  <span className="px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-extrabold uppercase tracking-wider">
+                    Suíte de Inteligência Artificial Corporativa
+                  </span>
                   <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-sans tracking-tight">
-                    Soluções de I.A. Aplicadas ao Seu Negócio
+                    Apresentação das Soluções de I.A.
                   </h2>
                   <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                    Ferramentas desenvolvidas com base nas mais recentes metodologias de IA corporativa: automação sem retrabalho, agentes 24/7 no WhatsApp, síntese neural de voz e pesquisas verificáveis.
+                    Apresentação detalhada de cada módulo de inteligência artificial desenvolvido para automação corporativa, atendimento ao cliente e síntese de conteúdo.
                   </p>
                 </div>
 
-                {/* Grid Visual de Produtos de IA (Sem banners escuros gigantes) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Vertical Visual Presentations for AI Products */}
+                <div className="space-y-12">
                   
-                  {/* Card 1: HelpUS Voice */}
-                  <div className="bg-slate-50 hover:bg-white rounded-3xl p-7 border border-slate-200 hover:border-blue-500 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-6 group">
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div className="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-md shadow-blue-600/30 group-hover:scale-110 transition-transform">
-                          <Volume2 className="w-6 h-6" />
-                        </div>
-                        <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 font-bold text-[11px]">
-                          voice.helpusbr.com
-                        </span>
-                      </div>
-
-                      <div>
-                        <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors">
-                          HelpUS Voice SaaS
-                        </h3>
-                        <p className="text-xs font-bold text-blue-600 mt-0.5">
-                          Estúdio de Gerador de Áudio Neural por IA
-                        </p>
-                      </div>
-
-                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                        Gere vinhetas de vendas e mensagens de voz ultra-realistas enviadas direto no WhatsApp sem precisar gravar áudio manualmente. Inclui modelos de 1-clique para barbearias, imóveis e atendimento.
-                      </p>
-
-                      <div className="flex flex-wrap gap-1.5 pt-1">
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">Vozes Neurais MP3</span>
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">Presets de Vendas</span>
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">Sem Gravação Manual</span>
+                  {/* Presentation Item 1: HelpUS Voice */}
+                  <div className="bg-slate-50 rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-sm grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div className="aspect-[16/10] rounded-2xl overflow-hidden border border-slate-200 shadow-md bg-slate-900 relative">
+                      <img src="/images/helpus_hero_futuristic.jpg" alt="HelpUS Voice" className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-blue-900/20"></div>
+                      <div className="absolute bottom-4 left-4 p-3 rounded-xl bg-white/90 backdrop-blur-md text-xs font-bold text-slate-900">
+                        <span>voice.helpusbr.com</span>
                       </div>
                     </div>
 
-                    <div className="pt-4 border-t border-slate-200 flex items-center gap-3">
-                      <a
-                        href="https://voice.helpusbr.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md shadow-blue-600/30 flex items-center justify-center gap-1.5 transition-all"
-                      >
-                        <span>Acessar Plataforma</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-                      <button
-                        onClick={() => navigateToDetail('helpus-voice')}
-                        className="px-4 py-3 rounded-xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold text-xs transition-all"
-                      >
-                        Recursos
-                      </button>
+                    <div className="space-y-5">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 font-extrabold text-xs">
+                        <Volume2 className="w-4 h-4" />
+                        <span>Síntese Neural de Voz</span>
+                      </div>
+
+                      <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+                        HelpUS Voice SaaS — Estúdio de Áudio Neural
+                      </h3>
+
+                      <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        Gerador de áudios e vinhetas neurais ultra-realistas. Crie mensagens de vendas e avisos de confirmação enviados diretamente no WhatsApp sem precisar gravar voz manualmente. Inclui modelos prontos de 1 clique para barbearias, imobiliárias e suporte.
+                      </p>
+
+                      <div className="space-y-2 pt-1">
+                        <p className="text-xs font-extrabold uppercase text-slate-900 tracking-wider">Principais Recursos:</p>
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700 font-semibold">
+                          <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-600" /> Vozes Neurais Ultra-Realistas</li>
+                          <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-600" /> Exportação MP3 em Menos de 2s</li>
+                          <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-600" /> Presets Barbearia & Imóveis</li>
+                          <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-blue-600" /> Envio Direto para WhatsApp</li>
+                        </ul>
+                      </div>
+
+                      <div className="pt-4 flex flex-wrap items-center gap-3">
+                        <button
+                          onClick={() => navigateToDetail('helpus-voice')}
+                          className="px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md shadow-blue-600/30 flex items-center gap-2 transition-all"
+                        >
+                          <Search className="w-4 h-4" />
+                          <span>Ver Apresentação Dedicada da Solução</span>
+                        </button>
+
+                        <a
+                          href="https://voice.helpusbr.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 font-bold text-xs flex items-center gap-2 transition-all"
+                        >
+                          <ExternalLink className="w-4 h-4 text-blue-600" />
+                          <span>Acessar Aplicação no Ar</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Card 2: HelpUS AI Agent */}
-                  <div className="bg-slate-50 hover:bg-white rounded-3xl p-7 border border-slate-200 hover:border-blue-500 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-6 group">
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div className="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-md shadow-indigo-600/30 group-hover:scale-110 transition-transform">
-                          <Bot className="w-6 h-6" />
-                        </div>
-                        <span className="px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 font-bold text-[11px]">
-                          agent.helpusbr.com
-                        </span>
+                  {/* Presentation Item 2: HelpUS AI Agent */}
+                  <div className="bg-slate-50 rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-sm grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div className="space-y-5 order-2 lg:order-1">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 font-extrabold text-xs">
+                        <Bot className="w-4 h-4" />
+                        <span>Automação WhatsApp 24/7</span>
                       </div>
 
-                      <div>
-                        <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors">
-                          HelpUS AI Agent
-                        </h3>
-                        <p className="text-xs font-bold text-indigo-600 mt-0.5">
-                          Atendimento Autônomo 24/7 no WhatsApp
-                        </p>
-                      </div>
+                      <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+                        HelpUS AI Agent — Atendente Virtual Autônomo
+                      </h3>
 
-                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                        Atendente virtual autônomo que entende o contexto do negócio, responde dúvidas sobre produtos/preços, qualifica leads e realiza agendamentos automaticamente sem parar.
+                      <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        Central de atendentes virtuais que atendem no WhatsApp 24h por dia sem pausa. O agente entende o contexto do seu negócio, tira dúvidas de preços, qualifica leads e realiza agendamentos automaticamente.
                       </p>
 
-                      <div className="flex flex-wrap gap-1.5 pt-1">
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">WhatsApp 24/7</span>
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">Qualificação de Leads</span>
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">Agendamento Direct</span>
+                      <div className="space-y-2 pt-1">
+                        <p className="text-xs font-extrabold uppercase text-slate-900 tracking-wider">Principais Recursos:</p>
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700 font-semibold">
+                          <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-indigo-600" /> Atendimento 24h sem Parar</li>
+                          <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-indigo-600" /> Qualificação Automática de Leads</li>
+                          <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-indigo-600" /> Agendamento e Confirmação</li>
+                          <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-indigo-600" /> WhatsApp Cloud API Integrado</li>
+                        </ul>
+                      </div>
+
+                      <div className="pt-4 flex flex-wrap items-center gap-3">
+                        <button
+                          onClick={() => navigateToDetail('helpus-agent')}
+                          className="px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-md shadow-indigo-600/30 flex items-center gap-2 transition-all"
+                        >
+                          <Search className="w-4 h-4" />
+                          <span>Ver Apresentação Dedicada da Solução</span>
+                        </button>
+
+                        <a
+                          href="https://agent.helpusbr.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 font-bold text-xs flex items-center gap-2 transition-all"
+                        >
+                          <ExternalLink className="w-4 h-4 text-indigo-600" />
+                          <span>Acessar Aplicação no Ar</span>
+                        </a>
                       </div>
                     </div>
 
-                    <div className="pt-4 border-t border-slate-200 flex items-center gap-3">
-                      <a
-                        href="https://agent.helpusbr.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-md shadow-indigo-600/30 flex items-center justify-center gap-1.5 transition-all"
-                      >
-                        <span>Acessar Plataforma</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-                      <button
-                        onClick={() => navigateToDetail('helpus-agent')}
-                        className="px-4 py-3 rounded-xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold text-xs transition-all"
-                      >
-                        Recursos
-                      </button>
+                    <div className="aspect-[16/10] rounded-2xl overflow-hidden border border-slate-200 shadow-md bg-slate-900 relative order-1 lg:order-2">
+                      <img src="/images/helpus_dev_ui.jpg" alt="HelpUS AI Agent" className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-indigo-900/20"></div>
+                      <div className="absolute bottom-4 left-4 p-3 rounded-xl bg-white/90 backdrop-blur-md text-xs font-bold text-slate-900">
+                        <span>agent.helpusbr.com</span>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Card 3: HelpUS Universal Search */}
-                  <div className="bg-slate-50 hover:bg-white rounded-3xl p-7 border border-slate-200 hover:border-blue-500 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-6 group">
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div className="w-12 h-12 rounded-2xl bg-cyan-600 text-white flex items-center justify-center shadow-md shadow-cyan-600/30 group-hover:scale-110 transition-transform">
-                          <Search className="w-6 h-6" />
-                        </div>
-                        <span className="px-3 py-1 rounded-full bg-cyan-100 text-cyan-700 font-bold text-[11px]">
-                          search.helpusbr.com
-                        </span>
-                      </div>
-
-                      <div>
-                        <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-cyan-600 transition-colors">
-                          HelpUS Search AI
-                        </h3>
-                        <p className="text-xs font-bold text-cyan-600 mt-0.5">
-                          Pesquisa Verificável com Fontes [1], [2]
-                        </p>
-                      </div>
-
-                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                        Motor de pesquisa que varre a web em tempo real e entrega resumos executivos com citações numéricas de fontes verificadas. Substitua buscas manuais no Google por inteligência estratégica.
-                      </p>
-
-                      <div className="flex flex-wrap gap-1.5 pt-1">
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">Citações Numéricas</span>
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">Busca em Tempo Real</span>
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">Fontes Verificadas</span>
+                  {/* Presentation Item 3: HelpUS Search AI */}
+                  <div className="bg-slate-50 rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-sm grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div className="aspect-[16/10] rounded-2xl overflow-hidden border border-slate-200 shadow-md bg-slate-900 relative">
+                      <img src="/images/helpus_hero_futuristic.jpg" alt="HelpUS Search AI" className="w-full h-full object-cover" />
+                      <div className="absolute bottom-4 left-4 p-3 rounded-xl bg-white/90 backdrop-blur-md text-xs font-bold text-slate-900">
+                        <span>search.helpusbr.com</span>
                       </div>
                     </div>
 
-                    <div className="pt-4 border-t border-slate-200 flex items-center gap-3">
-                      <a
-                        href="https://search.helpusbr.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs shadow-md shadow-cyan-600/30 flex items-center justify-center gap-1.5 transition-all"
-                      >
-                        <span>Acessar Plataforma</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-                      <button
-                        onClick={() => navigateToDetail('helpus-search')}
-                        className="px-4 py-3 rounded-xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold text-xs transition-all"
-                      >
-                        Recursos
-                      </button>
+                    <div className="space-y-5">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 text-cyan-700 font-extrabold text-xs">
+                        <Search className="w-4 h-4" />
+                        <span>Pesquisa Verificável</span>
+                      </div>
+
+                      <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+                        HelpUS Search AI — Pesquisas Verificáveis com Fontes
+                      </h3>
+
+                      <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        Motor de inteligência de mercado que varre a internet em tempo real e entrega resumos executivos acompanhados de fontes e citações numéricas [1], [2]. Substitua a pesquisa tradicional por dados estratégicos verificados.
+                      </p>
+
+                      <div className="space-y-2 pt-1">
+                        <p className="text-xs font-extrabold uppercase text-slate-900 tracking-wider">Principais Recursos:</p>
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700 font-semibold">
+                          <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-cyan-600" /> Citações Numéricas [1], [2]</li>
+                          <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-cyan-600" /> Varredura Web em Tempo Real</li>
+                          <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-cyan-600" /> Resumos Estratégicos de Mercado</li>
+                          <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-cyan-600" /> Filtros por Segmentos do Ecossistema</li>
+                        </ul>
+                      </div>
+
+                      <div className="pt-4 flex flex-wrap items-center gap-3">
+                        <button
+                          onClick={() => navigateToDetail('helpus-search')}
+                          className="px-6 py-3.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs shadow-md shadow-cyan-600/30 flex items-center gap-2 transition-all"
+                        >
+                          <Search className="w-4 h-4" />
+                          <span>Ver Apresentação Dedicada da Solução</span>
+                        </button>
+
+                        <a
+                          href="https://search.helpusbr.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 font-bold text-xs flex items-center gap-2 transition-all"
+                        >
+                          <ExternalLink className="w-4 h-4 text-cyan-600" />
+                          <span>Acessar Aplicação no Ar</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Card 4: HelpUS AI Slides */}
-                  <div className="bg-slate-50 hover:bg-white rounded-3xl p-7 border border-slate-200 hover:border-blue-500 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-6 group">
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div className="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center shadow-md shadow-amber-500/30 group-hover:scale-110 transition-transform">
-                          <Presentation className="w-6 h-6" />
-                        </div>
-                        <span className="px-3 py-1 rounded-full bg-amber-100 text-amber-700 font-bold text-[11px]">
-                          slides.helpusbr.com
-                        </span>
+                  {/* Presentation Item 4: HelpUS AI Slides */}
+                  <div className="bg-slate-50 rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-sm grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div className="space-y-5 order-2 lg:order-1">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-amber-700 font-extrabold text-xs">
+                        <Presentation className="w-4 h-4" />
+                        <span>Gerador Automático de Slides</span>
                       </div>
 
-                      <div>
-                        <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-amber-600 transition-colors">
-                          HelpUS AI Slides
-                        </h3>
-                        <p className="text-xs font-bold text-amber-600 mt-0.5">
-                          Gerador Automático de Apresentações
-                        </p>
-                      </div>
+                      <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+                        HelpUS AI Slides — Apresentações Comerciais em Segundos
+                      </h3>
 
-                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                        Transforme briefings simples em texto ou listas de produtos em apresentações comerciais e propostas de venda visuais prontas em formato PDF em poucos segundos.
+                      <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        Transforme briefings simples em texto ou listas de especificações em apresentações visuais e propostas de venda completas prontas em formato PDF em poucos segundos.
                       </p>
 
-                      <div className="flex flex-wrap gap-1.5 pt-1">
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">Geração em Segundos</span>
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">Propostas Visuais</span>
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">Exportação PDF</span>
+                      <div className="space-y-2 pt-1">
+                        <p className="text-xs font-extrabold uppercase text-slate-900 tracking-wider">Principais Recursos:</p>
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700 font-semibold">
+                          <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-amber-600" /> Geração de Slides a partir de Texto</li>
+                          <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-amber-600" /> Propostas Comerciais Visuais</li>
+                          <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-amber-600" /> Exportação Direta em PDF</li>
+                          <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-amber-600" /> Zero Necessidade de PowerPoint</li>
+                        </ul>
+                      </div>
+
+                      <div className="pt-4 flex flex-wrap items-center gap-3">
+                        <button
+                          onClick={() => navigateToDetail('helpus-slides')}
+                          className="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-white font-bold text-xs shadow-md shadow-amber-500/30 flex items-center gap-2 transition-all"
+                        >
+                          <Search className="w-4 h-4" />
+                          <span>Ver Apresentação Dedicada da Solução</span>
+                        </button>
+
+                        <a
+                          href="https://slides.helpusbr.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 font-bold text-xs flex items-center gap-2 transition-all"
+                        >
+                          <ExternalLink className="w-4 h-4 text-amber-600" />
+                          <span>Acessar Aplicação no Ar</span>
+                        </a>
                       </div>
                     </div>
 
-                    <div className="pt-4 border-t border-slate-200 flex items-center gap-3">
-                      <a
-                        href="https://slides.helpusbr.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-white font-bold text-xs shadow-md shadow-amber-500/30 flex items-center justify-center gap-1.5 transition-all"
-                      >
-                        <span>Acessar Plataforma</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-                      <button
-                        onClick={() => navigateToDetail('helpus-slides')}
-                        className="px-4 py-3 rounded-xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold text-xs transition-all"
-                      >
-                        Recursos
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Card 5: HelpUS Developer Docs / Base de Conhecimento */}
-                  <div className="bg-slate-50 hover:bg-white rounded-3xl p-7 border border-slate-200 hover:border-blue-500 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-6 group">
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div className="w-12 h-12 rounded-2xl bg-purple-600 text-white flex items-center justify-center shadow-md shadow-purple-600/30 group-hover:scale-110 transition-transform">
-                          <Code2 className="w-6 h-6" />
-                        </div>
-                        <span className="px-3 py-1 rounded-full bg-purple-100 text-purple-700 font-bold text-[11px]">
-                          docs.helpusbr.com
-                        </span>
+                    <div className="aspect-[16/10] rounded-2xl overflow-hidden border border-slate-200 shadow-md bg-slate-900 relative order-1 lg:order-2">
+                      <img src="/images/helpus_events.jpg" alt="HelpUS AI Slides" className="w-full h-full object-cover" />
+                      <div className="absolute bottom-4 left-4 p-3 rounded-xl bg-white/90 backdrop-blur-md text-xs font-bold text-slate-900">
+                        <span>slides.helpusbr.com</span>
                       </div>
-
-                      <div>
-                        <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-purple-600 transition-colors">
-                          HelpUS Knowledge & Docs
-                        </h3>
-                        <p className="text-xs font-bold text-purple-600 mt-0.5">
-                          IA Treinada em PDFs sem Retrabalho
-                        </p>
-                      </div>
-
-                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                        Carregue PDFs, manuais e tabelas de preço da sua empresa uma única vez. O assistente responde estritamente conforme suas regras de negócio sem que você precise digitar o contexto repetidamente.
-                      </p>
-
-                      <div className="flex flex-wrap gap-1.5 pt-1">
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">Treinamento com PDFs</span>
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">Zero Retrabalho</span>
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">Documentação API</span>
-                      </div>
-                    </div>
-
-                    <div className="pt-4 border-t border-slate-200 flex items-center gap-3">
-                      <a
-                        href="https://docs.helpusbr.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shadow-md shadow-purple-600/30 flex items-center justify-center gap-1.5 transition-all"
-                      >
-                        <span>Acessar Plataforma</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-                      <button
-                        onClick={() => navigateToDetail('helpus-docs')}
-                        className="px-4 py-3 rounded-xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold text-xs transition-all"
-                      >
-                        Recursos
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Card 6: NexosAI Cloud Mesh */}
-                  <div className="bg-slate-50 hover:bg-white rounded-3xl p-7 border border-slate-200 hover:border-blue-500 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-6 group">
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shadow-md shadow-emerald-600/30 group-hover:scale-110 transition-transform">
-                          <Brain className="w-6 h-6" />
-                        </div>
-                        <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 font-bold text-[11px]">
-                          nexoai.helpusbr.com
-                        </span>
-                      </div>
-
-                      <div>
-                        <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-emerald-600 transition-colors">
-                          NexosAI Cloud Mesh
-                        </h3>
-                        <p className="text-xs font-bold text-emerald-600 mt-0.5">
-                          Orquestrador de Agentes & Modelos Locais
-                        </p>
-                      </div>
-
-                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                        Orquestração avançada de agentes virtuais autônomos com suporte híbrido a LLMs em nuvem (GPT-4o, DeepSeek) e nós locais com total privacidade (Ollama).
-                      </p>
-
-                      <div className="flex flex-wrap gap-1.5 pt-1">
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">Multi-Agentes 24/7</span>
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">Modelos Ollama Locais</span>
-                        <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 text-[11px] font-semibold">Privacidade RAG</span>
-                      </div>
-                    </div>
-
-                    <div className="pt-4 border-t border-slate-200 flex items-center gap-3">
-                      <a
-                        href="https://nexoai.helpusbr.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md shadow-emerald-600/30 flex items-center justify-center gap-1.5 transition-all"
-                      >
-                        <span>Acessar Plataforma</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-                      <button
-                        onClick={() => navigateToDetail('nexosai')}
-                        className="px-4 py-3 rounded-xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold text-xs transition-all"
-                      >
-                        Recursos
-                      </button>
                     </div>
                   </div>
 
@@ -1308,107 +1293,168 @@ export function App() {
               </div>
             </section>
 
-            {/* 2. SEÇÃO DE INFRAESTRUTURA CORPORATIVA & PAGAMENTOS */}
-            <section className="py-16 bg-slate-100 border-b border-slate-200">
-              <div className="hub-container space-y-8">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div>
-                    <span className="text-xs font-bold uppercase tracking-widest text-blue-600">Infraestrutura Corporativa</span>
-                    <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-sans">
-                      Gateways, Autenticação & Gestão
-                    </h2>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {/* HelpUS Pay Engine */}
-                  <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all space-y-4">
-                    <div className="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center">
-                      <Zap className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className="text-base font-extrabold text-slate-900">HelpUS Pay Engine</h4>
-                      <p className="text-xs text-slate-600 mt-1">Cobrança de mensalidades e PIX QR Code instantâneo.</p>
-                    </div>
-                    <a href="https://pay.helpusbr.com" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-amber-600 hover:text-amber-700 flex items-center gap-1">
-                      Acessar pay.helpusbr.com ➔
-                    </a>
-                  </div>
-
-                  {/* HelpUS Auth SSO */}
-                  <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all space-y-4">
-                    <div className="w-10 h-10 rounded-xl bg-rose-600 text-white flex items-center justify-center">
-                      <Lock className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className="text-base font-extrabold text-slate-900">HelpUS Auth SSO</h4>
-                      <p className="text-xs text-slate-600 mt-1">Login único seguro para todos os módulos.</p>
-                    </div>
-                    <a href="https://auth.helpusbr.com" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-rose-600 hover:text-rose-700 flex items-center gap-1">
-                      Acessar auth.helpusbr.com ➔
-                    </a>
-                  </div>
-
-                  {/* HelpUS CRM */}
-                  <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all space-y-4">
-                    <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center">
-                      <Briefcase className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className="text-base font-extrabold text-slate-900">HelpUS CRM</h4>
-                      <p className="text-xs text-slate-600 mt-1">Funil Kanban & transição IA/Humano WhatsApp.</p>
-                    </div>
-                    <a href="https://crm.helpusbr.com" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1">
-                      Acessar crm.helpusbr.com ➔
-                    </a>
-                  </div>
-
-                  {/* HelpUS Admin */}
-                  <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all space-y-4">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center">
-                      <Activity className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className="text-base font-extrabold text-slate-900">HelpUS Admin</h4>
-                      <p className="text-xs text-slate-600 mt-1">Painel master de uptime e captura de leads.</p>
-                    </div>
-                    <a href="https://admin.helpusbr.com" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-emerald-600 hover:text-emerald-700 flex items-center gap-1">
-                      Acessar admin.helpusbr.com ➔
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* 3. SEÇÃO DE CATEGORIAS ORGANIZADAS (Navegação em Camadas) */}
-            <section id="categorias-matriz" className="py-20 bg-[#f8fafc]">
-              <div className="hub-container space-y-12">
-                <div className="text-center space-y-3 max-w-2xl mx-auto">
-                  <span className="text-xs font-bold uppercase tracking-widest text-blue-600">Rede de Soluções</span>
-                  <h2 className="text-3xl font-extrabold text-slate-900 font-sans">
-                    Sistemas Setoriais & Clientes
+            {/* TIER 2B - SEÇÃO DE APRESENTAÇÃO DE INFRAESTRUTURA CORPORATIVA & FINANÇAS */}
+            <section id="infraestrutura" className="py-20 md:py-28 bg-slate-50 border-b border-slate-200">
+              <div className="hub-container space-y-16">
+                <div className="text-center space-y-4 max-w-3xl mx-auto">
+                  <span className="px-3.5 py-1.5 rounded-full bg-slate-200 text-slate-800 text-xs font-extrabold uppercase tracking-wider">
+                    Gateways, Autenticação & Gestão
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-sans tracking-tight">
+                    Infraestrutura Corporativa & Finanças
                   </h2>
-                  <p className="text-slate-600 text-sm">
-                    Clique em uma divisão para explorar os sistemas de cada área de atuação ou acessar diretamente o subdomínio.
+                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    Central de pagamentos recorrentes, autenticação única SSO, gestão de leads e monitoramento master de disponibilidade do ecossistema.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {/* Pay Engine Showcase */}
+                  <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-5 flex flex-col justify-between">
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center shadow-md">
+                          <Zap className="w-6 h-6" />
+                        </div>
+                        <span className="px-3 py-1 rounded-full bg-amber-50 text-amber-700 font-extrabold text-xs border border-amber-200">
+                          pay.helpusbr.com
+                        </span>
+                      </div>
+
+                      <h3 className="text-2xl font-extrabold text-slate-900">HelpUS Pay Engine</h3>
+                      <p className="text-slate-600 text-sm leading-relaxed">
+                        Infraestrutura central de pagamentos, cobrança recorrente de mensalidades, faturas corporativas e emissão dinâmica de PIX QR Code instantâneo com conciliação automática.
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                      <button onClick={() => navigateToDetail('helpus-pay')} className="text-xs font-bold text-slate-700 hover:text-blue-600">
+                        Ver Apresentação Dedicada ➔
+                      </button>
+                      <a href="https://pay.helpusbr.com" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-xl bg-amber-500 text-white font-bold text-xs hover:bg-amber-400">
+                        Acessar Aplicação
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Auth SSO Showcase */}
+                  <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-5 flex flex-col justify-between">
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="w-12 h-12 rounded-2xl bg-rose-600 text-white flex items-center justify-center shadow-md">
+                          <Lock className="w-6 h-6" />
+                        </div>
+                        <span className="px-3 py-1 rounded-full bg-rose-50 text-rose-700 font-extrabold text-xs border border-rose-200">
+                          auth.helpusbr.com
+                        </span>
+                      </div>
+
+                      <h3 className="text-2xl font-extrabold text-slate-900">HelpUS Auth Single Sign-On</h3>
+                      <p className="text-slate-600 text-sm leading-relaxed">
+                        Central de Login Único (Single Sign-On) com autenticação criptografada em 256-bit. Permite que clientes e usuários acessem todos os módulos com 1 única conta.
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                      <button onClick={() => navigateToDetail('helpus-auth')} className="text-xs font-bold text-slate-700 hover:text-blue-600">
+                        Ver Apresentação Dedicada ➔
+                      </button>
+                      <a href="https://auth.helpusbr.com" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-xl bg-rose-600 text-white font-bold text-xs hover:bg-rose-500">
+                        Acessar Aplicação
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* CRM Showcase */}
+                  <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-5 flex flex-col justify-between">
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-md">
+                          <Briefcase className="w-6 h-6" />
+                        </div>
+                        <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 font-extrabold text-xs border border-blue-200">
+                          crm.helpusbr.com
+                        </span>
+                      </div>
+
+                      <h3 className="text-2xl font-extrabold text-slate-900">HelpUS CRM Omnichannel</h3>
+                      <p className="text-slate-600 text-sm leading-relaxed">
+                        Gestão unificada de leads capturados pelos robôs de IA, funil Kanban de vendas e transição suave da resposta automatizada para a equipe de atendimento humano.
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                      <button onClick={() => navigateToDetail('helpus-crm')} className="text-xs font-bold text-slate-700 hover:text-blue-600">
+                        Ver Apresentação Dedicada ➔
+                      </button>
+                      <a href="https://crm.helpusbr.com" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-xl bg-blue-600 text-white font-bold text-xs hover:bg-blue-500">
+                        Acessar Aplicação
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Admin Showcase */}
+                  <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-5 flex flex-col justify-between">
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shadow-md">
+                          <Activity className="w-6 h-6" />
+                        </div>
+                        <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 font-extrabold text-xs border border-emerald-200">
+                          admin.helpusbr.com
+                        </span>
+                      </div>
+
+                      <h3 className="text-2xl font-extrabold text-slate-900">HelpUS Admin Dashboard</h3>
+                      <p className="text-slate-600 text-sm leading-relaxed">
+                        Painel master de controle e inteligência com monitor de disponibilidade de uptime em tempo real dos 18 subdomínios, métricas de latência e relatórios de tendências.
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                      <button onClick={() => navigateToDetail('helpus-admin')} className="text-xs font-bold text-slate-700 hover:text-blue-600">
+                        Ver Apresentação Dedicada ➔
+                      </button>
+                      <a href="https://admin.helpusbr.com" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-xl bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-500">
+                        Acessar Aplicação
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* TIER 2C - SEÇÃO DE APRESENTAÇÃO DE ECOSSISTEMAS SETORIAIS & CLIENTES */}
+            <section id="sistemas-setoriais" className="py-20 md:py-28 bg-white">
+              <div className="hub-container space-y-16">
+                <div className="text-center space-y-4 max-w-3xl mx-auto">
+                  <span className="px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-extrabold uppercase tracking-wider">
+                    Engenharia Setorial & Clientes
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-sans tracking-tight">
+                    Ecossistemas Setoriais Sob Medida
+                  </h2>
+                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    Apresentação dos portais corporativos desenvolvidos para o Mercado Imobiliário, Medicina & Telemedicina, Mobilidade Executiva, Gastronomia e Homenagens Biográficas.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {categoryMatrix.map((cat) => {
                     const CatIcon = cat.icon;
 
                     return (
                       <div
                         key={cat.id}
-                        className="bg-white p-7 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all space-y-6 flex flex-col justify-between group cursor-pointer"
+                        className="bg-slate-50 p-8 rounded-3xl border border-slate-200 hover:border-blue-500 hover:bg-white shadow-sm hover:shadow-xl transition-all space-y-6 flex flex-col justify-between group cursor-pointer"
                         onClick={() => setSelectedCategoryModal(cat.idCategory || cat.id)}
                       >
                         <div className="space-y-4">
                           <div className="flex items-center justify-between">
-                            <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm">
+                            <div className="w-14 h-14 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
                               <CatIcon className="w-7 h-7" />
                             </div>
-                            <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-700 font-bold text-[11px]">
+                            <span className="px-3 py-1 rounded-full bg-white text-slate-700 border border-slate-200 font-bold text-xs">
                               {cat.badge}
                             </span>
                           </div>
@@ -1423,9 +1469,9 @@ export function App() {
                           </div>
                         </div>
 
-                        <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
                           <span className="text-xs font-bold text-blue-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                            Explorar Categoria ➔
+                            Apresentação da Divisão ➔
                           </span>
 
                           <a
@@ -1433,7 +1479,7 @@ export function App() {
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="p-2 rounded-xl bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-700 transition-colors"
+                            className="p-2.5 rounded-xl bg-white hover:bg-blue-600 hover:text-white text-slate-700 border border-slate-200 transition-colors"
                             title="Acessar Plataforma Direta"
                           >
                             <ExternalLink className="w-4 h-4" />
