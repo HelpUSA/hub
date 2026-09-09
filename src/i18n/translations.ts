@@ -296,6 +296,25 @@ export const translations: Record<Language, TranslationSchema> = {
         targetAudience: 'Clientes, parceiros, corretores, médicos e usuários buscando serviços HelpUS.',
         whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre o HelpUS Search Engine.'
       },
+      'helpus-slides': {
+        name: 'HelpUS AI Slides Generator',
+        subtitle: 'Gerador Automático de Apresentações Comerciais & Propostas de Venda em Segundos',
+        description: 'Transforme briefings, textos ou tópicos de produtos em apresentações profissionais e propostas comerciais completas sem gastar horas no PowerPoint.',
+        features: [
+          'Geração de Slides a partir de Briefing em Texto ou Tópicos',
+          'Modelos de Apresentação Comercial Prontos para Vendas',
+          'Exportação em Formato PDF e Apresentação Interativa Web',
+          'Zero Necessidade de Design Manual ou PowerPoint'
+        ],
+        detailsContent: 'O HelpUS AI Slides automatiza a criação de apresentações comerciais e propostas de negócio com design profissional e argumentos persuasivos.',
+        technicalHighlights: [
+          'Motor de Síntese de Conteúdo Visual por IA',
+          'Exportação Vetorial PDF & Layout Responsivo',
+          'Hospedagem SaaS de Alta Disponibilidade em slides.helpusbr.com'
+        ],
+        targetAudience: 'Executivos, equipes de vendas, consultores, corretores e agências.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre o HelpUS AI Slides (slides.helpusbr.com).'
+      },
       'usmle': {
         name: 'USMLE Prep Platform',
         subtitle: 'Sistema de Preparação & Simulados para Revalidação Médica nos EUA',
