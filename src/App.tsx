@@ -32,7 +32,9 @@ import {
   ArrowRight,
   Brain,
   Volume2,
-  Presentation
+  Presentation,
+  Lock,
+  Zap
 } from 'lucide-react';
 
 import { translations, type Language } from './i18n/translations';
@@ -188,6 +190,39 @@ export function App() {
       icon: Activity,
       image: '/images/helpus_dev_ui.jpg',
       folderPath: 'D:\\dev\\AntiG\\helpus-admin',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
+      id: 'helpus-pay',
+      domain: 'pay.helpusbr.com',
+      liveUrl: 'https://pay.helpusbr.com',
+      category: 'tecnologia',
+      icon: Zap,
+      image: '/images/helpus_events.jpg',
+      folderPath: 'D:\\dev\\AntiG\\helpus-pay',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
+      id: 'helpus-docs',
+      domain: 'docs.helpusbr.com',
+      liveUrl: 'https://docs.helpusbr.com',
+      category: 'tecnologia',
+      icon: Code2,
+      image: '/images/helpus_dev_ui.jpg',
+      folderPath: 'D:\\dev\\AntiG\\helpus-docs',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
+      id: 'helpus-auth',
+      domain: 'auth.helpusbr.com',
+      liveUrl: 'https://auth.helpusbr.com',
+      category: 'tecnologia',
+      icon: Lock,
+      image: '/images/helpus_imoveis.jpg',
+      folderPath: 'D:\\dev\\AntiG\\helpus-auth',
       status: 'Plataforma Ativa',
       featured: true
     },
