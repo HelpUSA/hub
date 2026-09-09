@@ -126,5 +126,41 @@ export const PRODUCTS_DATA: Product[] = [
     demoAvailable: true,
     ssoSupported: true,
     subdomain: 'search.helpusbr.com'
+  },
+  {
+    id: 'helpus-agent',
+    name: 'HelpUS AI Agent Studio',
+    tagline: 'Criador & Orquestrador de Agentes Virtuais de IA 24/7',
+    category: 'ia',
+    description: 'Plataforma para criação, treinamento de base RAG e personalização de vozes neurais para agentes de atendimento e vendas no WhatsApp.',
+    iconName: 'Bot',
+    image: '/images/helpus_hero_futuristic.jpg',
+    badgeText: 'Plataforma Ativa',
+    badgeType: 'featured',
+    features: ['Criador de Agentes IA', 'Treinamento RAG de Documentos', 'Vozes Neurais HD', 'Integração WhatsApp API'],
+    priceMonthly: 349,
+    rating: 4.98,
+    activeClientsCount: 1840,
+    demoAvailable: true,
+    ssoSupported: true,
+    subdomain: 'agent.helpusbr.com'
+  },
+  {
+    id: 'helpus-admin',
+    name: 'HelpUS Admin Dashboard',
+    tagline: 'Painel Master de Métricas, Uptime & Leads do Ecossistema',
+    category: 'cloud',
+    description: 'Central de controle e inteligência com status de uptime em tempo real dos subdomínios, feed de leads capturados e analytics de pesquisas.',
+    iconName: 'Activity',
+    image: '/images/helpus_dev_ui.jpg',
+    badgeText: 'Infraestrutura',
+    badgeType: 'active',
+    features: ['Monitor de Uptime 18 Subdomínios', 'Feed de Leads Capturados', 'Métricas de Latência', 'Relatório de Tendências de Busca'],
+    priceMonthly: 299,
+    rating: 4.97,
+    activeClientsCount: 950,
+    demoAvailable: true,
+    ssoSupported: true,
+    subdomain: 'admin.helpusbr.com'
   }
 ];

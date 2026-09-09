@@ -1,0 +1,16 @@
+{
+  "name": "HelpUS Hub — Central Portal",
+  "short_name": "HelpUS Hub",
+  "description": "Central de produtos, sistemas e serviços corporativos para a HelpUS Technology.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

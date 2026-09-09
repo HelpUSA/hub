@@ -181,6 +181,17 @@ export function App() {
       featured: true
     },
     {
+      id: 'helpus-admin',
+      domain: 'admin.helpusbr.com',
+      liveUrl: 'https://admin.helpusbr.com',
+      category: 'tecnologia',
+      icon: Activity,
+      image: '/images/helpus_dev_ui.jpg',
+      folderPath: 'D:\\dev\\AntiG\\helpus-admin',
+      status: 'Plataforma Ativa',
+      featured: true
+    },
+    {
       id: 'helpus-site',
       domain: 'www.helpusbr.com',
       liveUrl: 'https://www.helpusbr.com',

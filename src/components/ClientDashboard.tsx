@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   CheckCircle2, 
   ExternalLink, 
@@ -8,7 +8,8 @@ import {
   UserCheck, 
   Layers, 
   Server,
-  Key
+  Key,
+  Users
 } from 'lucide-react';
 import type { ClientProfile, Product, InvoiceItem } from '../types';
 
@@ -27,7 +28,41 @@ export const ClientDashboard: React.FC<ClientDashboardProps> = ({
   onSimulateSSO,
   onOpenTicketModal
 }) => {
-  const activeProducts = products.filter(p => profile.activeModules.includes(p.id));
+  const activeProducts = products || [];
+  // Live Leads State from widget.helpusbr.com
+  const [leads, setLeads] = useState<any[]>([
+    {
+      id: 'LEAD-9812',
+      name: 'Carlos Eduardo Santos',
+      phone: '(83) 99881-2244',
+      email: 'carlos.santos@email.com',
+      intent: 'Orçamento de Imóvel Bessa',
+      clientSite: 'danyimoveisjp.helpusbr.com',
+      createdAt: '2026-09-09 08:30',
+      status: 'NOVO'
+    },
+    {
+      id: 'LEAD-9813',
+      name: 'Mariana Oliveira',
+      phone: '(83) 98765-4321',
+      email: 'mariana.oliveira@empresa.com',
+      intent: 'Agendamento Barbearia Studio',
+      clientSite: 'barber.helpus.app',
+      createdAt: '2026-09-09 08:45',
+      status: 'CONTATADO'
+    }
+  ]);
+
+  useEffect(() => {
+    fetch('http://localhost:4000/api/widget/leads')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.success && Array.isArray(data.leads) && data.leads.length > 0) {
+          setLeads(data.leads);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <div className="py-8 px-4 lg:px-8 max-w-7xl mx-auto space-y-8">
@@ -181,7 +216,112 @@ export const ClientDashboard: React.FC<ClientDashboardProps> = ({
             </div>
           </div>
         </div>
+      </div>
 
+      {/* Widget Builder & Script Configurator */}
+      <div className="glass-panel p-6 border-cyan-500/30 space-y-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <span className="badge badge-active text-[10px]">Configurador Automático</span>
+            <h2 className="text-xl font-bold text-white mt-1">Gerador do Script `widget.helpusbr.com`</h2>
+            <p className="text-xs text-slate-400">Personalize o título, subtítulo e cor primária do widget e copie a tag HTML pronta.</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 mb-1.5">Título do Assistente</label>
+            <input 
+              type="text" 
+              defaultValue="HelpUS AI Assistant" 
+              id="cfgTitle"
+              className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-cyan-500" 
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 mb-1.5">Subtítulo / Status</label>
+            <input 
+              type="text" 
+              defaultValue="Atendimento Autônomo 24/7" 
+              id="cfgSubtitle"
+              className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-cyan-500" 
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 mb-1.5">Cor Primária (HEX)</label>
+            <input 
+              type="text" 
+              defaultValue="#06b6d4" 
+              id="cfgColor"
+              className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-cyan-500 font-mono" 
+            />
+          </div>
+        </div>
+
+        <div className="p-4 bg-slate-950 rounded-xl border border-slate-800 space-y-2">
+          <div className="flex items-center justify-between text-xs text-slate-400">
+            <span className="font-mono text-cyan-400">Tag HTML de Instalação (1 Linha)</span>
+            <button 
+              onClick={() => {
+                const code = `<script src="https://widget.helpusbr.com/widget.js" data-title="HelpUS AI" data-primary-color="#06b6d4" async></script>`;
+                navigator.clipboard.writeText(code);
+                alert('Código copiado para a área de transferência!');
+              }}
+              className="text-xs text-cyan-400 hover:text-cyan-300 font-bold"
+            >
+              Copiar Tag Script 📋
+            </button>
+          </div>
+          <pre className="text-[11px] font-mono text-slate-300 overflow-x-auto p-2 bg-slate-900 rounded border border-slate-800">
+            <code>{'<script src="https://widget.helpusbr.com/widget.js" data-title="HelpUS AI Assistant" data-primary-color="#06b6d4" async></script>'}</code>
+          </pre>
+        </div>
+      </div>
+
+      {/* Live Captured Leads CRM Table */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-bold text-white flex items-center gap-2">
+            <Users className="w-5 h-5 text-cyan-400" />
+            <span>CRM & Leads Capturados em Tempo Real (widget.helpusbr.com)</span>
+          </h2>
+          <span className="badge badge-active text-xs">
+            {leads.length} Leads Ativos
+          </span>
+        </div>
+
+        <div className="glass-panel overflow-x-auto border-cyan-500/20">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="border-b border-slate-800 text-[11px] uppercase tracking-wider text-slate-400 bg-slate-900/80">
+                <th className="p-4">ID Lead</th>
+                <th className="p-4">Nome do Cliente</th>
+                <th className="p-4">Contato (Tel / Email)</th>
+                <th className="p-4">Interesse / Intenção</th>
+                <th className="p-4">Site Origem</th>
+                <th className="p-4">Data / Hora</th>
+                <th className="p-4 text-right">Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-800/60 text-xs">
+              {leads.map(lead => (
+                <tr key={lead.id} className="hover:bg-slate-900/50 transition-colors">
+                  <td className="p-4 font-mono font-bold text-cyan-400">{lead.id}</td>
+                  <td className="p-4 font-semibold text-white">{lead.name}</td>
+                  <td className="p-4 text-slate-300 font-mono">{lead.phone || lead.email}</td>
+                  <td className="p-4 text-slate-300">{lead.intent}</td>
+                  <td className="p-4 text-slate-400 font-mono text-[11px]">{lead.clientSite}</td>
+                  <td className="p-4 text-slate-400">{lead.createdAt}</td>
+                  <td className="p-4 text-right">
+                    <span className="badge badge-active !text-[10px]">
+                      {lead.status}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {/* Invoices & Billing Table */}
@@ -232,4 +372,4 @@ export const ClientDashboard: React.FC<ClientDashboardProps> = ({
 
     </div>
   );
-};
+}

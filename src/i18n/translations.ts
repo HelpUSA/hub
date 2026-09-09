@@ -260,6 +260,27 @@ export const translations: Record<Language, TranslationSchema> = {
         targetAudience: 'Empresas, barbearias, corretores, equipes de suporte e criadores de conteúdo.',
         whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre o HelpUS Voice (voice.helpusbr.com).'
       },
+      'helpus-agent': {
+        name: 'HelpUS AI Agent & Engine',
+        subtitle: 'Plataforma Autónoma de Agentes Inteligentes & Atendimento WhatsApp',
+        description: 'Suíte de agentes autônomos de IA para atendimento no WhatsApp 24/7, síntese de voz neural, buscas avançadas com fontes verificáveis e geração de apresentações.',
+        features: [
+          'Atendimento Automatizado e Inteligente 24/7 no WhatsApp',
+          'Sintetizador de Voz Neural em Áudio MP3',
+          'Motor de Pesquisa Verificável com Citações (Perplexity Alt)',
+          'Gerador Automático de Slides e Apresentações (Gamma Alt)',
+          'Painel de Escaneamento de QR Code e Gestão de Sessão WhatsApp'
+        ],
+        detailsContent: 'O HelpUS AI Agent é a central inteligente que automatiza o suporte ao cliente, qualificação de leads e tarefas corporativas complexas.',
+        technicalHighlights: [
+          'Arquitetura de Agentes Autônomos Node.js / Express',
+          'Integração Nativa WhatsApp Cloud API e Baileys Engine',
+          'Hospedagem SaaS de Alta Disponibilidade em agent.helpusbr.com',
+          'Endpoints REST API para Integração Multi-Projetos'
+        ],
+        targetAudience: 'Empresas, imobiliárias, clínicas, barbearias e equipes de suporte ao cliente.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre a plataforma HelpUS AI Agent (agent.helpusbr.com).'
+      },
       'helpus-search': {
         name: 'HelpUS Universal Search Engine',
         subtitle: 'Busca Inteligente por IA em Todo o Ecossistema HelpUS',
@@ -648,6 +669,16 @@ export const translations: Record<Language, TranslationSchema> = {
         targetAudience: 'Businesses, support teams, realtors, and content creators.',
         whatsappMessage: 'Hello HelpUS! Tell me more about HelpUS Voice (voice.helpusbr.com).'
       },
+      'helpus-agent': {
+        name: 'HelpUS AI Agent & Engine',
+        subtitle: 'Autonomous AI Agents & WhatsApp Customer Service Platform',
+        description: 'Autonomous AI Agent suite for 24/7 WhatsApp customer support, neural text-to-speech synthesis, verifiable web search with citations, and automated presentation generation.',
+        features: ['Automated 24/7 WhatsApp AI Support', 'Neural Voice Synthesizer (MP3)', 'Verifiable Search Engine with Citations (Perplexity Alt)', 'Automated Slide & Presentation Generator (Gamma Alt)', 'WhatsApp Session QR Code Scanner'],
+        detailsContent: 'HelpUS AI Agent is the intelligent hub automating customer support, lead qualification, and complex corporate workflows.',
+        technicalHighlights: ['Node.js / Express Autonomous Agent Architecture', 'Native WhatsApp Cloud API & Baileys Engine', 'High Availability SaaS Hosting at agent.helpusbr.com', 'REST API Endpoints for Multi-Project Integration'],
+        targetAudience: 'Enterprises, real estate agencies, clinics, barbershops, and support teams.',
+        whatsappMessage: 'Hello HelpUS! Tell me more about HelpUS AI Agent (agent.helpusbr.com).'
+      },
       'usmle': {
         name: 'USMLE Prep Platform',
         subtitle: 'Medical Licensing Examination Prep & Question Bank',
@@ -916,6 +947,16 @@ export const translations: Record<Language, TranslationSchema> = {
         technicalHighlights: ['Motor Neural TTS de Baja Latencia', 'Despliegue Vercel SaaS en voice.helpusbr.com'],
         targetAudience: 'Empresas, equipos de soporte y creadores de contenido.',
         whatsappMessage: '¡Hola HelpUS! Quisiera saber más sobre HelpUS Voice (voice.helpusbr.com).'
+      },
+      'helpus-agent': {
+        name: 'HelpUS AI Agent & Engine',
+        subtitle: 'Plataforma Autónoma de Agentes de IA y Atención en WhatsApp',
+        description: 'Suite de agentes autónomos de IA para atención al cliente 24/7 en WhatsApp, síntesis de voz neural, búsqueda verificable con fuentes y generación de presentaciones.',
+        features: ['Atención Automatizada 24/7 en WhatsApp', 'Sintetizador de Voz Neural (MP3)', 'Búsqueda Verificable con Citas (Perplexity Alt)', 'Generador de Presentaciones (Gamma Alt)', 'Escáner QR para WhatsApp'],
+        detailsContent: 'HelpUS AI Agent es la central inteligente para soporte, calificación de prospectos y tareas corporativas.',
+        technicalHighlights: ['Arquitectura de Agentes Node.js / Express', 'Integración Nativa WhatsApp Cloud API & Baileys', 'Alojamiento SaaS en agent.helpusbr.com', 'Endpoints REST API'],
+        targetAudience: 'Empresas, inmobiliarias, clínicas y soporte al cliente.',
+        whatsappMessage: '¡Hola HelpUS! Quisiera saber más sobre HelpUS AI Agent (agent.helpusbr.com).'
       },
       'usmle': {
         name: 'USMLE Prep Platform',
