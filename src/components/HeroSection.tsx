@@ -58,6 +58,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <Cpu className="w-4 h-4 text-purple-400" />
               <span>Simular Plano Personalizado</span>
             </button>
+            <a 
+              href="https://slides.helpusbr.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary text-base px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-lg flex items-center gap-2"
+            >
+              <Sparkles className="w-4 h-4 text-amber-300" />
+              <span>Gerar Pitch Deck com IA</span>
+            </a>
           </div>
         </div>
 
