@@ -664,7 +664,7 @@ export function App() {
                     }`}
                   >
                     <Building2 className="w-4 h-4" />
-                    <span>A Empresa</span>
+                    <span>{t.nav.theCompany}</span>
                   </button>
 
                   <button
@@ -676,7 +676,7 @@ export function App() {
                     }`}
                   >
                     <Bot className="w-4 h-4" />
-                    <span>Soluções de I.A.</span>
+                    <span>{t.nav.aiSolutions}</span>
                   </button>
 
                   <button
@@ -688,7 +688,7 @@ export function App() {
                     }`}
                   >
                     <Zap className="w-4 h-4" />
-                    <span>Infraestrutura & Pay</span>
+                    <span>{t.nav.infraPay}</span>
                   </button>
 
                   <button
@@ -700,7 +700,7 @@ export function App() {
                     }`}
                   >
                     <Layers className="w-4 h-4" />
-                    <span>Ecossistemas Setoriais</span>
+                    <span>{t.nav.sectoral}</span>
                   </button>
 
                   <button
@@ -708,7 +708,7 @@ export function App() {
                     className="ml-2 px-4 py-2 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-slate-800 transition-all flex items-center gap-1.5 shadow-md"
                   >
                     <Globe2 className="w-4 h-4 text-blue-400" />
-                    <span>Rede de Sites (15)</span>
+                    <span>{t.nav.siteNetwork}</span>
                   </button>
                 </>
               )}
@@ -766,7 +766,7 @@ export function App() {
               }`}
             >
               <Building2 className="w-5 h-5 text-blue-600" />
-              <span>A Empresa</span>
+              <span>{t.nav.theCompany}</span>
             </button>
 
             <button
@@ -776,7 +776,7 @@ export function App() {
               }`}
             >
               <Bot className="w-5 h-5 text-indigo-600" />
-              <span>Soluções de I.A.</span>
+              <span>{t.nav.aiSolutions}</span>
             </button>
 
             <button
@@ -786,7 +786,7 @@ export function App() {
               }`}
             >
               <Zap className="w-5 h-5 text-amber-500" />
-              <span>Infraestrutura & Pay</span>
+              <span>{t.nav.infraPay}</span>
             </button>
 
             <button
@@ -796,7 +796,7 @@ export function App() {
               }`}
             >
               <Layers className="w-5 h-5 text-purple-600" />
-              <span>Ecossistemas Setoriais</span>
+              <span>{t.nav.sectoral}</span>
             </button>
 
             <button
@@ -804,7 +804,7 @@ export function App() {
               className="w-full text-left px-4 py-3 rounded-xl bg-slate-900 text-white font-bold text-sm flex items-center gap-3 shadow-md"
             >
               <Globe2 className="w-5 h-5 text-blue-400" />
-              <span>Rede de Sites (15)</span>
+              <span>{t.nav.siteNetwork}</span>
             </button>
           </div>
         )}
@@ -832,7 +832,7 @@ export function App() {
                         {selectedAppObj.status}
                       </span>
                       <span className="text-xs font-bold text-slate-500">
-                        Subdomínio Oficial: <strong className="text-blue-600">{selectedAppObj.domain}</strong>
+                        {t.common.officialSubdomain} <strong className="text-blue-600">{selectedAppObj.domain}</strong>
                       </span>
                     </div>
                     <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-sans tracking-tight">
@@ -860,7 +860,7 @@ export function App() {
                       rel="noopener noreferrer"
                       className="px-6 py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 transition-all"
                     >
-                      <span>Falar no WhatsApp</span>
+                      <span>{t.common.talkWhatsApp}</span>
                     </a>
                   </div>
                 </div>
@@ -876,7 +876,7 @@ export function App() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
                       <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-white/90 backdrop-blur-md border border-white/40 text-xs font-bold text-slate-800">
-                        <span>Demonstração do Sistema — {selectedAppObj.domain}</span>
+                        <span>{t.common.demoSystem}{selectedAppObj.domain}</span>
                       </div>
                     </div>
 
@@ -946,7 +946,7 @@ export function App() {
                     <div className="space-y-6">
                       <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-extrabold tracking-widest uppercase shadow-sm">
                         <Sparkles className="w-4 h-4 text-blue-600" />
-                        <span>Engenharia de Software Sob Medida & Orquestração de I.A.</span>
+                        <span>{t.hero.badge}</span>
                       </div>
 
                       <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 font-sans tracking-tight leading-tight">
@@ -954,7 +954,7 @@ export function App() {
                       </h1>
 
                       <p className="text-base sm:text-xl text-slate-600 font-medium max-w-3xl mx-auto leading-relaxed">
-                        Desenvolvemos ecossistemas corporativos inteligentes, automação autônoma no WhatsApp, sistemas web sob medida e orquestração de Inteligência Artificial para alavancar empresas de alta performance.
+                        {t.hero.subtitle}
                       </p>
 
                       <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
@@ -963,7 +963,7 @@ export function App() {
                           className="px-8 py-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-xl shadow-blue-600/30 transition-all flex items-center gap-2 transform hover:scale-105"
                         >
                           <Bot className="w-5 h-5" />
-                          <span>Conhecer Soluções de I.A.</span>
+                          <span>{t.hero.btnAi}</span>
                         </button>
 
                         <button
@@ -971,7 +971,7 @@ export function App() {
                           className="px-8 py-4 rounded-2xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 font-bold text-sm shadow-md transition-all flex items-center gap-2"
                         >
                           <Play className="w-5 h-5 text-blue-600 fill-current" />
-                          <span>Assistir Vídeo Institucional</span>
+                          <span>{t.hero.btnVideo}</span>
                         </button>
                       </div>
                     </div>
@@ -995,9 +995,9 @@ export function App() {
 
                         <div className="space-y-2">
                           <span className="text-xs font-bold uppercase tracking-widest text-blue-400">Vídeo Institucional</span>
-                          <h3 className="text-2xl sm:text-3xl font-extrabold text-white">Conheça Nossas Soluções & Engenharia em Ação</h3>
+                          <h3 className="text-2xl sm:text-3xl font-extrabold text-white">{t.hero.videoTitle}</h3>
                           <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto">
-                            Clique para assistir à demonstração da nossa infraestrutura, robôs de atendimento e plataformas corporativas.
+                            {t.hero.videoSubtitle}
                           </p>
                         </div>
                       </div>
@@ -1007,19 +1007,19 @@ export function App() {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-4">
                       <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm text-center space-y-1">
                         <span className="text-3xl font-extrabold text-blue-600">15+</span>
-                        <p className="text-xs font-bold text-slate-700">Subdomínios Ativos no Ar</p>
+                        <p className="text-xs font-bold text-slate-700">{t.metrics.subdomains}</p>
                       </div>
                       <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm text-center space-y-1">
                         <span className="text-3xl font-extrabold text-indigo-600">24/7</span>
-                        <p className="text-xs font-bold text-slate-700">Atendimento Autônomo com IA</p>
+                        <p className="text-xs font-bold text-slate-700">{t.metrics.ai247}</p>
                       </div>
                       <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm text-center space-y-1">
                         <span className="text-3xl font-extrabold text-emerald-600">100%</span>
-                        <p className="text-xs font-bold text-slate-700">Infraestrutura Serverless</p>
+                        <p className="text-xs font-bold text-slate-700">{t.metrics.serverless}</p>
                       </div>
                       <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm text-center space-y-1">
                         <span className="text-3xl font-extrabold text-purple-600">0s</span>
-                        <p className="text-xs font-bold text-slate-700">Sem Retrabalho de Redigitação</p>
+                        <p className="text-xs font-bold text-slate-700">{t.metrics.zeroRework}</p>
                       </div>
                     </div>
 
@@ -1031,13 +1031,13 @@ export function App() {
                   <div className="hub-container space-y-16">
                     <div className="text-center space-y-4 max-w-3xl mx-auto">
                       <span className="px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-extrabold uppercase tracking-wider">
-                        Engenharia & Arquitetura Corporativa
+                        {t.whoWeAre.badge}
                       </span>
                       <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                        Quem Somos & Como Transformamos Operações
+                        {t.whoWeAre.title}
                       </h2>
                       <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                        A HelpUS Technology é uma empresa de engenharia de software focada na criação de ecossistemas digitais robustos. Desenvolvemos desde motores de Inteligência Artificial Generativa até gateways de pagamentos e portais de alta disponibilidade.
+                        {t.whoWeAre.desc}
                       </p>
                     </div>
 
@@ -1046,9 +1046,9 @@ export function App() {
                         <div className="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center font-bold text-xl">
                           01
                         </div>
-                        <h3 className="text-xl font-extrabold text-slate-900">Automação Autônoma 24/7</h3>
+                        <h3 className="text-xl font-extrabold text-slate-900">{t.whoWeAre.p1Title}</h3>
                         <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                          Agentes virtuais inteligentes integrados ao WhatsApp Cloud API capazes de responder dúvidas de clientes, agendar horários e qualificar leads sem pausa.
+                          {t.whoWeAre.p1Desc}
                         </p>
                       </div>
 
@@ -1056,9 +1056,9 @@ export function App() {
                         <div className="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center font-bold text-xl">
                           02
                         </div>
-                        <h3 className="text-xl font-extrabold text-slate-900">Engenharia Serverless Mesh</h3>
+                        <h3 className="text-xl font-extrabold text-slate-900">{t.whoWeAre.p2Title}</h3>
                         <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                          Rede de microsserviços e subdomínios independentes distribuídos na Vercel Cloud, garantindo carregamento instantâneo, SSL de alta segurança e uptime de 99.9%.
+                          {t.whoWeAre.p2Desc}
                         </p>
                       </div>
 
@@ -1066,9 +1066,9 @@ export function App() {
                         <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center font-bold text-xl">
                           03
                         </div>
-                        <h3 className="text-xl font-extrabold text-slate-900">Finanças & Cobrança Unificada</h3>
+                        <h3 className="text-xl font-extrabold text-slate-900">{t.whoWeAre.p3Title}</h3>
                         <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                          Integração nativa com PIX QR Code instantâneo, conciliação de faturas e sistema SSO único para controle de acessos em todas as plataformas da empresa.
+                          {t.whoWeAre.p3Desc}
                         </p>
                       </div>
                     </div>
@@ -1080,13 +1080,13 @@ export function App() {
                   <div className="hub-container space-y-12">
                     <div className="text-center space-y-4 max-w-3xl mx-auto">
                       <span className="px-3.5 py-1.5 rounded-full bg-slate-200 text-slate-800 text-xs font-extrabold uppercase tracking-wider">
-                        Nossas Divisões de Negócio
+                        {t.businessDivisions.badge}
                       </span>
                       <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                        Explore Nosso Portfólio por Áreas
+                        {t.businessDivisions.title}
                       </h2>
                       <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                        Selecione uma área de atuação para navegar pelas apresentações completas e aplicações ativas no ar.
+                        {t.businessDivisions.desc}
                       </p>
                     </div>
 
@@ -1098,9 +1098,9 @@ export function App() {
                           <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
                             <Bot className="w-7 h-7" />
                           </div>
-                          <h3 className="text-2xl font-extrabold text-slate-900">Soluções de I.A. Generativa</h3>
+                          <h3 className="text-2xl font-extrabold text-slate-900">{t.businessDivisions.g1Title}</h3>
                           <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                            Suíte completa com robôs de atendimento no WhatsApp, estúdio de síntese neural de voz, motor de pesquisa com citações e gerador visual de slides.
+                            {t.businessDivisions.g1Desc}
                           </p>
                         </div>
 
@@ -1108,7 +1108,7 @@ export function App() {
                           onClick={() => switchView('solucoes-ia')}
                           className="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md shadow-blue-600/30 flex items-center justify-center gap-2 transition-all"
                         >
-                          <span>Acessar Soluções de I.A.</span>
+                          <span>{t.businessDivisions.g1Btn}</span>
                           <ArrowLeft className="w-4 h-4 rotate-180" />
                         </button>
                       </div>
@@ -1119,9 +1119,9 @@ export function App() {
                           <div className="w-14 h-14 rounded-2xl bg-amber-50 border border-amber-200 text-amber-600 flex items-center justify-center group-hover:scale-110 transition-transform">
                             <Zap className="w-7 h-7" />
                           </div>
-                          <h3 className="text-2xl font-extrabold text-slate-900">Infraestrutura & Pay Engine</h3>
+                          <h3 className="text-2xl font-extrabold text-slate-900">{t.businessDivisions.g2Title}</h3>
                           <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                            Gateway PIX recorrente, login único criptografado (SSO), dashboard admin de monitoramento de status e CRM omnichannel de vendas.
+                            {t.businessDivisions.g2Desc}
                           </p>
                         </div>
 
@@ -1129,7 +1129,7 @@ export function App() {
                           onClick={() => switchView('infraestrutura')}
                           className="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-white font-bold text-xs shadow-md shadow-amber-500/30 flex items-center justify-center gap-2 transition-all"
                         >
-                          <span>Acessar Infraestrutura & Pay</span>
+                          <span>{t.businessDivisions.g2Btn}</span>
                           <ArrowLeft className="w-4 h-4 rotate-180" />
                         </button>
                       </div>
@@ -1140,9 +1140,9 @@ export function App() {
                           <div className="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
                             <Layers className="w-7 h-7" />
                           </div>
-                          <h3 className="text-2xl font-extrabold text-slate-900">Ecossistemas Setoriais</h3>
+                          <h3 className="text-2xl font-extrabold text-slate-900">{t.businessDivisions.g3Title}</h3>
                           <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                            Plataformas especializadas para imobiliárias (RealEstate), saúde e revalidação (USMLE), mobilidade executiva, gastronomia e legados biográficos.
+                            {t.businessDivisions.g3Desc}
                           </p>
                         </div>
 
@@ -1150,7 +1150,7 @@ export function App() {
                           onClick={() => switchView('setoriais')}
                           className="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md shadow-emerald-600/30 flex items-center justify-center gap-2 transition-all"
                         >
-                          <span>Acessar Ecossistemas Setoriais</span>
+                          <span>Acessar {t.businessDivisions.g3Title}</span>
                           <ArrowLeft className="w-4 h-4 rotate-180" />
                         </button>
                       </div>
@@ -1159,7 +1159,7 @@ export function App() {
                   </div>
                 </section>
 
-                {/* Section: Segurança & Governança Corporativa */}
+                {/* Section: {t.security.badge} Corporativa */}
                 <section className="py-20 bg-white">
                   <div className="hub-container space-y-12">
                     <div className="bg-slate-900 rounded-3xl p-8 sm:p-14 text-white space-y-8 shadow-2xl relative overflow-hidden">
@@ -1167,13 +1167,13 @@ export function App() {
 
                       <div className="max-w-2xl space-y-4 relative z-10">
                         <span className="px-3.5 py-1.5 rounded-full bg-blue-600/30 text-blue-400 border border-blue-500/30 text-xs font-extrabold uppercase tracking-wider">
-                          Segurança & Governança
+                          {t.security.badge}
                         </span>
                         <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                          Infraestrutura de Alto Desempenho & Criptografia 256-bit
+                          {t.security.title}
                         </h2>
                         <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                          Todas as soluções da HelpUS contam com proteção SSL ativa, arquitetura distribuída serverless e conformidade de dados para operar negócios sem riscos.
+                          {t.security.desc}
                         </p>
                       </div>
 
@@ -1181,25 +1181,25 @@ export function App() {
                         <div className="space-y-2">
                           <div className="flex items-center gap-2 text-blue-400 font-bold text-sm">
                             <Lock className="w-4 h-4" />
-                            <span>SSL Criptografado</span>
+                            <span>{t.security.c1Title}</span>
                           </div>
-                          <p className="text-xs text-slate-400">Comunicação segura com certificado TLS em 100% das requisições.</p>
+                          <p className="text-xs text-slate-400">{t.security.c1Desc}</p>
                         </div>
 
                         <div className="space-y-2">
                           <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm">
                             <CheckCircle2 className="w-4 h-4" />
-                            <span>99.9% Uptime Global</span>
+                            <span>{t.security.c2Title}</span>
                           </div>
-                          <p className="text-xs text-slate-400">Monitoramento ativo em tempo real pela central de status.</p>
+                          <p className="text-xs text-slate-400">{t.security.c2Desc}</p>
                         </div>
 
                         <div className="space-y-2">
                           <div className="flex items-center gap-2 text-purple-400 font-bold text-sm">
                             <Building2 className="w-4 h-4" />
-                            <span>Suporte Dedicado</span>
+                            <span>{t.security.c3Title}</span>
                           </div>
-                          <p className="text-xs text-slate-400">Atendimento executivo diretamente via WhatsApp e E-mail.</p>
+                          <p className="text-xs text-slate-400">{t.security.c3Desc}</p>
                         </div>
                       </div>
                     </div>
@@ -1220,20 +1220,20 @@ export function App() {
                       className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs flex items-center gap-2 border border-slate-200 transition-all mb-4"
                     >
                       <ArrowLeft className="w-4 h-4 text-blue-600" />
-                      <span>Voltar para A Empresa</span>
+                      <span>{t.common.backToCompany}</span>
                     </button>
 
                     <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-extrabold uppercase tracking-wider">
                       <Bot className="w-4 h-4 text-blue-600" />
-                      <span>Suíte de Inteligência Artificial Corporativa</span>
+                      <span>{t.viewHeaders.aiBadge}</span>
                     </div>
 
                     <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-sans tracking-tight">
-                      Apresentação das Soluções de I.A.
+                      {t.viewHeaders.aiTitle}
                     </h1>
 
                     <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
-                      Apresentação detalhada dos módulos de inteligência artificial desenvolvidos para automação de atendimento, síntese neural de voz, pesquisa verificável com fontes e geração visual de apresentações.
+                      {t.viewHeaders.aiDesc}
                     </p>
                   </div>
 
@@ -1479,7 +1479,7 @@ export function App() {
                       className="px-4 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs flex items-center gap-2 border border-slate-200 transition-all mb-4"
                     >
                       <ArrowLeft className="w-4 h-4 text-blue-600" />
-                      <span>Voltar para A Empresa</span>
+                      <span>{t.common.backToCompany}</span>
                     </button>
 
                     <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-800 text-xs font-extrabold uppercase tracking-wider">
@@ -1661,16 +1661,16 @@ export function App() {
                       className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs flex items-center gap-2 border border-slate-200 transition-all mb-4"
                     >
                       <ArrowLeft className="w-4 h-4 text-blue-600" />
-                      <span>Voltar para A Empresa</span>
+                      <span>{t.common.backToCompany}</span>
                     </button>
 
                     <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-extrabold uppercase tracking-wider">
                       <Layers className="w-4 h-4 text-emerald-600" />
-                      <span>Engenharia Setorial & Projetos de Clientes</span>
+                      <span>Engenharia Setorial & {t.common.filterClient}</span>
                     </div>
 
                     <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-sans tracking-tight">
-                      Ecossistemas Setoriais Sob Medida
+                      {t.businessDivisions.g3Title} Sob Medida
                     </h1>
 
                     <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
