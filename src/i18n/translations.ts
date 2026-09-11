@@ -564,6 +564,76 @@ export const translations: Record<Language, TranslationSchema> = {
         targetAudience: 'Pacientes neurológicos e médicos solicitantes de exames neurofisiológicos.',
         whatsappMessage: 'Olá! Gostaria de agendar um exame ou consulta na Clínica Dr. Eduardo Magalhães.'
       },
+      'energisa': {
+        name: 'HelpUS Energisa Analytics',
+        subtitle: 'Auditoria de Abastecimento & Analytics Energético',
+        description: 'Dashboard corporativo de auditoria de frotas, controle de combustível, relatórios analíticos e integração com banco de dados de suprimentos.',
+        features: [
+          'Auditoria Preditiva de Consumo de Combustível',
+          'Dashboard de Indicadores Operacionais & Custos',
+          'Exportação de Relatórios de Auditoria'
+        ],
+        detailsContent: 'Plataforma corporativa criada para auditoria e inteligência operacional de abastecimento.',
+        technicalHighlights: ['PostgreSQL & Railway Cloud Persistence', 'React Analytics Framework'],
+        targetAudience: 'Gestores de logística, frotas e auditoria operacional.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de mais informações sobre o HelpUS Energisa Analytics.'
+      },
+      'helpus-fba-suite': {
+        name: 'HelpUS Amazon FBA Suite',
+        subtitle: 'Automação & Gestão de Vendas E-commerce FBA',
+        description: 'Suíte de ferramentas para inteligência de precificação, cálculo de margem de lucro FBA e análise de mercado Amazon.',
+        features: [
+          'Cálculo Automático de Taxas FBA & Margem',
+          'Monitoramento de Preços e Concorrentes',
+          'Relatórios de ROI & Previsão de Estoque'
+        ],
+        detailsContent: 'Sistema completo para vendedores Amazon FBA escalarem operações e otimizarem margens de lucro.',
+        technicalHighlights: ['API Integrada E-commerce', 'Algoritmo de Cálculo de Margem'],
+        targetAudience: 'Sellers Amazon, gestores de e-commerce e importadores.',
+        whatsappMessage: 'Olá HelpUS! Quero conhecer o HelpUS Amazon FBA Suite.'
+      },
+      'cvss': {
+        name: 'CVSS Threat Prioritization',
+        subtitle: 'Dashboard Oficial de Cibersegurança & Priorização CVSS',
+        description: 'Painel interativo para análise de vulnerabilidades de cibersegurança, cálculo de pontuação CVSS 3.1/4.0 e priorização contextual de ameaças.',
+        features: [
+          'Calculadora CVSS 3.1 & 4.0 em Tempo Real',
+          'Priorização Contextual de Riscos de TI',
+          'Relatórios Executivos de Postura de Segurança'
+        ],
+        detailsContent: 'Ferramenta avançada para equipes de SecOps e CISOs priorizarem correções de vulnerabilidades críticas.',
+        technicalHighlights: ['CVSS v4.0 Specification Engine', 'Interactive Security Dashboard'],
+        targetAudience: 'Engenheiros de segurança, CISOs, auditores e times de TI.',
+        whatsappMessage: 'Olá HelpUS! Gostaria de saber mais sobre o CVSS Threat Dashboard.'
+      },
+      'danyimoveisjp': {
+        name: 'Dany Lima Imóveis',
+        subtitle: 'Portal Imobiliário de Luxo — Bessa & Região (CRECI 19500)',
+        description: 'Portal imobiliário exclusivo com busca inteligente por imóveis no Bessa e Orla de João Pessoa, atendimento WhatsApp integrado e tour virtual.',
+        features: [
+          'Catálogo de Imóveis no Bessa e Região Praiana',
+          'Atendimento Direto WhatsApp com Corretora CRECI 19500',
+          'Filtros por Valor, Suítes e Vagas de Garagem'
+        ],
+        detailsContent: 'Website institucional e vitrine imobiliária para lançamentos e seminovos no Bessa.',
+        technicalHighlights: ['React Imobiliário Layout', 'WhatsApp Lead Routing'],
+        targetAudience: 'Compradores, investidores e locatários de imóveis na praia do Bessa.',
+        whatsappMessage: 'Olá Dany Lima! Vi um imóvel no portal e gostaria de agendar uma visita.'
+      },
+      'caipiraraiz': {
+        name: 'Caipira Raiz JP',
+        subtitle: 'Ovos Caipiras Selecionados — Granja Mattos',
+        description: 'Plataforma de pedidos e distribuição de ovos caipiras frescos diretamente do produtor para residências e comércios em João Pessoa.',
+        features: [
+          'Cardápio Digital de Bandejas e Combos Caipiras',
+          'Pedidos Diretos via WhatsApp com Entrega Expressa',
+          'Rastreabilidade da Granja ao Consumidor'
+        ],
+        detailsContent: 'Vitrine digital para vendas diretas do produtor de ovos caipiras selecionados em João Pessoa.',
+        technicalHighlights: ['Vite Direct Order Flow', 'WhatsApp Cart Integration'],
+        targetAudience: 'Famílias, restaurantes e estabelecimentos que exigem ovos caipiras de alta qualidade.',
+        whatsappMessage: 'Olá Caipira Raiz! Gostaria de fazer um pedido de ovos caipiras.'
+      },
       'helpus-admin': {
         name: 'HelpUS Admin Dashboard',
         subtitle: 'Painel Master de Métricas, Uptime & Leads do Ecossistema',

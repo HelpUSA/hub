@@ -435,6 +435,58 @@ export function App() {
       folderPath: 'D:\\dev\\AntiG\\neuro.eduardomagalhaes',
       status: 'Projeto de Cliente',
       isClientSite: true
+    },
+    {
+      id: 'energisa',
+      domain: 'energisa.helpusbr.com',
+      liveUrl: 'https://energisa.helpusbr.com',
+      category: 'tecnologia',
+      icon: Activity,
+      image: '/images/helpus_dev_ui.jpg',
+      folderPath: 'D:\\dev\\energisa',
+      status: 'Plataforma Ativa'
+    },
+    {
+      id: 'helpus-fba-suite',
+      domain: 'fba.helpusbr.com',
+      liveUrl: 'https://fba.helpusbr.com',
+      category: 'tecnologia',
+      icon: Layers,
+      image: '/images/helpus_dev_ui.jpg',
+      folderPath: 'D:\\dev\\AntiG\\helpus-fba-suite',
+      status: 'Plataforma Ativa'
+    },
+    {
+      id: 'cvss',
+      domain: 'cvss.helpusbr.com',
+      liveUrl: 'https://cvss.helpusbr.com',
+      category: 'tecnologia',
+      icon: Lock,
+      image: '/images/helpus_dev_ui.jpg',
+      folderPath: 'D:\\dev\\cvss',
+      status: 'Plataforma Ativa'
+    },
+    {
+      id: 'danyimoveisjp',
+      domain: 'danyimoveis.helpusbr.com',
+      liveUrl: 'https://danyimoveis.helpusbr.com',
+      category: 'clientes',
+      icon: Building2,
+      image: '/images/helpus_imoveis_luxury.jpg',
+      folderPath: 'D:\\dev\\AntiG\\danyimoveisjp',
+      status: 'Projeto de Cliente',
+      isClientSite: true
+    },
+    {
+      id: 'caipiraraiz',
+      domain: 'caipiraraiz.helpusbr.com',
+      liveUrl: 'https://caipiraraiz.helpusbr.com',
+      category: 'clientes',
+      icon: Pizza,
+      image: '/images/helpus_barber.jpg',
+      folderPath: 'D:\\dev\\AntiG\\caipiraraiz',
+      status: 'Projeto de Cliente',
+      isClientSite: true
     }
   ];
 
