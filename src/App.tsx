@@ -182,7 +182,7 @@ export function App() {
       liveUrl: 'https://voice.helpusbr.com',
       category: 'ia',
       icon: Volume2,
-      image: '/images/helpus_hero_futuristic.jpg',
+      image: 'https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\01_helpus_dev_solutions\\helpus-voice',
       status: 'Plataforma Ativa',
       featured: true
@@ -193,7 +193,7 @@ export function App() {
       liveUrl: 'https://helpus-agent.vercel.app',
       category: 'ia',
       icon: Bot,
-      image: '/images/helpus_hero_futuristic.jpg',
+      image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\01_helpus_dev_solutions\\helpus-agent',
       status: 'Plataforma Ativa',
       featured: true
@@ -204,7 +204,7 @@ export function App() {
       liveUrl: 'https://helpus-search.vercel.app',
       category: 'ia',
       icon: Search,
-      image: '/images/helpus_hero_futuristic.jpg',
+      image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\01_helpus_dev_solutions\\helpus-search',
       status: 'Plataforma Ativa',
       featured: true
@@ -215,7 +215,7 @@ export function App() {
       liveUrl: 'https://slides.helpusbr.com',
       category: 'ia',
       icon: Presentation,
-      image: '/images/helpus_events.jpg',
+      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\01_helpus_dev_solutions\\helpus-slides',
       status: 'Plataforma Ativa',
       featured: true
@@ -226,7 +226,7 @@ export function App() {
       liveUrl: 'https://nexoai.helpusbr.com',
       category: 'ia',
       icon: Bot,
-      image: '/images/helpus_hero_futuristic.jpg',
+      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\01_helpus_dev_solutions\\nexosai',
       status: 'Plataforma Ativa'
     },
@@ -236,7 +236,7 @@ export function App() {
       liveUrl: 'https://cardioia.helpusbr.com',
       category: 'ia',
       icon: Activity,
-      image: '/images/helpus_health.jpg',
+      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\01_helpus_dev_solutions\\cardioia',
       status: 'Plataforma Ativa'
     },
@@ -248,7 +248,7 @@ export function App() {
       liveUrl: 'https://helpus-pay.vercel.app',
       category: 'infra',
       icon: Zap,
-      image: '/images/helpus_dev_ui.jpg',
+      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\01_helpus_dev_solutions\\helpus-pay',
       status: 'Plataforma Ativa',
       featured: true
@@ -259,7 +259,7 @@ export function App() {
       liveUrl: 'https://helpus-auth.vercel.app',
       category: 'infra',
       icon: Lock,
-      image: '/images/helpus_dev_ui.jpg',
+      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\01_helpus_dev_solutions\\helpus-auth',
       status: 'Plataforma Ativa'
     },
@@ -269,7 +269,7 @@ export function App() {
       liveUrl: 'https://helpus-crm.vercel.app',
       category: 'infra',
       icon: Briefcase,
-      image: '/images/helpus_dev_ui.jpg',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\01_helpus_dev_solutions\\helpus-crm',
       status: 'Plataforma Ativa'
     },
@@ -279,7 +279,7 @@ export function App() {
       liveUrl: 'https://helpus-admin.vercel.app',
       category: 'infra',
       icon: Activity,
-      image: '/images/helpus_dev_ui.jpg',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\01_helpus_dev_solutions\\helpus-admin',
       status: 'Plataforma Ativa'
     },
@@ -289,7 +289,7 @@ export function App() {
       liveUrl: 'https://helpus-status.vercel.app',
       category: 'infra',
       icon: Activity,
-      image: '/images/helpus_dev_ui.jpg',
+      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\01_helpus_dev_solutions\\helpus-status',
       status: 'Plataforma Ativa'
     },
@@ -299,7 +299,7 @@ export function App() {
       liveUrl: 'https://helpus-docs.vercel.app',
       category: 'infra',
       icon: Code2,
-      image: '/images/helpus_dev_ui.jpg',
+      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\01_helpus_dev_solutions\\helpus-docs',
       status: 'Plataforma Ativa'
     },
@@ -311,7 +311,7 @@ export function App() {
       liveUrl: 'https://realestate.helpusbr.com',
       category: 'setoriais',
       icon: Building2,
-      image: '/images/helpus_imoveis_luxury.jpg',
+      image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\01_helpus_dev_solutions\\realestate',
       status: 'Plataforma Ativa',
       featured: true
@@ -322,7 +322,7 @@ export function App() {
       liveUrl: 'https://usmle.helpusbr.com',
       category: 'setoriais',
       icon: Stethoscope,
-      image: '/images/helpus_health.jpg',
+      image: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\01_helpus_dev_solutions\\usmle',
       status: 'Plataforma Ativa'
     },
@@ -332,7 +332,7 @@ export function App() {
       liveUrl: 'https://wagnerdriver.helpusbr.com',
       category: 'setoriais',
       icon: Car,
-      image: '/images/helpus_driver_real.png',
+      image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\wagnerdriver-site',
       status: 'Plataforma Ativa'
     },
@@ -342,7 +342,7 @@ export function App() {
       liveUrl: 'https://pizza.helpusbr.com',
       category: 'setoriais',
       icon: Pizza,
-      image: '/images/helpus_barber.jpg',
+      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\01_helpus_dev_solutions\\pizza',
       status: 'Plataforma Ativa'
     },
@@ -355,7 +355,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'services',
       icon: Scale,
-      image: '/images/helpus_dev_ui.jpg',
+      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\taticaassessoriacontabil',
       status: 'Projeto de Cliente',
       isClientSite: true,
@@ -368,7 +368,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'health',
       icon: Brain,
-      image: '/images/helpus_health.jpg',
+      image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\neuro.eduardomagalhaes',
       status: 'Projeto de Cliente',
       isClientSite: true,
@@ -381,7 +381,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'realestate',
       icon: Building2,
-      image: '/images/helpus_imoveis.jpg',
+      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\katiaxavier-site',
       status: 'Projeto de Cliente',
       isClientSite: true,
@@ -394,7 +394,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'beauty',
       icon: Scissors,
-      image: '/images/helpus_barber.jpg',
+      image: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\marciotopbarber',
       status: 'Projeto de Cliente',
       isClientSite: true,
@@ -407,7 +407,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'realestate',
       icon: Building2,
-      image: '/images/helpus_imoveis_luxury.jpg',
+      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\danyimoveisjp',
       status: 'Projeto de Cliente',
       isClientSite: true,
@@ -420,7 +420,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'food',
       icon: Pizza,
-      image: '/images/helpus_barber.jpg',
+      image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\caipiraraiz',
       status: 'Projeto de Cliente',
       isClientSite: true
@@ -432,7 +432,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'food',
       icon: Briefcase,
-      image: '/images/helpus_events.jpg',
+      image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\events',
       status: 'Projeto de Cliente',
       isClientSite: true
@@ -444,7 +444,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'beauty',
       icon: Car,
-      image: '/images/helpus_dev_ui.jpg',
+      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\bluebox',
       status: 'Projeto de Cliente',
       isClientSite: true
@@ -456,7 +456,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'health',
       icon: Heart,
-      image: '/images/helpus_health.jpg',
+      image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\vivasuacura',
       status: 'Projeto de Cliente',
       isClientSite: true
@@ -468,7 +468,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'services',
       icon: UserCheck,
-      image: '/images/helpus_ai.jpg',
+      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\brayyan',
       status: 'Projeto de Cliente',
       isClientSite: true
@@ -480,7 +480,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'services',
       icon: BookOpen,
-      image: '/images/helpus_barber.jpg',
+      image: 'https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\memoria-viva',
       status: 'Projeto de Cliente',
       isClientSite: true
@@ -492,7 +492,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'services',
       icon: Activity,
-      image: '/images/helpus_dev_ui.jpg',
+      image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\energisa',
       status: 'Projeto de Cliente',
       isClientSite: true
@@ -504,7 +504,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'services',
       icon: BookOpen,
-      image: '/images/helpus_events.jpg',
+      image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\escolaestacaomusical',
       status: 'Projeto de Cliente',
       isClientSite: true
@@ -516,7 +516,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'services',
       icon: UserCheck,
-      image: '/images/helpus_dev_ui.jpg',
+      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\giulliano',
       status: 'Projeto de Cliente',
       isClientSite: true
@@ -528,7 +528,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'services',
       icon: Briefcase,
-      image: '/images/helpus_dev_ui.jpg',
+      image: 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\tulio-bicicletas-site',
       status: 'Projeto de Cliente',
       isClientSite: true
@@ -540,7 +540,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'services',
       icon: UserCheck,
-      image: '/images/helpus_dev_ui.jpg',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\waleska-site',
       status: 'Projeto de Cliente',
       isClientSite: true
@@ -552,7 +552,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'services',
       icon: Globe2,
-      image: '/images/helpus_dev_ui.jpg',
+      image: 'https://images.unsplash.com/photo-1542744094-3a3172720449?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\publicarte',
       status: 'Projeto de Cliente',
       isClientSite: true
@@ -564,7 +564,7 @@ export function App() {
       category: 'clientes',
       clientSubcategory: 'health',
       icon: Stethoscope,
-      image: '/images/helpus_health.jpg',
+      image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80',
       folderPath: 'D:\\AntiG\\02_client_sites\\matheus',
       status: 'Projeto de Cliente',
       isClientSite: true
@@ -883,50 +883,73 @@ export function App() {
                 return (
                   <div
                     key={app.id}
-                    className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:border-blue-500 hover:shadow-xl transition-all space-y-6 flex flex-col justify-between group"
+                    className="bg-white rounded-3xl border border-slate-200 shadow-sm hover:border-blue-500 hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col justify-between group"
                   >
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                          <AppIcon className="w-6 h-6" />
-                        </div>
-                        <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-700 font-bold text-xs border border-slate-200">
-                          {app.domain}
+                    {/* Top Cover Image Banner with Representative Image */}
+                    <div className="relative h-48 w-full overflow-hidden bg-slate-950">
+                      <img 
+                        src={app.image} 
+                        alt={appData.name}
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                        loading="lazy"
+                      />
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                      
+                      {/* Floating Icon & Status Badge */}
+                      <div className="absolute top-3 left-3 px-3 py-1.5 bg-white/95 backdrop-blur-md rounded-2xl shadow-lg border border-white/30 flex items-center gap-2">
+                        <AppIcon className="w-4 h-4 text-blue-600" />
+                        <span className="text-[11px] font-extrabold text-slate-900 uppercase tracking-tight">
+                          {app.status || 'Plataforma Ativa'}
                         </span>
                       </div>
 
-                      <div>
-                        <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors">
+                      {/* Domain Badge */}
+                      <div className="absolute top-3 right-3 px-3 py-1 bg-slate-950/80 backdrop-blur-md rounded-full text-xs font-bold text-cyan-300 border border-cyan-500/30">
+                        {app.domain}
+                      </div>
+
+                      {/* Card Title Inside Image Banner */}
+                      <div className="absolute bottom-3 left-4 right-4">
+                        <h3 className="text-lg font-extrabold text-white drop-shadow-md group-hover:text-cyan-300 transition-colors">
                           {appData.name}
                         </h3>
-                        <p className="text-xs font-semibold text-slate-500 mt-1 line-clamp-2">
-                          {appData.subtitle}
+                      </div>
+                    </div>
+
+                    {/* Content Body */}
+                    <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                      <div className="space-y-2">
+                        {appData.subtitle && (
+                          <p className="text-xs font-semibold text-blue-600">
+                            {appData.subtitle}
+                          </p>
+                        )}
+                        <p className="text-slate-600 text-xs sm:text-sm leading-relaxed line-clamp-3">
+                          {appData.description}
                         </p>
                       </div>
 
-                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed line-clamp-3">
-                        {appData.description}
-                      </p>
-                    </div>
+                      {/* Action Buttons */}
+                      <div className="pt-4 border-t border-slate-100 space-y-2">
+                        <button
+                          onClick={() => navigateToSolution(app.id)}
+                          className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md shadow-blue-600/30 flex items-center justify-center gap-2 transition-all"
+                        >
+                          <span>Ver Apresentação Dedicada (Detalhes)</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </button>
 
-                    <div className="pt-4 border-t border-slate-100 space-y-2">
-                      <button
-                        onClick={() => navigateToSolution(app.id)}
-                        className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md shadow-blue-600/30 flex items-center justify-center gap-2 transition-all"
-                      >
-                        <span>Ver Apresentação Dedicada (Detalhes)</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
-
-                      <a
-                        href={app.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full py-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs border border-slate-200 flex items-center justify-center gap-1.5 transition-all"
-                      >
-                        <ExternalLink className="w-3.5 h-3.5 text-blue-600" />
-                        <span>Acessar Site Direto ↗</span>
-                      </a>
+                        <a
+                          href={app.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full py-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs border border-slate-200 flex items-center justify-center gap-1.5 transition-all"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5 text-blue-600" />
+                          <span>Acessar Site Direto ↗</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 );
