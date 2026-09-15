@@ -13,7 +13,6 @@ import {
   ChevronDown,
   Layers,
   Globe2,
-  Menu,
   X,
   Sparkles,
   ArrowLeft,
@@ -22,14 +21,14 @@ import {
   Scissors,
   Activity,
   Heart,
-  Play,
   Brain,
   Volume2,
   Presentation,
   Lock,
   Zap,
   Filter,
-  ArrowRight
+  ArrowRight,
+  MessageCircle
 } from 'lucide-react';
 
 import { translations, type Language } from './i18n/translations';
@@ -37,6 +36,7 @@ import AnimatedBackground from './components/AnimatedBackground';
 import StickyFloatingFooter from './components/StickyFloatingFooter';
 import CategoryCard, { type CategoryCardData } from './components/CategoryCard';
 import SolutionDetailView from './components/SolutionDetailView';
+import AiDevAnimationBanner from './components/AiDevAnimationBanner';
 
 export interface AppItem {
   id: string;
@@ -57,7 +57,6 @@ export type CategoryId = 'ia' | 'infra' | 'setoriais' | 'clientes';
 export function App() {
   const [lang, setLang] = useState<Language>('pt');
   const [langDropdownOpen, setLangDropdownOpen] = useState<boolean>(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
   // Navigation Tier State
   // Tier 1: Home (selectedCategory === null && selectedAppId === null)
@@ -67,11 +66,15 @@ export function App() {
   const [selectedAppId, setSelectedAppId] = useState<string | null>(null);
   const [clientFilter, setClientFilter] = useState<string>('all');
 
-  // Video Presentation Modal State
-  const [videoModalOpen, setVideoModalOpen] = useState<boolean>(false);
-
   // Institutional Info Modal State
   const [activeInfoModal, setActiveInfoModal] = useState<'institutional' | 'help' | 'privacy' | null>(null);
+
+  // Tagline translations by language
+  const taglineTranslations = {
+    pt: 'SOLUÇÕES EM TECNOLOGIA',
+    en: 'TECHNOLOGY SOLUTIONS',
+    es: 'SOLUCIONES EN TECNOLOGÍA'
+  };
 
   // Sync Language and Navigation with URL Parameters
   useEffect(() => {
@@ -702,12 +705,12 @@ export function App() {
     <div className="hub-app font-sans bg-[#f8fafc] text-slate-900 min-h-screen pb-24">
       <AnimatedBackground />
 
-      {/* Header Navbar */}
-      <header className="hub-header sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+      {/* Header Navbar — Semi-Transparent Dark Blue Header */}
+      <header className="hub-header sticky top-0 z-40 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl">
         <div className="hub-container">
           <div className="hub-header-inner flex items-center justify-between h-20">
             
-            {/* HelpUS Official Logo */}
+            {/* HelpUS Official Logo & Translated Sub-brand */}
             <a 
               href="#" 
               onClick={(e) => {
@@ -721,161 +724,48 @@ export function App() {
                 alt="HelpUS Logo"
                 className="h-12 w-auto object-contain transition-transform group-hover:scale-105"
               />
-              <div className="hidden sm:flex flex-col">
-                <span className="font-extrabold text-base text-slate-900 tracking-tight leading-none">HelpUS</span>
-                <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Technology Solutions</span>
+              <div className="flex flex-col">
+                <span className="font-extrabold text-base text-white tracking-tight leading-none">HelpUS</span>
+                <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-widest mt-0.5">
+                  {taglineTranslations[lang] || taglineTranslations.pt}
+                </span>
               </div>
             </a>
 
-            {/* Navigation Controls */}
-            <nav className="hidden md:flex items-center gap-1.5">
-              <button
-                onClick={navigateToHome}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                  selectedCategory === null && selectedAppId === null
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
-                    : 'text-slate-700 hover:bg-slate-100'
-                }`}
-              >
-                <Building2 className="w-4 h-4" />
-                <span>Página Inicial</span>
-              </button>
-
-              <button
-                onClick={() => navigateToCategory('ia')}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                  selectedCategory === 'ia'
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
-                    : 'text-slate-700 hover:bg-slate-100'
-                }`}
-              >
-                <Bot className="w-4 h-4 text-cyan-500" />
-                <span>Inteligência Artificial</span>
-              </button>
-
-              <button
-                onClick={() => navigateToCategory('infra')}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                  selectedCategory === 'infra'
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
-                    : 'text-slate-700 hover:bg-slate-100'
-                }`}
-              >
-                <Zap className="w-4 h-4 text-amber-500" />
-                <span>Infraestrutura & Pay</span>
-              </button>
-
-              <button
-                onClick={() => navigateToCategory('setoriais')}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                  selectedCategory === 'setoriais'
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
-                    : 'text-slate-700 hover:bg-slate-100'
-                }`}
-              >
-                <Layers className="w-4 h-4 text-emerald-500" />
-                <span>Plataformas Setoriais</span>
-              </button>
-
-              <button
-                onClick={() => navigateToCategory('clientes')}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                  selectedCategory === 'clientes'
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
-                    : 'text-slate-700 hover:bg-slate-100'
-                }`}
-              >
-                <Globe2 className="w-4 h-4 text-indigo-500" />
-                <span>Sites de Clientes (19)</span>
-              </button>
-            </nav>
-
-            {/* Language Switcher */}
+            {/* Language Switcher Dropdown Only */}
             <div className="flex items-center gap-3">
               <div className="relative">
                 <button
                   onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                  className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs flex items-center gap-1.5 border border-slate-200 transition-all"
+                  className="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold text-xs flex items-center gap-2 border border-slate-700/80 shadow-md transition-all"
                 >
-                  <Globe2 className="w-4 h-4 text-blue-600" />
+                  <Globe2 className="w-4 h-4 text-cyan-400" />
                   <span>
                     {lang === 'en' && 'EN'}
                     {lang === 'es' && 'ES'}
                     {lang === 'pt' && 'PT'}
                   </span>
-                  <ChevronDown className="w-3 h-3 text-slate-400" />
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
                 </button>
 
                 {langDropdownOpen && (
-                  <div className="absolute right-0 top-full mt-2 w-36 bg-white rounded-xl border border-slate-200 shadow-xl p-1.5 z-50 space-y-1">
-                    <button onClick={() => changeLanguage('pt')} className={`w-full text-left px-3 py-1.5 rounded-lg text-xs font-bold ${lang === 'pt' ? 'bg-blue-50 text-blue-600' : 'text-slate-700 hover:bg-slate-100'}`}>
+                  <div className="absolute right-0 top-full mt-2 w-40 bg-slate-900 rounded-xl border border-slate-800 shadow-2xl p-1.5 z-50 space-y-1">
+                    <button onClick={() => changeLanguage('pt')} className={`w-full text-left px-3 py-2 rounded-lg text-xs font-bold transition-colors ${lang === 'pt' ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30' : 'text-slate-300 hover:bg-slate-800'}`}>
                       🇧🇷 Português
                     </button>
-                    <button onClick={() => changeLanguage('en')} className={`w-full text-left px-3 py-1.5 rounded-lg text-xs font-bold ${lang === 'en' ? 'bg-blue-50 text-blue-600' : 'text-slate-700 hover:bg-slate-100'}`}>
+                    <button onClick={() => changeLanguage('en')} className={`w-full text-left px-3 py-2 rounded-lg text-xs font-bold transition-colors ${lang === 'en' ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30' : 'text-slate-300 hover:bg-slate-800'}`}>
                       🇺🇸 English
                     </button>
-                    <button onClick={() => changeLanguage('es')} className={`w-full text-left px-3 py-1.5 rounded-lg text-xs font-bold ${lang === 'es' ? 'bg-blue-50 text-blue-600' : 'text-slate-700 hover:bg-slate-100'}`}>
+                    <button onClick={() => changeLanguage('es')} className={`w-full text-left px-3 py-2 rounded-lg text-xs font-bold transition-colors ${lang === 'es' ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30' : 'text-slate-300 hover:bg-slate-800'}`}>
                       🇪🇸 Español
                     </button>
                   </div>
                 )}
               </div>
-
-              {/* Mobile Drawer Hamburger */}
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2 rounded-xl bg-slate-100 text-slate-800"
-              >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
             </div>
+
           </div>
         </div>
-
-        {/* Mobile Navigation Drawer */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-b border-slate-200 p-4 space-y-2">
-            <button
-              onClick={() => { navigateToHome(); setMobileMenuOpen(false); }}
-              className="w-full text-left px-4 py-3 rounded-xl font-bold text-sm flex items-center gap-3 bg-slate-50 text-slate-800"
-            >
-              <Building2 className="w-5 h-5 text-blue-600" />
-              <span>Página Inicial</span>
-            </button>
-
-            <button
-              onClick={() => { navigateToCategory('ia'); setMobileMenuOpen(false); }}
-              className="w-full text-left px-4 py-3 rounded-xl font-bold text-sm flex items-center gap-3 bg-slate-50 text-slate-800"
-            >
-              <Bot className="w-5 h-5 text-cyan-600" />
-              <span>Inteligência Artificial</span>
-            </button>
-
-            <button
-              onClick={() => { navigateToCategory('infra'); setMobileMenuOpen(false); }}
-              className="w-full text-left px-4 py-3 rounded-xl font-bold text-sm flex items-center gap-3 bg-slate-50 text-slate-800"
-            >
-              <Zap className="w-5 h-5 text-amber-500" />
-              <span>Infraestrutura & Pay</span>
-            </button>
-
-            <button
-              onClick={() => { navigateToCategory('setoriais'); setMobileMenuOpen(false); }}
-              className="w-full text-left px-4 py-3 rounded-xl font-bold text-sm flex items-center gap-3 bg-slate-50 text-slate-800"
-            >
-              <Layers className="w-5 h-5 text-emerald-600" />
-              <span>Plataformas Setoriais</span>
-            </button>
-
-            <button
-              onClick={() => { navigateToCategory('clientes'); setMobileMenuOpen(false); }}
-              className="w-full text-left px-4 py-3 rounded-xl font-bold text-sm flex items-center gap-3 bg-slate-50 text-slate-800"
-            >
-              <Globe2 className="w-5 h-5 text-indigo-600" />
-              <span>Sites de Clientes (19)</span>
-            </button>
-          </div>
-        )}
       </header>
 
       {/* Main Render Flow: TIER 3 (Detail), TIER 2 (Category), or TIER 1 (Home) */}
@@ -1054,8 +944,8 @@ export function App() {
               <div className="hub-container relative z-10 space-y-12 max-w-5xl mx-auto text-center">
                 
                 <div className="space-y-6">
-                  <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-extrabold tracking-widest uppercase shadow-sm">
-                    <Sparkles className="w-4 h-4 text-blue-600" />
+                  <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-700 text-xs font-extrabold tracking-widest uppercase shadow-sm">
+                    <Sparkles className="w-4 h-4 text-cyan-600" />
                     <span>HelpUS Technology Solutions</span>
                   </div>
 
@@ -1070,48 +960,26 @@ export function App() {
                   <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
                     <button
                       onClick={() => navigateToCategory('ia')}
-                      className="px-8 py-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-xl shadow-blue-600/30 transition-all flex items-center gap-2 transform hover:scale-105"
+                      className="px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm shadow-xl shadow-cyan-500/25 transition-all flex items-center gap-2 transform hover:scale-105"
                     >
                       <Bot className="w-5 h-5" />
                       <span>Explorar Soluções de I.A.</span>
                     </button>
 
-                    <button
-                      onClick={() => setVideoModalOpen(true)}
+                    <a
+                      href={`https://wa.me/${whatsappNumber}?text=Ol%C3%A1%2C%20gostaria%20de%20conversar%20sobre%20as%20solu%C3%A7%C3%B5es%20HelpUS!`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="px-8 py-4 rounded-2xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 font-bold text-sm shadow-md transition-all flex items-center gap-2"
                     >
-                      <Play className="w-5 h-5 text-blue-600 fill-current" />
-                      <span>Assistir Vídeo Institucional</span>
-                    </button>
+                      <MessageCircle className="w-5 h-5 text-emerald-500" />
+                      <span>Falar com Consultor</span>
+                    </a>
                   </div>
                 </div>
 
-                {/* Video Presentation Banner Showcase Card */}
-                <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl bg-slate-900 max-w-4xl mx-auto group">
-                  <img
-                    src="/images/helpus_hero_futuristic.jpg"
-                    alt="HelpUS Technology Presentation"
-                    className="w-full h-[320px] sm:h-[420px] object-cover opacity-70 group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
-
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 space-y-6 text-white z-10">
-                    <button
-                      onClick={() => setVideoModalOpen(true)}
-                      className="w-20 h-20 rounded-full bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center shadow-2xl shadow-blue-600/50 transition-all transform hover:scale-110 active:scale-95"
-                    >
-                      <Play className="w-8 h-8 fill-current ml-1" />
-                    </button>
-
-                    <div className="space-y-2">
-                      <span className="text-xs font-bold uppercase tracking-widest text-blue-400">Vídeo Institucional Oficial</span>
-                      <h3 className="text-2xl sm:text-3xl font-extrabold text-white">Conheça Nossa Engenharia em Ação</h3>
-                      <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto">
-                        Demonstração da nossa infraestrutura, robôs de atendimento no WhatsApp e plataformas corporativas.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                {/* CONTINUOUS AI & DEVELOPMENT ANIMATED BANNER (Replaces Static Video Card) */}
+                <AiDevAnimationBanner lang={lang} />
 
                 {/* Metrics Banner */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-4">
@@ -1217,48 +1085,6 @@ export function App() {
         )}
       </main>
 
-      {/* INSTITUTIONAL VIDEO PRESENTATION MODAL */}
-      {videoModalOpen && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4" onClick={() => setVideoModalOpen(false)}>
-          <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl w-full max-w-2xl overflow-hidden space-y-4" onClick={(e) => e.stopPropagation()}>
-            <div className="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50">
-              <div>
-                <h3 className="text-lg font-bold text-slate-900">Vídeo Institucional — HelpUS Technology</h3>
-                <p className="text-xs text-slate-500">Vídeo Oficial da HelpUS Technology no Instagram</p>
-              </div>
-              <button onClick={() => setVideoModalOpen(false)} className="p-2 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="p-6 space-y-4">
-              <div className="w-full h-[480px] sm:h-[560px] rounded-2xl overflow-hidden bg-slate-900 border border-slate-200 relative flex items-center justify-center">
-                <iframe
-                  className="w-full h-full border-0"
-                  src="https://www.instagram.com/p/DcoMVB1Of8Z/embed/"
-                  title="HelpUS Technology Presentation Instagram Video"
-                  allowTransparency={true}
-                  allow="encrypted-media"
-                ></iframe>
-              </div>
-
-              <div className="flex items-center justify-between text-xs pt-1">
-                <span className="text-slate-500 font-medium">Publicado oficialmente em @helpusbr</span>
-                <a
-                  href="https://www.instagram.com/p/DcoMVB1Of8Z/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 text-white font-bold text-xs shadow-md hover:opacity-90 flex items-center gap-1.5 transition-all"
-                >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                  <span>Abrir Vídeo no Instagram</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Institutional / Support Info Modals */}
       {activeInfoModal && (
         <div className="ecosystem-modal-overlay" onClick={() => setActiveInfoModal(null)}>
@@ -1294,7 +1120,11 @@ export function App() {
       {/* STICKY FLOATING BOTTOM FOOTER BAR */}
       <StickyFloatingFooter 
         lang={lang}
-        onOpenDemo={() => setVideoModalOpen(true)}
+        onOpenDemo={() => {
+          if (typeof window !== 'undefined') {
+            window.open(`https://wa.me/${whatsappNumber}?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20demonstra%C3%A7%C3%A3o!`, '_blank');
+          }
+        }}
         onOpenContact={() => {
           if (typeof window !== 'undefined') {
             window.open(`https://wa.me/${whatsappNumber}?text=Ol%C3%A1%2C%20gostaria%20de%20um%20atendimento!`, '_blank');
@@ -1303,25 +1133,25 @@ export function App() {
       />
 
       {/* Standard Footer */}
-      <footer className="bg-white border-t border-slate-200 py-12">
+      <footer className="bg-slate-950 text-white border-t border-slate-800 py-12">
         <div className="hub-container text-center space-y-6">
           <div className="flex items-center justify-center gap-3">
             <img src="/images/helpus_logo.png" alt="HelpUS Logo" className="h-10 w-auto object-contain" />
-            <span className="font-extrabold text-xl text-slate-900">HelpUS Technology</span>
+            <span className="font-extrabold text-xl text-white">HelpUS Technology</span>
           </div>
-          <p className="text-xs text-slate-500 max-w-md mx-auto">{t.footer.contactDesc}</p>
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-600 font-semibold">
-            <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">
+          <p className="text-xs text-slate-400 max-w-md mx-auto">{t.footer.contactDesc}</p>
+          <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-300 font-semibold">
+            <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400">
               {t.footer.whatsapp}
             </a>
-            <a href={`mailto:${helpusEmail}`} className="hover:text-blue-600">
+            <a href={`mailto:${helpusEmail}`} className="hover:text-cyan-400">
               {t.footer.email}
             </a>
-            <button onClick={() => setActiveInfoModal('privacy')} className="hover:text-blue-600">
+            <button onClick={() => setActiveInfoModal('privacy')} className="hover:text-cyan-400">
               {t.footer.privacy}
             </button>
           </div>
-          <p className="text-[11px] text-slate-400 pt-4 border-t border-slate-100">{t.footer.rights}</p>
+          <p className="text-[11px] text-slate-500 pt-4 border-t border-slate-900">{t.footer.rights}</p>
         </div>
       </footer>
     </div>
