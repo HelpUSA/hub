@@ -171,7 +171,7 @@ export function App() {
 
   // Official HelpUS contacts
   const whatsappNumber = '5583998721848';
-  const whatsappFormatted = '+1 (83) 99872-1848';
+  const whatsappFormatted = '(83) 99872-1848';
   const helpusEmail = 'helpus.ecommerce@gmail.com';
 
   // Applications & Projects Registry
