@@ -36,6 +36,7 @@ import CategoryCard, { type CategoryCardData } from './components/CategoryCard';
 import SolutionDetailView from './components/SolutionDetailView';
 import HeroCarouselBanner from './components/HeroCarouselBanner';
 import CorporateFooter from './components/CorporateFooter';
+import CookieBanner from './components/CookieBanner';
 
 export interface AppItem {
   id: string;
@@ -170,8 +171,8 @@ export function App() {
 
   // Official HelpUS contacts
   const whatsappNumber = '5583998721848';
-  const whatsappFormatted = '(83) 99872-1848';
-  const helpusEmail = 'contato@helpusbr.com';
+  const whatsappFormatted = '+1 (83) 99872-1848';
+  const helpusEmail = 'helpus.ecommerce@gmail.com';
 
   // Applications & Projects Registry
   const applications: AppItem[] = [
@@ -1109,55 +1110,6 @@ export function App() {
 
               </div>
             </section>
-
-            {/* Section: Institucional & Arquitetura de Software */}
-            <section className="py-20 bg-slate-50 border-b border-slate-200">
-              <div className="hub-container space-y-16">
-                <div className="text-center space-y-4 max-w-3xl mx-auto">
-                  <span className="px-3.5 py-1.5 rounded-full bg-slate-200 text-slate-800 text-xs font-extrabold uppercase tracking-wider">
-                    {atUI.engBadge}
-                  </span>
-                  <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                    {atUI.engTitle}
-                  </h2>
-                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                    {atUI.engDesc}
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  <div className="p-8 rounded-3xl bg-white border border-slate-200 space-y-4 hover:border-blue-300 transition-colors">
-                    <div className="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center font-bold text-xl">
-                      01
-                    </div>
-                    <h3 className="text-xl font-extrabold text-slate-900">{atUI.eng1Title}</h3>
-                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                      {atUI.eng1Desc}
-                    </p>
-                  </div>
-
-                  <div className="p-8 rounded-3xl bg-white border border-slate-200 space-y-4 hover:border-indigo-300 transition-colors">
-                    <div className="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center font-bold text-xl">
-                      02
-                    </div>
-                    <h3 className="text-xl font-extrabold text-slate-900">{atUI.eng2Title}</h3>
-                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                      {atUI.eng2Desc}
-                    </p>
-                  </div>
-
-                  <div className="p-8 rounded-3xl bg-white border border-slate-200 space-y-4 hover:border-emerald-300 transition-colors">
-                    <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center font-bold text-xl">
-                      03
-                    </div>
-                    <h3 className="text-xl font-extrabold text-slate-900">{atUI.eng3Title}</h3>
-                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                      {atUI.eng3Desc}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </section>
           </>
         )}
       </main>
@@ -1194,6 +1146,12 @@ export function App() {
         </div>
       )}
 
+      {/* LGPD / GDPR Cookie Consent Banner */}
+      <CookieBanner 
+        lang={lang} 
+        onOpenPrivacy={() => setActiveInfoModal('privacy')} 
+      />
+
       {/* STICKY FLOATING BOTTOM FOOTER BAR (WhatsApp Direct Only) */}
       <StickyFloatingFooter 
         lang={lang}
@@ -1204,7 +1162,7 @@ export function App() {
         }}
       />
 
-      {/* CORPORATE MULTI-COLUMN FOOTER (VSoft Style) */}
+      {/* CORPORATE MULTI-COLUMN FOOTER */}
       <CorporateFooter 
         lang={lang}
         onNavigateCategory={navigateToCategory}
