@@ -14,7 +14,6 @@ import {
   Layers,
   Globe2,
   X,
-  Sparkles,
   ArrowLeft,
   Search,
   Scale,
@@ -27,8 +26,7 @@ import {
   Lock,
   Zap,
   Filter,
-  ArrowRight,
-  MessageCircle
+  ArrowRight
 } from 'lucide-react';
 
 import { translations, type Language } from './i18n/translations';
@@ -36,7 +34,8 @@ import AnimatedBackground from './components/AnimatedBackground';
 import StickyFloatingFooter from './components/StickyFloatingFooter';
 import CategoryCard, { type CategoryCardData } from './components/CategoryCard';
 import SolutionDetailView from './components/SolutionDetailView';
-import AiDevAnimationBanner from './components/AiDevAnimationBanner';
+import HeroCarouselBanner from './components/HeroCarouselBanner';
+import CorporateFooter from './components/CorporateFooter';
 
 export interface AppItem {
   id: string;
@@ -552,7 +551,7 @@ export function App() {
       liveUrl: 'https://publicarte.helpusbr.com',
       category: 'clientes',
       clientSubcategory: 'services',
-      icon: Sparkles,
+      icon: Globe2,
       image: '/images/helpus_dev_ui.jpg',
       folderPath: 'D:\\AntiG\\02_client_sites\\publicarte',
       status: 'Projeto de Cliente',
@@ -936,70 +935,15 @@ export function App() {
           </div>
         ) : (
           /* ========================================================================= */
-          /* TIER 1: PÁGINA INICIAL — ELEGANTE, INSTITUCIONAL & APRESENTAÇÃO CORPORATIVA */
+          /* TIER 1: PÁGINA INICIAL — HERO CAROUSEL BANNER & CATEGORY HUBS             */
           /* ========================================================================= */
           <>
-            {/* Hero Section */}
-            <section className="py-20 md:py-28 relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-[#f8fafc] border-b border-slate-200">
-              <div className="hub-container relative z-10 space-y-12 max-w-5xl mx-auto text-center">
+            {/* Hero Section with High-Tech Animated Carousel Backdrop */}
+            <section className="py-12 md:py-16 relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-[#f8fafc] border-b border-slate-200">
+              <div className="hub-container relative z-10 max-w-6xl mx-auto">
                 
-                <div className="space-y-6">
-                  <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-700 text-xs font-extrabold tracking-widest uppercase shadow-sm">
-                    <Sparkles className="w-4 h-4 text-cyan-600" />
-                    <span>HelpUS Technology Solutions</span>
-                  </div>
-
-                  <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 font-sans tracking-tight leading-tight">
-                    Ecossistemas Digitais Inteligentes para Negócios de Alta Performance
-                  </h1>
-
-                  <p className="text-base sm:text-xl text-slate-600 font-medium max-w-3xl mx-auto leading-relaxed">
-                    Desenvolvemos engenharia de software sob medida, automações neurais de Inteligência Artificial no WhatsApp, plataformas corporativas e soluções web integradas.
-                  </p>
-
-                  <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-                    <button
-                      onClick={() => navigateToCategory('ia')}
-                      className="px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm shadow-xl shadow-cyan-500/25 transition-all flex items-center gap-2 transform hover:scale-105"
-                    >
-                      <Bot className="w-5 h-5" />
-                      <span>Explorar Soluções de I.A.</span>
-                    </button>
-
-                    <a
-                      href={`https://wa.me/${whatsappNumber}?text=Ol%C3%A1%2C%20gostaria%20de%20conversar%20sobre%20as%20solu%C3%A7%C3%B5es%20HelpUS!`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-8 py-4 rounded-2xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 font-bold text-sm shadow-md transition-all flex items-center gap-2"
-                    >
-                      <MessageCircle className="w-5 h-5 text-emerald-500" />
-                      <span>Falar com Consultor</span>
-                    </a>
-                  </div>
-                </div>
-
-                {/* CONTINUOUS AI & DEVELOPMENT ANIMATED BANNER (Replaces Static Video Card) */}
-                <AiDevAnimationBanner lang={lang} />
-
-                {/* Metrics Banner */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-4">
-                  <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm text-center space-y-1">
-                    <span className="text-3xl font-extrabold text-blue-600">19+</span>
-                    <p className="text-xs font-bold text-slate-700">Sites de Clientes Finais</p>
-                  </div>
-                  <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm text-center space-y-1">
-                    <span className="text-3xl font-extrabold text-cyan-600">15+</span>
-                    <p className="text-xs font-bold text-slate-700">Plataformas & Microsserviços</p>
-                  </div>
-                  <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm text-center space-y-1">
-                    <span className="text-3xl font-extrabold text-emerald-600">99.9%</span>
-                    <p className="text-xs font-bold text-slate-700">Uptime Global Cloud</p>
-                  </div>
-                  <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm text-center space-y-1">
-                    <span className="text-3xl font-extrabold text-indigo-600">24/7</span>
-                    <p className="text-xs font-bold text-slate-700">Atendimento Autônomo IA</p>
-                  </div>
-                </div>
+                {/* HERO BACKGROUND CAROUSEL BANNER (Headline & Subtitle directly inside banner) */}
+                <HeroCarouselBanner lang={lang} />
 
               </div>
             </section>
@@ -1117,14 +1061,9 @@ export function App() {
         </div>
       )}
 
-      {/* STICKY FLOATING BOTTOM FOOTER BAR */}
+      {/* STICKY FLOATING BOTTOM FOOTER BAR (WhatsApp Direct Only) */}
       <StickyFloatingFooter 
         lang={lang}
-        onOpenDemo={() => {
-          if (typeof window !== 'undefined') {
-            window.open(`https://wa.me/${whatsappNumber}?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20demonstra%C3%A7%C3%A3o!`, '_blank');
-          }
-        }}
         onOpenContact={() => {
           if (typeof window !== 'undefined') {
             window.open(`https://wa.me/${whatsappNumber}?text=Ol%C3%A1%2C%20gostaria%20de%20um%20atendimento!`, '_blank');
@@ -1132,28 +1071,12 @@ export function App() {
         }}
       />
 
-      {/* Standard Footer */}
-      <footer className="bg-slate-950 text-white border-t border-slate-800 py-12">
-        <div className="hub-container text-center space-y-6">
-          <div className="flex items-center justify-center gap-3">
-            <img src="/images/helpus_logo.png" alt="HelpUS Logo" className="h-10 w-auto object-contain" />
-            <span className="font-extrabold text-xl text-white">HelpUS Technology</span>
-          </div>
-          <p className="text-xs text-slate-400 max-w-md mx-auto">{t.footer.contactDesc}</p>
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-300 font-semibold">
-            <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400">
-              {t.footer.whatsapp}
-            </a>
-            <a href={`mailto:${helpusEmail}`} className="hover:text-cyan-400">
-              {t.footer.email}
-            </a>
-            <button onClick={() => setActiveInfoModal('privacy')} className="hover:text-cyan-400">
-              {t.footer.privacy}
-            </button>
-          </div>
-          <p className="text-[11px] text-slate-500 pt-4 border-t border-slate-900">{t.footer.rights}</p>
-        </div>
-      </footer>
+      {/* CORPORATE MULTI-COLUMN FOOTER (VSoft Style) */}
+      <CorporateFooter 
+        lang={lang}
+        onNavigateCategory={navigateToCategory}
+        onOpenModal={(type) => setActiveInfoModal(type)}
+      />
     </div>
   );
 }
