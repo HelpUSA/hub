@@ -63,7 +63,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
 
         {/* Count Badge */}
         <div className="absolute top-4 right-4 px-3 py-1 bg-slate-950/80 backdrop-blur-md rounded-full text-xs font-semibold text-cyan-300 border border-cyan-500/30">
-          {category.count} Soluções
+          {category.count} {lang === 'en' ? 'Solutions' : lang === 'es' ? 'Soluciones' : 'Soluções'}
         </div>
 
         <div className="absolute bottom-4 left-4 right-4">

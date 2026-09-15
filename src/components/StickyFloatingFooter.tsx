@@ -15,17 +15,23 @@ export const StickyFloatingFooter: React.FC<StickyFloatingFooterProps> = ({
     pt: {
       status: 'Soluções 100% Online',
       whatsapp: 'Falar no WhatsApp Direct',
-      call: 'Falar com Consultor'
+      call: 'Falar com Consultor',
+      subtitle: 'Ecossistema Corporativo HelpUS',
+      realTime: 'Atendimento em Tempo Real'
     },
     en: {
       status: 'Solutions 100% Online',
       whatsapp: 'WhatsApp Direct',
-      call: 'Talk to Advisor'
+      call: 'Talk to Advisor',
+      subtitle: 'HelpUS Corporate Ecosystem',
+      realTime: 'Real-Time Support'
     },
     es: {
       status: 'Soluciones 100% En Línea',
       whatsapp: 'WhatsApp Directo',
-      call: 'Hablar con Asesor'
+      call: 'Hablar con Asesor',
+      subtitle: 'Ecosistema Corporativo HelpUS',
+      realTime: 'Atención en Tiempo Real'
     }
   };
 
@@ -46,7 +52,7 @@ export const StickyFloatingFooter: React.FC<StickyFloatingFooterProps> = ({
             <span>{currentText.status}</span>
           </div>
           <div className="text-[10px] text-slate-400 hidden xs:block">
-            Ecossistema Corporativo HelpUS
+            {currentText.subtitle}
           </div>
         </div>
       </div>
@@ -54,7 +60,7 @@ export const StickyFloatingFooter: React.FC<StickyFloatingFooterProps> = ({
       {/* Center Highlight */}
       <div className="hidden md:flex items-center gap-2 text-xs font-medium text-slate-300 px-3 py-1 bg-slate-900/80 rounded-full border border-slate-800">
         <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
-        <span>Atendimento em Tempo Real</span>
+        <span>{currentText.realTime}</span>
       </div>
 
       {/* WhatsApp Direct Action Button Only */}

@@ -9,7 +9,7 @@ import {
   ChevronRight,
   Server
 } from 'lucide-react';
-import type { Language } from '../i18n/translations';
+import { translations, type Language } from '../i18n/translations';
 
 interface SolutionAppDetail {
   id: string;
@@ -46,6 +46,50 @@ export const SolutionDetailView: React.FC<SolutionDetailViewProps> = ({
     clientes: { pt: 'Sites de Clientes', en: 'Client Sites', es: 'Sitios de Clientes' }
   };
 
+  const uiTexts = {
+    pt: {
+      back: 'Voltar',
+      description: 'Solução corporativa de alto desempenho implantada e gerenciada pela infraestrutura HelpUS Cloud. Totalmente otimizada com alta disponibilidade, SSL estendido e integração contínua.',
+      sslBadge: 'SSL Seguro Grátis',
+      visitBtn: 'Acessar Site Oficial',
+      contactBtn: 'Falar com Consultor',
+      f1Title: 'Desempenho Otimizado',
+      f1Desc: 'Arquitetura moderna com carregamento ultra rápido, suporte a PWA e renderização dinâmica na borda da rede Vercel Edge.',
+      f2Title: 'Disponibilidade 99.9%',
+      f2Desc: 'Hospedagem em nuvem redundante com monitoramento ativo 24 horas por dia e proteção anti-DDoS pelo Cloudflare.',
+      f3Title: 'Suporte Dedicado',
+      f3Desc: 'Equipe técnica especializada HelpUS disponível para manutenção contínua, melhorias e suporte direto via WhatsApp.'
+    },
+    en: {
+      back: 'Back',
+      description: 'High-performance enterprise solution deployed and managed by HelpUS Cloud infrastructure. Fully optimized with high availability, extended SSL, and continuous integration.',
+      sslBadge: 'Free Secure SSL',
+      visitBtn: 'Visit Official Site',
+      contactBtn: 'Talk to Advisor',
+      f1Title: 'Optimized Performance',
+      f1Desc: 'Modern architecture with ultra-fast loading, PWA support, and dynamic rendering on Vercel Edge network.',
+      f2Title: '99.9% Uptime',
+      f2Desc: 'Redundant cloud hosting with 24/7 active monitoring and anti-DDoS protection via Cloudflare.',
+      f3Title: 'Dedicated Support',
+      f3Desc: 'Specialized HelpUS technical team available for continuous maintenance, upgrades, and direct WhatsApp support.'
+    },
+    es: {
+      back: 'Volver',
+      description: 'Solución corporativa de alto rendimiento desplegada y gestionada por la infraestructura HelpUS Cloud. Totalmente optimizada con alta disponibilidad, SSL extendido e integración continua.',
+      sslBadge: 'SSL Seguro Gratis',
+      visitBtn: 'Visitar Sitio Oficial',
+      contactBtn: 'Hablar con Asesor',
+      f1Title: 'Rendimiento Optimizado',
+      f1Desc: 'Arquitectura moderna con carga ultra rápida, soporte PWA y renderizado dinámico en la red Vercel Edge.',
+      f2Title: 'Disponibilidad 99.9%',
+      f2Desc: 'Hospedaje en la nube redundante con monitoreo activo 24/7 y protección anti-DDoS por Cloudflare.',
+      f3Title: 'Soporte Dedicado',
+      f3Desc: 'Equipo técnico especializado de HelpUS disponible para mantenimiento continuo y soporte directo por WhatsApp.'
+    }
+  };
+
+  const tUI = uiTexts[lang] || uiTexts.pt;
+  const tApp = translations[lang]?.apps?.[app.id];
   const catTitle = categoryNames[app.category]?.[lang] || categoryNames[app.category]?.pt;
 
   return (
@@ -58,7 +102,7 @@ export const SolutionDetailView: React.FC<SolutionDetailViewProps> = ({
           className="flex items-center gap-1 hover:text-cyan-500 transition-colors font-medium"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Voltar</span>
+          <span>{tUI.back}</span>
         </button>
         <ChevronRight className="w-3.5 h-3.5" />
         <span>{catTitle}</span>
@@ -81,18 +125,18 @@ export const SolutionDetailView: React.FC<SolutionDetailViewProps> = ({
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              {app.domain}
+              {tApp?.name || app.domain}
             </h1>
 
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Solução corporativa de alto desempenho implantada e gerenciada pela infraestrutura HelpUS Cloud. Totalmente otimizada com alta disponibilidade, SSL estendido e integração contínua.
+              {tApp?.description || tUI.description}
             </p>
 
             {/* Badges & Meta */}
             <div className="flex flex-wrap gap-4 pt-2 text-xs text-slate-400 border-t border-slate-800">
               <div className="flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                <span>SSL Seguro Grátis</span>
+                <span>{tUI.sslBadge}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <Zap className="w-4 h-4 text-amber-400" />
@@ -112,7 +156,7 @@ export const SolutionDetailView: React.FC<SolutionDetailViewProps> = ({
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-cyan-500/25 transition-all transform hover:scale-[1.02]"
               >
-                <span>Acessar Site Oficial</span>
+                <span>{tUI.visitBtn}</span>
                 <ExternalLink className="w-4 h-4" />
               </a>
 
@@ -123,7 +167,7 @@ export const SolutionDetailView: React.FC<SolutionDetailViewProps> = ({
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-emerald-500/40 font-bold text-sm transition-all"
               >
                 <MessageCircle className="w-4 h-4 text-emerald-400" />
-                <span>Falar com Consultor</span>
+                <span>{tUI.contactBtn}</span>
               </a>
             </div>
           </div>
@@ -155,9 +199,9 @@ export const SolutionDetailView: React.FC<SolutionDetailViewProps> = ({
           <div className="p-3 w-fit rounded-2xl bg-cyan-500/10 text-cyan-500">
             <Zap className="w-6 h-6" />
           </div>
-          <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100">Desempenho Otimizado</h3>
+          <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100">{tUI.f1Title}</h3>
           <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-            Arquitetura moderna com carregamento ultra rápido, suporte a PWA e renderização dinâmica na borda da rede Vercel Edge.
+            {tUI.f1Desc}
           </p>
         </div>
 
@@ -165,9 +209,9 @@ export const SolutionDetailView: React.FC<SolutionDetailViewProps> = ({
           <div className="p-3 w-fit rounded-2xl bg-purple-500/10 text-purple-500">
             <Server className="w-6 h-6" />
           </div>
-          <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100">Disponibilidade 99.9%</h3>
+          <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100">{tUI.f2Title}</h3>
           <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-            Hospedagem em nuvem redundante com monitoramento ativo 24 horas por dia e proteção anti-DDoS pelo Cloudflare.
+            {tUI.f2Desc}
           </p>
         </div>
 
@@ -175,9 +219,9 @@ export const SolutionDetailView: React.FC<SolutionDetailViewProps> = ({
           <div className="p-3 w-fit rounded-2xl bg-emerald-500/10 text-emerald-500">
             <MessageCircle className="w-6 h-6" />
           </div>
-          <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100">Suporte Dedicado</h3>
+          <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100">{tUI.f3Title}</h3>
           <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-            Equipe técnica especializada HelpUS disponível para manutenção contínua, melhorias e suporte direto via WhatsApp.
+            {tUI.f3Desc}
           </p>
         </div>
 

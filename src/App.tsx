@@ -700,6 +700,122 @@ export function App() {
     return app.clientSubcategory === clientFilter;
   });
 
+  const appTexts = {
+    pt: {
+      backToHome: 'Voltar à Página Inicial',
+      divisionBadge: 'Divisão Corporativa HelpUS',
+      catTitles: {
+        ia: 'Inteligência Artificial & Automação Neural',
+        infra: 'Infraestrutura Corporativa, SSO & Pagamentos',
+        setoriais: 'Plataformas Setoriais Especializadas',
+        clientes: 'Portais & Sites de Clientes Finais (19)'
+      },
+      catDescs: {
+        ia: 'Conheça nossa suíte completa de Inteligência Artificial generativa: assistentes autônomos 24/7 no WhatsApp, estúdio de voz neural, motor de pesquisa verificável com fontes e gerador visual de apresentações.',
+        infra: 'Infraestrutura central de microsserviços corporativos: gateway de cobrança PIX recorrente, autenticação única Single Sign-On (SSO) criptografada, CRM omnichannel e monitor master de disponibilidade de status.',
+        setoriais: 'Plataformas de alta performance desenvolvidas para o mercado imobiliário (RealEstate), saúde e exames médicos (USMLE), mobilidade executiva e gastronomia.',
+        clientes: 'Conheça os portais e sistemas desenvolvidos sob medida para nossa carteira de clientes finais: escritórios de contabilidade, médicos, imobiliárias, barbearias, restaurantes e e-commerce.'
+      },
+      filterLabel: 'Filtrar Segmento:',
+      filterAll: 'Todos',
+      filterRealestate: '🏢 Imobiliárias',
+      filterHealth: '🩺 Medicina & Saúde',
+      filterBeauty: '✂️ Barbearia & Estética',
+      filterFood: '🍕 Gastronomia & Eventos',
+      filterServices: '💼 Serviços & Outros',
+      cardBtnDedicated: 'Ver Apresentação Dedicada (Detalhes)',
+      cardBtnDirect: 'Acessar Site Direto ↗',
+      homeCatBadge: 'Categorias Principais',
+      homeCatTitle: 'Explore Nossas Divisões de Solução',
+      homeCatDesc: 'Apresentação organizada em categorias representativas inspirada em grandes portais corporativos. Clique para explorar cada divisão detalhadamente.',
+      engBadge: 'Padrão de Engenharia',
+      engTitle: 'Por Que Grandes Negócios Confiam na HelpUS?',
+      engDesc: 'Construímos soluções focadas em velocidade de resposta, zero manutenção corretiva e disponibilidade máxima.',
+      eng1Title: 'Automação Autônoma 24/7',
+      eng1Desc: 'Agentes de inteligência artificial treinados com os dados reais do seu negócio que atendem e convertem clientes no WhatsApp sem intervenção humana.',
+      eng2Title: 'Arquitetura Serverless Mesh',
+      eng2Desc: 'Microsserviços independentes e isolados hospedados na Vercel Cloud e Cloudflare, garantindo latência ultra-baixa e SSL criptografado ativado.',
+      eng3Title: 'Compatibilidade & Uptime',
+      eng3Desc: 'Subdomínios vinculados diretamente aos CNAMEs dos clientes para resposta em milissegundos e monitoramento ativo 24 horas por dia.'
+    },
+    en: {
+      backToHome: 'Back to Home',
+      divisionBadge: 'HelpUS Corporate Division',
+      catTitles: {
+        ia: 'Artificial Intelligence & Neural Automation',
+        infra: 'Corporate Infrastructure, SSO & Payments',
+        setoriais: 'Specialized Vertical Platforms',
+        clientes: 'Client Sites & Portals (19)'
+      },
+      catDescs: {
+        ia: 'Discover our complete suite of generative AI: 24/7 autonomous WhatsApp agents, neural voice studio, verifiable search engine with citations, and slide generator.',
+        infra: 'Central corporate microservices infrastructure: recurring PIX payment gateway, encrypted Single Sign-On (SSO) auth, omnichannel CRM, and master uptime status monitor.',
+        setoriais: 'High-performance platforms built for real estate (RealEstate), healthcare & medical exams (USMLE), executive mobility, and gastronomy.',
+        clientes: 'Discover custom portals and systems built for our client portfolio: accounting firms, physicians, real estate brokers, barbershops, restaurants, and e-commerce.'
+      },
+      filterLabel: 'Filter Segment:',
+      filterAll: 'All',
+      filterRealestate: '🏢 Real Estate',
+      filterHealth: '🩺 Medicine & Health',
+      filterBeauty: '✂️ Barbershop & Beauty',
+      filterFood: '🍕 Gastronomy & Events',
+      filterServices: '💼 Services & Others',
+      cardBtnDedicated: 'View Dedicated Presentation (Details)',
+      cardBtnDirect: 'Visit Direct Site ↗',
+      homeCatBadge: 'Main Categories',
+      homeCatTitle: 'Explore Our Solution Divisions',
+      homeCatDesc: 'Organized presentation in representative categories inspired by corporate portals. Click to explore each division in detail.',
+      engBadge: 'Engineering Standard',
+      engTitle: 'Why Top Businesses Trust HelpUS?',
+      engDesc: 'We build solutions focused on rapid response speed, zero corrective maintenance, and maximum availability.',
+      eng1Title: '24/7 Autonomous Automation',
+      eng1Desc: 'AI agents trained on your business data that serve and convert customers on WhatsApp without human intervention.',
+      eng2Title: 'Serverless Mesh Architecture',
+      eng2Desc: 'Isolated microservices hosted on Vercel Cloud and Cloudflare, ensuring ultra-low latency and active encrypted SSL.',
+      eng3Title: 'Compatibility & Uptime',
+      eng3Desc: 'Subdomains directly linked to client CNAMEs for millisecond response times and 24/7 active uptime monitoring.'
+    },
+    es: {
+      backToHome: 'Volver a la Página Principal',
+      divisionBadge: 'División Corporativa HelpUS',
+      catTitles: {
+        ia: 'Inteligencia Artificial y Automatización Neural',
+        infra: 'Infraestructura Corporativa, SSO y Pagos',
+        setoriais: 'Plataformas Sectoriales Especializadas',
+        clientes: 'Portales y Sitios de Clientes (19)'
+      },
+      catDescs: {
+        ia: 'Conozca nuestra suite completa de IA generativa: agentes autónomos 24/7 en WhatsApp, estudio de voz neural, motor de búsqueda con citas y generador de diapositivas.',
+        infra: 'Infraestructura central de microservicios: pasarela de pago PIX recurrente, autenticación Single Sign-On (SSO) cifrada, CRM omnicanal y monitor de uptime.',
+        setoriais: 'Plataformas de alto rendimiento para el mercado inmobiliario (RealEstate), salud y exámenes médicos (USMLE), movilidad ejecutiva y gastronomía.',
+        clientes: 'Conozca los portales desarrollados para nuestra cartera de clientes: firmas contables, médicos, inmobiliarias, barberías, restaurantes y e-commerce.'
+      },
+      filterLabel: 'Filtrar Segmento:',
+      filterAll: 'Todos',
+      filterRealestate: '🏢 Inmobiliarias',
+      filterHealth: '🩺 Medicina y Salud',
+      filterBeauty: '✂️ Barbería y Estética',
+      filterFood: '🍕 Gastronomía y Eventos',
+      filterServices: '💼 Servicios y Otros',
+      cardBtnDedicated: 'Ver Presentación Dedicada (Detalles)',
+      cardBtnDirect: 'Acceder Sitio Directo ↗',
+      homeCatBadge: 'Categorías Principales',
+      homeCatTitle: 'Explore Nuestras Divisiones de Solución',
+      homeCatDesc: 'Presentación organizada en categorías representativas inspirada en grandes portales corporativos. Haga clic para explorar cada división.',
+      engBadge: 'Estándar de Ingeniería',
+      engTitle: '¿Por Qué las Grandes Empresas Confían en HelpUS?',
+      engDesc: 'Construimos soluciones enfocadas en velocidad de respuesta, cero mantenimiento correctivo y máxima disponibilidad.',
+      eng1Title: 'Automatización Autónoma 24/7',
+      eng1Desc: 'Agentes de inteligencia artificial entrenados con datos reales que atienden y convierten clientes en WhatsApp sin intervención humana.',
+      eng2Title: 'Arquitectura Serverless Mesh',
+      eng2Desc: 'Microservicios independientes alojados en Vercel Cloud y Cloudflare, garantizando ultra baja latencia y SSL cifrado.',
+      eng3Title: 'Compatibilidad y Uptime',
+      eng3Desc: 'Subdominios vinculados directamente a los CNAMEs de clientes para respuestas en milisegundos y monitoreo 24/7.'
+    }
+  };
+
+  const atUI = appTexts[lang] || appTexts.pt;
+
   return (
     <div className="hub-app font-sans bg-[#f8fafc] text-slate-900 min-h-screen pb-24">
       <AnimatedBackground />
@@ -794,26 +910,20 @@ export function App() {
                 className="px-4 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs flex items-center gap-2 border border-slate-200 transition-all mb-4"
               >
                 <ArrowLeft className="w-4 h-4 text-blue-600" />
-                <span>Voltar à Página Inicial</span>
+                <span>{atUI.backToHome}</span>
               </button>
 
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-extrabold uppercase tracking-wider">
                 <Layers className="w-4 h-4 text-blue-600" />
-                <span>Divisão Corporativa HelpUS</span>
+                <span>{atUI.divisionBadge}</span>
               </div>
 
               <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-sans tracking-tight">
-                {selectedCategory === 'ia' && 'Inteligência Artificial & Automação Neural'}
-                {selectedCategory === 'infra' && 'Infraestrutura Corporativa, SSO & Pagamentos'}
-                {selectedCategory === 'setoriais' && 'Plataformas Setoriais Especializadas'}
-                {selectedCategory === 'clientes' && 'Portais & Sites de Clientes Finais (19)'}
+                {selectedCategory ? atUI.catTitles[selectedCategory] : ''}
               </h1>
 
               <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
-                {selectedCategory === 'ia' && 'Conheça nossa suíte completa de Inteligência Artificial generativa: assistentes autônomos 24/7 no WhatsApp, estúdio de voz neural, motor de pesquisa verificável com fontes e gerador visual de apresentações.'}
-                {selectedCategory === 'infra' && 'Infraestrutura central de microsserviços corporativos: gateway de cobrança PIX recorrente, autenticação única Single Sign-On (SSO) criptografada, CRM omnichannel e monitor master de disponibilidade de status.'}
-                {selectedCategory === 'setoriais' && 'Plataformas de alta performance desenvolvidas para o mercado imobiliário (RealEstate), saúde e exames médicos (USMLE), mobilidade executiva e gastronomia.'}
-                {selectedCategory === 'clientes' && 'Conheça os portais e sistemas desenvolvidos sob medida para nossa carteira de clientes finais: escritórios de contabilidade, médicos, imobiliárias, barbearias, restaurantes e e-commerce.'}
+                {selectedCategory ? atUI.catDescs[selectedCategory] : ''}
               </p>
             </div>
 
@@ -821,7 +931,7 @@ export function App() {
             {selectedCategory === 'clientes' && (
               <div className="flex flex-wrap items-center gap-2 p-3 bg-white rounded-2xl border border-slate-200 shadow-sm">
                 <span className="text-xs font-bold text-slate-500 mr-2 flex items-center gap-1">
-                  <Filter className="w-3.5 h-3.5" /> Filtrar Segmento:
+                  <Filter className="w-3.5 h-3.5" /> {atUI.filterLabel}
                 </span>
                 <button
                   onClick={() => setClientFilter('all')}
@@ -829,7 +939,7 @@ export function App() {
                     clientFilter === 'all' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
-                  Todos ({activeCategoryApps.length})
+                  {atUI.filterAll} ({activeCategoryApps.length})
                 </button>
                 <button
                   onClick={() => setClientFilter('realestate')}
@@ -837,7 +947,7 @@ export function App() {
                     clientFilter === 'realestate' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
-                  🏢 Imobiliárias
+                  {atUI.filterRealestate}
                 </button>
                 <button
                   onClick={() => setClientFilter('health')}
@@ -845,7 +955,7 @@ export function App() {
                     clientFilter === 'health' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
-                  🩺 Medicina & Saúde
+                  {atUI.filterHealth}
                 </button>
                 <button
                   onClick={() => setClientFilter('beauty')}
@@ -853,7 +963,7 @@ export function App() {
                     clientFilter === 'beauty' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
-                  ✂️ Barbearia & Estética
+                  {atUI.filterBeauty}
                 </button>
                 <button
                   onClick={() => setClientFilter('food')}
@@ -861,7 +971,7 @@ export function App() {
                     clientFilter === 'food' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
-                  🍕 Gastronomia & Eventos
+                  {atUI.filterFood}
                 </button>
                 <button
                   onClick={() => setClientFilter('services')}
@@ -869,7 +979,7 @@ export function App() {
                     clientFilter === 'services' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
-                  💼 Serviços & Outros
+                  {atUI.filterServices}
                 </button>
               </div>
             )}
@@ -936,7 +1046,7 @@ export function App() {
                           onClick={() => navigateToSolution(app.id)}
                           className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md shadow-blue-600/30 flex items-center justify-center gap-2 transition-all"
                         >
-                          <span>Ver Apresentação Dedicada (Detalhes)</span>
+                          <span>{atUI.cardBtnDedicated}</span>
                           <ArrowRight className="w-4 h-4" />
                         </button>
 
@@ -947,7 +1057,7 @@ export function App() {
                           className="w-full py-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-xs border border-slate-200 flex items-center justify-center gap-1.5 transition-all"
                         >
                           <ExternalLink className="w-3.5 h-3.5 text-blue-600" />
-                          <span>Acessar Site Direto ↗</span>
+                          <span>{atUI.cardBtnDirect}</span>
                         </a>
                       </div>
                     </div>
@@ -976,13 +1086,13 @@ export function App() {
               <div className="hub-container space-y-16">
                 <div className="text-center space-y-4 max-w-3xl mx-auto">
                   <span className="px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-extrabold uppercase tracking-wider">
-                    Categorias Principais
+                    {atUI.homeCatBadge}
                   </span>
                   <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                    Explore Nossas Divisões de Solução
+                    {atUI.homeCatTitle}
                   </h2>
                   <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                    Apresentação organizada em categorias representativas inspirada em grandes portais corporativos. Clique para explorar cada divisão detalhadamente.
+                    {atUI.homeCatDesc}
                   </p>
                 </div>
 
@@ -1005,13 +1115,13 @@ export function App() {
               <div className="hub-container space-y-16">
                 <div className="text-center space-y-4 max-w-3xl mx-auto">
                   <span className="px-3.5 py-1.5 rounded-full bg-slate-200 text-slate-800 text-xs font-extrabold uppercase tracking-wider">
-                    Padrão de Engenharia
+                    {atUI.engBadge}
                   </span>
                   <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                    Por Que Grandes Negócios Confiam na HelpUS?
+                    {atUI.engTitle}
                   </h2>
                   <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                    Construímos soluções focadas em velocidade de resposta, zero manutenção corretiva e disponibilidade máxima.
+                    {atUI.engDesc}
                   </p>
                 </div>
 
@@ -1020,9 +1130,9 @@ export function App() {
                     <div className="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center font-bold text-xl">
                       01
                     </div>
-                    <h3 className="text-xl font-extrabold text-slate-900">Automação Autônoma 24/7</h3>
+                    <h3 className="text-xl font-extrabold text-slate-900">{atUI.eng1Title}</h3>
                     <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                      Agentes de inteligência artificial treinados com os dados reais do seu negócio que atendem e convertem clientes no WhatsApp sem intervenção humana.
+                      {atUI.eng1Desc}
                     </p>
                   </div>
 
@@ -1030,9 +1140,9 @@ export function App() {
                     <div className="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center font-bold text-xl">
                       02
                     </div>
-                    <h3 className="text-xl font-extrabold text-slate-900">Arquitetura Serverless Mesh</h3>
+                    <h3 className="text-xl font-extrabold text-slate-900">{atUI.eng2Title}</h3>
                     <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                      Microsserviços independentes e isolados hospedados na Vercel Cloud e Cloudflare, garantindo latência ultra-baixa e SSL criptografado ativado.
+                      {atUI.eng2Desc}
                     </p>
                   </div>
 
@@ -1040,9 +1150,9 @@ export function App() {
                     <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center font-bold text-xl">
                       03
                     </div>
-                    <h3 className="text-xl font-extrabold text-slate-900">Compatibilidade & Uptime</h3>
+                    <h3 className="text-xl font-extrabold text-slate-900">{atUI.eng3Title}</h3>
                     <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                      Subdomínios vinculados diretamente aos CNAMEs dos clientes para resposta em milissegundos e monitoramento ativo 24 horas por dia.
+                      {atUI.eng3Desc}
                     </p>
                   </div>
                 </div>

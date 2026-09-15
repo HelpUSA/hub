@@ -52,7 +52,22 @@ export const CorporateFooter: React.FC<CorporateFooterProps> = ({
       rights: 'Copyright © 2000 - 2026, HelpUS Technology. Todos os direitos reservados.',
       address: 'João Pessoa - PB / São Paulo - SP, Brasil',
       terms: 'TERMOS DE USO',
-      privacy: 'PRIVACIDADE'
+      privacy: 'PRIVACIDADE',
+      solutionsLinks: [
+        'Serviços Financeiros & Pay',
+        'Gestão Imobiliária (RealEstate)',
+        'Saúde & Exames Médicos (USMLE)',
+        'Barbearia & Estética Hub',
+        'Gastronomia & Eventos QR',
+        'Desenvolvedores de Software'
+      ],
+      resourcesLinks: [
+        'Transparência & Ética',
+        'Canal de Integridade',
+        'Carreiras & Vagas',
+        'Documentação Técnica API',
+        'Sobre a HelpUS'
+      ]
     },
     en: {
       slogan: 'Leader in Digital Ecosystems & Corporate Artificial Intelligence',
@@ -70,7 +85,22 @@ export const CorporateFooter: React.FC<CorporateFooterProps> = ({
       rights: 'Copyright © 2000 - 2026, HelpUS Technology. All rights reserved.',
       address: 'João Pessoa - PB / São Paulo - SP, Brazil',
       terms: 'TERMS OF USE',
-      privacy: 'PRIVACY POLICY'
+      privacy: 'PRIVACY POLICY',
+      solutionsLinks: [
+        'Financial Services & Pay',
+        'Real Estate Management (RealEstate)',
+        'Health & Medical Exams (USMLE)',
+        'Barbershop & Beauty Hub',
+        'Gastronomy & QR Events',
+        'Software Developers'
+      ],
+      resourcesLinks: [
+        'Transparency & Ethics',
+        'Integrity Channel',
+        'Careers & Openings',
+        'API Technical Documentation',
+        'About HelpUS'
+      ]
     },
     es: {
       slogan: 'Líder en Ecosistemas Digitales e Inteligencia Artificial Corporativa',
@@ -88,7 +118,22 @@ export const CorporateFooter: React.FC<CorporateFooterProps> = ({
       rights: 'Copyright © 2000 - 2026, HelpUS Technology. Todos los derechos reservados.',
       address: 'João Pessoa - PB / São Paulo - SP, Brasil',
       terms: 'TÉRMINOS DE USO',
-      privacy: 'PRIVACIDAD'
+      privacy: 'PRIVACIDAD',
+      solutionsLinks: [
+        'Servicios Financieros y Pay',
+        'Gestión Inmobiliaria (RealEstate)',
+        'Salud y Exámenes Médicos (USMLE)',
+        'Barbería y Estética Hub',
+        'Gastronomía y Eventos QR',
+        'Desarrolladores de Software'
+      ],
+      resourcesLinks: [
+        'Transparencia y Ética',
+        'Canal de Integridad',
+        'Carreras y Vacantes',
+        'Documentación Técnica API',
+        'Sobre HelpUS'
+      ]
     }
   };
 
@@ -165,12 +210,12 @@ export const CorporateFooter: React.FC<CorporateFooterProps> = ({
             <div className="pt-2">
               <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-3">{t.solutionsTitle}</h4>
               <ul className="space-y-2 text-xs font-medium">
-                <li><button onClick={() => onNavigateCategory('infra')} className="hover:text-cyan-400 transition-colors">Serviços Financeiros & Pay</button></li>
-                <li><button onClick={() => onNavigateCategory('setoriais')} className="hover:text-cyan-400 transition-colors">Gestão Imobiliária (RealEstate)</button></li>
-                <li><button onClick={() => onNavigateCategory('clientes')} className="hover:text-cyan-400 transition-colors">Saúde & Exames Médicos (USMLE)</button></li>
-                <li><button onClick={() => onNavigateCategory('clientes')} className="hover:text-cyan-400 transition-colors">Barbearia & Estética Hub</button></li>
-                <li><button onClick={() => onNavigateCategory('setoriais')} className="hover:text-cyan-400 transition-colors">Gastronomia & Eventos QR</button></li>
-                <li><button onClick={() => onNavigateCategory('infra')} className="hover:text-cyan-400 transition-colors">Desenvolvedores de Software</button></li>
+                <li><button onClick={() => onNavigateCategory('infra')} className="hover:text-cyan-400 transition-colors">{t.solutionsLinks[0]}</button></li>
+                <li><button onClick={() => onNavigateCategory('setoriais')} className="hover:text-cyan-400 transition-colors">{t.solutionsLinks[1]}</button></li>
+                <li><button onClick={() => onNavigateCategory('clientes')} className="hover:text-cyan-400 transition-colors">{t.solutionsLinks[2]}</button></li>
+                <li><button onClick={() => onNavigateCategory('clientes')} className="hover:text-cyan-400 transition-colors">{t.solutionsLinks[3]}</button></li>
+                <li><button onClick={() => onNavigateCategory('setoriais')} className="hover:text-cyan-400 transition-colors">{t.solutionsLinks[4]}</button></li>
+                <li><button onClick={() => onNavigateCategory('infra')} className="hover:text-cyan-400 transition-colors">{t.solutionsLinks[5]}</button></li>
               </ul>
             </div>
           </div>
@@ -180,11 +225,11 @@ export const CorporateFooter: React.FC<CorporateFooterProps> = ({
             <div>
               <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-3">{t.resourcesTitle}</h4>
               <ul className="space-y-2 text-xs font-medium">
-                <li><button onClick={() => onOpenModal('institutional')} className="hover:text-cyan-400 transition-colors">Transparência & Ética</button></li>
-                <li><button onClick={() => onOpenModal('institutional')} className="hover:text-cyan-400 transition-colors">Canal de Integridade</button></li>
-                <li><button onClick={() => onOpenModal('institutional')} className="hover:text-cyan-400 transition-colors">Carreiras & Vagas</button></li>
-                <li><button onClick={() => onOpenModal('help')} className="hover:text-cyan-400 transition-colors">Documentação Técnica API</button></li>
-                <li><button onClick={() => onOpenModal('institutional')} className="hover:text-cyan-400 transition-colors">Sobre a HelpUS</button></li>
+                <li><button onClick={() => onOpenModal('institutional')} className="hover:text-cyan-400 transition-colors">{t.resourcesLinks[0]}</button></li>
+                <li><button onClick={() => onOpenModal('institutional')} className="hover:text-cyan-400 transition-colors">{t.resourcesLinks[1]}</button></li>
+                <li><button onClick={() => onOpenModal('institutional')} className="hover:text-cyan-400 transition-colors">{t.resourcesLinks[2]}</button></li>
+                <li><button onClick={() => onOpenModal('help')} className="hover:text-cyan-400 transition-colors">{t.resourcesLinks[3]}</button></li>
+                <li><button onClick={() => onOpenModal('institutional')} className="hover:text-cyan-400 transition-colors">{t.resourcesLinks[4]}</button></li>
               </ul>
             </div>
 
