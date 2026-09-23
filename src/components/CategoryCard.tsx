@@ -12,7 +12,7 @@ export interface CategoryCardData {
   colorGradient: string;
   badgeBg: string;
   badgeText: string;
-  count: number;
+  count?: number;
   features: { pt: string[]; en: string[]; es: string[] };
 }
 
@@ -45,55 +45,51 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
       className="group relative bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer flex flex-col justify-between transform hover:-translate-y-1.5"
     >
       {/* Visual Top Cover Image Banner */}
-      <div className="relative h-52 w-full overflow-hidden bg-slate-950">
+      <div className="relative min-h-[220px] w-full overflow-hidden bg-slate-950 flex flex-col justify-between p-5">
         <img 
           src={category.image} 
           alt={title}
-          className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 opacity-90 group-hover:opacity-100" 
+          className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 opacity-90 group-hover:opacity-100" 
         />
-        <div className={`absolute inset-0 bg-gradient-to-t ${category.colorGradient} opacity-60 group-hover:opacity-40 transition-opacity`} />
+        <div className={`absolute inset-0 bg-gradient-to-t ${category.colorGradient} opacity-75 group-hover:opacity-60 transition-opacity`} />
         
-        {/* Floating Category Icon Badge */}
-        <div className="absolute top-4 left-4 p-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-2xl shadow-lg border border-white/20 flex items-center gap-2">
-          <Icon className="w-6 h-6 text-cyan-500" />
-          <span className="text-xs font-bold tracking-wide uppercase text-slate-800 dark:text-slate-100">
+        {/* Floating Category Icon Badge (No count badge on top right) */}
+        <div className="relative z-10 self-start max-w-[85%] px-3.5 py-1.5 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl shadow-lg border border-white/20 flex items-center gap-2">
+          <Icon className="w-4 h-4 text-cyan-500 shrink-0" />
+          <span className="text-xs font-bold tracking-wide uppercase text-slate-900 dark:text-slate-100 leading-tight">
             {category.badgeText}
           </span>
         </div>
 
-        {/* Count Badge */}
-        <div className="absolute top-4 right-4 px-3 py-1 bg-slate-950/80 backdrop-blur-md rounded-full text-xs font-semibold text-cyan-300 border border-cyan-500/30">
-          {category.count} {lang === 'en' ? 'Solutions' : lang === 'es' ? 'Soluciones' : 'Soluções'}
-        </div>
-
-        <div className="absolute bottom-4 left-4 right-4">
-          <h3 className="text-xl font-extrabold text-white drop-shadow-md">
+        {/* Title & Subtitle inside Image Banner */}
+        <div className="relative z-10 pt-8">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-white drop-shadow-lg leading-tight">
             {title}
           </h3>
-          <p className="text-xs text-slate-200 line-clamp-1 font-medium">
+          <p className="text-xs sm:text-sm text-slate-200 font-medium leading-normal mt-1 drop-shadow">
             {subtitle}
           </p>
         </div>
       </div>
 
       {/* Content Body */}
-      <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+      <div className="p-6 flex-1 flex flex-col justify-between space-y-5">
         <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
           {description}
         </p>
 
         {/* Key Features Bullet List */}
-        <div className="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800/80">
+        <div className="space-y-2.5 pt-3 border-t border-slate-100 dark:border-slate-800">
           {features.map((feat, idx) => (
-            <div key={idx} className="flex items-center gap-2 text-xs font-medium text-slate-700 dark:text-slate-300">
-              <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+            <div key={idx} className="flex items-start gap-2 text-xs font-medium text-slate-700 dark:text-slate-300 leading-snug">
+              <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
               <span>{feat}</span>
             </div>
           ))}
         </div>
 
         {/* Bottom CTA Button */}
-        <div className="pt-4 flex items-center justify-between">
+        <div className="pt-4 flex items-center justify-between border-t border-slate-100 dark:border-slate-800/60">
           <span className="text-xs font-bold text-cyan-600 dark:text-cyan-400 group-hover:underline flex items-center gap-1.5">
             <span>{buttonText}</span>
             <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />

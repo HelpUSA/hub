@@ -26,17 +26,20 @@ import {
   Lock,
   Zap,
   Filter,
-  ArrowRight
+  ArrowRight,
+  MessageCircle
 } from 'lucide-react';
 
 import { translations, type Language } from './i18n/translations';
 import AnimatedBackground from './components/AnimatedBackground';
-import StickyFloatingFooter from './components/StickyFloatingFooter';
 import CategoryCard, { type CategoryCardData } from './components/CategoryCard';
 import SolutionDetailView from './components/SolutionDetailView';
 import HeroCarouselBanner from './components/HeroCarouselBanner';
 import CorporateFooter from './components/CorporateFooter';
 import CookieBanner from './components/CookieBanner';
+import ContactModal from './components/ContactModal';
+import PrivacyPolicyModal from './components/PrivacyPolicyModal';
+import FaleConoscoPageView from './components/FaleConoscoPageView';
 
 export interface AppItem {
   id: string;
@@ -66,8 +69,11 @@ export function App() {
   const [selectedAppId, setSelectedAppId] = useState<string | null>(null);
   const [clientFilter, setClientFilter] = useState<string>('all');
 
-  // Institutional Info Modal State
+  // Institutional & Contact Modal & Page State
   const [activeInfoModal, setActiveInfoModal] = useState<'institutional' | 'help' | 'privacy' | null>(null);
+  const [isContactModalOpen, setIsContactModalOpen] = useState<boolean>(false);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState<boolean>(false);
+  const [showFaleConoscoPage, setShowFaleConoscoPage] = useState<boolean>(false);
 
   // Tagline translations by language
   const taglineTranslations = {
@@ -669,9 +675,9 @@ export function App() {
         es: 'Portafolio de Sitios de Clientes'
       },
       subtitle: {
-        pt: 'Rede de 19 sites corporativos ativos no ar com SSL estendido',
-        en: 'Network of 19 active live client sites with extended SSL',
-        es: 'Red de 19 sitios activos de clientes con SSL'
+        pt: 'Rede de sites corporativos ativos no ar com SSL estendido',
+        en: 'Network of active live client sites with extended SSL',
+        es: 'Red de sitios activos de clientes con SSL'
       },
       description: {
         pt: 'Nossa carteira de projetos corporativos desenvolvidos sob medida para escritórios contábeis, médicos, imobiliárias, barbearias e e-commerce.',
@@ -682,12 +688,12 @@ export function App() {
       icon: Globe2,
       colorGradient: 'from-indigo-600 via-purple-600 to-transparent',
       badgeBg: 'bg-indigo-500',
-      badgeText: 'Rede de 19 Clientes',
+      badgeText: 'Rede de Clientes',
       count: applications.filter(a => a.category === 'clientes').length,
       features: {
-        pt: ['19 Sites 100% Online com HTTP 200 OK', 'Integração Direta com WhatsApp', 'Hospedagem em Nuvem Cloudflare Redundante'],
-        en: ['19 Sites 100% Online with HTTP 200 OK', 'Direct WhatsApp Integration', 'Redundant Cloudflare Cloud Hosting'],
-        es: ['19 Sitios 100% Online con HTTP 200 OK', 'Integración Directa con WhatsApp', 'Hospedaje Cloudflare Redundante']
+        pt: ['Sites 100% Online com HTTP 200 OK', 'Integração Direta com WhatsApp', 'Hospedagem em Nuvem Cloudflare Redundante'],
+        en: ['Sites 100% Online with HTTP 200 OK', 'Direct WhatsApp Integration', 'Redundant Cloudflare Cloud Hosting'],
+        es: ['Sitios 100% Online con HTTP 200 OK', 'Integración Directa con WhatsApp', 'Hospedaje Cloudflare Redundante']
       }
     }
   ];
@@ -709,7 +715,7 @@ export function App() {
         ia: 'Inteligência Artificial & Automação Neural',
         infra: 'Infraestrutura Corporativa, SSO & Pagamentos',
         setoriais: 'Plataformas Setoriais Especializadas',
-        clientes: 'Portais & Sites de Clientes Finais (19)'
+        clientes: 'Portais & Sites de Clientes Finais'
       },
       catDescs: {
         ia: 'Conheça nossa suíte completa de Inteligência Artificial generativa: assistentes autônomos 24/7 no WhatsApp, estúdio de voz neural, motor de pesquisa verificável com fontes e gerador visual de apresentações.',
@@ -746,7 +752,7 @@ export function App() {
         ia: 'Artificial Intelligence & Neural Automation',
         infra: 'Corporate Infrastructure, SSO & Payments',
         setoriais: 'Specialized Vertical Platforms',
-        clientes: 'Client Sites & Portals (19)'
+        clientes: 'Client Sites & Portals'
       },
       catDescs: {
         ia: 'Discover our complete suite of generative AI: 24/7 autonomous WhatsApp agents, neural voice studio, verifiable search engine with citations, and slide generator.',
@@ -783,7 +789,7 @@ export function App() {
         ia: 'Inteligencia Artificial y Automatización Neural',
         infra: 'Infraestructura Corporativa, SSO y Pagos',
         setoriais: 'Plataformas Sectoriales Especializadas',
-        clientes: 'Portales y Sitios de Clientes (19)'
+        clientes: 'Portales y Sitios de Clientes'
       },
       catDescs: {
         ia: 'Conozca nuestra suite completa de IA generativa: agentes autónomos 24/7 en WhatsApp, estudio de voz neural, motor de búsqueda con citas y generador de diapositivas.',
@@ -884,12 +890,11 @@ export function App() {
         </div>
       </header>
 
-      {/* Main Render Flow: TIER 3 (Detail), TIER 2 (Category), or TIER 1 (Home) */}
+      {/* Main Render Flow: Fale Conosco Page, TIER 3 (Detail), TIER 2 (Category), or TIER 1 (Home) */}
       <main>
-        {/* ========================================================================= */}
-        {/* TIER 3: PÁGINA TERCIÁRIA — APRESENTAÇÃO DEDICADA DE UMA SOLUÇÃO ESPECÍFICA */}
-        {/* ========================================================================= */}
-        {selectedAppId && selectedAppObj ? (
+        {showFaleConoscoPage ? (
+          <FaleConoscoPageView lang={lang} onBack={() => setShowFaleConoscoPage(false)} />
+        ) : selectedAppId && selectedAppObj ? (
           <SolutionDetailView 
             app={selectedAppObj} 
             lang={lang} 
@@ -1072,18 +1077,25 @@ export function App() {
           /* TIER 1: PÁGINA INICIAL — HERO CAROUSEL BANNER & CATEGORY HUBS             */
           /* ========================================================================= */
           <>
-            {/* Hero Section with High-Tech Animated Carousel Backdrop */}
-            <section className="py-12 md:py-16 relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-[#f8fafc] border-b border-slate-200">
+            {/* Hero Section with High-Tech Single Video Backdrop */}
+            <section className="py-12 md:py-16 relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-[#f8fafc]">
               <div className="hub-container relative z-10 max-w-6xl mx-auto">
-                
-                {/* HERO BACKGROUND CAROUSEL BANNER (Headline & Subtitle directly inside banner) */}
                 <HeroCarouselBanner lang={lang} />
-
               </div>
             </section>
 
+            {/* STYLISH GLOWING TECH DIVIDER LINE */}
+            <div className="hub-container max-w-6xl mx-auto py-8">
+              <div className="relative flex items-center justify-center">
+                <div className="w-full h-px bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent" />
+                <div className="absolute px-4 bg-[#f8fafc] text-[11px] font-extrabold uppercase tracking-widest text-cyan-600 border border-cyan-500/30 rounded-full py-1 shadow-sm">
+                  ⚡ HELPUS DIVISIONS
+                </div>
+              </div>
+            </div>
+
             {/* SOFTCOM-STYLE CATEGORY HUBS GRID (4 Categories Representative Cards) */}
-            <section className="py-24 bg-white border-b border-slate-200">
+            <section className="py-16 md:py-24 bg-white border-b border-slate-200 mb-16">
               <div className="hub-container space-y-16">
                 <div className="text-center space-y-4 max-w-3xl mx-auto">
                   <span className="px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-extrabold uppercase tracking-wider">
@@ -1149,24 +1161,43 @@ export function App() {
       {/* LGPD / GDPR Cookie Consent Banner */}
       <CookieBanner 
         lang={lang} 
-        onOpenPrivacy={() => setActiveInfoModal('privacy')} 
-      />
-
-      {/* STICKY FLOATING BOTTOM FOOTER BAR (WhatsApp Direct Only) */}
-      <StickyFloatingFooter 
-        lang={lang}
-        onOpenContact={() => {
-          if (typeof window !== 'undefined') {
-            window.open(`https://wa.me/${whatsappNumber}?text=Ol%C3%A1%2C%20gostaria%20de%20um%20atendimento!`, '_blank');
-          }
-        }}
+        onOpenPrivacy={() => setIsPrivacyModalOpen(true)} 
       />
 
       {/* CORPORATE MULTI-COLUMN FOOTER */}
       <CorporateFooter 
         lang={lang}
         onNavigateCategory={navigateToCategory}
-        onOpenModal={(type) => setActiveInfoModal(type)}
+        onOpenContactPage={() => setShowFaleConoscoPage(true)}
+        onOpenPrivacyModal={() => setIsPrivacyModalOpen(true)}
+      />
+
+      {/* FLOATING ANIMATED BOUNCING WHATSAPP BUTTON */}
+      <a
+        href={`https://wa.me/${whatsappNumber}?text=Ol%C3%A1!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20as%20solu%C3%A7%C3%B5es%20HelpUS.`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 group flex items-center gap-2 rounded-full shadow-2xl bg-gradient-to-r from-emerald-600 to-green-500 text-white px-4 py-3 font-bold hover:scale-105 transition-all duration-300 border border-emerald-400/40 animate-bounce"
+        aria-label="Falar no WhatsApp"
+      >
+        <MessageCircle className="w-6 h-6 fill-current" />
+        <span className="hidden sm:inline text-xs uppercase tracking-wider font-extrabold">
+          WhatsApp
+        </span>
+      </a>
+
+      {/* MODAL FALAR CONOSCO (WhatsApp, Instagram, SMS & Form) */}
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        lang={lang}
+      />
+
+      {/* MODAL POLÍTICA DE PRIVACIDADE & TERMOS DE USO */}
+      <PrivacyPolicyModal
+        isOpen={isPrivacyModalOpen}
+        onClose={() => setIsPrivacyModalOpen(false)}
+        lang={lang}
       />
     </div>
   );

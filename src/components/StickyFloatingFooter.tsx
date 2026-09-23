@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageCircle, ShieldCheck, Sparkles } from 'lucide-react';
+import { MessageCircle, Phone } from 'lucide-react';
 import type { Language } from '../i18n/translations';
 
 interface StickyFloatingFooterProps {
@@ -11,66 +11,71 @@ export const StickyFloatingFooter: React.FC<StickyFloatingFooterProps> = ({
   lang,
   onOpenContact
 }) => {
+  const phoneUSA = '+1 (251) 677-8489';
+  const phoneUSANumber = '12516778489';
+  const phoneBR = '(83) 99872-1848';
+  const phoneBRNumber = '5583998721848';
+
   const labels = {
     pt: {
-      status: 'Soluções 100% Online',
-      whatsapp: 'Falar no WhatsApp Direct',
-      call: 'Falar com Consultor',
-      subtitle: 'Ecossistema Corporativo HelpUS',
-      realTime: 'Atendimento em Tempo Real'
+      ask: 'Quer falar com um especialista?',
+      whatsappBtn: 'Fale com a gente no Whatsapp'
     },
     en: {
-      status: 'Solutions 100% Online',
-      whatsapp: 'WhatsApp Direct',
-      call: 'Talk to Advisor',
-      subtitle: 'HelpUS Corporate Ecosystem',
-      realTime: 'Real-Time Support'
+      ask: 'Want to speak with a specialist?',
+      whatsappBtn: 'Chat with us on WhatsApp'
     },
     es: {
-      status: 'Soluciones 100% En Línea',
-      whatsapp: 'WhatsApp Directo',
-      call: 'Hablar con Asesor',
-      subtitle: 'Ecosistema Corporativo HelpUS',
-      realTime: 'Atención en Tiempo Real'
+      ask: '¿Quiere hablar con un especialista?',
+      whatsappBtn: 'Hable con nosotros en WhatsApp'
     }
   };
 
   const currentText = labels[lang] || labels.pt;
 
   return (
-    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-3xl bg-slate-950/90 backdrop-blur-xl border border-cyan-500/30 text-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.6)] px-4 py-3 flex items-center justify-between gap-3 transition-all duration-300 hover:border-cyan-400/50">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#f59e0b] sm:bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 text-slate-950 shadow-[0_-5px_30px_rgba(0,0,0,0.4)] border-t border-amber-300/80 px-4 sm:px-8 py-3 flex items-center justify-between gap-4 font-sans">
       
-      {/* Status & HelpUS Badge */}
+      {/* Left Specialist Callout */}
+      <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm font-bold">
+        <span className="hidden md:inline font-extrabold text-slate-900 tracking-tight">
+          {currentText.ask}
+        </span>
+        <div className="flex items-center gap-3">
+          <a
+            href={`tel:+${phoneUSANumber}`}
+            className="flex items-center gap-1.5 font-mono text-slate-950 font-black hover:text-white transition-colors"
+          >
+            <Phone className="w-4 h-4 text-slate-950" />
+            <span>{phoneUSA}</span>
+          </a>
+          <span className="text-slate-800 font-normal hidden sm:inline">ou</span>
+          <a
+            href={`https://wa.me/${phoneBRNumber}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-slate-950 font-black hover:text-white transition-colors hidden sm:inline"
+          >
+            {phoneBR}
+          </a>
+        </div>
+      </div>
+
+      {/* Right WhatsApp Action Button (Softcom Style) */}
       <div className="flex items-center gap-3">
-        <div className="relative flex items-center justify-center">
-          <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-emerald-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-        </div>
-        <div>
-          <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-400">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>{currentText.status}</span>
-          </div>
-          <div className="text-[10px] text-slate-400 hidden xs:block">
-            {currentText.subtitle}
-          </div>
+        <button
+          onClick={onOpenContact}
+          className="flex items-center gap-2 text-xs sm:text-sm font-black text-slate-950 hover:text-white transition-colors"
+        >
+          <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 fill-slate-950 text-amber-400" />
+          <span className="underline underline-offset-4 decoration-slate-950 font-extrabold">{currentText.whatsappBtn}</span>
+        </button>
+
+        {/* Floating Brand Folder Icon (Softcom style) */}
+        <div className="w-9 h-9 rounded-xl bg-slate-950 text-amber-400 flex items-center justify-center shadow-lg border border-amber-400/30">
+          <img src="/images/helpus_logo.png" alt="HelpUS" className="w-5 h-5 object-contain" />
         </div>
       </div>
-
-      {/* Center Highlight */}
-      <div className="hidden md:flex items-center gap-2 text-xs font-medium text-slate-300 px-3 py-1 bg-slate-900/80 rounded-full border border-slate-800">
-        <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
-        <span>{currentText.realTime}</span>
-      </div>
-
-      {/* WhatsApp Direct Action Button Only */}
-      <button
-        onClick={onOpenContact}
-        className="flex items-center gap-2 text-xs font-bold text-white px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 shadow-lg shadow-emerald-900/40 transition-all transform hover:scale-[1.03]"
-      >
-        <MessageCircle className="w-4 h-4 fill-white text-emerald-600" />
-        <span>{currentText.whatsapp}</span>
-      </button>
 
     </div>
   );
