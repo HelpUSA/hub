@@ -28,7 +28,7 @@ export const HeroCarouselBanner: React.FC<HeroCarouselBannerProps> = ({ lang }) 
   const currentContent = titles[lang] || titles.pt;
 
   return (
-    <div className="relative w-full rounded-3xl overflow-hidden bg-slate-950 border border-slate-800 shadow-[0_25px_70px_rgba(0,0,0,0.6)] min-h-[480px] sm:min-h-[540px] flex items-center justify-center">
+    <div className="relative w-full rounded-3xl overflow-hidden bg-slate-950 border border-slate-800/80 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex items-center justify-center py-12 sm:py-20">
       {/* Single Video Background */}
       <div className="absolute inset-0 z-0">
         <video
@@ -41,7 +41,7 @@ export const HeroCarouselBanner: React.FC<HeroCarouselBannerProps> = ({ lang }) 
           <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-and-data-41582-large.mp4" type="video/mp4" />
         </video>
         {/* Dark Contrast Layer */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/60 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-950/70 backdrop-blur-[1px]" />
       </div>
 
       {/* Grid Tech Overlay Pattern */}
@@ -54,7 +54,7 @@ export const HeroCarouselBanner: React.FC<HeroCarouselBannerProps> = ({ lang }) 
       />
 
       {/* Hero Content Overlay (Headline & Subtitle Inside Banner) */}
-      <div className="relative z-20 max-w-4xl mx-auto px-6 py-14 text-center space-y-6">
+      <div className="relative z-20 max-w-4xl mx-auto px-6 py-4 text-center space-y-6">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-xs font-extrabold tracking-widest uppercase shadow-lg shadow-cyan-500/10 backdrop-blur-md">
           <Cpu className="w-4 h-4 text-cyan-400" />

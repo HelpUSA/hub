@@ -1078,38 +1078,38 @@ export function App() {
           /* ========================================================================= */
           <>
             {/* Hero Section with High-Tech Single Video Backdrop */}
-            <section className="py-12 md:py-16 relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-[#f8fafc]">
-              <div className="hub-container relative z-10 max-w-6xl mx-auto">
+            <section className="pt-6 pb-10 md:pt-8 md:pb-12 relative overflow-hidden">
+              <div className="hub-container relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
                 <HeroCarouselBanner lang={lang} />
               </div>
             </section>
 
             {/* STYLISH GLOWING TECH DIVIDER LINE */}
-            <div className="hub-container max-w-6xl mx-auto py-8">
+            <div className="hub-container max-w-6xl mx-auto px-4 sm:px-6 my-6 sm:my-10">
               <div className="relative flex items-center justify-center">
-                <div className="w-full h-px bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent" />
-                <div className="absolute px-4 bg-[#f8fafc] text-[11px] font-extrabold uppercase tracking-widest text-cyan-600 border border-cyan-500/30 rounded-full py-1 shadow-sm">
+                <div className="w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+                <div className="absolute px-5 bg-slate-50 dark:bg-slate-900 text-[11px] font-extrabold uppercase tracking-widest text-cyan-600 dark:text-cyan-400 border border-cyan-500/30 rounded-full py-1.5 shadow-sm">
                   ⚡ HELPUS DIVISIONS
                 </div>
               </div>
             </div>
 
             {/* SOFTCOM-STYLE CATEGORY HUBS GRID (4 Categories Representative Cards) */}
-            <section className="py-16 md:py-24 bg-white border-b border-slate-200 mb-16">
-              <div className="hub-container space-y-16">
+            <section className="py-12 sm:py-16 md:py-20 bg-slate-50/80 dark:bg-slate-950/50 border-y border-slate-200/80 dark:border-slate-800/80 mb-16">
+              <div className="hub-container max-w-6xl mx-auto px-4 sm:px-6 space-y-12 sm:space-y-16">
                 <div className="text-center space-y-4 max-w-3xl mx-auto">
-                  <span className="px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-extrabold uppercase tracking-wider">
+                  <span className="inline-block px-3.5 py-1.5 rounded-full bg-cyan-500/10 dark:bg-cyan-500/20 border border-cyan-500/30 text-cyan-700 dark:text-cyan-300 text-xs font-extrabold uppercase tracking-wider">
                     {atUI.homeCatBadge}
                   </span>
-                  <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
                     {atUI.homeCatTitle}
                   </h2>
-                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                  <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
                     {atUI.homeCatDesc}
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
                   {categoriesList.map((cat) => (
                     <CategoryCard 
                       key={cat.id} 
