@@ -88,19 +88,19 @@ export const CorporateFooter: React.FC<CorporateFooterProps> = ({
   const t = texts[lang] || texts.pt;
 
   return (
-    <footer className="bg-[#111827] text-slate-300 border-t border-slate-800 pt-16 pb-16 font-sans relative z-10">
-      <div className="hub-container max-w-7xl mx-auto px-6 space-y-12">
+    <footer className="bg-[#0b0f17] text-slate-300 border-t border-slate-800/80 pt-12 sm:pt-16 pb-12 sm:pb-16 font-sans relative z-10">
+      <div className="hub-container max-w-7xl mx-auto px-4 sm:px-6 space-y-10 sm:space-y-12">
         
         {/* TOP MAIN FOOTER SECTION */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-8 md:gap-10 items-start">
           
           {/* BRAND LOGO & SLOGAN */}
-          <div className="md:col-span-4 space-y-4">
+          <div className="sm:col-span-2 md:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
               <img src="/images/helpus_logo.png" alt="HelpUS Logo" className="h-10 w-auto object-contain" />
               <div className="flex flex-col">
                 <span className="font-black text-2xl text-white tracking-tight leading-none">HelpUS</span>
-                <span className="text-[10px] font-extrabold text-amber-400 uppercase tracking-widest mt-0.5">Technology Solutions</span>
+                <span className="text-[10px] font-extrabold text-cyan-400 uppercase tracking-widest mt-0.5">Technology Solutions</span>
               </div>
             </div>
             <p className="text-xs text-slate-400 max-w-sm leading-relaxed font-medium">
@@ -110,32 +110,32 @@ export const CorporateFooter: React.FC<CorporateFooterProps> = ({
 
           {/* COLUMN 1: SAIBA MAIS */}
           <div className="md:col-span-3 space-y-3">
-            <h4 className="text-sm font-extrabold text-amber-400 uppercase tracking-wider">
+            <h4 className="text-xs font-black text-cyan-400 uppercase tracking-widest">
               {t.learnMore}
             </h4>
-            <ul className="space-y-2 text-xs font-medium text-slate-400">
+            <ul className="space-y-2 text-xs font-semibold text-slate-400">
               <li>
-                <button onClick={onOpenContactPage} className="hover:text-white hover:underline transition-colors">
+                <button onClick={onOpenContactPage} className="hover:text-white hover:underline transition-colors text-left">
                   {t.linkClient}
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigateCategory('ia')} className="hover:text-white hover:underline transition-colors">
+                <button onClick={() => onNavigateCategory('ia')} className="hover:text-white hover:underline transition-colors text-left">
                   {t.linkAI}
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigateCategory('infra')} className="hover:text-white hover:underline transition-colors">
+                <button onClick={() => onNavigateCategory('infra')} className="hover:text-white hover:underline transition-colors text-left">
                   {t.linkInfra}
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigateCategory('setoriais')} className="hover:text-white hover:underline transition-colors">
+                <button onClick={() => onNavigateCategory('setoriais')} className="hover:text-white hover:underline transition-colors text-left">
                   {t.linkSector}
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigateCategory('clientes')} className="hover:text-white hover:underline transition-colors">
+                <button onClick={() => onNavigateCategory('clientes')} className="hover:text-white hover:underline transition-colors text-left">
                   {t.linkPortfolio}
                 </button>
               </li>
@@ -144,35 +144,35 @@ export const CorporateFooter: React.FC<CorporateFooterProps> = ({
 
           {/* COLUMN 2: FALE CONOSCO */}
           <div className="md:col-span-3 space-y-3">
-            <h4 className="text-sm font-extrabold text-amber-400 uppercase tracking-wider">
+            <h4 className="text-xs font-black text-cyan-400 uppercase tracking-widest">
               {t.contactTitle}
             </h4>
             <div className="space-y-2 text-xs text-slate-300 font-medium">
               <div>
-                <span className="text-slate-400 block text-[11px] font-bold">{t.zapLabel}</span>
-                <a href={`https://wa.me/${whatsappBRNumber}`} target="_blank" rel="noopener noreferrer" className="font-mono font-bold hover:text-amber-400 transition-colors">
+                <span className="text-slate-500 block text-[10px] font-bold uppercase tracking-wider">{t.zapLabel}</span>
+                <a href={`https://wa.me/${whatsappBRNumber}`} target="_blank" rel="noopener noreferrer" className="font-mono font-bold text-slate-200 hover:text-cyan-400 transition-colors">
                   {whatsappBR}
                 </a>
               </div>
 
               <div>
-                <span className="text-slate-400 block text-[11px] font-bold">{t.phoneLabel}</span>
-                <a href={`tel:+${phoneUSANumber}`} className="font-mono font-bold hover:text-amber-400 transition-colors">
+                <span className="text-slate-500 block text-[10px] font-bold uppercase tracking-wider">{t.phoneLabel}</span>
+                <a href={`tel:+${phoneUSANumber}`} className="font-mono font-bold text-slate-200 hover:text-cyan-400 transition-colors">
                   {phoneUSA}
                 </a>
               </div>
 
               <div>
-                <span className="text-slate-400 block text-[11px] font-bold">{t.emailLabel}</span>
-                <a href={`mailto:${officialEmail}`} className="font-bold hover:text-amber-400 transition-colors truncate block">
+                <span className="text-slate-500 block text-[10px] font-bold uppercase tracking-wider">{t.emailLabel}</span>
+                <a href={`mailto:${officialEmail}`} className="font-bold text-slate-200 hover:text-cyan-400 transition-colors truncate block">
                   {officialEmail}
                 </a>
               </div>
 
-              <div className="pt-1">
+              <div className="pt-2">
                 <button
                   onClick={onOpenContactPage}
-                  className="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs uppercase tracking-wider flex items-center gap-1.5 transition-all shadow-md"
+                  className="px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs uppercase tracking-wider flex items-center gap-1.5 transition-all shadow-lg shadow-cyan-500/20"
                 >
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>{t.talkPageBtn}</span>
@@ -181,13 +181,13 @@ export const CorporateFooter: React.FC<CorporateFooterProps> = ({
             </div>
           </div>
 
-          {/* COLUMN 3: SOCIAL MEDIA ICONS (LinkedIn removed as requested) */}
-          <div className="md:col-span-2 flex md:justify-end items-center gap-2 pt-2 md:pt-0">
+          {/* COLUMN 3: SOCIAL MEDIA ICONS */}
+          <div className="sm:col-span-2 md:col-span-2 flex md:justify-end items-center gap-2 pt-2 md:pt-0">
             <a
               href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-gradient-to-tr hover:from-yellow-500 hover:via-pink-500 hover:to-purple-600 text-slate-400 hover:text-white flex items-center justify-center transition-all shadow-md"
+              className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 hover:bg-gradient-to-tr hover:from-yellow-500 hover:via-pink-500 hover:to-purple-600 text-slate-400 hover:text-white flex items-center justify-center transition-all shadow-md"
               aria-label="Instagram"
             >
               <InstagramIcon className="w-5 h-5" />
@@ -197,7 +197,7 @@ export const CorporateFooter: React.FC<CorporateFooterProps> = ({
               href={`https://wa.me/${whatsappBRNumber}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-emerald-600 text-slate-400 hover:text-white flex items-center justify-center transition-all shadow-md"
+              className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 hover:bg-emerald-600 text-slate-400 hover:text-white flex items-center justify-center transition-all shadow-md"
               aria-label="WhatsApp"
             >
               <MessageCircle className="w-5 h-5" />
@@ -207,7 +207,7 @@ export const CorporateFooter: React.FC<CorporateFooterProps> = ({
         </div>
 
         {/* MIDDLE TRUST BADGES BAR */}
-        <div className="py-6 px-6 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-wrap items-center justify-around gap-6 text-center">
+        <div className="py-5 px-6 rounded-2xl bg-slate-900/80 border border-slate-800 flex flex-wrap items-center justify-around gap-4 sm:gap-6 text-center">
           <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
             <span>SSL 256-bit Criptografado</span>
@@ -230,16 +230,16 @@ export const CorporateFooter: React.FC<CorporateFooterProps> = ({
         </div>
 
         {/* BOTTOM COPYRIGHT & LEGAL BAR */}
-        <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-medium">
+        <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-medium text-center sm:text-left">
           <p>{t.rights}</p>
-          <div className="flex items-center gap-6 font-semibold">
-            <button onClick={onOpenPrivacyModal} className="hover:text-amber-400 transition-colors">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-semibold">
+            <button onClick={onOpenPrivacyModal} className="hover:text-cyan-400 transition-colors">
               {t.privacy}
             </button>
-            <button onClick={onOpenPrivacyModal} className="hover:text-amber-400 transition-colors">
+            <button onClick={onOpenPrivacyModal} className="hover:text-cyan-400 transition-colors">
               {t.terms}
             </button>
-            <button onClick={onOpenContactPage} className="hover:text-amber-400 transition-colors">
+            <button onClick={onOpenContactPage} className="hover:text-cyan-400 transition-colors">
               {t.adminPortal}
             </button>
           </div>
