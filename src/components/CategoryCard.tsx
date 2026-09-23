@@ -34,72 +34,73 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
   const features = category.features[lang] || category.features.pt;
 
   const buttonText = {
-    pt: 'Explorar Soluções',
-    en: 'Explore Solutions',
-    es: 'Explorar Soluciones'
-  }[lang] || 'Explorar Soluções';
+    pt: 'Explorar Divisão de Soluções',
+    en: 'Explore Solution Division',
+    es: 'Explorar División de Soluciones'
+  }[lang] || 'Explorar Divisão de Soluções';
 
   return (
     <div 
       onClick={() => onSelectCategory(category.id)}
-      className="group relative bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer flex flex-col justify-between transform hover:-translate-y-1.5"
+      className="group relative bg-[#111827] hover:bg-[#161f33] rounded-3xl border border-slate-800 hover:border-cyan-500/60 shadow-2xl hover:shadow-[0_10px_40px_rgba(6,182,212,0.18)] transition-all duration-300 overflow-hidden cursor-pointer flex flex-col justify-between transform hover:-translate-y-1.5"
     >
       {/* Visual Top Cover Image Banner */}
-      <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-950 p-5 flex flex-col justify-between">
+      <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-slate-950 p-5 flex flex-col justify-between">
         <img 
           src={category.image} 
           alt={title}
-          className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100" 
+          className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 opacity-80 group-hover:opacity-100" 
         />
-        <div className={`absolute inset-0 bg-gradient-to-t ${category.colorGradient} opacity-60 group-hover:opacity-45 transition-opacity`} />
-        <div className="absolute inset-0 bg-slate-950/20" />
+        <div className={`absolute inset-0 bg-gradient-to-t ${category.colorGradient} opacity-70 group-hover:opacity-50 transition-opacity`} />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-slate-950/40" />
         
         {/* Floating Category Icon Badge */}
-        <div className="relative z-10 self-start max-w-[90%] px-3.5 py-1.5 bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-md rounded-2xl shadow-lg border border-white/10 flex items-center gap-2">
+        <div className="relative z-10 self-start max-w-[90%] px-4 py-2 bg-slate-950/90 backdrop-blur-md rounded-2xl shadow-xl border border-cyan-500/30 flex items-center gap-2.5">
           <Icon className="w-4 h-4 text-cyan-400 shrink-0" />
-          <span className="text-xs font-bold tracking-wider uppercase text-white leading-none">
+          <span className="text-xs font-black tracking-widest uppercase text-white leading-none">
             {category.badgeText}
           </span>
         </div>
       </div>
 
       {/* Content Body */}
-      <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-5 bg-white dark:bg-slate-900">
+      <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-6 bg-[#111827]">
         {/* Title & Subtitle */}
-        <div className="space-y-1.5">
-          <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors leading-tight">
+        <div className="space-y-2">
+          <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight group-hover:text-cyan-300 transition-colors leading-tight">
             {title}
           </h3>
-          <p className="text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400">
+          <p className="text-xs font-extrabold uppercase tracking-wider text-cyan-400">
             {subtitle}
           </p>
         </div>
 
         {/* Description */}
-        <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p className="text-sm text-slate-300 leading-relaxed font-normal">
           {description}
         </p>
 
         {/* Key Features Bullet List */}
-        <div className="space-y-2.5 pt-4 border-t border-slate-100 dark:border-slate-800">
+        <div className="space-y-3 pt-4 border-t border-slate-800/80">
           {features.map((feat, idx) => (
-            <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 leading-snug">
-              <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+            <div key={idx} className="flex items-center gap-3 text-xs sm:text-sm font-semibold text-slate-200 leading-snug">
+              <div className="p-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 shrink-0">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+              </div>
               <span>{feat}</span>
             </div>
           ))}
         </div>
 
         {/* Bottom CTA Button */}
-        <div className="pt-4 flex items-center justify-between border-t border-slate-100 dark:border-slate-800/80">
-          <span className="text-xs sm:text-sm font-bold text-cyan-600 dark:text-cyan-400 group-hover:underline flex items-center gap-2">
-            <span>{buttonText}</span>
-            <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-          </span>
-
-          <span className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 group-hover:bg-cyan-500 group-hover:text-white transition-all shadow-sm">
-            <Layers className="w-4 h-4" />
-          </span>
+        <div className="pt-4 border-t border-slate-800/80">
+          <div className="w-full py-3.5 px-5 rounded-2xl bg-cyan-500/10 group-hover:bg-cyan-500 text-cyan-300 group-hover:text-slate-950 font-extrabold text-xs sm:text-sm flex items-center justify-between border border-cyan-500/30 group-hover:border-cyan-400 transition-all duration-300 shadow-md">
+            <span className="tracking-wide">{buttonText}</span>
+            <div className="flex items-center gap-2">
+              <Layers className="w-4 h-4 opacity-70 group-hover:opacity-100" />
+              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
+            </div>
+          </div>
         </div>
       </div>
 

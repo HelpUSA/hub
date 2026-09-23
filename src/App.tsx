@@ -824,11 +824,11 @@ export function App() {
   const atUI = appTexts[lang] || appTexts.pt;
 
   return (
-    <div className="hub-app font-sans bg-[#f8fafc] text-slate-900 min-h-screen pb-24">
+    <div className="hub-app font-sans bg-[#0b0f17] text-white selection:bg-cyan-500 selection:text-slate-950 min-h-screen pb-24">
       <AnimatedBackground />
 
       {/* Header Navbar — Semi-Transparent Dark Blue Header */}
-      <header className="hub-header sticky top-0 z-40 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl">
+      <header className="hub-header sticky top-0 z-40 bg-[#0b0f17]/90 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl">
         <div className="hub-container">
           <div className="hub-header-inner flex items-center justify-between h-20">
             
@@ -854,8 +854,15 @@ export function App() {
               </div>
             </a>
 
-            {/* Language Switcher Dropdown Only */}
+            {/* Navigation Actions: Fale Conosco + Language Switcher */}
             <div className="flex items-center gap-3">
+              <button
+                onClick={() => setShowFaleConoscoPage(true)}
+                className="hidden sm:flex px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs uppercase tracking-wider items-center gap-1.5 shadow-lg shadow-cyan-500/20 transition-all transform hover:-translate-y-0.5"
+              >
+                <span>Fale Conosco</span>
+              </button>
+
               <div className="relative">
                 <button
                   onClick={() => setLangDropdownOpen(!langDropdownOpen)}
@@ -1078,33 +1085,33 @@ export function App() {
           /* ========================================================================= */
           <>
             {/* Hero Section with High-Tech Single Video Backdrop */}
-            <section className="pt-6 pb-10 md:pt-8 md:pb-12 relative overflow-hidden">
+            <section className="pt-8 pb-12 md:pt-10 md:pb-16 relative overflow-hidden bg-[#0b0f17]">
               <div className="hub-container relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
                 <HeroCarouselBanner lang={lang} />
               </div>
             </section>
 
             {/* STYLISH GLOWING TECH DIVIDER LINE */}
-            <div className="hub-container max-w-6xl mx-auto px-4 sm:px-6 my-6 sm:my-10">
+            <div className="hub-container max-w-6xl mx-auto px-4 sm:px-6 my-8 sm:my-12">
               <div className="relative flex items-center justify-center">
                 <div className="w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
-                <div className="absolute px-5 bg-slate-50 dark:bg-slate-900 text-[11px] font-extrabold uppercase tracking-widest text-cyan-600 dark:text-cyan-400 border border-cyan-500/30 rounded-full py-1.5 shadow-sm">
+                <div className="absolute px-5 bg-[#0b0f17] text-[11px] font-black uppercase tracking-widest text-cyan-400 border border-cyan-500/40 rounded-full py-1.5 shadow-lg">
                   ⚡ HELPUS DIVISIONS
                 </div>
               </div>
             </div>
 
             {/* SOFTCOM-STYLE CATEGORY HUBS GRID (4 Categories Representative Cards) */}
-            <section className="py-12 sm:py-16 md:py-20 bg-slate-50/80 dark:bg-slate-950/50 border-y border-slate-200/80 dark:border-slate-800/80 mb-16">
+            <section className="py-12 sm:py-16 md:py-20 bg-[#0b0f17] border-y border-slate-800/80 mb-16">
               <div className="hub-container max-w-6xl mx-auto px-4 sm:px-6 space-y-12 sm:space-y-16">
                 <div className="text-center space-y-4 max-w-3xl mx-auto">
-                  <span className="inline-block px-3.5 py-1.5 rounded-full bg-cyan-500/10 dark:bg-cyan-500/20 border border-cyan-500/30 text-cyan-700 dark:text-cyan-300 text-xs font-extrabold uppercase tracking-wider">
+                  <span className="inline-block px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-black uppercase tracking-widest shadow-sm">
                     {atUI.homeCatBadge}
                   </span>
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
                     {atUI.homeCatTitle}
                   </h2>
-                  <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-normal">
                     {atUI.homeCatDesc}
                   </p>
                 </div>
