@@ -5,6 +5,9 @@
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],
+  "git": {
+    "skipBuildCommand": "git diff HEAD^ HEAD --quiet ."
+  },
   "headers": [
     {
       "source": "/assets/(.*)",
