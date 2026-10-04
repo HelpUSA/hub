@@ -139,16 +139,17 @@ export default function CriacaoDeSites() {
         </div>
 
         <div className="text-center bg-gray-100 rounded-xl py-10 px-6 mb-16 shadow-inner">
-          <h2 className="text-3xl font-bold text-blue-600 mb-4">
-            {t('sites.pricing_from')}{' '}
-            <span className="text-4xl">{t('sites.pricing_value')}</span>
+          <h2 className="text-3xl font-bold text-blue-700 mb-3">
+            {t('sites.quote_title', { defaultValue: 'Solicite um Orçamento Personalizado' })}
           </h2>
-          <p className="text-gray-600 mb-6">{t('sites.pricing_note')}</p>
+          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+            {t('sites.quote_note', { defaultValue: 'Desenvolvemos projetos sob medida para o seu negócio. Fale diretamente com nossa equipe para alinhar os requisitos e receber uma proposta personalizada.' })}
+          </p>
           <a
             href="https://wa.me/5583998721848"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full text-lg font-semibold transition"
+            className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-8 py-3.5 rounded-full text-lg font-semibold transition shadow-lg"
           >
             {t('sites.cta_quote')} <FaWhatsapp />
           </a>
