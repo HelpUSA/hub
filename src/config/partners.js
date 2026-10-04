@@ -9,7 +9,6 @@ export const partners = {
   plurallocacoes:      `https://plural-locacoes.vercel.app`,
   publicarte:          `https://publicarte.${BASE}`,
   waleska:             `https://waleska.${BASE}`,
-  katiaxavier:         `https://katiaxavier.${BASE}`,
   marciotopbarber:     `https://marciotopbarber.${BASE}`,
   tatica:              `https://tatica.${BASE}`,
   tuliobicicletas:     `https://tuliobicicletas.${BASE}`,

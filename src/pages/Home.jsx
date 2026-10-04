@@ -71,14 +71,6 @@ const partnersCatalog = [
     link: partnerLinks.waleska,
   },
   {
-    id: 'katia',
-    defaultName: 'Dra. Kátia Xavier',
-    defaultDesc: 'Atendimento médico presencial e por telemedicina.',
-    imagem: '/img/parceiros/katia.png',
-    video: '/img/parceiros/video-katia.mp4',
-    link: partnerLinks.katiaxavier,
-  },
-  {
     id: 'marcio_barber',
     defaultName: 'Márcio Barber',
     defaultDesc: 'Serviços de barbearia com qualidade e atendimento diferenciado.',
@@ -136,6 +128,69 @@ const partnersCatalog = [
   },
 ];
 
+const solutionCategories = [
+  {
+    id: 'fiscal_tech',
+    title: 'Automação Fiscal & Contábil NFS-e',
+    category: 'Fiscal Tech & mTLS A1',
+    description: 'Engenharia de busca, captura e validação em lote de NFS-e/CT-e integrada com prefeituras, certificados digitais A1 e geração automatizada de relatórios em Excel.',
+    imagem: '/img/parceiros/tatica-logo.png',
+    video: '/img/parceiros/tatica-video.mp4',
+    partnerName: 'Tática Assessoria Contábil',
+    link: partnerLinks.tatica,
+  },
+  {
+    id: 'ai_agents',
+    title: 'Inteligência Artificial & Chatbots Neural',
+    category: 'AI Agents & LLM',
+    description: 'Atendimento neural inteligente 24/7 integrado via Meta Cloud API e Baileys com suporte a respostas contextuais, agendamento automático e handoff humano.',
+    imagem: '/img/parceiros/helpus-icon.png',
+    video: '/img/parceiros/video-wagnerdriver.mp4',
+    partnerName: 'HelpUS WhatsApp IA',
+    link: 'https://wa.me/5583998721848',
+  },
+  {
+    id: 'ecommerce_suite',
+    title: 'E-commerce & Amazon SP-API Suite',
+    category: 'Marketplace Automation',
+    description: 'Suíte de automação para vendedores Amazon FBA com validação em lote de códigos ISIN/UPC, precificação dinâmica e submissão segura de feeds de produtos.',
+    imagem: '/img/parceiros/logo-publicarte.png',
+    video: '/img/parceiros/video-publicarte.mp4',
+    partnerName: 'Publicarte Gráfica',
+    link: partnerLinks.publicarte,
+  },
+  {
+    id: 'saas_realestate',
+    title: 'SaaS Corporativo & Gestão Imobiliária',
+    category: 'Enterprise SaaS & ERP',
+    description: 'Plataformas imobiliárias de alta performance com captação de clientes, portais para corretores, busca com filtros e banco de dados relacional.',
+    imagem: '/img/parceiros/logo-waleska.png',
+    video: '/img/parceiros/video-waleska.mp4',
+    partnerName: 'Waleska Imóveis',
+    link: partnerLinks.waleska,
+  },
+  {
+    id: 'booking_engine',
+    title: 'Engine de Reservas & Agendamento Online',
+    category: 'Booking & Service Apps',
+    description: 'Portais responsivos para agendamento de estadias em pousadas, transportes executivos e serviços com calendário dinâmico e suporte WhatsApp.',
+    imagem: '/img/parceiros/ariticum-logo.png',
+    video: '/img/parceiros/ariticum-video.mp4',
+    partnerName: 'Ariticum Chalés',
+    link: partnerLinks.ariticumchales,
+  },
+  {
+    id: 'health_tech',
+    title: 'Plataformas Médicas & Diagnóstico com IA',
+    category: 'Health Tech & Medical',
+    description: 'Ecossistemas para simulação de exames médicos acadêmicos (USMLE), laudos cardiológicos auxiliados por IA (CardioIA) e gestão de saúde.',
+    imagem: '/img/parceiros/helpus-icon.png',
+    video: '/img/parceiros/video-escola.mp4',
+    partnerName: 'CardioIA & USMLE Prep',
+    link: partnerLinks.cardioia,
+  },
+];
+
 const Home = () => {
   const { t } = useTranslation();
 
@@ -172,6 +227,75 @@ const Home = () => {
     <div>
       {/* Hero principal */}
       <Hero />
+
+      {/* Seção de Capacidades & Soluções de Software */}
+      <section className="py-20 bg-gray-900 text-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-extrabold text-white mb-4">
+              O Que Desenvolvemos
+            </h2>
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+              Engenharia de software moderna, sistemas de automação fiscal, inteligência artificial e plataformas sob medida aplicadas à sua operação.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
+            {solutionCategories.map((sol, index) => (
+              <motion.div
+                key={index}
+                className="bg-gray-800 rounded-3xl shadow-xl p-6 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl border border-gray-700"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <div className="text-xs font-semibold uppercase tracking-wider text-blue-400 mb-2">
+                  {sol.category}
+                </div>
+                
+                <h3 className="text-xl font-bold mb-3 text-white">{sol.title}</h3>
+
+                {sol.video ? (
+                  <video
+                    className="rounded-xl mb-4 w-full max-h-52 object-cover shadow-md"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                  >
+                    <source src={sol.video} type="video/mp4" />
+                    {t('hero.no_video')}
+                  </video>
+                ) : sol.poster ? (
+                  <img
+                    src={sol.poster}
+                    alt={sol.title}
+                    className="rounded-xl mb-4 w-full max-h-52 object-cover shadow-md"
+                  />
+                ) : null}
+
+                <p className="text-gray-300 mb-6 text-sm leading-relaxed flex-grow">
+                  {sol.description}
+                </p>
+
+                <div className="w-full pt-4 border-t border-gray-700 flex flex-col gap-2">
+                  <span className="text-xs text-gray-400">Exemplo real em produção:</span>
+                  <a
+                    href={sol.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
+                  >
+                    {sol.partnerName} <FaExternalLinkAlt className="text-xs" />
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Seção de diferenciais */}
       <section className="py-16 bg-gray-100">

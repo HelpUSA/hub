@@ -60,16 +60,6 @@ export default function CriacaoDeSites() {
       isVideo: true,
     },
     {
-      src: '/img/parceiros/video-katia.mp4',
-      poster: '/img/parceiros/katia-site.png',
-      logo: '/img/parceiros/katia.png',
-      alt: t('partners.katia.name'),
-      title: t('partners.katia.name'),
-      caption: t('partners.katia.desc'),
-      href: partners.katiaxavier,
-      isVideo: true,
-    },
-    {
       src: '/img/parceiros/video-marcio.mp4',
       poster: '/img/parceiros/marcio-site.png',
       logo: '/img/parceiros/hero-marcio-barber.png',
