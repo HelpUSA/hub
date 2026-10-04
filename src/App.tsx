@@ -1102,7 +1102,7 @@ export function App() {
             </div>
 
             {/* SOFTCOM-STYLE CATEGORY HUBS GRID (4 Categories Representative Cards) */}
-            <section className="py-12 sm:py-16 md:py-20 bg-[#0b0f17] border-y border-slate-800/80 mb-16">
+            <section id="solucoes-catalog" className="py-12 sm:py-16 md:py-20 bg-[#0b0f17] border-y border-slate-800/80 mb-16">
               <div className="hub-container max-w-6xl mx-auto px-4 sm:px-6 space-y-12 sm:space-y-16">
                 <div className="text-center space-y-4 max-w-3xl mx-auto">
                   <span className="inline-block px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-black uppercase tracking-widest shadow-sm">
