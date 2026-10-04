@@ -16,8 +16,6 @@ export const partners = {
   ariticumchales:      `https://ariticumchales.vercel.app`,
   magiadoverde:        `https://magiadoverde.vercel.app`,
   capinarpb:           `https://capinarpb.vercel.app`,
-  kalinemodas:         `https://kalinemodas.vercel.app`,
-  polylab:             `https://polylab.${BASE}`,
   cardioia:            `https://cardioia.${BASE}`,
   trading:             `https://trading.${BASE}`,
   nexoai:              `https://nexoai.${BASE}`,

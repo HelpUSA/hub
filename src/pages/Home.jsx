@@ -115,20 +115,12 @@ const partnersCatalog = [
     link: partnerLinks.tuliobicicletas,
   },
   {
-    id: 'polylab',
-    defaultName: 'Polylab Medicina Integrativa',
-    defaultDesc:
-      'Plataforma para serviços médicos e clínica de saúde e estética.',
-    imagem: '/img/parceiros/helpus-icon.png',
-    video: null,
-    link: partnerLinks.polylab,
-  },
-  {
     id: 'magia_do_verde',
     defaultName: 'Magia do Verde',
     defaultDesc:
       'E-commerce e soluções para jardinagem, plantas e produtos naturais.',
-    imagem: '/img/parceiros/helpus-icon.png',
+    imagem: '/img/parceiros/magia-verde-logo.png',
+    poster: '/img/parceiros/magia-verde-site.png',
     video: null,
     link: partnerLinks.magiadoverde,
   },
@@ -137,18 +129,10 @@ const partnersCatalog = [
     defaultName: 'Capinar PB',
     defaultDesc:
       'Serviços de limpeza, manutenção e capinação urbana e rural.',
-    imagem: '/img/parceiros/helpus-icon.png',
+    imagem: '/img/parceiros/capinar-pb-logo.png',
+    poster: '/img/parceiros/capinar-pb-site.png',
     video: null,
     link: partnerLinks.capinarpb,
-  },
-  {
-    id: 'kaline_modas',
-    defaultName: 'Kaline Modas',
-    defaultDesc:
-      'Loja virtual de vestuário e moda com catálogo interativo.',
-    imagem: '/img/parceiros/helpus-icon.png',
-    video: null,
-    link: partnerLinks.kalinemodas,
   },
 ];
 
@@ -238,7 +222,7 @@ const Home = () => {
                   transition={{ type: 'spring', stiffness: 300 }}
                 />
 
-                {parceiro.video && (
+                {parceiro.video ? (
                   <video
                     className="rounded-xl mb-4 w-full max-h-52 object-cover shadow-md"
                     autoPlay
@@ -246,7 +230,7 @@ const Home = () => {
                     loop
                     playsInline
                     preload="metadata"
-                    poster={parceiro.imagem}
+                    poster={parceiro.poster || parceiro.imagem}
                   >
                     {/* 1ª tentativa: padrão dos parceiros */}
                     <source src={parceiro.video} type="video/mp4" />
@@ -254,7 +238,13 @@ const Home = () => {
                     <source src="/video/video01.mp4" type="video/mp4" />
                     {t('hero.no_video')}
                   </video>
-                )}
+                ) : parceiro.poster ? (
+                  <img
+                    src={parceiro.poster}
+                    alt={parceiro.nome}
+                    className="rounded-xl mb-4 w-full max-h-52 object-cover shadow-md"
+                  />
+                ) : null}
 
                 <h3 className="text-xl font-bold mb-2 text-blue-800">{parceiro.nome}</h3>
                 <p className="text-gray-600 mb-4 text-sm">{parceiro.descricao}</p>
