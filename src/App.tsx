@@ -288,9 +288,9 @@ export function App() {
   const selectedAppObj = selectedAppId ? applications.find(a => a.id === selectedAppId) : null;
 
   return (
-    <div className="bg-black text-white min-h-screen selection:bg-amber-400 selection:text-black font-sans">
+    <div className="bg-[#08090a] text-white min-h-screen selection:bg-purple-500 selection:text-white font-sans">
       
-      {/* Pitch-Black Minimalist Pedro Ferreira Navbar */}
+      {/* Linear Header Navbar */}
       <Navbar 
         lang={lang}
         onSelectLang={changeLanguage}
@@ -314,14 +314,14 @@ export function App() {
           />
         ) : (
           <>
-            {/* Minimal Editorial Hero */}
+            {/* Linear Ambient Hero */}
             <HeroSection 
               lang={lang}
               onExploreWork={() => navigateToSection('trabalhos')}
               onOpenContact={() => setIsContactModalOpen(true)}
             />
 
-            {/* Showcase Portfolio Grid with Large Pedro Ferreira Cards */}
+            {/* Linear Bento Grid Showcase Portfolio */}
             <PortfolioGrid 
               lang={lang}
               onSelectProject={(id) => {
@@ -330,7 +330,7 @@ export function App() {
               }}
             />
 
-            {/* Numbered Services Accordion List */}
+            {/* Linear Numbered Services Accordion */}
             <ServicesAccordion 
               lang={lang}
               onOpenContact={() => setIsContactModalOpen(true)}
@@ -339,7 +339,7 @@ export function App() {
         )}
       </main>
 
-      {/* Minimal Pitch-Black Footer */}
+      {/* Linear Footer */}
       <CorporateFooter 
         lang={lang}
         onNavigateCategory={navigateToCategory}
@@ -347,15 +347,15 @@ export function App() {
         onOpenPrivacyModal={() => setIsPrivacyModalOpen(true)}
       />
 
-      {/* WhatsApp Floating Button */}
+      {/* WhatsApp Floating Glass Button */}
       <a
         href="https://wa.me/5583998721848?text=Ol%C3%A1!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20as%20solu%C3%A7%C3%B5es%20HelpUS."
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-amber-400 text-black shadow-2xl hover:scale-110 transition-transform flex items-center justify-center font-bold cursor-pointer"
+        className="fixed bottom-6 right-6 z-50 p-3.5 rounded-full bg-emerald-500 text-black shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:scale-110 transition-transform flex items-center justify-center font-bold cursor-pointer"
         aria-label="WhatsApp HelpUS"
       >
-        <MessageCircle className="w-6 h-6 fill-current" />
+        <MessageCircle className="w-5 h-5 fill-current" />
       </a>
 
       {/* Cookie Consent Banner */}

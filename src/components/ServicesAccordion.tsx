@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Minus, ArrowUpRight } from 'lucide-react';
+import { Plus, Minus, ArrowRight, ShieldCheck, Cpu, Database, Layout } from 'lucide-react';
 import type { Language } from '../i18n/translations';
 
 interface ServiceItem {
@@ -8,6 +8,7 @@ interface ServiceItem {
   category: string;
   description: string;
   features: string[];
+  icon: any;
 }
 
 interface ServicesAccordionProps {
@@ -21,31 +22,35 @@ export const ServicesAccordion: React.FC<ServicesAccordionProps> = ({ lang: _lan
   const services: ServiceItem[] = [
     {
       number: '01',
-      title: 'Automação Fiscal & Contábil',
-      category: 'Fiscal Tech',
-      description: 'Sistemas automatizados para captura de NFS-e, CT-e, validação de Certificados Digitais A1, integração com prefeituras e geração de planilhas consolidadas em lote.',
-      features: ['Captura Automática de NFS-e/CT-e', 'Suporte a Certificados Digitais A1', 'Relatórios Customizados em Excel', 'Integração via API REST']
+      title: 'Automação Fiscal & Contábil NFS-e',
+      category: 'Fiscal Tech & mTLS A1',
+      description: 'Engenharia de busca, captura e validação em lote de NFS-e/CT-e integrada com prefeituras, certificados digitais A1 e geração automatizada de relatórios em Excel.',
+      features: ['Captura Automática de NFS-e/CT-e', 'Validação mTLS A1 Criptografada', 'Exportação em Lote ZIP & Excel', 'APIs REST de Alta Performance'],
+      icon: Database
     },
     {
       number: '02',
       title: 'Inteligência Artificial & Chatbots Neural',
-      category: 'AI & Automation',
-      description: 'Agentes virtuais autônomos treinados para suporte ao cliente, pré-vendas e atendimento operacional 24/7 via WhatsApp Meta Cloud API, Telegram e web.',
-      features: ['WhatsApp Meta Cloud API', 'Integração LLM (OpenAI / Gemini)', 'Handoff Humano em Tempo Real', 'Base de Conhecimento Customizada']
+      category: 'AI Agents & LLM',
+      description: 'Agentes autônomos treinados com dados corporativos para atendimento 24/7 via WhatsApp Meta Cloud API, síntese de voz e assistentes de pequisa com fontes citadas.',
+      features: ['WhatsApp Meta Cloud API & Baileys', 'RAG Neural com Busca Verificável', 'Handoff Humano em Tempo Real', 'Estúdio de Síntese de Voz'],
+      icon: Cpu
     },
     {
       number: '03',
-      title: 'E-commerce & Amazon SP-API',
+      title: 'E-commerce & Amazon SP-API Suite',
       category: 'Marketplace Automation',
-      description: 'Soluções avançadas para vendedores Amazon FBA/FBM, sincronização de inventário, validação de códigos EAN/UPC e submissão massiva de feeds.',
-      features: ['Amazon Selling Partner API (SP-API)', 'Automação FBA & Envio de Feeds', 'Validação e Consulta de EAN/ISIN', 'Dashboards de Performance']
+      description: 'Suíte avançada para vendedores Amazon FBA/FBM com sincronização em tempo real de inventário, validação de códigos EAN/UPC e submissão massiva de feeds.',
+      features: ['Amazon Selling Partner API (SP-API)', 'Automação FBA & Validação ISIN', 'Submissão Segura de Feeds XML', 'Dashboards de Performance'],
+      icon: ShieldCheck
     },
     {
       number: '04',
-      title: 'Desenvolvimento Web & Digital Branding',
-      category: 'Full-Stack Engineering',
-      description: 'Criação de ecossistemas web corporativos, aplicações SaaS e páginas de alta conversão construídas com React, Next.js, Tailwind CSS e arquitetura serverless.',
-      features: ['Next.js 15 & React 19', 'Design Responsivo & Pitch-Black Dark Mode', 'Otimização SEO & Ultra Speed', 'Hospedagem & CDN Vercel']
+      title: 'Desenvolvimento Web & Platform Engineering',
+      category: 'Full-Stack React & Next.js 15',
+      description: 'Criação de ecossistemas web corporativos, plataformas SaaS e portais de alta conversão construídos com React 19, Next.js 15 e infraestrutura Vercel Edge.',
+      features: ['Next.js 15 & Tailwind CSS', 'Renderização Serverless na Borda', 'SEO Avançado & Carregamento Ultra Rápido', 'Redundância Cloudflare anti-DDoS'],
+      icon: Layout
     }
   ];
 
@@ -54,77 +59,84 @@ export const ServicesAccordion: React.FC<ServicesAccordionProps> = ({ lang: _lan
   };
 
   return (
-    <section id="servicos" className="bg-black py-24 px-6 border-b border-neutral-900">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <section id="servicos" className="bg-[#08090a] py-24 px-6 border-b border-white/[0.08]">
+      <div className="max-w-7xl mx-auto space-y-12">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-neutral-900 pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/[0.08] pb-8">
           <div>
-            <span className="text-xs font-mono tracking-widest text-amber-400 uppercase">
-              CAPACIDADES & SERVIÇOS
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mt-2">
-              O Que Fazemos
+            <div className="inline-flex items-center gap-2 text-xs font-mono text-purple-400 uppercase tracking-widest mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+              <span>CAPACIDADES & SERVIÇOS</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
+              O Que Desenvolvemos
             </h2>
           </div>
-          <p className="text-sm text-neutral-400 max-w-md font-mono">
-            Engenharia de software moderna, inteligência artificial e estratégias digitais focadas em escalar o seu negócio.
+          <p className="text-sm text-neutral-400 max-w-md">
+            Engenharia de software moderna, sistemas de automação fiscal e inteligência artificial aplicados à sua operação.
           </p>
         </div>
 
-        {/* Accordion List */}
-        <div className="divide-y divide-neutral-900 border-t border-b border-neutral-900">
+        {/* Linear Accordion Container */}
+        <div className="divide-y divide-white/[0.08] border-t border-b border-white/[0.08]">
           {services.map((service, index) => {
             const isOpen = openIndex === index;
+            const IconComp = service.icon;
             return (
-              <div key={service.number} className="py-8 transition-colors hover:bg-neutral-950/40">
+              <div key={service.number} className="py-8 transition-colors hover:bg-white/[0.01]">
                 <button
                   onClick={() => toggleAccordion(index)}
                   className="w-full flex items-center justify-between text-left group cursor-pointer"
                 >
-                  <div className="flex items-center gap-6 sm:gap-12">
-                    <span className="text-xl sm:text-2xl font-mono text-neutral-600 group-hover:text-amber-400 transition-colors">
+                  <div className="flex items-center gap-6 sm:gap-10">
+                    <span className="text-lg font-mono text-neutral-500 group-hover:text-purple-400 transition-colors">
                       {service.number}
                     </span>
-                    <div>
-                      <span className="text-xs font-mono text-neutral-500 uppercase tracking-widest block mb-1">
-                        {service.category}
-                      </span>
-                      <h3 className="text-2xl sm:text-4xl font-bold text-white group-hover:text-amber-400 transition-colors">
-                        {service.title}
-                      </h3>
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-purple-400">
+                        <IconComp className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <span className="text-[11px] font-mono text-neutral-500 uppercase tracking-wider block mb-0.5">
+                          {service.category}
+                        </span>
+                        <h3 className="text-xl sm:text-3xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                          {service.title}
+                        </h3>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="w-10 h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 group-hover:border-amber-400 group-hover:text-amber-400 transition-all">
-                    {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+                  <div className="w-9 h-9 rounded-full border border-white/[0.08] flex items-center justify-center text-neutral-400 group-hover:border-purple-400 group-hover:text-purple-400 transition-all">
+                    {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   </div>
                 </button>
 
-                {/* Expanded Content */}
+                {/* Expanded Linear Content */}
                 {isOpen && (
-                  <div className="mt-8 pl-12 sm:pl-20 pr-4 grid grid-cols-1 md:grid-cols-3 gap-8 pt-4 border-t border-neutral-900/60">
+                  <div className="mt-8 pl-12 sm:pl-20 pr-4 grid grid-cols-1 md:grid-cols-3 gap-8 pt-4 border-t border-white/[0.04]">
                     <div className="md:col-span-2 space-y-4">
-                      <p className="text-base text-neutral-300 leading-relaxed font-normal">
+                      <p className="text-sm text-neutral-300 leading-relaxed font-normal">
                         {service.description}
                       </p>
                       <button
                         onClick={onOpenContact}
-                        className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-amber-400 hover:text-amber-300 pt-2 cursor-pointer"
+                        className="inline-flex items-center gap-2 text-xs font-semibold text-purple-400 hover:text-purple-300 cursor-pointer pt-2"
                       >
-                        <span>Solicitar Orçamento para este serviço</span>
-                        <ArrowUpRight className="w-4 h-4" />
+                        <span>Solicitar orçamento para este módulo</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                     </div>
 
-                    <div className="bg-neutral-900/50 p-6 rounded-xl border border-neutral-800/80 space-y-3 font-mono text-xs">
-                      <span className="text-neutral-400 uppercase tracking-wider block font-bold border-b border-neutral-800 pb-2">
+                    <div className="bg-[#121316]/60 p-5 rounded-2xl border border-white/[0.08] space-y-3 font-mono text-xs">
+                      <span className="text-neutral-400 uppercase tracking-wider block font-bold border-b border-white/[0.08] pb-2 text-[10px]">
                         Recursos Chave:
                       </span>
                       <ul className="space-y-2 text-neutral-300">
                         {service.features.map((feat, fIdx) => (
                           <li key={fIdx} className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
                             <span>{feat}</span>
                           </li>
                         ))}
