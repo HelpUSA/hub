@@ -38,7 +38,7 @@ export default function AutomacaoFiscal() {
             loop
             playsInline
           >
-            <source src="/img/parceiros/tatica-video.mp4" type="video/mp4" />
+            <source src="/img/parceiros/video-accounting.mp4" type="video/mp4" />
           </video>
         </div>
 

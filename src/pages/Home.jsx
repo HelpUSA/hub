@@ -136,7 +136,7 @@ const solutionCategories = [
     category: 'Fiscal Tech & mTLS A1',
     description: 'Engenharia de busca, captura e validação em lote de NFS-e/CT-e integrada com prefeituras, certificados digitais A1 e geração automatizada de relatórios em Excel.',
     imagem: '/img/parceiros/tatica-logo.png',
-    video: '/img/parceiros/tatica-video.mp4',
+    video: '/img/parceiros/video-accounting.mp4',
     partnerName: 'HelpUS Accounting & Automação Fiscal',
     link: '/solucoes/automacao-fiscal',
   },
