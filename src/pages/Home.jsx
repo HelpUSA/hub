@@ -1,5 +1,6 @@
 // 📄 src/pages/Home.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import { motion } from 'framer-motion';
@@ -136,8 +137,8 @@ const solutionCategories = [
     description: 'Engenharia de busca, captura e validação em lote de NFS-e/CT-e integrada com prefeituras, certificados digitais A1 e geração automatizada de relatórios em Excel.',
     imagem: '/img/parceiros/tatica-logo.png',
     video: '/img/parceiros/tatica-video.mp4',
-    partnerName: 'Tática Assessoria Contábil',
-    link: partnerLinks.tatica,
+    partnerName: 'HelpUS Accounting & Automação Fiscal',
+    link: '/solucoes/automacao-fiscal',
   },
   {
     id: 'ai_agents',
@@ -145,9 +146,9 @@ const solutionCategories = [
     category: 'AI Agents & LLM',
     description: 'Atendimento neural inteligente 24/7 integrado via Meta Cloud API e Baileys com suporte a respostas contextuais, agendamento automático e handoff humano.',
     imagem: '/img/parceiros/helpus-icon.png',
-    video: '/img/parceiros/video-wagnerdriver.mp4',
-    partnerName: 'HelpUS WhatsApp IA',
-    link: 'https://wa.me/5583998721848',
+    video: '/Miami.mp4',
+    partnerName: 'HelpUS WhatsApp IA & AI Hub',
+    link: '/solucoes/inteligencia-artificial',
   },
   {
     id: 'ecommerce_suite',
@@ -156,8 +157,8 @@ const solutionCategories = [
     description: 'Suíte de automação para vendedores Amazon FBA com validação em lote de códigos ISIN/UPC, precificação dinâmica e submissão segura de feeds de produtos.',
     imagem: '/img/parceiros/logo-publicarte.png',
     video: '/img/parceiros/video-publicarte.mp4',
-    partnerName: 'Publicarte Gráfica',
-    link: partnerLinks.publicarte,
+    partnerName: 'HelpUS FBA Suite & E-commerce',
+    link: '/solucoes/ecommerce-amazon',
   },
   {
     id: 'saas_realestate',
@@ -166,8 +167,8 @@ const solutionCategories = [
     description: 'Plataformas imobiliárias de alta performance com captação de clientes, portais para corretores, busca com filtros e banco de dados relacional.',
     imagem: '/img/parceiros/logo-waleska.png',
     video: '/img/parceiros/video-waleska.mp4',
-    partnerName: 'Waleska Imóveis',
-    link: partnerLinks.waleska,
+    partnerName: 'HelpUS RealEstate & ERPs',
+    link: '/solucoes/saas-imobiliaria',
   },
   {
     id: 'booking_engine',
@@ -176,8 +177,8 @@ const solutionCategories = [
     description: 'Portais responsivos para agendamento de estadias em pousadas, transportes executivos e serviços com calendário dinâmico e suporte WhatsApp.',
     imagem: '/img/parceiros/ariticum-logo.png',
     video: '/img/parceiros/ariticum-video.mp4',
-    partnerName: 'Ariticum Chalés',
-    link: partnerLinks.ariticumchales,
+    partnerName: 'Ariticum Booking Engine',
+    link: '/solucoes/reservas-agendamentos',
   },
   {
     id: 'health_tech',
@@ -187,7 +188,7 @@ const solutionCategories = [
     imagem: '/img/parceiros/helpus-icon.png',
     video: '/img/parceiros/video-escola.mp4',
     partnerName: 'CardioIA & USMLE Prep',
-    link: partnerLinks.cardioia,
+    link: '/solucoes/plataformas-medicas',
   },
 ];
 
@@ -281,15 +282,13 @@ const Home = () => {
                 </p>
 
                 <div className="w-full pt-4 border-t border-gray-700 flex flex-col gap-2">
-                  <span className="text-xs text-gray-400">Exemplo real em produção:</span>
-                  <a
-                    href={sol.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
+                  <span className="text-xs text-gray-400">Ver detalhes da solução:</span>
+                  <Link
+                    to={sol.link}
+                    className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
                   >
-                    {sol.partnerName} <FaExternalLinkAlt className="text-xs" />
-                  </a>
+                    {sol.partnerName} &rarr;
+                  </Link>
                 </div>
               </motion.div>
             ))}
@@ -321,7 +320,7 @@ const Home = () => {
       </section>
 
       {/* Seção de parceiros */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-100">
+      <section id="partners" className="py-20 bg-gradient-to-b from-white to-gray-100">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-14">
             {t('home.partners_title')}

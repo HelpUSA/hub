@@ -24,6 +24,14 @@ import EditarUsuario from './pages/admin/EditarUsuario';
 // Web Studio
 import CriacaoDeSites from './pages/CriacaoDeSites';
 
+// Páginas de Soluções Específicas
+import AutomacaoFiscal from './pages/solucoes/AutomacaoFiscal';
+import InteligenciaArtificial from './pages/solucoes/InteligenciaArtificial';
+import EcommerceAmazon from './pages/solucoes/EcommerceAmazon';
+import SaasImobiliaria from './pages/solucoes/SaasImobiliaria';
+import ReservasAgendamentos from './pages/solucoes/ReservasAgendamentos';
+import PlataformasMedicas from './pages/solucoes/PlataformasMedicas';
+
 function AppInit() {
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
@@ -70,6 +78,14 @@ function App() {
             <Route path="/admin" element={<ListaUsuariosAdmin />} />
             <Route path="/admin/cadastro-usuario" element={<CadastroUsuario />} />
             <Route path="/admin/editar-usuario/:id" element={<EditarUsuario />} />
+
+            {/* Rotas das Soluções */}
+            <Route path="/solucoes/automacao-fiscal" element={<AutomacaoFiscal />} />
+            <Route path="/solucoes/inteligencia-artificial" element={<InteligenciaArtificial />} />
+            <Route path="/solucoes/ecommerce-amazon" element={<EcommerceAmazon />} />
+            <Route path="/solucoes/saas-imobiliaria" element={<SaasImobiliaria />} />
+            <Route path="/solucoes/reservas-agendamentos" element={<ReservasAgendamentos />} />
+            <Route path="/solucoes/plataformas-medicas" element={<PlataformasMedicas />} />
           </Routes>
         </main>
 
