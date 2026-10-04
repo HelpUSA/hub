@@ -135,15 +135,15 @@
     "support_note": "Soporte técnico incluido durante los primeros 30 días tras la entrega. Pago hasta en 2x sin interés con tarjeta o Pix."
   },
   "about": {
-    "title": "Acerca de HelpUS",
-    "intro": "HelpUS facilita el acceso a servicios esenciales para quienes desean vivir, emprender o invertir en Estados Unidos. Expertos en visados, apertura de empresas y documentación fiscal, con atención humana y enfocada en resultados.",
+    "title": "Acerca de HelpUS Web Studio",
+    "intro": "HelpUS es un estudio de tecnología especializado en ingeniería de software, desarrollo de aplicaciones web de alto rendimiento, e-commerce, sistemas corporativos y ecosistemas digitales que transforman las empresas.",
     "blocks": {
-      "exp_t": "Experiencia",
-      "exp_d": "Más de 10 años ayudando a brasileños a lograr sus objetivos en EE. UU.",
-      "pers_t": "Atención Personalizada",
-      "pers_d": "Cada caso es único. Soluciones completas según tu perfil.",
-      "commit_t": "Compromiso",
-      "commit_d": "Ética, transparencia y dedicación total a tu camino."
+      "exp_t": "Ingeniería y Rendimiento",
+      "exp_d": "Desarrollo con arquitectura moderna, carga ultra rápida y alta escalabilidad para su empresa.",
+      "pers_t": "Soluciones a Medida",
+      "pers_d": "Diseñamos sistemas web, e-commerce y landing pages adaptadas exactamente a la realidad de su empresa.",
+      "commit_t": "Innovación y Compromiso",
+      "commit_d": "Tecnología de vanguardia, diseño adaptativo elegante y soporte continuo para impulsar sus resultados."
     }
   },
   "contact": {
@@ -456,7 +456,7 @@
   },
   "footer": {
     "newsletter": {
-      "title": "Recibe novedades y consejos sobre visados, empresas, impuestos y sitios web profesionales",
+      "title": "Recibe novedades y consejos sobre desarrollo de aplicaciones, sitios modernos y soluciones digitales",
       "placeholder": "Ingresa tu correo",
       "button": "Suscribirse",
       "success": "¡Suscripción realizada con éxito!",

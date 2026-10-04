@@ -135,15 +135,15 @@
     "support_note": "Technical support included for the first 30 days after delivery. Payment in up to 2x interest-free via card or Pix."
   },
   "about": {
-    "title": "About HelpUS",
-    "intro": "HelpUS exists to make essential services accessible to those who want to live, start a business or invest in the United States. We specialize in visa consulting, company formation and tax documentation with human and results-driven service.",
+    "title": "About HelpUS Web Studio",
+    "intro": "HelpUS is a technology studio specializing in software engineering, high-performance web application development, e-commerce platforms, corporate systems, and digital ecosystems that transform business operations.",
     "blocks": {
-      "exp_t": "Experience",
-      "exp_d": "Over 10 years helping Brazilians achieve their goals in the USA.",
-      "pers_t": "Personalized Care",
-      "pers_d": "Every case is unique. We offer complete solutions based on your profile.",
-      "commit_t": "Commitment",
-      "commit_d": "Ethics, transparency and full dedication to the success of your journey."
+      "exp_t": "Engineering & Performance",
+      "exp_d": "Modern architecture, ultra-fast load speeds, and high scalability for your business.",
+      "pers_t": "Tailored Solutions",
+      "pers_d": "We design web applications, e-commerce stores, and landing pages tailored specifically to your business.",
+      "commit_t": "Innovation & Commitment",
+      "commit_d": "Cutting-edge technology, elegant responsive design, and continuous support to drive your results."
     }
   },
   "contact": {
@@ -510,7 +510,7 @@
   },
   "footer": {
     "newsletter": {
-      "title": "Get news and tips about visas, companies, taxes and professional websites",
+      "title": "Get news and tips on application development, modern websites, and digital solutions",
       "placeholder": "Enter your email",
       "button": "Subscribe",
       "success": "Subscribed successfully!",

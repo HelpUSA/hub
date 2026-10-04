@@ -135,15 +135,15 @@
     "support_note": "Suporte técnico incluso nos primeiros 30 dias após a entrega. Pagamento em até 2x sem juros via cartão ou Pix."
   },
   "about": {
-    "title": "Sobre a HelpUS",
-    "intro": "A HelpUS nasceu para facilitar o acesso a serviços essenciais para quem deseja viver, empreender ou investir nos Estados Unidos. Somos especialistas em consultoria para vistos, abertura de empresas e documentação fiscal, com atendimento humanizado e focado em resultados.",
+    "title": "Sobre a HelpUS Web Studio",
+    "intro": "A HelpUS é um estúdio de tecnologia especializado em engenharia de software, desenvolvimento de aplicações web de alta performance, e-commerces, sistemas corporativos e ecossistemas digitais que transformam a operação e a presença de empresas em crescimento.",
     "blocks": {
-      "exp_t": "Experiência",
-      "exp_d": "Mais de 10 anos ajudando brasileiros a conquistar seus objetivos nos EUA.",
-      "pers_t": "Atendimento Personalizado",
-      "pers_d": "Cada caso é único. Oferecemos soluções completas conforme o seu perfil.",
-      "commit_t": "Compromisso",
-      "commit_d": "Ética, transparência e dedicação total à sua jornada."
+      "exp_t": "Engenharia & Performance",
+      "exp_d": "Desenvolvimento com arquitetura moderna, carregamento ultra-rápido e alta escalabilidade para sua empresa.",
+      "pers_t": "Soluções Sob Medida",
+      "pers_d": "Projetamos sistemas web, e-commerces e landing pages ajustadas exatamente à realidade do seu negócio.",
+      "commit_t": "Inovação & Compromisso",
+      "commit_d": "Tecnologia de ponta, design responsivo elegante e suporte contínuo para impulsionar seus resultados."
     }
   },
   "contact": {
@@ -456,7 +456,7 @@
   },
   "footer": {
     "newsletter": {
-      "title": "Receba novidades e dicas sobre vistos, empresas, impostos e sites profissionais",
+      "title": "Receba novidades e dicas sobre desenvolvimento de aplicações, sites modernos e soluções digitais",
       "placeholder": "Digite seu e-mail",
       "button": "Inscrever",
       "success": "Inscrição realizada com sucesso!",
