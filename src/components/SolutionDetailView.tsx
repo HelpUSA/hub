@@ -1,12 +1,13 @@
 import React from 'react';
 import { 
   ArrowLeft, 
+  ExternalLink, 
   Globe, 
   ShieldCheck, 
   MessageCircle, 
   Zap, 
-  Server,
-  ArrowRight
+  ChevronRight,
+  Server
 } from 'lucide-react';
 import { translations, type Language } from '../i18n/translations';
 
@@ -47,43 +48,43 @@ export const SolutionDetailView: React.FC<SolutionDetailViewProps> = ({
 
   const uiTexts = {
     pt: {
-      back: 'Voltar ao Início',
-      description: 'Solução corporativa de alta performance implantada e gerenciada pela infraestrutura HelpUS Cloud. Totalmente otimizada com alta disponibilidade, SSL estendido e integração contínua.',
-      sslBadge: 'SSL Seguro 256-bit',
-      visitBtn: 'Acessar Aplicação Live',
-      contactBtn: 'Falar no WhatsApp',
-      f1Title: 'Arquitetura Edge',
-      f1Desc: 'Carregamento instantâneo com renderização dinâmica na borda da rede Vercel Edge.',
-      f2Title: 'SLA 99.9% Disponibilidade',
-      f2Desc: 'Monitoramento contínuo em tempo real com mitigação proativa anti-DDoS via Cloudflare.',
-      f3Title: 'Integração & APIs',
-      f3Desc: 'Módulos nativos para WhatsApp Cloud API, emissão de NFS-e e conexão de banco de dados.'
+      back: 'Voltar',
+      description: 'Solução corporativa de alto desempenho implantada e gerenciada pela infraestrutura HelpUS Cloud. Totalmente otimizada com alta disponibilidade, SSL estendido e integração contínua.',
+      sslBadge: 'SSL Seguro Grátis',
+      visitBtn: 'Acessar Site Oficial',
+      contactBtn: 'Falar com Consultor',
+      f1Title: 'Desempenho Otimizado',
+      f1Desc: 'Arquitetura moderna com carregamento ultra rápido, suporte a PWA e renderização dinâmica na borda da rede Vercel Edge.',
+      f2Title: 'Disponibilidade 99.9%',
+      f2Desc: 'Hospedagem em nuvem redundante com monitoramento ativo 24 horas por dia e proteção anti-DDoS pelo Cloudflare.',
+      f3Title: 'Suporte Dedicado',
+      f3Desc: 'Equipe técnica especializada HelpUS disponível para manutenção contínua, melhorias e suporte direto via WhatsApp.'
     },
     en: {
-      back: 'Back to Home',
+      back: 'Back',
       description: 'High-performance enterprise solution deployed and managed by HelpUS Cloud infrastructure. Fully optimized with high availability, extended SSL, and continuous integration.',
-      sslBadge: '256-bit Secure SSL',
-      visitBtn: 'Visit Live Application',
-      contactBtn: 'Talk on WhatsApp',
-      f1Title: 'Edge Architecture',
-      f1Desc: 'Instant loading with dynamic rendering on the Vercel Edge network.',
-      f2Title: '99.9% SLA Availability',
-      f2Desc: 'Continuous real-time monitoring with proactive anti-DDoS via Cloudflare.',
-      f3Title: 'Integration & APIs',
-      f3Desc: 'Native modules for WhatsApp Cloud API, NFS-e tax issuance, and database connections.'
+      sslBadge: 'Free Secure SSL',
+      visitBtn: 'Visit Official Site',
+      contactBtn: 'Talk to Advisor',
+      f1Title: 'Optimized Performance',
+      f1Desc: 'Modern architecture with ultra-fast loading, PWA support, and dynamic rendering on Vercel Edge network.',
+      f2Title: '99.9% Uptime',
+      f2Desc: 'Redundant cloud hosting with 24/7 active monitoring and anti-DDoS protection via Cloudflare.',
+      f3Title: 'Dedicated Support',
+      f3Desc: 'Specialized HelpUS technical team available for continuous maintenance, upgrades, and direct WhatsApp support.'
     },
     es: {
-      back: 'Volver al Inicio',
+      back: 'Volver',
       description: 'Solución corporativa de alto rendimiento desplegada y gestionada por la infraestructura HelpUS Cloud. Totalmente optimizada con alta disponibilidad, SSL extendido e integración continua.',
-      sslBadge: 'SSL Seguro 256-bit',
-      visitBtn: 'Visitar Aplicación en Vivo',
-      contactBtn: 'Hablar por WhatsApp',
-      f1Title: 'Arquitectura Edge',
-      f1Desc: 'Carga instantánea con renderizado dinámico en la red Vercel Edge.',
-      f2Title: 'Disponibilidad SLA 99.9%',
-      f2Desc: 'Monitoreo continuo en tiempo real con mitigación anti-DDoS por Cloudflare.',
-      f3Title: 'Integración y APIs',
-      f3Desc: 'Módulos nativos para WhatsApp Cloud API, emisión de NFS-e y conexión de bases de datos.'
+      sslBadge: 'SSL Seguro Gratis',
+      visitBtn: 'Visitar Sitio Oficial',
+      contactBtn: 'Hablar con Asesor',
+      f1Title: 'Rendimiento Optimizado',
+      f1Desc: 'Arquitectura moderna con carga ultra rápida, soporte PWA y renderizado dinámico en la red Vercel Edge.',
+      f2Title: 'Disponibilidad 99.9%',
+      f2Desc: 'Hospedaje en la nube redundante con monitoreo activo 24/7 y protección anti-DDoS por Cloudflare.',
+      f3Title: 'Soporte Dedicado',
+      f3Desc: 'Equipo técnico especializado de HelpUS disponible para mantenimiento continuo y soporte directo por WhatsApp.'
     }
   };
 
@@ -92,72 +93,78 @@ export const SolutionDetailView: React.FC<SolutionDetailViewProps> = ({
   const catTitle = categoryNames[app.category]?.[lang] || categoryNames[app.category]?.pt;
 
   return (
-    <div className="min-h-screen bg-[#08090a] text-white pt-28 pb-24 px-6 font-sans border-b border-white/[0.08]">
-      <div className="max-w-7xl mx-auto space-y-12">
-        
-        {/* Navigation Breadcrumb */}
-        <div className="flex items-center gap-3 text-xs font-mono text-neutral-400 uppercase tracking-widest border-b border-white/[0.08] pb-6">
-          <button 
-            onClick={onBack}
-            className="flex items-center gap-2 text-purple-400 hover:text-white transition-colors cursor-pointer"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>{tUI.back}</span>
-          </button>
-          <span>/</span>
-          <span>{catTitle}</span>
-          <span>/</span>
-          <span className="text-white font-bold">{app.domain}</span>
-        </div>
+    <div className="max-w-6xl mx-auto px-4 py-8 space-y-8 animate-fade-in">
+      
+      {/* Top Breadcrumb Navigation */}
+      <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+        <button 
+          onClick={onBack}
+          className="flex items-center gap-1 hover:text-cyan-500 transition-colors font-medium"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>{tUI.back}</span>
+        </button>
+        <ChevronRight className="w-3.5 h-3.5" />
+        <span>{catTitle}</span>
+        <ChevronRight className="w-3.5 h-3.5" />
+        <span className="font-semibold text-slate-900 dark:text-slate-100">{app.domain}</span>
+      </div>
 
-        {/* Hero Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      {/* Main Solution Header Banner */}
+      <div className="relative rounded-3xl bg-slate-950 border border-slate-800 p-6 md:p-10 text-white overflow-hidden shadow-2xl">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -z-0" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl -z-0" />
+
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-purple-300 uppercase">
-              <Icon className="w-3.5 h-3.5 text-purple-400" />
+          {/* Left Description Column */}
+          <div className="lg:col-span-7 space-y-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-semibold">
+              <Icon className="w-4 h-4 text-cyan-400" />
               <span>{app.status}</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
               {tApp?.name || app.domain}
             </h1>
 
-            <p className="text-neutral-300 text-base leading-relaxed font-normal">
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
               {tApp?.description || tUI.description}
             </p>
 
-            <div className="flex flex-wrap gap-6 pt-4 text-xs font-mono text-neutral-500 uppercase border-t border-white/[0.08]">
-              <div className="flex items-center gap-2">
+            {/* Badges & Meta */}
+            <div className="flex flex-wrap gap-4 pt-2 text-xs text-slate-400 border-t border-slate-800">
+              <div className="flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-emerald-400" />
                 <span>{tUI.sslBadge}</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 <Zap className="w-4 h-4 text-amber-400" />
-                <span>Vercel Edge Platform</span>
+                <span>Vercel Cloud Edge</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 <Globe className="w-4 h-4 text-cyan-400" />
                 <span>Cloudflare DNS Proxy</span>
               </div>
             </div>
 
+            {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <a
                 href={app.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 rounded-full bg-white text-black font-semibold text-xs uppercase tracking-wider hover:bg-neutral-200 transition-all inline-flex items-center gap-2"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-cyan-500/25 transition-all transform hover:scale-[1.02]"
               >
                 <span>{tUI.visitBtn}</span>
-                <ArrowRight className="w-4 h-4" />
+                <ExternalLink className="w-4 h-4" />
               </a>
 
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 rounded-full bg-white/[0.05] border border-white/10 text-white font-semibold text-xs uppercase tracking-wider hover:bg-white/[0.1] transition-all inline-flex items-center gap-2"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-emerald-500/40 font-bold text-sm transition-all"
               >
                 <MessageCircle className="w-4 h-4 text-emerald-400" />
                 <span>{tUI.contactBtn}</span>
@@ -165,58 +172,61 @@ export const SolutionDetailView: React.FC<SolutionDetailViewProps> = ({
             </div>
           </div>
 
+          {/* Right Image Showcase Column */}
           <div className="lg:col-span-5 relative group">
-            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#121316] border border-white/10 shadow-2xl">
+            <div className="relative rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl bg-slate-900">
               <img 
                 src={app.image} 
                 alt={app.domain}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                className="w-full h-64 md:h-80 object-cover object-center group-hover:scale-105 transition-transform duration-500" 
               />
-              <div className="absolute inset-0 bg-black/20" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
               
-              <div className="absolute bottom-4 left-4 right-4 p-3 bg-black/80 backdrop-blur-md rounded-xl border border-white/10 text-xs font-mono text-neutral-300 flex items-center justify-between">
-                <span className="text-purple-300 font-bold truncate">{app.domain}</span>
-                <span className="px-2 py-0.5 rounded bg-emerald-900/60 text-emerald-400 font-bold text-[10px]">200 OK</span>
+              <div className="absolute bottom-4 left-4 right-4 p-3 bg-slate-900/90 backdrop-blur-md rounded-xl border border-slate-800 text-xs text-slate-300 flex items-center justify-between">
+                <span className="font-mono text-cyan-400 truncate">{app.domain}</span>
+                <span className="px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-400 font-semibold text-[10px]">200 OK</span>
               </div>
             </div>
           </div>
 
         </div>
+      </div>
 
-        {/* Feature Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
-          <div className="p-6 rounded-2xl bg-[#121316]/60 border border-white/[0.08] space-y-3">
-            <div className="w-9 h-9 rounded-xl bg-white/[0.04] flex items-center justify-center text-purple-400">
-              <Zap className="w-4 h-4" />
-            </div>
-            <h3 className="font-bold text-base text-white">{tUI.f1Title}</h3>
-            <p className="text-xs font-mono text-neutral-400 leading-relaxed">
-              {tUI.f1Desc}
-            </p>
+      {/* Feature Details Section */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+          <div className="p-3 w-fit rounded-2xl bg-cyan-500/10 text-cyan-500">
+            <Zap className="w-6 h-6" />
           </div>
+          <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100">{tUI.f1Title}</h3>
+          <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            {tUI.f1Desc}
+          </p>
+        </div>
 
-          <div className="p-6 rounded-2xl bg-[#121316]/60 border border-white/[0.08] space-y-3">
-            <div className="w-9 h-9 rounded-xl bg-white/[0.04] flex items-center justify-center text-purple-400">
-              <Server className="w-4 h-4" />
-            </div>
-            <h3 className="font-bold text-base text-white">{tUI.f2Title}</h3>
-            <p className="text-xs font-mono text-neutral-400 leading-relaxed">
-              {tUI.f2Desc}
-            </p>
+        <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+          <div className="p-3 w-fit rounded-2xl bg-purple-500/10 text-purple-500">
+            <Server className="w-6 h-6" />
           </div>
+          <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100">{tUI.f2Title}</h3>
+          <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            {tUI.f2Desc}
+          </p>
+        </div>
 
-          <div className="p-6 rounded-2xl bg-[#121316]/60 border border-white/[0.08] space-y-3">
-            <div className="w-9 h-9 rounded-xl bg-white/[0.04] flex items-center justify-center text-purple-400">
-              <MessageCircle className="w-4 h-4" />
-            </div>
-            <h3 className="font-bold text-base text-white">{tUI.f3Title}</h3>
-            <p className="text-xs font-mono text-neutral-400 leading-relaxed">
-              {tUI.f3Desc}
-            </p>
+        <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+          <div className="p-3 w-fit rounded-2xl bg-emerald-500/10 text-emerald-500">
+            <MessageCircle className="w-6 h-6" />
           </div>
+          <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100">{tUI.f3Title}</h3>
+          <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            {tUI.f3Desc}
+          </p>
         </div>
 
       </div>
+
     </div>
   );
 };
