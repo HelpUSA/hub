@@ -169,32 +169,17 @@ export default function Header() {
           </Link>
 
           <Link
-            to="/servicos"
-            className={`transition hover:text-blue-400 ${isActive('/servicos') ? 'text-blue-400' : ''}`}
-          >
-            {t('menu.services')}
-          </Link>
-
-          {/* NOVOS: Documentos & Tradução + Ebooks */}
-          <Link
-            to="/servicos/documentos"
-            className={`transition hover:text-blue-400 ${isActive('/servicos/documentos') ? 'text-blue-400' : ''}`}
-          >
-            {t('menu.documents', { defaultValue: 'Documentos' })}
-          </Link>
-
-          <Link
-            to="/ebooks"
-            className={`transition hover:text-blue-400 ${isActive('/ebooks') ? 'text-blue-400' : ''}`}
-          >
-            {t('menu.ebooks', { defaultValue: 'Ebooks' })}
-          </Link>
-
-          <Link
             to="/criacao-de-sites"
             className={`transition hover:text-blue-400 ${isActive('/criacao-de-sites') ? 'text-blue-400' : ''}`}
           >
             {t('menu.site_build')}
+          </Link>
+
+          <Link
+            to="/parceiros"
+            className={`transition hover:text-blue-400 ${isActive('/parceiros') ? 'text-blue-400' : ''}`}
+          >
+            {t('common.partners', { defaultValue: 'Portfólio & Parceiros' })}
           </Link>
 
           <Link
@@ -353,20 +338,11 @@ export default function Header() {
           <Link to="/" onClick={() => setIsOpen(false)} className="block hover:text-blue-400">
             {t('menu.home')}
           </Link>
-          <Link to="/servicos" onClick={() => setIsOpen(false)} className="block hover:text-blue-400">
-            {t('menu.services')}
-          </Link>
-
-          {/* NOVOS no mobile */}
-          <Link to="/servicos/documentos" onClick={() => setIsOpen(false)} className="block hover:text-blue-400">
-            {t('menu.documents', { defaultValue: 'Documentos' })}
-          </Link>
-          <Link to="/ebooks" onClick={() => setIsOpen(false)} className="block hover:text-blue-400">
-            {t('menu.ebooks', { defaultValue: 'Ebooks' })}
-          </Link>
-
           <Link to="/criacao-de-sites" onClick={() => setIsOpen(false)} className="block hover:text-blue-400">
             {t('menu.site_build')}
+          </Link>
+          <Link to="/parceiros" onClick={() => setIsOpen(false)} className="block hover:text-blue-400">
+            {t('common.partners', { defaultValue: 'Portfólio & Parceiros' })}
           </Link>
           <Link to="/sobre" onClick={() => setIsOpen(false)} className="block hover:text-blue-400">
             {t('menu.about')}

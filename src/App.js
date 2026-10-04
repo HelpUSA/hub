@@ -13,7 +13,6 @@ import ChatGuiado from './components/ChatGuiado';
 
 // Páginas principais
 import Home from './pages/Home';
-import Servicos from './pages/Servicos';
 import Sobre from './pages/Sobre';
 import Contato from './pages/Contato';
 import PoliticaDePrivacidade from './pages/PoliticaDePrivacidade';
@@ -22,44 +21,7 @@ import ListaUsuariosAdmin from './pages/admin/ListaUsuariosAdmin';
 import CadastroUsuario from './pages/admin/CadastroUsuario';
 import EditarUsuario from './pages/admin/EditarUsuario';
 
-// Categorias
-import Empresa from './pages/Empresa';
-import Fiscal from './pages/Fiscal';
-import Vistos from './pages/Vistos';
-
-// 🆕 Novas páginas
-import Ebooks from './pages/Ebooks';
-import Documentos from './pages/servicos/documentos/Documentos';
-
-// Vistos
-import F1 from './pages/servicos/vistos/F1';
-import F2 from './pages/servicos/vistos/F2';
-import B1B2 from './pages/servicos/vistos/B1B2';
-import EB2NIW from './pages/servicos/vistos/EB2NIW';
-import EB1A from './pages/servicos/vistos/EB1A';
-import Familia from './pages/servicos/vistos/Familia';
-import Renovacao from './pages/servicos/vistos/Renovacao';
-import CasosEspeciais from './pages/servicos/vistos/CasosEspeciais';
-import Complementares from './pages/servicos/vistos/Complementares';
-import OutrosTrabalho from './pages/servicos/vistos/OutrosTrabalho';
-
-// Fiscal
-import IRPF from './pages/servicos/fiscal/IRPF';
-import ScheduleC from './pages/servicos/fiscal/ScheduleC';
-import Dependentes from './pages/servicos/fiscal/Dependentes';
-import Formularios from './pages/servicos/fiscal/Formularios';
-import Envio from './pages/servicos/fiscal/Envio';
-import W9 from './pages/servicos/fiscal/W9';
-
-// Empresa
-import AberturaLLC from './pages/servicos/empresa/AberturaLLC';
-import EnderecoFiscal from './pages/servicos/empresa/EnderecoFiscal';
-import OperatingAgreement from './pages/servicos/empresa/OperatingAgreement';
-import ITIN from './pages/servicos/empresa/ITIN';
-import W7 from './pages/servicos/empresa/W7';
-import BusinessLicense from './pages/servicos/empresa/BusinessLicense';
-
-// Serviço
+// Web Studio
 import CriacaoDeSites from './pages/CriacaoDeSites';
 
 function AppInit() {
@@ -96,10 +58,11 @@ function App() {
 
         <main className="flex-grow">
           <Routes>
-            {/* Rotas principais */}
+            {/* Rotas Web Studio */}
             <Route path="/" element={<Home />} />
-            <Route path="/parceiros" element={<Home />} /> {/* NEW: rota âncora para a seção */}
-            <Route path="/servicos" element={<Servicos />} />
+            <Route path="/parceiros" element={<Home />} />
+            <Route path="/criacao-de-sites" element={<CriacaoDeSites />} />
+            <Route path="/servicos" element={<CriacaoDeSites />} />
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/politica-de-privacidade" element={<PoliticaDePrivacidade />} />
@@ -107,46 +70,6 @@ function App() {
             <Route path="/admin" element={<ListaUsuariosAdmin />} />
             <Route path="/admin/cadastro-usuario" element={<CadastroUsuario />} />
             <Route path="/admin/editar-usuario/:id" element={<EditarUsuario />} />
-
-            {/* Empresa */}
-            <Route path="/servicos/empresa" element={<Empresa />} />
-            <Route path="/servicos/empresa/abertura" element={<AberturaLLC />} />
-            <Route path="/servicos/empresa/endereco-fiscal" element={<EnderecoFiscal />} />
-            <Route path="/servicos/empresa/operating-agreement" element={<OperatingAgreement />} />
-            <Route path="/servicos/empresa/itin" element={<ITIN />} />
-            <Route path="/servicos/empresa/w7" element={<W7 />} />
-            <Route path="/servicos/empresa/business-license" element={<BusinessLicense />} />
-
-            {/* Fiscal */}
-            <Route path="/servicos/fiscal" element={<Fiscal />} />
-            <Route path="/servicos/fiscal/declaracao" element={<IRPF />} />
-            <Route path="/servicos/fiscal/schedule-c-se" element={<ScheduleC />} />
-            <Route path="/servicos/fiscal/child-tax-credit" element={<Dependentes />} />
-            <Route path="/servicos/fiscal/documentos-diversos" element={<Formularios />} />
-            <Route path="/servicos/fiscal/envio" element={<Envio />} />
-            <Route path="/servicos/fiscal/w9" element={<W9 />} />
-            <Route path="/servicos/fiscal/itin" element={<ITIN />} />
-            <Route path="/servicos/fiscal/w7" element={<W7 />} />
-
-            {/* Vistos */}
-            <Route path="/servicos/vistos" element={<Vistos />} />
-            <Route path="/servicos/vistos/b1b2" element={<B1B2 />} />
-            <Route path="/servicos/vistos/f1" element={<F1 />} />
-            <Route path="/servicos/vistos/f2" element={<F2 />} />
-            <Route path="/servicos/vistos/eb2niw" element={<EB2NIW />} />
-            <Route path="/servicos/vistos/eb1a" element={<EB1A />} />
-            <Route path="/servicos/vistos/familia" element={<Familia />} />
-            <Route path="/servicos/vistos/renovacao" element={<Renovacao />} />
-            <Route path="/servicos/vistos/casos-especiais" element={<CasosEspeciais />} />
-            <Route path="/servicos/vistos/complementares" element={<Complementares />} />
-            <Route path="/servicos/vistos/outros-trabalho" element={<OutrosTrabalho />} />
-
-            {/* Criação de Sites */}
-            <Route path="/criacao-de-sites" element={<CriacaoDeSites />} />
-
-            {/* 🆕 Ebooks & Documentos */}
-            <Route path="/ebooks" element={<Ebooks />} />
-            <Route path="/servicos/documentos" element={<Documentos />} />
           </Routes>
         </main>
 

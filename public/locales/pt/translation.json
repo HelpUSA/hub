@@ -33,24 +33,25 @@
   },
   "hero": {
     "no_video": "Seu navegador não suporta vídeos HTML5.",
-    "title": "Soluções completas para viver, empreender e declarar nos EUA",
-    "subtitle": "Consultoria especializada em vistos, abertura de empresas, documentação fiscal e criação de sites profissionais – tudo em português.",
+    "title": "Desenvolvimento Web & Presença Digital de Alta Performance",
+    "subtitle": "Desenvolvemos ecossistemas web modernos, landing pages de alta conversão, e-commerces e portfólios institucionais que transformam empresas.",
     "cta": {
       "visas": "Vistos Americanos",
       "company": "Abertura de Empresa",
       "tax": "Impostos e Documentos",
-      "sites": "Criação de Sites"
+      "sites": "Criação de Sites",
+      "portfolio": "Ver Portfólio"
     }
   },
   "home": {
-    "why_title": "Por que escolher a HelpUS?",
-    "p1_t": "Atendimento Personalizado",
-    "p1_d": "Suporte individual durante todo o processo do seu visto.",
-    "p2_t": "Experiência Real",
-    "p2_d": "Consultores que já passaram por processos semelhantes.",
-    "p3_t": "Confiança e Transparência",
-    "p3_d": "Explicamos tudo com clareza e sem promessas falsas.",
-    "partners_title": "Nossos Parceiros",
+    "why_title": "Por que desenvolver seu site com a HelpUS Web Studio?",
+    "p1_t": "Design Moderno & Responsivo",
+    "p1_d": "Layouts elegantes adaptados perfeitamente para celulares, tablets e computadores.",
+    "p2_t": "Alta Performance & SEO",
+    "p2_d": "Carregamento ultra-rápido e otimização para destacar sua marca nos buscadores.",
+    "p3_t": "Suporte & Entrega Rápida",
+    "p3_d": "Projetos entregues com agilidade, integração de WhatsApp e acompanhamento completo.",
+    "partners_title": "Portfólio & Cases de Sucesso",
     "services_title": "Nossos Serviços",
     "cards": {
       "visas": {

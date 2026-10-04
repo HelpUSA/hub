@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  FaPassport,
-  FaBuilding,
-  FaFileInvoiceDollar,
   FaWhatsapp,
   FaGlobe,
   FaHandshake,
@@ -98,36 +95,27 @@ export default function Hero() {
           transition={{ delay: 0.5 }}
         >
           <Link
-            to="/servicos/vistos"
-            className="flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded text-sm sm:text-base"
-          >
-            <FaPassport /> {t('hero.cta.visas')}
-          </Link>
-          <Link
-            to="/servicos/empresa"
-            className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded text-sm sm:text-base"
-          >
-            <FaBuilding /> {t('hero.cta.company')}
-          </Link>
-          <Link
-            to="/servicos/fiscal"
-            className="flex items-center justify-center gap-2 bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded text-sm sm:text-base"
-          >
-            <FaFileInvoiceDollar /> {t('hero.cta.tax')}
-          </Link>
-          <Link
             to="/criacao-de-sites"
-            className="flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded text-sm sm:text-base"
+            className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded text-sm sm:text-base font-semibold shadow-lg"
           >
             <FaGlobe /> {t('hero.cta.sites')}
           </Link>
 
           <Link
             to="/parceiros"
-            className="flex items-center justify-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded text-sm sm:text-base"
+            className="flex items-center justify-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded text-sm sm:text-base font-semibold shadow-lg"
           >
-            <FaHandshake /> {t('common.partners')}
+            <FaHandshake /> {t('hero.cta.portfolio', { defaultValue: 'Ver Portfólio' })}
           </Link>
+
+          <a
+            href="https://wa.me/5583998721848"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded text-sm sm:text-base font-semibold shadow-lg"
+          >
+            <FaWhatsapp /> {t('common.whatsapp')}
+          </a>
         </motion.div>
       </div>
 

@@ -33,24 +33,25 @@
   },
   "hero": {
     "no_video": "Your browser does not support HTML5 video.",
-    "title": "Complete solutions to live, start a business and file taxes in the USA",
-    "subtitle": "Specialized consultancy in visas, company formation, tax documentation and professional websites – all in your language.",
+    "title": "High-Performance Web Development & Digital Studio",
+    "subtitle": "We build modern web ecosystems, high-converting landing pages, e-commerce platforms, and institutional portfolios to elevate your business.",
     "cta": {
       "visas": "American Visas",
       "company": "Company Formation",
       "tax": "Taxes & Documents",
-      "sites": "Website Creation"
+      "sites": "Website Creation",
+      "portfolio": "View Portfolio"
     }
   },
   "home": {
-    "why_title": "Why choose HelpUS?",
-    "p1_t": "Personalized Service",
-    "p1_d": "1:1 support throughout your visa process.",
-    "p2_t": "Real Experience",
-    "p2_d": "Consultants who have gone through similar processes.",
-    "p3_t": "Trust & Transparency",
-    "p3_d": "We explain everything clearly with no false promises.",
-    "partners_title": "Our Partners",
+    "why_title": "Why build your website with HelpUS Web Studio?",
+    "p1_t": "Modern & Responsive Design",
+    "p1_d": "Elegant layouts tailored perfectly for mobile, tablet, and desktop screens.",
+    "p2_t": "High Performance & SEO",
+    "p2_d": "Ultra-fast load speeds and optimization to boost your brand on search engines.",
+    "p3_t": "Fast Delivery & Support",
+    "p3_d": "Projects delivered swiftly with full WhatsApp integration and ongoing support.",
+    "partners_title": "Portfolio & Success Cases",
     "services_title": "Our Services",
     "cards": {
       "visas": {
