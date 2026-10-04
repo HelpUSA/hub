@@ -16,7 +16,7 @@ export default function Hero() {
 
   // aplica idioma salvo no primeiro render
   React.useEffect(() => {
-    const saved = localStorage.getItem('helpus_lang');
+    const saved = localStorage.getItem('lang');
     const current = i18n.language?.slice(0, 2);
     if (saved && saved !== current) {
       i18n.changeLanguage(saved);
@@ -28,7 +28,7 @@ export default function Hero() {
 
   const setLang = (lng) => {
     i18n.changeLanguage(lng);
-    localStorage.setItem('helpus_lang', lng);
+    localStorage.setItem('lang', lng);
     document.documentElement.lang = lng;
   };
 

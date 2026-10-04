@@ -1,72 +1,69 @@
 // src/pages/Ebooks.jsx
 import React from "react";
+import { Link } from "react-router-dom";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
 export default function Ebooks() {
   const { t, i18n } = useTranslation();
-  const lng = i18n.resolvedLanguage || i18n.language || "pt";
+  const rawLng = i18n.resolvedLanguage || i18n.language || "pt";
+  const lng = rawLng.slice(0, 2).toLowerCase();
 
-  const S = {
+  const dict = {
     pt: {
       title: "Ebooks HelpUS",
-      intro:
-        "Guias práticos para empreender e imigrar com segurança. Compre, baixe e aplique passo a passo.",
+      intro: "Guias práticos para empreender e imigrar com segurança. Compre, baixe e aplique passo a passo.",
       buy: "Comprar agora",
       learnMore: "Ver detalhes",
+      disclaimer: "* Alguns títulos aparecem como “em breve”. Ative quando o checkout estiver disponível.",
     },
     en: {
       title: "HelpUS Ebooks",
-      intro:
-        "Practical guides to start and grow in the U.S. Buy, download, and follow step-by-step.",
+      intro: "Practical guides to start and grow in the U.S. Buy, download, and follow step-by-step.",
       buy: "Buy now",
       learnMore: "Learn more",
+      disclaimer: "* Some titles appear as \"coming soon\". Enable when checkout is active.",
     },
     es: {
       title: "Ebooks HelpUS",
-      intro:
-        "Guías prácticas para emprender e inmigrar con seguridad. Compra, descarga y aplica paso a paso.",
+      intro: "Guías prácticas para emprender e inmigrar con seguridad. Compra, descarga y aplica paso a paso.",
       buy: "Comprar ahora",
       learnMore: "Ver detalles",
+      disclaimer: "* Algunos títulos aparecen como \"próximamente\". Activa cuando el pago esté disponible.",
     },
-  }[lng];
+  };
 
-  // 👉 Adicione/edite os produtos conforme lançar novos títulos
+  const S = dict[lng] || dict.pt;
+
   const ebooks = [
     {
       id: "ebook-alabama-llc-ein",
-      title:
-        t("ebooks.alabama.title", {
-          defaultValue: "Como abrir empresa no Alabama (LLC + EIN)",
-        }),
+      title: t("ebooks.alabama.title", {
+        defaultValue: "Como abrir empresa no Alabama (LLC + EIN)",
+      }),
       desc: t("ebooks.alabama.desc", {
-        defaultValue:
-          "Passo a passo completo, checklists, fluxos e links oficiais para você abrir sua LLC e emitir o EIN.",
+        defaultValue: "Passo a passo completo, checklists, fluxos e links oficiais para você abrir sua LLC e emitir o EIN.",
       }),
       price: "US$ 29.00",
-      cover: "/img/ebooks/alabama-llc-ein-capa.png", // coloque a imagem no /public/img/ebooks/
-      // 🔗 Coloque aqui a URL do produto na Nuvemshop/Stripe/PayPal:
-      buyUrl: "https://sualoja.nuvemshop.com.br/products/ebook-alabama-llc-ein",
-      // opcional: link para landing / post com prévia
-      detailsUrl: "/servicos/empresa", // ou uma rota específica do ebook, se quiser
+      cover: "/img/ebooks/alabama-llc-ein-capa.svg",
+      buyUrl: "https://wa.me/5583998721848?text=Olá!%20Desejo%20comprar%20o%20Ebook%20Alabama%20LLC%20%2B%20EIN",
+      detailsUrl: "/servicos/empresa/abertura",
       badges: ["PDF", "Atualizável", "Download imediato"],
     },
-    // Próximos — placeholders:
     {
       id: "ebook-itin",
       title: t("ebooks.itin.title", {
         defaultValue: "ITIN na prática: W-7, cartas e envio",
       }),
       desc: t("ebooks.itin.desc", {
-        defaultValue:
-          "Como solicitar ITIN do zero, documentos aceitos, modelos e checklists.",
+        defaultValue: "Como solicitar ITIN do zero, documentos aceitos, modelos e checklists.",
       }),
       price: "US$ 19.00",
-      cover: "/img/ebooks/itin-capa.png",
-      buyUrl: "#",
-      detailsUrl: "/servicos/fiscal/itin",
+      cover: "/img/ebooks/itin-capa.svg",
+      buyUrl: "https://wa.me/5583998721848?text=Olá!%20Desejo%20informações%20sobre%20o%20Ebook%20ITIN",
+      detailsUrl: "/servicos/empresa/itin",
       badges: ["PDF", "Modelos prontos"],
-      disabled: true,
+      disabled: false,
     },
   ];
 
@@ -84,12 +81,15 @@ export default function Ebooks() {
               key={b.id}
               className="rounded-2xl border bg-gray-50 shadow-sm hover:shadow-md transition overflow-hidden flex flex-col"
             >
-              <div className="aspect-[4/3] bg-white">
+              <div className="aspect-[4/3] bg-blue-900 overflow-hidden">
                 <img
                   src={b.cover}
                   alt={b.title}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.src = "/img/hel-icon.png";
+                  }}
                 />
               </div>
 
@@ -112,18 +112,18 @@ export default function Ebooks() {
                   <span className="text-xl font-bold text-blue-700">{b.price}</span>
                   <div className="flex gap-2">
                     {b.detailsUrl && (
-                      <a
-                        href={b.detailsUrl}
-                        className="text-sm px-3 py-2 rounded-full border hover:bg-gray-100 transition"
+                      <Link
+                        to={b.detailsUrl}
+                        className="text-sm px-3 py-2 rounded-full border border-blue-600 text-blue-700 hover:bg-blue-50 transition font-medium"
                       >
                         {S.learnMore}
-                      </a>
+                      </Link>
                     )}
                     <a
                       href={b.disabled ? "#!" : b.buyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`text-sm px-4 py-2 rounded-full text-white flex items-center gap-2 ${
+                      className={`text-sm px-4 py-2 rounded-full text-white flex items-center gap-2 font-medium ${
                         b.disabled
                           ? "bg-gray-400 cursor-not-allowed"
                           : "bg-blue-600 hover:bg-blue-700"
@@ -131,7 +131,7 @@ export default function Ebooks() {
                       aria-disabled={b.disabled}
                       onClick={(e) => b.disabled && e.preventDefault()}
                     >
-                      {S.buy} <FaExternalLinkAlt />
+                      {S.buy} <FaExternalLinkAlt className="text-xs" />
                     </a>
                   </div>
                 </div>
@@ -141,8 +141,7 @@ export default function Ebooks() {
         </div>
 
         <p className="text-center text-xs text-gray-500 mt-8">
-          * Alguns títulos aparecem como “em breve”. Ative quando o checkout estiver
-          disponível.
+          {S.disclaimer}
         </p>
       </div>
     </section>

@@ -125,6 +125,8 @@ function App() {
             <Route path="/servicos/fiscal/documentos-diversos" element={<Formularios />} />
             <Route path="/servicos/fiscal/envio" element={<Envio />} />
             <Route path="/servicos/fiscal/w9" element={<W9 />} />
+            <Route path="/servicos/fiscal/itin" element={<ITIN />} />
+            <Route path="/servicos/fiscal/w7" element={<W7 />} />
 
             {/* Vistos */}
             <Route path="/servicos/vistos" element={<Vistos />} />

@@ -3,6 +3,8 @@
   "menu": {
     "home": "Home",
     "services": "Services",
+    "documents": "Documents",
+    "ebooks": "Ebooks",
     "site_build": "Website Creation",
     "about": "About",
     "contact": "Contact",
