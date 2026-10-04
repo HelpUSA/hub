@@ -120,7 +120,7 @@ export default function Ebooks() {
                       </a>
                     )}
                     <a
-                      href={b.disabled ? undefined : b.buyUrl}
+                      href={b.disabled ? "#!" : b.buyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`text-sm px-4 py-2 rounded-full text-white flex items-center gap-2 ${
