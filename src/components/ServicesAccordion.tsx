@@ -59,80 +59,80 @@ export const ServicesAccordion: React.FC<ServicesAccordionProps> = ({ lang: _lan
   };
 
   return (
-    <section id="servicos" className="bg-[#0b0d14] py-24 px-6 border-b border-slate-800/80">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <section id="servicos" className="bg-black py-20 px-4 sm:px-6 border-b border-neutral-800/80">
+      <div className="max-w-6xl mx-auto space-y-12">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-800/80 pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-neutral-800/80 pb-6">
           <div>
             <span className="text-xs font-mono tracking-widest text-cyan-400 uppercase font-semibold">
               CAPACIDADES & SERVIÇOS
             </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mt-2">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mt-1">
               O Que Fazemos
             </h2>
           </div>
-          <p className="text-sm text-slate-400 max-w-md font-sans leading-relaxed">
+          <p className="text-xs sm:text-sm text-neutral-400 max-w-md font-normal leading-relaxed">
             Engenharia de software moderna, inteligência artificial e estratégias digitais focadas em escalar o seu negócio.
           </p>
         </div>
 
         {/* Accordion List */}
-        <div className="divide-y divide-slate-800/80 border-t border-b border-slate-800/80">
+        <div className="divide-y divide-neutral-800/80 border-t border-b border-neutral-800/80">
           {services.map((service, index) => {
             const isOpen = openIndex === index;
             const IconComp = service.icon;
             return (
-              <div key={service.number} className="py-8 transition-colors hover:bg-slate-900/30">
+              <div key={service.number} className="py-6 transition-colors hover:bg-neutral-950/40">
                 <button
                   onClick={() => toggleAccordion(index)}
                   className="w-full flex items-center justify-between text-left group cursor-pointer"
                 >
-                  <div className="flex items-center gap-6 sm:gap-12">
-                    <span className="text-xl sm:text-2xl font-mono text-slate-600 group-hover:text-cyan-400 transition-colors">
+                  <div className="flex items-center gap-4 sm:gap-8">
+                    <span className="text-base sm:text-xl font-mono text-neutral-500 group-hover:text-cyan-400 transition-colors">
                       {service.number}
                     </span>
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-cyan-400">
-                        <IconComp className="w-5 h-5" />
+                      <div className="w-8 h-8 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center text-cyan-400">
+                        <IconComp className="w-4 h-4" />
                       </div>
                       <div>
-                        <span className="text-xs font-mono text-slate-400 uppercase tracking-widest block mb-0.5">
+                        <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest block mb-0.5">
                           {service.category}
                         </span>
-                        <h3 className="text-2xl sm:text-3xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                        <h3 className="text-lg sm:text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">
                           {service.title}
                         </h3>
                       </div>
                     </div>
                   </div>
 
-                  <div className="w-10 h-10 rounded-full border border-slate-800 flex items-center justify-center text-slate-400 group-hover:border-cyan-400 group-hover:text-cyan-400 transition-all">
-                    {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+                  <div className="w-8 h-8 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 group-hover:border-cyan-400 group-hover:text-cyan-400 transition-all">
+                    {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   </div>
                 </button>
 
                 {/* Expanded Content */}
                 {isOpen && (
-                  <div className="mt-8 pl-12 sm:pl-20 pr-4 grid grid-cols-1 md:grid-cols-3 gap-8 pt-4 border-t border-slate-800/40">
-                    <div className="md:col-span-2 space-y-4">
-                      <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+                  <div className="mt-6 pl-8 sm:pl-16 pr-2 grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-neutral-900">
+                    <div className="md:col-span-2 space-y-3">
+                      <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-normal">
                         {service.description}
                       </p>
                       <button
                         onClick={onOpenContact}
-                        className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-cyan-400 hover:text-cyan-300 pt-2 cursor-pointer"
+                        className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-cyan-400 hover:text-cyan-300 pt-1 cursor-pointer"
                       >
                         <span>Solicitar Orçamento para este serviço</span>
-                        <ArrowUpRight className="w-4 h-4" />
+                        <ArrowUpRight className="w-3.5 h-3.5" />
                       </button>
                     </div>
 
-                    <div className="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 space-y-3 font-mono text-xs">
-                      <span className="text-slate-400 uppercase tracking-wider block font-bold border-b border-slate-800 pb-2">
+                    <div className="bg-neutral-950 p-4 rounded-xl border border-neutral-800/80 space-y-2 font-mono text-xs">
+                      <span className="text-neutral-500 uppercase tracking-wider block font-bold border-b border-neutral-800 pb-1.5 text-[10px]">
                         Recursos Chave:
                       </span>
-                      <ul className="space-y-2 text-slate-300">
+                      <ul className="space-y-1.5 text-neutral-300 text-[11px]">
                         {service.features.map((feat, fIdx) => (
                           <li key={fIdx} className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
