@@ -82,13 +82,35 @@ export default function CriacaoDeSites() {
 
     // === NOVO: Tática Assessoria Contábil ===
     {
-      src: '/img/parceiros/tatica-video.mp4',       // coloque aqui o seu video01.mp4 renomeado
-      poster: '/img/parceiros/tatica-site.png',     // thumbnail/frame do vídeo
-      logo: '/img/parceiros/tatica-logo.png',       // use a logo enviada
-      alt: t('partners.tatica.name'),
-      title: t('partners.tatica.name'),
-      caption: t('partners.tatica.desc'),
-      href: partners.tatica,                        // definido em src/config/partners.js
+      src: '/img/parceiros/tatica-video.mp4',
+      poster: '/img/parceiros/tatica-site.png',
+      logo: '/img/parceiros/tatica-logo.png',
+      alt: t('partners.tatica.name', { defaultValue: 'Tática Assessoria Contábil' }),
+      title: t('partners.tatica.name', { defaultValue: 'Tática Assessoria Contábil' }),
+      caption: t('partners.tatica.desc', { defaultValue: 'Contabilidade, abertura de empresa, folha, impostos e consultoria fiscal.' }),
+      href: partners.tatica,
+      isVideo: true,
+    },
+    // === NOVO: Ariticum Chalés ===
+    {
+      src: '/img/parceiros/ariticum-video.mp4',
+      poster: '/img/parceiros/ariticum-logo.png',
+      logo: '/img/parceiros/ariticum-logo.png',
+      alt: 'Ariticum Chalés',
+      title: 'Ariticum Chalés',
+      caption: 'Portal de reservas e experiência digital para pousada em meio à natureza.',
+      href: partners.ariticumchales,
+      isVideo: true,
+    },
+    // === NOVO: Túlio Bicicletas ===
+    {
+      src: '/img/parceiros/video-fundo.mp4',
+      poster: '/img/parceiros/tulio-site.png',
+      logo: '/img/parceiros/tulio.png',
+      alt: 'Túlio Bicicletas',
+      title: 'Túlio Bicicletas',
+      caption: 'Loja e oficina especializada em bicicletas e acessórios ciclísticos.',
+      href: partners.tuliobicicletas,
       isVideo: true,
     },
   ];

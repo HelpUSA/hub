@@ -92,9 +92,63 @@ const partnersCatalog = [
     defaultName: 'Tática Assessoria Contábil',
     defaultDesc:
       'Contabilidade, abertura de empresa, folha, impostos e consultoria fiscal.',
-    imagem: '/img/parceiros/tatica-logo.png',   // 👉 coloque este arquivo no public do HelpUS
-    video: '/img/parceiros/tatica-video.mp4',   // 👉 ou mantenha /video/video01.mp4 (fallback)
+    imagem: '/img/parceiros/tatica-logo.png',
+    video: '/img/parceiros/tatica-video.mp4',
     link: partnerLinks.tatica,
+  },
+  {
+    id: 'ariticum_chales',
+    defaultName: 'Ariticum Chalés',
+    defaultDesc:
+      'Portal de reservas e experiência digital para pousada em meio à natureza.',
+    imagem: '/img/parceiros/ariticum-logo.png',
+    video: '/img/parceiros/ariticum-video.mp4',
+    link: partnerLinks.ariticumchales,
+  },
+  {
+    id: 'tulio_bicicletas',
+    defaultName: 'Túlio Bicicletas',
+    defaultDesc:
+      'Loja e oficina especializada em bicicletas e acessórios ciclísticos.',
+    imagem: '/img/parceiros/tulio.png',
+    video: '/img/parceiros/video-fundo.mp4',
+    link: partnerLinks.tuliobicicletas,
+  },
+  {
+    id: 'polylab',
+    defaultName: 'Polylab Medicina Integrativa',
+    defaultDesc:
+      'Plataforma para serviços médicos e clínica de saúde e estética.',
+    imagem: '/img/parceiros/helpus-icon.png',
+    video: null,
+    link: partnerLinks.polylab,
+  },
+  {
+    id: 'magia_do_verde',
+    defaultName: 'Magia do Verde',
+    defaultDesc:
+      'E-commerce e soluções para jardinagem, plantas e produtos naturais.',
+    imagem: '/img/parceiros/helpus-icon.png',
+    video: null,
+    link: partnerLinks.magiadoverde,
+  },
+  {
+    id: 'capinar_pb',
+    defaultName: 'Capinar PB',
+    defaultDesc:
+      'Serviços de limpeza, manutenção e capinação urbana e rural.',
+    imagem: '/img/parceiros/helpus-icon.png',
+    video: null,
+    link: partnerLinks.capinarpb,
+  },
+  {
+    id: 'kaline_modas',
+    defaultName: 'Kaline Modas',
+    defaultDesc:
+      'Loja virtual de vestuário e moda com catálogo interativo.',
+    imagem: '/img/parceiros/helpus-icon.png',
+    video: null,
+    link: partnerLinks.kalinemodas,
   },
 ];
 
