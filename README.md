@@ -1,22 +1,23 @@
-# HelpUS Hub — Central Portal & Service Gateway
+# 🚀 HelpUS - API de Gerenciamento de Usuários
 
-Hub central de produtos, sistemas e serviços corporativos para a **HelpUS Technology**.
+API RESTful para autenticação, cadastro, edição e listagem de usuários na plataforma HelpUS. Inclui autenticação via JWT, controle de acesso por papel e documentação via Swagger.
 
-## 🌐 Domínios & Links
-- **Domínio Oficial**: `https://hub.helpusbr.com`
-- **Repositório GitHub**: [https://github.com/HelpUSA/hub](https://github.com/HelpUSA/hub)
-- **Deploy Automático Vercel**: Ativo via GitHub CI/CD
+## 📦 Tecnologias Utilizadas
 
-## 🚀 Arquitetura & Ecossistema
-O HelpUS Hub funciona como o ponto central único de contato, suporte, billing e SSO para os sistemas do ecossistema:
-- 🏠 **HelpUS Imóveis Pro**
-- 💈 **HelpUS Barber & Salon Hub**
-- 🎫 **HelpUS Events Pass**
-- 🍹 **HelpUS Gourmet & Drinks**
-- 🤖 **HelpUS AI Customer Agent**
-- ⚡ **HelpUS Cloud Sync & Pay**
+- Node.js + Express
+- PostgreSQL (Railway)
+- JWT (autenticação)
+- bcrypt (criptografia de senha)
+- express-validator (validação)
+- Swagger (documentação)
+- Railway (deploy em nuvem)
 
-## 🛠️ Tecnologias
-- React 19 + TypeScript + Vite
-- Lucide Icons + Custom Glassmorphism CSS
-- Vercel Deployment Integration
+---
+
+## 🔧 Instalação Local
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/seuusuario/helpus-auth-api.git
+cd helpus-auth-api

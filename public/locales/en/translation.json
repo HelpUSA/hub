@@ -1,0 +1,557 @@
+{
+  "brand": "HelpUS",
+  "menu": {
+    "home": "Home",
+    "services": "Services",
+    "site_build": "Website Creation",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "forgot": "Forgot password"
+  },
+  "account": {
+    "admin": "Admin",
+    "profile": "Profile",
+    "change_password": "Change password",
+    "logout": "Logout",
+    "signup": "Sign up"
+  },
+  "common": {
+    "visit_site": "Visit site",
+    "learn_more": "Learn more",
+    "request_quote": "Request a quote",
+    "whatsapp": "Talk on WhatsApp",
+    "language": "Language",
+    "partners": "Partners",
+    "connection_error": "Server connection error.",
+    "connection_error_delete": "Connection error while deleting.",
+    "try_again": "Try again",
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "hero": {
+    "no_video": "Your browser does not support HTML5 video.",
+    "title": "Complete solutions to live, start a business and file taxes in the USA",
+    "subtitle": "Specialized consultancy in visas, company formation, tax documentation and professional websites – all in your language.",
+    "cta": {
+      "visas": "American Visas",
+      "company": "Company Formation",
+      "tax": "Taxes & Documents",
+      "sites": "Website Creation"
+    }
+  },
+  "home": {
+    "why_title": "Why choose HelpUS?",
+    "p1_t": "Personalized Service",
+    "p1_d": "1:1 support throughout your visa process.",
+    "p2_t": "Real Experience",
+    "p2_d": "Consultants who have gone through similar processes.",
+    "p3_t": "Trust & Transparency",
+    "p3_d": "We explain everything clearly with no false promises.",
+    "partners_title": "Our Partners",
+    "services_title": "Our Services",
+    "cards": {
+      "visas": {
+        "title": "Visa Consulting",
+        "desc": "Tourist, student, work visas and green card."
+      },
+      "company": {
+        "title": "Company Formation",
+        "desc": "LLC in the USA with complete support, even for non-residents."
+      },
+      "tax": {
+        "title": "Tax Documentation",
+        "desc": "ITIN, EIN, returns and accounting focused on immigrants."
+      },
+      "sites": {
+        "title": "Website Creation",
+        "desc": "Modern sites with admin panel, store and WhatsApp integration."
+      }
+    }
+  },
+  "partners": {
+    "escola_estacao_musical": {
+      "name": "Estação Musical School",
+      "desc": "Music lessons in João Pessoa—guitar, keyboard, singing, and more—with a practical and motivating methodology."
+    },
+    "wagner_driver": {
+      "name": "Wagner Driver",
+      "desc": "Executive transport service and scheduling via WhatsApp"
+    },
+    "tulio_bicicletas": {
+      "name": "Túlio Bicicletas",
+      "desc": "Bicycles, accessories and quality maintenance"
+    },
+    "cg_details": {
+      "name": "CG Details",
+      "desc": "Detailed cleaning for cars, apartments and houses"
+    },
+    "bluebox": {
+      "name": "Blue Box",
+      "desc": "Car and motorcycle wash"
+    },
+    "publicarte": {
+      "name": "PublicArte",
+      "desc": "Design and visual communication"
+    },
+    "waleska": {
+      "name": "Waleska Imóveis",
+      "desc": "Real estate brokerage"
+    },
+    "katia": {
+      "name": "Dr. Kátia Xavier",
+      "desc": "In-person and telemedicine medical care."
+    },
+    "marcio_barber": {
+      "name": "Márcio Barber",
+      "desc": "Barbershop services with quality and dedicated service."
+    },
+    "tatica": {
+      "name": "Tática Assessoria Contábil",
+      "desc": "Accounting, company formation, payroll, taxes and fiscal consulting."
+    }
+  },
+  "sites": {
+    "h1": "Website and Online Store Development",
+    "intro": "We build modern, fast, and personalized websites for companies and professionals. With responsive layout, admin panel, WhatsApp integration and free hosting, you have everything to build your online presence.",
+    "features": [
+      "Professional and responsive design",
+      "Online store with cart and WhatsApp",
+      "Control panel to manage products",
+      "Free hosting on Vercel",
+      "Free database (Supabase)",
+      "Social media integration",
+      "User roles & access control",
+      "Basic SEO included"
+    ],
+    "pricing_from": "Starting at",
+    "pricing_value": "$299",
+    "pricing_note": "Complete website delivered within 10 business days.",
+    "cta_quote": "Request a quote",
+    "examples_title": "Examples of websites created",
+    "support_note": "Technical support included for the first 30 days after delivery. Payment in up to 2x interest-free via card or Pix."
+  },
+  "about": {
+    "title": "About HelpUS",
+    "intro": "HelpUS exists to make essential services accessible to those who want to live, start a business or invest in the United States. We specialize in visa consulting, company formation and tax documentation with human and results-driven service.",
+    "blocks": {
+      "exp_t": "Experience",
+      "exp_d": "Over 10 years helping Brazilians achieve their goals in the USA.",
+      "pers_t": "Personalized Care",
+      "pers_d": "Every case is unique. We offer complete solutions based on your profile.",
+      "commit_t": "Commitment",
+      "commit_d": "Ethics, transparency and full dedication to the success of your journey."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Get in touch and we’ll respond quickly.",
+    "address": "Address: 241 E 16th Ave, STE B4, Gulf Shores, AL 36542 - USA",
+    "email_label": "Email",
+    "phone_label": "Phone"
+  },
+  "services": {
+    "title": "Services",
+    "visas": {
+      "title": "Visas",
+      "includes_title": "📋 What's included:",
+      "examples_title": "📋 Examples of cases handled:",
+      "examples_title_docs": "📋 Example documents:",
+      "list": {
+        "B1B2": {
+          "title": "B1/B2",
+          "desc": "Tourist/Business visa guidance and DS-160."
+        },
+        "F1": {
+          "title": "F1",
+          "desc": "Student visa support (I-20, interview and checklist)."
+        },
+        "F2": {
+          "title": "F2",
+          "desc": "Dependents of F1 – forms and documentation."
+        },
+        "EB1A": {
+          "title": "EB1-A",
+          "desc": "Extraordinary ability green card strategy and filing."
+        },
+        "EB2NIW": {
+          "title": "EB2-NIW",
+          "desc": "National Interest Waiver—eligibility, evidence and petition."
+        },
+        "Renovacao": {
+          "title": "Renewal",
+          "desc": "Simplified flow for renewing eligible visas."
+        },
+        "Familia": {
+          "title": "Family",
+          "desc": "Family-based categories and checklists."
+        },
+        "CasosEspeciais": {
+          "title": "Special Cases",
+          "desc": "Complex scenarios and waivers (initial guidance)."
+        },
+        "Complementares": {
+          "title": "Complementary",
+          "desc": "EAD, Advance Parole and related steps."
+        },
+        "OutrosTrabalho": {
+          "title": "Other Work Visas",
+          "desc": "H1B, L1, O1 and more, based on your profile."
+        }
+      },
+      "pages": {
+        "B1B2": {
+          "intro": "The B1/B2 visa is for temporary trips to the United States for tourism, business, or visiting family and friends.",
+          "items": {
+            "0": "Complete completion of the <strong>DS-160</strong> form",
+            "1": "Document preparation and personalized checklist",
+            "2": "Consular interview scheduling and detailed instructions",
+            "3": "Tips to increase your chances of approval"
+          },
+          "price_label": "💵 HelpUS service price:",
+          "price": "US$ 45.00"
+        },
+        "F1": {
+          "intro": "The F1 visa is intended for foreign students who wish to attend an academic institution in the United States.",
+          "items": {
+            "0": "Detailed guidance and checklist of required documents",
+            "1": "Complete completion of the <strong>DS-160</strong> form",
+            "2": "Payment and issuance of the <strong>SEVIS</strong> fee",
+            "3": "Scheduling and instructions for the consular interview"
+          },
+          "price_label": "💵 HelpUS service price:",
+          "price": "US$ 59.00"
+        },
+        "F2": {
+          "intro": "The F2 visa is for spouses and unmarried children of F1 visa holders, allowing them to accompany the student in the United States.",
+          "items": {
+            "0": "Preparation and complete filling of the <strong>DS-160</strong> form",
+            "1": "Checklist and documentation proving ties to the F1 holder",
+            "2": "Consular interview scheduling and specific guidance",
+            "3": "End-to-end support for spouses and minors"
+          },
+          "price_label": "💵 HelpUS service price:",
+          "price": "US$ 49.00"
+        },
+        "EB1A": {
+          "intro": "The EB1-A visa targets people with extraordinary ability in science, arts, education, business, or athletics, with national or international acclaim.",
+          "items": {
+            "0": "Initial profile and eligibility analysis",
+            "1": "Detailed guidance for supporting documentation",
+            "2": "Completion of <strong>I-140</strong> and assembly of the petition",
+            "3": "Translations and structuring of evidence of notoriety"
+          },
+          "price_label": "💵 HelpUS service price:",
+          "price": "US$ 79.00",
+          "price_note": "– full support until the petition is filed."
+        },
+        "EB2NIW": {
+          "intro": "EB2-NIW is for qualified professionals who wish to immigrate to the US based on their professional merit without a direct job offer, by demonstrating substantial benefit to the US national interest.",
+          "items": {
+            "0": "In-depth eligibility analysis based on your résumé",
+            "1": "Completion of <strong>I-140</strong> and drafting of the national interest letter",
+            "2": "Organization of diplomas, experience, and impact documentation",
+            "3": "Guidance to obtain the <strong>Green Card</strong> via adjustment of status or consular processing"
+          },
+          "price_label": "💵 HelpUS service price:",
+          "price": "US$ 69.00",
+          "price_note": "– full support until the I-140 is filed."
+        },
+        "Renovacao": {
+          "intro": "If your US visa is expired or close to expiring, HelpUS provides complete support to renew it safely and quickly, reducing errors and delays.",
+          "items": {
+            "0": "Data update and new DS-160",
+            "1": "Eligibility check for interview waiver",
+            "2": "Scheduling at CASV or the consulate, if necessary",
+            "3": "Updated checklist of required documents",
+            "4": "Guidance until you receive your passport back with the visa"
+          },
+          "price_label": "💵 HelpUS service price:",
+          "price": "US$ 39.00"
+        },
+        "Familia": {
+          "intro": "We offer complete support for family-based visas — whether to accompany a student, worker or resident in the US, or for temporary family reunion visits.",
+          "items": {
+            "0": "Definition of the appropriate visa type (<strong>F2, B2, IR</strong>, among others)",
+            "1": "Complete checklist of required family documents",
+            "2": "Completion of required forms (such as <strong>DS-160</strong>)",
+            "3": "Consular interview scheduling and detailed guidance",
+            "4": "Ongoing support through the end of the process"
+          },
+          "price_label": "💵 HelpUS service price:",
+          "price": "US$ 55.00",
+          "price_note": "– per family member."
+        },
+        "CasosEspeciais": {
+          "intro": "We handle complex situations that require legal care and specific strategies for each case.",
+          "items": {
+            "0": "Requests for <strong>waiver</strong> (inadmissibility, prior denials, unlawful presence)",
+            "1": "Requests for <strong>extension</strong> or <strong>change of status</strong> while in the US",
+            "2": "Support in <strong>removal</strong>/deportation or <strong>inadmissibility</strong> processes",
+            "3": "Tailored consultations with risk analysis and alternatives"
+          },
+          "price_label": "💵 Service price:",
+          "price": "On request"
+        },
+        "Complementares": {
+          "intro": "We prepare supporting documents that strengthen your visa or immigration case.",
+          "items": {
+            "0": "<strong>I-134 (Affidavit of Support)</strong> form",
+            "1": "Explanatory letters, statements and tailored justifications",
+            "2": "Financial proofs and evidence of family or professional ties"
+          },
+          "price_label": "💵 Service price:",
+          "price": "US$ 25.00",
+          "price_note": "per document (with customization and review)."
+        }
+      }
+    },
+    "company": {
+      "title": "Company",
+      "AberturaLLC": {
+        "title": "LLC Formation",
+        "desc": "LLC in the USA with Operating Agreement and EIN guidance.",
+        "intro": "We handle the entire process to open your LLC in the United States and obtain the EIN (Federal Tax ID).",
+        "steps": {
+          "name": "Name availability check and official registration",
+          "forms": "Filing state formation forms",
+          "ein": "EIN issuance directly with the IRS",
+          "delivery": "Delivery of ready-to-use digital documents"
+        },
+        "price": "Price: US$ 79.00",
+        "cta": "Hire now via WhatsApp",
+        "whatsapp_msg": "Hello! I'm interested in the service: LLC Formation + EIN in the USA"
+      },
+      "BusinessLicense": {
+        "title": "Business License",
+        "desc": "City/county licensing orientation according to activity.",
+        "intro": "Complete support to obtain your business license in any US state, quickly and according to local rules.",
+        "includes_title": "📋 What's included:",
+        "includes": {
+          "0": "Filling the official state/county application",
+          "1": "Research of the proper license code for your activity",
+          "2": "Final PDF filled out and ready to file",
+          "3": "Clear instructions on fees and how to submit",
+          "4": "Support via WhatsApp or email until license is issued"
+        },
+        "price": "$49",
+        "cta": "Chat with HelpUS",
+        "whatsapp_msg": "Hello! I need help to obtain my Business License in the USA."
+      },
+      "EnderecoFiscal": {
+        "title": "Fiscal Address",
+        "desc": "Address options for correspondence and compliance.",
+        "intro": "Valid fiscal address to register your company, receive official mail and open a bank account.",
+        "includes_title": "📋 What's included:",
+        "includes": {
+          "0": "Valid address with number, city and state",
+          "1": "Company name added to the mailbox",
+          "2": "Digital forwarding of received documents",
+          "3": "Assignment agreement issued in PDF"
+        },
+        "price": "$29",
+        "cta": "Chat with HelpUS",
+        "whatsapp_msg": "Hello! I'm interested in the Fiscal Address service in the USA."
+      },
+      "OperatingAgreement": {
+        "title": "Operating Agreement",
+        "desc": "Tailored document for your LLC’s structure and members.",
+        "intro": "We prepare a tailored Operating Agreement for your LLC — essential to open a bank account, obtain licenses and keep your company compliant.",
+        "includes_title": "📋 What's included:",
+        "includes": {
+          "0": "Legal contract adapted to your business reality",
+          "1": "Clauses on members, profit sharing and responsibilities",
+          "2": "Official English version + explanatory Portuguese translation",
+          "3": "Digital delivery in PDF ready to use"
+        },
+        "price": "$25",
+        "cta": "Request via WhatsApp",
+        "whatsapp_msg": "Hello! I'm interested in the Custom Operating Agreement service."
+      },
+      "ITIN": {
+        "title": "ITIN",
+        "desc": "Preparation of W-7 package and supporting evidence."
+      },
+      "W7": {
+        "title": "Form W-7",
+        "desc": "Request for ITIN with proper cover letter and forms."
+      }
+    },
+    "tax": {
+      "title": "Tax",
+      "IRPF": {
+        "title": "Individual Tax Return",
+        "desc": "Federal filing and guidance for immigrants and residents."
+      },
+      "ScheduleC": {
+        "title": "Schedule C",
+        "desc": "Self-employed income, deductions and bookkeeping support."
+      },
+      "W9": {
+        "title": "Form W-9",
+        "desc": "Taxpayer information form preparation for clients/vendors."
+      },
+      "Dependentes": {
+        "title": "Dependents",
+        "desc": "Rules to claim dependents and maximize refunds."
+      },
+      "Formularios": {
+        "title": "Forms",
+        "desc": "Checklists and auxiliary IRS forms."
+      },
+      "Envio": {
+        "title": "Submission",
+        "desc": "Secure sending instructions and follow-up."
+      },
+      "ITINPage": {
+        "title": "ITIN Application",
+        "intro": "The ITIN is essential for foreigners who must file taxes in the US but are not eligible for an SSN.",
+        "includes_title": "📋 What's included:",
+        "includes": {
+          "0": "Complete filling of the official W-7 form",
+          "1": "Personalized cover letter for the IRS",
+          "2": "Updated checklist of accepted documents",
+          "3": "Detailed instructions to mail or validate via ACE"
+        },
+        "price": "$55",
+        "cta": "Chat with HelpUS",
+        "whatsapp_msg": "Hello! I'm interested in the ITIN Application service."
+      },
+      "W7Page": {
+        "title": "Form W-7 (ITIN Request)",
+        "intro": "Official document used to request the ITIN from the IRS. We take care of the process with accuracy and security:",
+        "includes_title": "📋 What's included:",
+        "includes": {
+          "0": "Correct eligibility category definition",
+          "1": "Complete and consistent filling of data",
+          "2": "Review to avoid common errors and ensure acceptance",
+          "3": "Cover letter and document checklist"
+        },
+        "price": "Included in the ITIN package",
+        "cta": "Request via WhatsApp",
+        "whatsapp_msg": "Hello! I need help filling Form W-7 (ITIN)."
+      },
+      "IRPFPage": {
+        "title": "Individual Income Tax Return (Form 1040)",
+        "intro": "We prepare your Form 1040 with all applicable deductions and credits to ensure compliance and the best possible outcome.",
+        "items": {
+          "0": "Complete filing of Form 1040 and required schedules",
+          "1": "Detailed deduction analysis based on your year expenses",
+          "2": "Inclusion of dependents, tax credits and foreign income",
+          "3": "Secure submission and post-filing support"
+        },
+        "price_label": "💵 Service price:",
+        "price": "US$ 39.00"
+      },
+      "ScheduleCPage": {
+        "title": "Schedule C + SE for Self-Employed",
+        "intro": "For freelancers and contractors, we prepare Schedule C and Schedule SE to correctly calculate your taxes and maximize deductions.",
+        "items": {
+          "0": "Detailed report of income and expenses",
+          "1": "Net profit and Self-Employment Tax calculation",
+          "2": "Inclusion in Form 1040 with required attachments",
+          "3": "Support with deductions, depreciation and evidence"
+        },
+        "price_label": "💵 Service price:",
+        "price": "US$ 29.00"
+      },
+      "DependentesPage": {
+        "title": "Return with Dependents (Child Tax Credit)",
+        "intro": "If your children meet legal requirements, you can receive up to <strong>US$ 2,000 per qualifying child</strong> on your tax return.",
+        "items": {
+          "0": "Eligibility verification for the credit",
+          "1": "Correct dependent inclusion on Form 1040",
+          "2": "Refund optimization based on credits",
+          "3": "Full support for documentation if requested"
+        },
+        "price_label": "💵 Service price:",
+        "price": "US$ 19.00"
+      },
+      "FormulariosPage": {
+        "title": "Additional Tax Forms & Schedules",
+        "intro": "We prepare any additional tax forms or schedules needed for your situation.",
+        "items": {
+          "0": "Auxiliary forms (W-2, 1099, 8962, 8862, and more)",
+          "1": "Assembly of specific schedules for credits and deductions",
+          "2": "Corrections and amendments for previously filed forms",
+          "3": "On-demand support for special cases"
+        },
+        "price_label": "💵 Service price:",
+        "price": "On request"
+      },
+      "W9Page": {
+        "title": "Form W-9 Completion",
+        "intro": "We fill out your W-9 with your LLC/EIN data and provide clear sending instructions.",
+        "items": {
+          "0": "Auto-fill with your LLC and EIN details",
+          "1": "Final PDF signed digitally or ready for manual signature",
+          "2": "Clear instructions to send to the requester",
+          "3": "Support for questions and future changes"
+        },
+        "price_label": "💵 Service price:",
+        "price": "US$ 25.00"
+      },
+      "EnvioPage": {
+        "title": "Document Submission & Support",
+        "intro": "After preparing your return or form, we provide complete guidance for correct submission and follow-up until IRS confirmation.",
+        "items": {
+          "0": "Detailed mail-in instructions (IRS, ITIN and others)",
+          "1": "Checklist with required documents",
+          "2": "Custom mailing label and instructions",
+          "3": "Support to track receipt and IRS response"
+        },
+        "price_label": "💵 Price:",
+        "price": "Included in main services"
+      }
+    }
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Get news and tips about visas, companies, taxes and professional websites",
+      "placeholder": "Enter your email",
+      "button": "Subscribe",
+      "success": "Subscribed successfully!",
+      "error_exists": "Subscription error. Email may already be registered.",
+      "error_conn": "Connection error. Please try again."
+    },
+    "contact": {
+      "address": "Address: 241 E 16th Ave, STE B4, Gulf Shores, AL 36542 - USA",
+      "email": "Email: helpus.ecommerce@gmail.com"
+    },
+    "rights": "All rights reserved.",
+    "made_with": "Made with",
+    "by_helpus": "by HelpUS"
+  },
+  "cookie": {
+    "banner_label": "Cookies notice",
+    "message": "We use cookies to improve your browsing experience. By continuing, you agree to our",
+    "privacy": "Privacy Policy",
+    "accept": "Accept"
+  },
+  "users": {
+    "title": "Admin Area – Users",
+    "welcome": "Welcome, ",
+    "error_fetch": "Error fetching users.",
+    "search_placeholder": "Search by email, role or site…",
+    "search_aria": "Search users",
+    "new": "+ New User",
+    "cannot_delete_self": "You cannot delete your own user.",
+    "confirm_delete": "Are you sure you want to delete this user?",
+    "deleted": "User deleted.",
+    "error_delete": "Error deleting user.",
+    "col_id": "ID",
+    "col_email": "Email",
+    "col_role": "Role",
+    "col_site": "Site",
+    "col_actions": "Actions",
+    "click_to_sort": "Click to sort",
+    "empty_search": "No users found for the search.",
+    "empty_list": "No users registered.",
+    "edit": "Edit",
+    "delete": "Delete",
+    "edit_user": "Edit user {{email}}",
+    "delete_user": "Delete user {{email}}",
+    "showing": "Showing {{from}}-{{to}} of {{total}}",
+    "page_of": "Page {{page}} of {{pages}}"
+  }
+}
