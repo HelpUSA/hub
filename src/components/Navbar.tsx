@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, Globe, Menu, X } from 'lucide-react';
+import { ArrowUpRight, Globe, Menu, X, Sparkles } from 'lucide-react';
 import type { Language } from '../i18n/translations';
 
 interface NavbarProps {
@@ -20,63 +20,68 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#08090a]/80 backdrop-blur-xl border-b border-white/[0.08] transition-all">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#0b0d14]/90 backdrop-blur-md border-b border-slate-800/80 transition-all">
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
-        {/* Brand Logo - Linear Style */}
+        {/* Brand Logo */}
         <button 
           onClick={onNavigateHome}
-          className="flex items-center gap-2.5 group cursor-pointer text-left"
+          className="flex items-center gap-3 group cursor-pointer text-left"
         >
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 p-[1px]">
-            <div className="w-full h-full bg-[#08090a] rounded-[7px] flex items-center justify-center">
-              <span className="font-extrabold text-xs text-white">H</span>
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 p-[1px] shadow-lg shadow-cyan-500/20">
+            <div className="w-full h-full bg-[#0b0d14] rounded-[11px] flex items-center justify-center">
+              <span className="font-extrabold text-base text-white group-hover:text-cyan-400 transition-colors">H</span>
             </div>
           </div>
-          <span className="font-semibold text-sm tracking-tight text-white group-hover:text-neutral-300 transition-colors">
-            HELPUS <span className="text-[10px] text-neutral-500 font-mono font-normal uppercase ml-1 border-l border-neutral-800 pl-2">STUDIO</span>
-          </span>
+          <div className="flex flex-col">
+            <span className="font-extrabold text-lg text-white tracking-tight leading-none group-hover:text-cyan-400 transition-colors">
+              HelpUS<span className="text-cyan-400 font-light">™</span>
+            </span>
+            <span className="text-[10px] font-mono tracking-widest text-slate-400 uppercase mt-1">
+              Technology Studio
+            </span>
+          </div>
         </button>
 
-        {/* Desktop Links */}
-        <nav className="hidden md:flex items-center gap-7 text-xs font-medium text-neutral-400">
+        {/* Desktop Navigation Links */}
+        <nav className="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-slate-300">
           <button 
             onClick={() => onNavigateSection('trabalhos')}
-            className="hover:text-white transition-colors cursor-pointer"
+            className="hover:text-cyan-400 transition-colors cursor-pointer"
           >
             Trabalhos
           </button>
           <button 
             onClick={() => onNavigateSection('servicos')}
-            className="hover:text-white transition-colors cursor-pointer"
+            className="hover:text-cyan-400 transition-colors cursor-pointer"
           >
             Serviços
           </button>
           <button 
             onClick={() => onNavigateSection('sobre')}
-            className="hover:text-white transition-colors cursor-pointer"
+            className="hover:text-cyan-400 transition-colors cursor-pointer"
           >
             Sobre
           </button>
           <button 
             onClick={onOpenContact}
-            className="hover:text-white transition-colors cursor-pointer"
+            className="hover:text-cyan-400 transition-colors cursor-pointer"
           >
             Contato
           </button>
         </nav>
 
-        {/* Right CTAs */}
-        <div className="hidden md:flex items-center gap-4">
-          {/* Language Selector Pill */}
-          <div className="flex items-center gap-1 bg-white/[0.04] border border-white/[0.08] rounded-full p-1 text-[11px] font-mono">
-            <Globe className="w-3 h-3 text-neutral-400 ml-1.5 mr-0.5" />
+        {/* Right Section: Language Selector & CTA */}
+        <div className="hidden md:flex items-center gap-5">
+          {/* Language Selector */}
+          <div className="flex items-center gap-1 bg-slate-900/90 border border-slate-800 rounded-full px-3 py-1.5 text-xs font-mono">
+            <Globe className="w-3.5 h-3.5 text-cyan-400 mr-1" />
             {(['pt', 'en', 'es'] as Language[]).map((l) => (
               <button
                 key={l}
                 onClick={() => onSelectLang(l)}
                 className={`px-2 py-0.5 rounded-full uppercase cursor-pointer transition-all ${
-                  lang === l ? 'bg-white text-black font-bold' : 'text-neutral-400 hover:text-white'
+                  lang === l ? 'bg-cyan-500 text-slate-950 font-bold' : 'text-slate-400 hover:text-white'
                 }`}
               >
                 {l}
@@ -87,38 +92,39 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Primary CTA */}
           <button
             onClick={onOpenContact}
-            className="px-4 py-2 rounded-full bg-white text-black font-semibold text-xs hover:bg-neutral-200 transition-all flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,255,255,0.15)] cursor-pointer"
+            className="group px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg shadow-cyan-500/20 cursor-pointer"
           >
+            <Sparkles className="w-3.5 h-3.5" />
             <span>Iniciar Projeto</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </button>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Toggle */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden text-neutral-400 hover:text-white p-2"
+          className="md:hidden text-white p-2"
         >
-          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
 
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#08090a] border-b border-white/[0.08] px-6 py-6 space-y-4 text-xs font-medium text-neutral-300 uppercase tracking-wider">
-          <button onClick={() => { onNavigateSection('trabalhos'); setMobileMenuOpen(false); }} className="block w-full text-left py-2 hover:text-white">Trabalhos</button>
-          <button onClick={() => { onNavigateSection('servicos'); setMobileMenuOpen(false); }} className="block w-full text-left py-2 hover:text-white">Serviços</button>
-          <button onClick={() => { onOpenContact(); setMobileMenuOpen(false); }} className="block w-full text-left py-2 hover:text-white">Contato</button>
-          
-          <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between">
-            <span className="text-[11px] text-neutral-500 font-mono">IDIOMA:</span>
-            <div className="flex gap-1.5">
+        <div className="md:hidden bg-[#0b0d14] border-b border-slate-800 px-6 py-6 space-y-4 font-mono text-xs text-slate-300 uppercase">
+          <button onClick={() => { onNavigateSection('trabalhos'); setMobileMenuOpen(false); }} className="block w-full text-left py-2">Trabalhos</button>
+          <button onClick={() => { onNavigateSection('servicos'); setMobileMenuOpen(false); }} className="block w-full text-left py-2">Serviços</button>
+          <button onClick={() => { onOpenContact(); setMobileMenuOpen(false); }} className="block w-full text-left py-2">Contato</button>
+
+          <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <span className="text-xs text-slate-400">Idioma:</span>
+            <div className="flex gap-2">
               {(['pt', 'en', 'es'] as Language[]).map((l) => (
                 <button
                   key={l}
                   onClick={() => { onSelectLang(l); setMobileMenuOpen(false); }}
-                  className={`px-2.5 py-1 rounded-full text-[11px] uppercase ${lang === l ? 'bg-white text-black font-bold' : 'text-neutral-400'}`}
+                  className={`px-3 py-1 rounded-full text-xs uppercase ${lang === l ? 'bg-cyan-500 text-slate-950 font-bold' : 'text-slate-400'}`}
                 >
                   {l}
                 </button>

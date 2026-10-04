@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, Bot, Code2, Briefcase, Building2, Globe2 } from 'lucide-react';
+import { ArrowUpRight, Code2, Bot, Briefcase, Building2, Globe2 } from 'lucide-react';
 import type { Language } from '../i18n/translations';
 
 interface PortfolioItem {
@@ -12,7 +12,6 @@ interface PortfolioItem {
   liveUrl: string;
   tags: string[];
   icon: any;
-  featured?: boolean;
 }
 
 interface PortfolioGridProps {
@@ -27,12 +26,11 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ lang: _lang, onSel
       number: '01',
       title: 'HelpUS Accounting',
       category: 'Automação Fiscal & Contábil',
-      description: 'Plataforma universal para busca, captura e download em lote de NFS-e/CT-e com suporte a certificado A1 e relatórios customizados em Excel.',
+      description: 'Plataforma universal de busca, captura e download em lote de NFS-e/CT-e com suporte a certificado A1 e relatórios em Excel.',
       image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
       liveUrl: 'https://accounting.helpusbr.com',
       tags: ['Next.js 15', 'NFS-e', 'mTLS A1', 'Excel Batch'],
-      icon: Code2,
-      featured: true
+      icon: Code2
     },
     {
       id: 'helpus-whatsapp-ia',
@@ -91,138 +89,88 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ lang: _lang, onSel
     }
   ];
 
-  const featuredProject = projects.find(p => p.featured) || projects[0];
-  const regularProjects = projects.filter(p => p.id !== featuredProject.id);
-
   return (
-    <section id="trabalhos" className="bg-[#08090a] py-24 px-6 border-b border-white/[0.08]">
-      <div className="max-w-7xl mx-auto space-y-12">
+    <section id="trabalhos" className="bg-[#0b0d14] py-24 px-6 border-b border-slate-800/80">
+      <div className="max-w-7xl mx-auto space-y-16">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/[0.08] pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-800/80 pb-8">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs font-mono text-purple-400 uppercase tracking-widest mb-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
-              <span>PORTFÓLIO & SOLUÇÕES</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
+            <span className="text-xs font-mono tracking-widest text-cyan-400 uppercase font-semibold">
+              PORTFÓLIO & SOLUÇÕES
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mt-2">
               Trabalhos em Destaque
             </h2>
           </div>
-          <p className="text-sm text-neutral-400 max-w-md">
-            Ecossistemas web de alta performance desenvolvidos com arquitetura moderna e foco em resultados operacionais.
+          <p className="text-sm text-slate-400 max-w-md font-sans leading-relaxed">
+            Projetos digitais desenvolvidos com foco em alta performance, identidade marcante e resultados operacionais.
           </p>
         </div>
 
-        {/* Linear Bento Grid Showcase */}
-        <div className="space-y-6">
-          
-          {/* Featured Large Card (Linear Main Bento) */}
-          <div 
-            onClick={() => onSelectProject(featuredProject.id)}
-            className="group relative rounded-3xl bg-[#121316]/80 border border-white/10 hover:border-white/20 transition-all duration-500 overflow-hidden cursor-pointer shadow-2xl"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-8 items-center">
-              
-              <div className="lg:col-span-6 space-y-6">
-                <div className="flex items-center gap-3">
-                  <span className="px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 text-xs font-mono text-white font-bold">
-                    {featuredProject.number}
-                  </span>
-                  <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider">
-                    {featuredProject.category}
-                  </span>
-                </div>
+        {/* Portfolio Showcase Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((proj) => {
+            const IconComp = proj.icon;
+            return (
+              <div 
+                key={proj.id}
+                onClick={() => onSelectProject(proj.id)}
+                className="group cursor-pointer rounded-3xl bg-slate-900/50 border border-slate-800/80 hover:border-cyan-500/50 hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-300 overflow-hidden flex flex-col justify-between p-6 space-y-6"
+              >
+                {/* Cover Image Container */}
+                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800/80">
+                  <img 
+                    src={proj.image} 
+                    alt={proj.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-90 group-hover:brightness-100"
+                  />
+                  
+                  {/* Badge Number */}
+                  <div className="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono font-bold text-white border border-slate-800">
+                    {proj.number}
+                  </div>
 
-                <h3 className="text-3xl sm:text-4xl font-bold text-white group-hover:text-purple-300 transition-colors">
-                  {featuredProject.title}
-                </h3>
-
-                <p className="text-neutral-300 text-sm leading-relaxed">
-                  {featuredProject.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {featuredProject.tags.map(t => (
-                    <span key={t} className="px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-neutral-400">
-                      {t}
+                  {/* Overlay CTA */}
+                  <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span className="px-5 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg flex items-center gap-2">
+                      <span>Ver Projeto Detalhado</span>
+                      <ArrowUpRight className="w-4 h-4" />
                     </span>
-                  ))}
+                  </div>
                 </div>
 
-                <div className="pt-4">
-                  <span className="inline-flex items-center gap-2 text-xs font-semibold text-white group-hover:text-purple-300">
-                    <span>Ver Projeto Detalhado</span>
-                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </span>
-                </div>
-              </div>
-
-              <div className="lg:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden bg-black/60 border border-white/10">
-                <img 
-                  src={featuredProject.image} 
-                  alt={featuredProject.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90 group-hover:brightness-100"
-                />
-              </div>
-
-            </div>
-          </div>
-
-          {/* Regular Bento Grid Cards (2 columns on medium, 3 on desktop) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {regularProjects.map((proj) => {
-              const IconComp = proj.icon;
-              return (
-                <div 
-                  key={proj.id}
-                  onClick={() => onSelectProject(proj.id)}
-                  className="group relative rounded-3xl bg-[#121316]/60 border border-white/[0.08] hover:border-white/20 transition-all duration-500 overflow-hidden cursor-pointer flex flex-col justify-between p-6 space-y-6 hover:shadow-2xl"
-                >
-                  {/* Top Image Preview */}
-                  <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-black/60 border border-white/[0.08]">
-                    <img 
-                      src={proj.image} 
-                      alt={proj.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90 group-hover:brightness-100"
-                    />
-                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md text-[11px] font-mono text-white font-bold border border-white/10">
-                      {proj.number}
+                {/* Card Text Info */}
+                <div className="space-y-3 flex-1 flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 uppercase">
+                      <IconComp className="w-3.5 h-3.5" />
+                      <span>{proj.category}</span>
                     </div>
+
+                    <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors flex items-center justify-between">
+                      <span>{proj.title}</span>
+                      <ArrowUpRight className="w-5 h-5 text-slate-600 group-hover:text-cyan-400 transition-colors" />
+                    </h3>
+
+                    <p className="text-xs text-slate-400 leading-relaxed font-normal line-clamp-3">
+                      {proj.description}
+                    </p>
                   </div>
 
-                  {/* Body Text */}
-                  <div className="space-y-3 flex-1 flex flex-col justify-between">
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-[11px] font-mono text-neutral-400 uppercase">
-                        <IconComp className="w-3.5 h-3.5 text-purple-400" />
-                        <span>{proj.category}</span>
-                      </div>
-
-                      <h4 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors flex items-center justify-between">
-                        <span>{proj.title}</span>
-                        <ArrowUpRight className="w-4 h-4 text-neutral-500 group-hover:text-purple-300 transition-colors" />
-                      </h4>
-
-                      <p className="text-xs text-neutral-400 leading-relaxed">
-                        {proj.description}
-                      </p>
-                    </div>
-
-                    <div className="flex flex-wrap gap-1.5 pt-2">
-                      {proj.tags.slice(0, 3).map(t => (
-                        <span key={t} className="px-2.5 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-neutral-400">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {proj.tags.map(t => (
+                      <span key={t} className="bg-slate-800/80 px-2.5 py-1 rounded-lg text-[10px] font-mono text-slate-300 border border-slate-700/50">
+                        {t}
+                      </span>
+                    ))}
                   </div>
-
                 </div>
-              );
-            })}
-          </div>
 
+              </div>
+            );
+          })}
         </div>
 
       </div>
