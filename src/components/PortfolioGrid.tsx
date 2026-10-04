@@ -90,25 +90,25 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ lang: _lang, onSel
   ];
 
   return (
-    <section id="trabalhos" className="bg-[#0b0d14] py-24 px-6 border-b border-slate-800/80">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <section id="trabalhos" className="bg-black py-24 px-6 border-b border-neutral-900">
+      <div className="max-w-6xl mx-auto space-y-16">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-800/80 pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-neutral-900 pb-8">
           <div>
-            <span className="text-xs font-mono tracking-widest text-cyan-400 uppercase font-semibold">
-              PORTFÓLIO & SOLUÇÕES
+            <span className="text-xs font-mono tracking-widest text-neutral-500 uppercase font-semibold">
+              SOLUÇÕES & CASOS DE USO
             </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mt-2">
-              Trabalhos em Destaque
+            <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight mt-2">
+              Ecossistemas em Destaque
             </h2>
           </div>
-          <p className="text-sm text-slate-400 max-w-md font-sans leading-relaxed">
-            Projetos digitais desenvolvidos com foco em alta performance, identidade marcante e resultados operacionais.
+          <p className="text-sm text-neutral-400 max-w-md font-normal leading-relaxed">
+            Plataformas construídas com arquitetura moderna, foco em zero manutenção corretiva e alta velocidade.
           </p>
         </div>
 
-        {/* Portfolio Showcase Grid */}
+        {/* Resend 1px Border Card Showcase Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((proj) => {
             const IconComp = proj.icon;
@@ -116,52 +116,50 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ lang: _lang, onSel
               <div 
                 key={proj.id}
                 onClick={() => onSelectProject(proj.id)}
-                className="group cursor-pointer rounded-3xl bg-slate-900/50 border border-slate-800/80 hover:border-cyan-500/50 hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-300 overflow-hidden flex flex-col justify-between p-6 space-y-6"
+                className="group cursor-pointer rounded-2xl bg-[#050505] border border-neutral-900 hover:border-neutral-700 transition-all duration-300 overflow-hidden flex flex-col justify-between p-6 space-y-6"
               >
-                {/* Cover Image Container */}
-                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800/80">
+                {/* Cover Image */}
+                <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-neutral-950 border border-neutral-900">
                   <img 
                     src={proj.image} 
                     alt={proj.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-90 group-hover:brightness-100"
                   />
                   
-                  {/* Badge Number */}
-                  <div className="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono font-bold text-white border border-slate-800">
+                  <div className="absolute top-3 left-3 bg-black/90 backdrop-blur-md px-2.5 py-0.5 rounded-md text-xs font-mono font-bold text-neutral-300 border border-neutral-800">
                     {proj.number}
                   </div>
 
-                  {/* Overlay CTA */}
-                  <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span className="px-5 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg flex items-center gap-2">
-                      <span>Ver Projeto Detalhado</span>
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span className="px-4 py-2 rounded-xl bg-white text-black font-semibold text-xs uppercase tracking-wider shadow-xl flex items-center gap-1.5">
+                      <span>Ver Projeto</span>
                       <ArrowUpRight className="w-4 h-4" />
                     </span>
                   </div>
                 </div>
 
-                {/* Card Text Info */}
+                {/* Text Content */}
                 <div className="space-y-3 flex-1 flex flex-col justify-between">
                   <div className="space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 uppercase">
-                      <IconComp className="w-3.5 h-3.5" />
+                    <div className="flex items-center gap-2 text-xs font-mono text-neutral-400 uppercase">
+                      <IconComp className="w-3.5 h-3.5 text-emerald-400" />
                       <span>{proj.category}</span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors flex items-center justify-between">
+                    <h3 className="text-xl font-bold text-white group-hover:text-neutral-300 transition-colors flex items-center justify-between">
                       <span>{proj.title}</span>
-                      <ArrowUpRight className="w-5 h-5 text-slate-600 group-hover:text-cyan-400 transition-colors" />
+                      <ArrowUpRight className="w-4 h-4 text-neutral-600 group-hover:text-white transition-colors" />
                     </h3>
 
-                    <p className="text-xs text-slate-400 leading-relaxed font-normal line-clamp-3">
+                    <p className="text-xs text-neutral-400 leading-relaxed font-normal">
                       {proj.description}
                     </p>
                   </div>
 
-                  {/* Tags */}
+                  {/* Tech Stack Chips */}
                   <div className="flex flex-wrap gap-1.5 pt-2">
                     {proj.tags.map(t => (
-                      <span key={t} className="bg-slate-800/80 px-2.5 py-1 rounded-lg text-[10px] font-mono text-slate-300 border border-slate-700/50">
+                      <span key={t} className="bg-neutral-900 px-2.5 py-1 rounded-md text-[10px] font-mono text-neutral-400 border border-neutral-800">
                         {t}
                       </span>
                     ))}
