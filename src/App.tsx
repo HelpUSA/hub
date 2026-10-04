@@ -10,7 +10,6 @@ import {
   Code2,
   Building2,
   ExternalLink,
-  ChevronDown,
   Layers,
   Globe2,
   X,
@@ -31,6 +30,7 @@ import {
 } from 'lucide-react';
 
 import { translations, type Language } from './i18n/translations';
+import Navbar from './components/Navbar';
 import AnimatedBackground from './components/AnimatedBackground';
 import CategoryCard, { type CategoryCardData } from './components/CategoryCard';
 import SolutionDetailView from './components/SolutionDetailView';
@@ -59,7 +59,6 @@ export type CategoryId = 'ia' | 'infra' | 'setoriais' | 'clientes';
 
 export function App() {
   const [lang, setLang] = useState<Language>('pt');
-  const [langDropdownOpen, setLangDropdownOpen] = useState<boolean>(false);
 
   // Navigation Tier State
   // Tier 1: Home (selectedCategory === null && selectedAppId === null)
@@ -74,13 +73,6 @@ export function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState<boolean>(false);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState<boolean>(false);
   const [showFaleConoscoPage, setShowFaleConoscoPage] = useState<boolean>(false);
-
-  // Tagline translations by language
-  const taglineTranslations = {
-    pt: 'SOLUÇÕES EM TECNOLOGIA',
-    en: 'TECHNOLOGY SOLUTIONS',
-    es: 'SOLUCIONES EN TECNOLOGÍA'
-  };
 
   // Sync Language and Navigation with URL Parameters
   useEffect(() => {
@@ -132,7 +124,6 @@ export function App() {
 
   const changeLanguage = (code: Language) => {
     setLang(code);
-    setLangDropdownOpen(false);
     if (typeof window !== 'undefined') {
       localStorage.setItem('helpus_lang', code);
       const url = new URL(window.location.href);
@@ -827,75 +818,15 @@ export function App() {
     <div className="hub-app font-sans bg-[#0b0f17] text-white selection:bg-cyan-500 selection:text-slate-950 min-h-screen pb-24">
       <AnimatedBackground />
 
-      {/* Header Navbar — Semi-Transparent Dark Blue Header */}
-      <header className="hub-header sticky top-0 z-40 bg-[#0b0f17]/90 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl">
-        <div className="hub-container">
-          <div className="hub-header-inner flex items-center justify-between h-20">
-            
-            {/* HelpUS Official Logo & Translated Sub-brand */}
-            <a 
-              href="#" 
-              onClick={(e) => {
-                e.preventDefault();
-                navigateToHome();
-              }} 
-              className="flex items-center gap-3 group"
-            >
-              <img
-                src="/images/helpus_logo.png"
-                alt="HelpUS Logo"
-                className="h-12 w-auto object-contain transition-transform group-hover:scale-105"
-              />
-              <div className="flex flex-col">
-                <span className="font-extrabold text-base text-white tracking-tight leading-none">HelpUS</span>
-                <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-widest mt-0.5">
-                  {taglineTranslations[lang] || taglineTranslations.pt}
-                </span>
-              </div>
-            </a>
-
-            {/* Navigation Actions: Fale Conosco + Language Switcher */}
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => setShowFaleConoscoPage(true)}
-                className="hidden sm:flex px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs uppercase tracking-wider items-center gap-1.5 shadow-lg shadow-cyan-500/20 transition-all transform hover:-translate-y-0.5"
-              >
-                <span>Fale Conosco</span>
-              </button>
-
-              <div className="relative">
-                <button
-                  onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                  className="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold text-xs flex items-center gap-2 border border-slate-700/80 shadow-md transition-all"
-                >
-                  <Globe2 className="w-4 h-4 text-cyan-400" />
-                  <span>
-                    {lang === 'en' && 'EN'}
-                    {lang === 'es' && 'ES'}
-                    {lang === 'pt' && 'PT'}
-                  </span>
-                  <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
-                </button>
-
-                {langDropdownOpen && (
-                  <div className="absolute right-0 top-full mt-2 w-40 bg-slate-900 rounded-xl border border-slate-800 shadow-2xl p-1.5 z-50 space-y-1">
-                    <button onClick={() => changeLanguage('pt')} className={`w-full text-left px-3 py-2 rounded-lg text-xs font-bold transition-colors ${lang === 'pt' ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30' : 'text-slate-300 hover:bg-slate-800'}`}>
-                      🇧🇷 Português
-                    </button>
-                    <button onClick={() => changeLanguage('en')} className={`w-full text-left px-3 py-2 rounded-lg text-xs font-bold transition-colors ${lang === 'en' ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30' : 'text-slate-300 hover:bg-slate-800'}`}>
-                      🇺🇸 English
-                    </button>
-                    <button onClick={() => changeLanguage('es')} className={`w-full text-left px-3 py-2 rounded-lg text-xs font-bold transition-colors ${lang === 'es' ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30' : 'text-slate-300 hover:bg-slate-800'}`}>
-                      🇪🇸 Español
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </header>
+      {/* 1EQ Style Mega-Menu Navbar */}
+      <Navbar 
+        lang={lang}
+        onSelectLang={changeLanguage}
+        onNavigateHome={navigateToHome}
+        onNavigateCategory={navigateToCategory}
+        onNavigateSolution={navigateToSolution}
+        onOpenContact={() => setShowFaleConoscoPage(true)}
+      />
 
       {/* Main Render Flow: Fale Conosco Page, TIER 3 (Detail), TIER 2 (Category), or TIER 1 (Home) */}
       <main>
