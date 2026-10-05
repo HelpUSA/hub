@@ -37,7 +37,7 @@ export default function SaasImobiliaria() {
             loop
             playsInline
           >
-            <source src="/img/parceiros/video-waleska.mp4" type="video/mp4" />
+            <source src="/img/parceiros/video-saas.mp4" type="video/mp4" />
           </video>
         </div>
 

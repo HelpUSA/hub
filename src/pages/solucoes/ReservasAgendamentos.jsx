@@ -37,7 +37,7 @@ export default function ReservasAgendamentos() {
             loop
             playsInline
           >
-            <source src="/img/parceiros/ariticum-video.mp4" type="video/mp4" />
+            <source src="/img/parceiros/video-agendamento.mp4" type="video/mp4" />
           </video>
         </div>
 
