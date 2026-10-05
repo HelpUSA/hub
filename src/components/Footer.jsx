@@ -64,8 +64,15 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col gap-12">
         {/* Cabeçalho, links e redes */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-2xl font-bold text-white">
-            Help<span className="text-blue-500">US</span>
+          <div className="flex items-center gap-3 text-2xl font-bold text-white">
+            <img
+              src="/img/helpus-logo.png"
+              alt="HelpUS Logo"
+              className="w-10 h-10 object-contain rounded-full border border-blue-400/40 shadow-sm"
+            />
+            <span>
+              Help<span className="text-blue-500">US</span>
+            </span>
           </div>
 
           {/* LINKS DO RODAPÉ */}
@@ -169,12 +176,19 @@ export default function Footer() {
         </div>
 
         {/* Rodapé final */}
-        <div className="text-center text-xs text-gray-500 mt-4 space-y-1">
+        <div className="text-center text-xs text-gray-500 mt-4 space-y-2">
           <p>
             © {new Date().getFullYear()} {t('brand')} LLC. {t('footer.rights')}
           </p>
-          <p className="text-gray-400">
-            {t('footer.made_with')} <span className="text-red-500">♥</span> {t('footer.by_helpus')}
+          <p className="flex items-center justify-center gap-1.5 text-gray-400">
+            <span>{t('footer.made_with')}</span>
+            <span className="text-red-500 text-sm">♥</span>
+            <span>{t('footer.by_helpus')}</span>
+            <img
+              src="/img/helpus-logo.png"
+              alt="HelpUS"
+              className="w-5 h-5 object-contain rounded-full inline-block ml-1"
+            />
           </p>
         </div>
       </div>

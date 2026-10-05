@@ -153,10 +153,17 @@ export default function Header() {
         {/* Logo */}
         <Link
           to="/"
-          className="text-2xl font-bold focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
+          className="flex items-center gap-3 font-bold focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md group"
           aria-label="HelpUS - Home"
         >
-          Help<span className="text-blue-500">US</span>
+          <img
+            src="/img/helpus-logo.png"
+            alt="HelpUS Logo"
+            className="w-10 h-10 object-contain rounded-full border border-blue-400/40 shadow-sm transition group-hover:scale-105"
+          />
+          <span className="text-2xl tracking-tight">
+            Help<span className="text-blue-500">US</span>
+          </span>
         </Link>
 
         {/* Menu desktop */}
