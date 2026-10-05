@@ -37,7 +37,7 @@ export default function EcommerceAmazon() {
             loop
             playsInline
           >
-            <source src="/img/parceiros/video-publicarte.mp4" type="video/mp4" />
+            <source src="/img/parceiros/video-ecommerce.mp4" type="video/mp4" />
           </video>
         </div>
 

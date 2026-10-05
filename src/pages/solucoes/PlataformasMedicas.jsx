@@ -38,7 +38,7 @@ export default function PlataformasMedicas() {
             loop
             playsInline
           >
-            <source src="/img/parceiros/video-escola.mp4" type="video/mp4" />
+            <source src="/img/parceiros/video-medico.mp4" type="video/mp4" />
           </video>
         </div>
 
