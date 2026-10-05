@@ -42,7 +42,8 @@ export default function Hero() {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
-        <source src="/Miami.mp4" type="video/mp4" />
+        <source src="/img/6804109-uhd_4096_2160_25fps.mp4" type="video/mp4" />
+        <source src="/img/bg-main.mp4" type="video/mp4" />
         {t('hero.no_video')}
       </video>
 
@@ -118,17 +119,6 @@ export default function Hero() {
           </a>
         </motion.div>
       </div>
-
-      {/* Botão flutuante WhatsApp */}
-      <a
-        href="https://wa.me/15551234567"
-        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg animate-bounce"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Falar no WhatsApp"
-      >
-        <FaWhatsapp className="text-2xl" />
-      </a>
     </section>
   );
 }
