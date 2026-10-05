@@ -1,6 +1,6 @@
 // arquivo: src/App.js
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import CookieConsent from './components/CookieConsent';
@@ -20,9 +20,6 @@ import Login from './pages/Login';
 import ListaUsuariosAdmin from './pages/admin/ListaUsuariosAdmin';
 import CadastroUsuario from './pages/admin/CadastroUsuario';
 import EditarUsuario from './pages/admin/EditarUsuario';
-
-// Web Studio
-import CriacaoDeSites from './pages/CriacaoDeSites';
 
 // Páginas de Soluções Específicas
 import AutomacaoFiscal from './pages/solucoes/AutomacaoFiscal';
@@ -69,8 +66,8 @@ function App() {
             {/* Rotas Web Studio */}
             <Route path="/" element={<Home />} />
             <Route path="/parceiros" element={<Home />} />
-            <Route path="/criacao-de-sites" element={<CriacaoDeSites />} />
-            <Route path="/servicos" element={<CriacaoDeSites />} />
+            <Route path="/criacao-de-sites" element={<Navigate to="/" replace />} />
+            <Route path="/servicos" element={<Navigate to="/" replace />} />
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/politica-de-privacidade" element={<PoliticaDePrivacidade />} />

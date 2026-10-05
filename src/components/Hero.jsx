@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   FaWhatsapp,
-  FaGlobe,
+  FaCode,
   FaHandshake,
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
@@ -69,12 +69,12 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
-          <Link
-            to="/criacao-de-sites"
+          <a
+            href="#solucoes"
             className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded text-sm sm:text-base font-semibold shadow-lg"
           >
-            <FaGlobe /> {t('hero.cta.sites')}
-          </Link>
+            <FaCode /> {t('hero.cta.solutions', { defaultValue: 'Conhecer Soluções' })}
+          </a>
 
           <Link
             to="/parceiros"

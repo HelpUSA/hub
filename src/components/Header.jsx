@@ -176,13 +176,6 @@ export default function Header() {
           </Link>
 
           <Link
-            to="/criacao-de-sites"
-            className={`transition hover:text-blue-400 ${isActive('/criacao-de-sites') ? 'text-blue-400' : ''}`}
-          >
-            {t('menu.site_build')}
-          </Link>
-
-          <Link
             to="/parceiros"
             className={`transition hover:text-blue-400 ${isActive('/parceiros') ? 'text-blue-400' : ''}`}
           >
@@ -344,9 +337,6 @@ export default function Header() {
         <div className="md:hidden bg-gray-800 px-6 py-4 space-y-3">
           <Link to="/" onClick={() => setIsOpen(false)} className="block hover:text-blue-400">
             {t('menu.home')}
-          </Link>
-          <Link to="/criacao-de-sites" onClick={() => setIsOpen(false)} className="block hover:text-blue-400">
-            {t('menu.site_build')}
           </Link>
           <Link to="/parceiros" onClick={() => setIsOpen(false)} className="block hover:text-blue-400">
             {t('common.partners', { defaultValue: 'Portfólio & Parceiros' })}
