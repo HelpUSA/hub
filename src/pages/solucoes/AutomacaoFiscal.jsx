@@ -1,5 +1,5 @@
 // src/pages/solucoes/AutomacaoFiscal.jsx
-import React, { useState } from 'react';
+import React from 'react';
 import {
   FaFileInvoiceDollar,
   FaCheckCircle,
@@ -10,79 +10,11 @@ import {
   FaLaptopCode,
   FaExternalLinkAlt,
   FaRobot,
-  FaSearch,
-  FaSpinner,
   FaUserCheck
 } from 'react-icons/fa';
 import { partners } from '../../config/partners';
 
 export default function AutomacaoFiscal() {
-  const [cpf, setCpf] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState(null);
-  const [error, setError] = useState(null);
-
-  const cleanCPF = (val) => val.replace(/\D/g, '');
-  const formatCPF = (val) => {
-    const digits = cleanCPF(val).slice(0, 11);
-    if (digits.length <= 3) return digits;
-    if (digits.length <= 6) return `${digits.slice(0, 3)}.${digits.slice(3)}`;
-    if (digits.length <= 9) return `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6)}`;
-    return `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6, 9)}-${digits.slice(9)}`;
-  };
-
-  const handleCpfLookup = async (e) => {
-    e.preventDefault();
-    const digits = cleanCPF(cpf);
-    if (digits.length !== 11) {
-      setError('Informe um CPF válido com 11 dígitos.');
-      setResult(null);
-      return;
-    }
-
-    setLoading(true);
-    setError(null);
-    setResult(null);
-
-    try {
-      const res = await fetch(`https://brasilapi.com.br/api/cpf/v1/${digits}`);
-      if (res.ok) {
-        const data = await res.json();
-        const rawName = data.name || data.nome || '';
-        if (rawName && !rawName.toLowerCase().includes('paciente') && !rawName.toLowerCase().includes('registrado')) {
-          setResult({
-            name: rawName.toUpperCase(),
-            birthDate: data.createdAt || data.data_nascimento || '15/05/1990',
-            cpf: formatCPF(digits)
-          });
-          setLoading(false);
-          return;
-        }
-      }
-    } catch (err) {
-      console.warn(err);
-    }
-
-    // Realistic fallback generator
-    const firstNames = ['MARCOS', 'CAROLINA', 'FERNANDA', 'CLELIA', 'RODRIGO', 'BEATRIZ', 'EDUARDO', 'GABRIEL', 'JULIANA', 'RAFAEL'];
-    const middleNames = ['AURELIO', 'CANTALICE', 'MARI', 'HENRIQUE', 'DE CASSIA', 'CRISTINA', 'AUGUSTO', 'APARECIDO'];
-    const lastNames = ['DA SILVA', 'MAGALHÃES', 'DE CARVALHO', 'SANTOS', 'OLIVEIRA', 'SOUZA', 'RODRIGUES', 'ALMEIDA'];
-
-    const d1 = parseInt(digits.substring(0, 3), 10) % firstNames.length;
-    const d2 = parseInt(digits.substring(3, 6), 10) % middleNames.length;
-    const d3 = parseInt(digits.substring(6, 9), 10) % lastNames.length;
-    const year = 1955 + (parseInt(digits.substring(5, 8), 10) % 45);
-    const month = String(1 + (parseInt(digits.substring(0, 2), 10) % 12)).padStart(2, '0');
-    const day = String(1 + (parseInt(digits.substring(2, 4), 10) % 28)).padStart(2, '0');
-
-    setResult({
-      name: `${firstNames[d1]} ${middleNames[d2]} ${lastNames[d3]}`,
-      birthDate: `${day}/${month}/${year}`,
-      cpf: formatCPF(digits)
-    });
-    setLoading(false);
-  };
-
   const accountingModules = [
     {
       title: '1. Portais Web & Presença Digital Contábil',
@@ -155,7 +87,7 @@ export default function AutomacaoFiscal() {
             Soluções para o Setor Contábil & Fiscal
           </span>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mt-4 mb-6 leading-tight">
-            Tecnologia, Portais Web, Validação de CPF & Automação Fiscal
+            Tecnologia, Portais Web & Automação Fiscal para Contabilidade
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Oferecemos uma suíte completa para o ecossistema contábil: desde o desenvolvimento de websites institucionais de alta conversão para escritórios de contabilidade até robôs de busca e captura automatizada em lote de NFS-e e validação cadastral de CPF na Receita Federal.
@@ -173,84 +105,6 @@ export default function AutomacaoFiscal() {
           >
             <source src="/img/parceiros/video-accounting.mp4" type="video/mp4" />
           </video>
-        </div>
-
-        {/* Widget Interativo de Consulta de CPF */}
-        <div className="bg-slate-900 text-white rounded-3xl p-8 md:p-10 shadow-2xl mb-16 border border-emerald-500/40">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
-            <div>
-              <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-950/80 px-3.5 py-1 rounded-full border border-emerald-800">
-                <FaUserCheck className="text-emerald-400" /> Ferramenta Interativa em Tempo Real
-              </span>
-              <h2 className="text-3xl font-extrabold text-white mt-3">
-                Validação e Consulta de CPF (HelpUS CPF)
-              </h2>
-              <p className="text-gray-300 text-sm mt-1 max-w-2xl">
-                Experimente a consulta em tempo real à base da Receita Federal para preenchimento de nome completo e data de nascimento.
-              </p>
-            </div>
-            <a
-              href="https://cpf.helpusbr.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-5 py-2.5 rounded-full transition cursor-pointer shrink-0"
-            >
-              Acessar Portal Subdomínio <FaExternalLinkAlt className="text-[10px]" />
-            </a>
-          </div>
-
-          <form onSubmit={handleCpfLookup} className="flex flex-col sm:flex-row gap-3">
-            <input
-              type="text"
-              value={cpf}
-              onChange={(e) => { setCpf(formatCPF(e.target.value)); setError(null); }}
-              maxLength={14}
-              placeholder="Digite o CPF para consultar (ex: 004.560.912-89)"
-              className="flex-1 px-5 py-4 bg-slate-950 border border-slate-800 rounded-2xl text-white font-mono font-bold text-lg placeholder-gray-500 focus:outline-none focus:border-emerald-500"
-            />
-            <button
-              type="submit"
-              disabled={loading || cleanCPF(cpf).length < 11}
-              className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-bold text-base rounded-2xl transition disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-emerald-500/20"
-            >
-              {loading ? (
-                <>
-                  <FaSpinner className="animate-spin" />
-                  <span>Consultando Receita...</span>
-                </>
-              ) : (
-                <>
-                  <FaSearch />
-                  <span>Consultar CPF</span>
-                </>
-              )}
-            </button>
-          </form>
-
-          {error && <p className="text-rose-400 text-xs mt-3">{error}</p>}
-
-          {result && (
-            <div className="mt-6 p-5 rounded-2xl bg-slate-950 border border-emerald-500/50 space-y-2">
-              <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
-                <FaCheckCircle className="text-emerald-400 text-sm" />
-                <span>CPF Válido & Encontrado na Receita Federal</span>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div>
-                  <span className="text-[11px] text-gray-400 block font-semibold">Nome Completo:</span>
-                  <span className="text-lg font-bold text-white block">{result.name}</span>
-                </div>
-                <div>
-                  <span className="text-[11px] text-gray-400 block font-semibold">Data de Nascimento:</span>
-                  <span className="text-base font-bold text-emerald-300 font-mono block">{result.birthDate}</span>
-                </div>
-              </div>
-              <div className="pt-2 text-[11px] text-gray-500 font-mono border-t border-slate-900 flex justify-between">
-                <span>Fonte: Receita Federal (Consulta Pública)</span>
-                <span>CPF: {result.cpf}</span>
-              </div>
-            </div>
-          )}
         </div>
 
         {/* Módulos de Atuação */}
@@ -292,7 +146,7 @@ export default function AutomacaoFiscal() {
           </div>
         </div>
 
-        {/* Cases Reais em Produção (Tática & HelpUS Accounting) */}
+        {/* Cases Reais em Produção (Tática, HelpUS Accounting & HelpUS CPF) */}
         <div className="mb-20">
           <div className="text-center mb-10">
             <span className="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
@@ -302,11 +156,11 @@ export default function AutomacaoFiscal() {
               Aplicações Reais do Setor Contábil
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto mt-2 text-sm">
-              Conheça projetos em funcionamento no mercado desenvolvidos para parceiros e soluções proprietárias.
+              Conheça projetos em funcionamento no mercado desenvolvidos para parceiros e soluções proprietárias do ecossistema HelpUS.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {/* Case 1: Tática Assessoria Contábil */}
             <div className="bg-white rounded-3xl p-7 shadow-lg border border-gray-200 flex flex-col justify-between hover:shadow-2xl transition">
               <div>
@@ -314,16 +168,16 @@ export default function AutomacaoFiscal() {
                   <img
                     src="/img/parceiros/tatica-logo.png"
                     alt="Tática Assessoria Contábil"
-                    className="h-12 object-contain"
+                    className="h-10 object-contain"
                   />
-                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-                    Website & Portal Parceiro
+                  <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                    Website & Portal
                   </span>
                 </div>
 
-                <div className="rounded-2xl overflow-hidden mb-4 bg-gray-900 max-h-48 border border-gray-700">
+                <div className="rounded-2xl overflow-hidden mb-4 bg-gray-900 max-h-40 border border-gray-700">
                   <video
-                    className="w-full h-48 object-cover"
+                    className="w-full h-40 object-cover"
                     autoPlay
                     muted
                     loop
@@ -333,9 +187,9 @@ export default function AutomacaoFiscal() {
                   </video>
                 </div>
 
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Tática Assessoria Contábil</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                  Portal corporativo completo desenvolvido para escritório contábil. Apresenta serviços de contabilidade consultiva, abertura de empresas, planejamento tributário, consulta de CPF em tempo real e atendimento direto com os clientes.
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Tática Assessoria Contábil</h3>
+                <p className="text-gray-600 text-xs leading-relaxed mb-6">
+                  Portal corporativo completo desenvolvido para escritório contábil. Apresenta serviços de contabilidade consultiva, abertura de empresas, planejamento tributário e atendimento direto.
                 </p>
               </div>
 
@@ -343,9 +197,9 @@ export default function AutomacaoFiscal() {
                 href={partners.tatica}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full text-sm font-semibold transition"
+                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-xs font-semibold transition"
               >
-                Visitar Tática Contábil <FaExternalLinkAlt className="text-xs" />
+                Visitar Tática Contábil <FaExternalLinkAlt className="text-[10px]" />
               </a>
             </div>
 
@@ -357,18 +211,18 @@ export default function AutomacaoFiscal() {
                     <img
                       src="/img/parceiros/helpus-icon.png"
                       alt="HelpUS Accounting"
-                      className="w-10 h-10 object-contain rounded-full"
+                      className="w-8 h-8 object-contain rounded-full"
                     />
-                    <span className="font-bold text-gray-900 text-lg">HelpUS Accounting</span>
+                    <span className="font-bold text-gray-900 text-base">HelpUS Accounting</span>
                   </div>
-                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-green-50 text-green-700 border border-green-200">
-                    Robô & Plataforma Fiscal
+                  <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-green-50 text-green-700 border border-green-200">
+                    Robô NFS-e
                   </span>
                 </div>
 
-                <div className="rounded-2xl overflow-hidden mb-4 bg-gray-900 max-h-48 border border-gray-700">
+                <div className="rounded-2xl overflow-hidden mb-4 bg-gray-900 max-h-40 border border-gray-700">
                   <video
-                    className="w-full h-48 object-cover"
+                    className="w-full h-40 object-cover"
                     autoPlay
                     muted
                     loop
@@ -378,9 +232,9 @@ export default function AutomacaoFiscal() {
                   </video>
                 </div>
 
-                <h3 className="text-xl font-bold text-gray-900 mb-2">HelpUS Accounting Engine</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                  Plataforma proprietária de automação fiscal em produção, realizando varredura e captura diária em lote de milhares de documentos fiscais NFS-e/CT-e com suporte a certificado digital A1 (mTLS).
+                <h3 className="text-lg font-bold text-gray-900 mb-2">HelpUS Accounting Engine</h3>
+                <p className="text-gray-600 text-xs leading-relaxed mb-6">
+                  Plataforma proprietária de automação fiscal em produção, realizando varredura e captura diária em lote de milhares de documentos fiscais NFS-e/CT-e com suporte a certificado digital A1.
                 </p>
               </div>
 
@@ -388,9 +242,48 @@ export default function AutomacaoFiscal() {
                 href={partners.accounting}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-gray-900 hover:bg-black text-white px-6 py-3 rounded-full text-sm font-semibold transition"
+                className="inline-flex items-center justify-center gap-2 bg-gray-900 hover:bg-black text-white px-5 py-2.5 rounded-full text-xs font-semibold transition"
               >
                 <FaFileInvoiceDollar /> Acessar HelpUS Accounting
+              </a>
+            </div>
+
+            {/* Case 3: HelpUS CPF */}
+            <div className="bg-white rounded-3xl p-7 shadow-lg border border-emerald-200 flex flex-col justify-between hover:shadow-2xl transition">
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-emerald-500 to-teal-600 p-0.5 flex items-center justify-center text-white shadow-md">
+                      <FaShieldAlt className="text-base" />
+                    </div>
+                    <span className="font-bold text-gray-900 text-base">HelpUS CPF</span>
+                  </div>
+                  <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    Validação B2B
+                  </span>
+                </div>
+
+                <div className="rounded-2xl overflow-hidden mb-4 bg-slate-950 p-5 border border-emerald-500/30 flex flex-col justify-center items-center text-center min-h-[160px]">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-2 border border-emerald-500/40">
+                    <FaUserCheck className="text-xl" />
+                  </div>
+                  <h4 className="text-white font-bold text-sm">Consulta Receita Federal</h4>
+                  <p className="text-emerald-400 text-[11px] mt-1 font-mono">cpf.helpusbr.com</p>
+                </div>
+
+                <h3 className="text-lg font-bold text-gray-900 mb-2">HelpUS CPF Engine</h3>
+                <p className="text-gray-600 text-xs leading-relaxed mb-6">
+                  Solução B2B de validação e consulta de CPF em tempo real com dados da Receita Federal. Auto-preenchimento instantâneo de Nome Completo e Data de Nascimento para clínicas, laudos e e-commerce.
+                </p>
+              </div>
+
+              <a
+                href={partners.cpf || 'https://cpf.helpusbr.com'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-full text-xs font-semibold transition"
+              >
+                <FaExternalLinkAlt className="text-[10px]" /> Visitar HelpUS CPF
               </a>
             </div>
           </div>
