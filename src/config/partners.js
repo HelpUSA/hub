@@ -2,6 +2,7 @@
 const BASE = 'helpusbr.com';
 
 export const partners = {
+  visa:                `https://visa.${BASE}`,
   escolaestacaomusical: `https://escolaestacaomusical.${BASE}`,
   wagnerdriver:        `https://wagnerdriver.${BASE}`,
   cgdetails:           `https://cgdetails.${BASE}`,

@@ -10,6 +10,14 @@ import { partners as partnerLinks } from '../config/partners'; // 👈 centraliz
 // Catálogo de parceiros (metadados fixos + fallbacks)
 const partnersCatalog = [
   {
+    id: 'helpus_visa',
+    defaultName: 'HelpUS Vistos & Imigração EUA',
+    defaultDesc: 'Portal de assessoria completa e consultoria em vistos americanos e imigração para os EUA.',
+    imagem: '/img/helpus-logo.png',
+    video: '/img/6804109-uhd_4096_2160_25fps.mp4',
+    link: partnerLinks.visa,
+  },
+  {
     id: 'escola_estacao_musical',
     defaultName: 'Escola Estação Musical',
     defaultDesc:
