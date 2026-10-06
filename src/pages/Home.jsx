@@ -14,7 +14,7 @@ const partnersCatalog = [
     defaultName: 'HelpUS Vistos & Imigração EUA',
     defaultDesc: 'Portal de assessoria completa e consultoria em vistos americanos e imigração para os EUA.',
     imagem: '/img/helpus-logo.png',
-    video: '/img/6804109-uhd_4096_2160_25fps.mp4',
+    video: '/img/parceiros/visa-video.mp4',
     link: partnerLinks.visa,
   },
   {
