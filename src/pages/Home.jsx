@@ -132,12 +132,12 @@ const partnersCatalog = [
 const solutionCategories = [
   {
     id: 'fiscal_tech',
-    title: 'Automação Fiscal & Contábil NFS-e',
-    category: 'Fiscal Tech & mTLS A1',
-    description: 'Engenharia de busca, captura e validação em lote de NFS-e/CT-e integrada com prefeituras, certificados digitais A1 e geração automatizada de relatórios em Excel.',
+    title: 'Soluções Contábeis, Portais & Automação Fiscal',
+    category: 'Fiscal Tech & Web Design',
+    description: 'Engenharia de software para o setor contábil: desenvolvimento de portais institucionais para escritórios de contabilidade e robôs de busca/captura automatizada em lote de NFS-e/CT-e com certificado A1.',
     imagem: '/img/parceiros/tatica-logo.png',
     video: '/img/parceiros/video-accounting.mp4',
-    partnerName: 'HelpUS Accounting & Automação Fiscal',
+    partnerName: 'Soluções para o Setor Contábil',
     link: '/solucoes/automacao-fiscal',
   },
   {
