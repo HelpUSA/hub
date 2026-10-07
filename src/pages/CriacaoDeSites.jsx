@@ -103,6 +103,17 @@ export default function CriacaoDeSites() {
       href: partners.tuliobicicletas,
       isVideo: true,
     },
+    // === NOVO: HelpUS CVSS ===
+    {
+      src: '/img/parceiros/video-cvss.mp4',
+      poster: '/img/parceiros/cvss-logo.png',
+      logo: '/img/parceiros/cvss-logo.png',
+      alt: 'HelpUS CVSS • Cibersegurança & IA Watcher',
+      title: 'HelpUS CVSS • Cibersegurança & IA Watcher',
+      caption: 'Plataforma científica para cálculo do FIRST CVSS v4.0 com IA Watcher contextual e mitigação reversa.',
+      href: partners.cvss,
+      isVideo: true,
+    },
   ];
 
   const features = t('sites.features', { returnObjects: true });

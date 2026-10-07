@@ -78,6 +78,7 @@ export default function Footer() {
           {/* LINKS DO RODAPÉ */}
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm justify-center">
             <Link to="/" className="hover:text-blue-400 transition">{t('menu.home')}</Link>
+            <Link to="/solucoes/ciberseguranca-cvss" className="hover:text-blue-400 transition">HelpUS CVSS</Link>
             <Link to="/parceiros" className="hover:text-blue-400 transition">{t('common.partners', { defaultValue: 'Portfólio & Parceiros' })}</Link>
             <Link to="/sobre" className="hover:text-blue-400 transition">{t('menu.about')}</Link>
             <Link to="/contato" className="hover:text-blue-400 transition">{t('menu.contact')}</Link>

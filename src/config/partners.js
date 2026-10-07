@@ -21,6 +21,7 @@ export const partners = {
   nexoai:              `https://nexoai.${BASE}`,
   accounting:          `https://accounting.${BASE}`,
   cpf:                 `https://cpf.${BASE}`,
+  cvss:                `https://cvss.${BASE}`,
 };
 
 

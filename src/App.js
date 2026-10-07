@@ -28,6 +28,7 @@ import EcommerceAmazon from './pages/solucoes/EcommerceAmazon';
 import SaasImobiliaria from './pages/solucoes/SaasImobiliaria';
 import ReservasAgendamentos from './pages/solucoes/ReservasAgendamentos';
 import PlataformasMedicas from './pages/solucoes/PlataformasMedicas';
+import CibersegurancaCvss from './pages/solucoes/CibersegurancaCvss';
 
 function AppInit() {
   useEffect(() => {
@@ -83,6 +84,7 @@ function App() {
             <Route path="/solucoes/saas-imobiliaria" element={<SaasImobiliaria />} />
             <Route path="/solucoes/reservas-agendamentos" element={<ReservasAgendamentos />} />
             <Route path="/solucoes/plataformas-medicas" element={<PlataformasMedicas />} />
+            <Route path="/solucoes/ciberseguranca-cvss" element={<CibersegurancaCvss />} />
           </Routes>
         </main>
 

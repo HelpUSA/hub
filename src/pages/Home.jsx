@@ -18,6 +18,14 @@ const partnersCatalog = [
     link: partnerLinks.visa,
   },
   {
+    id: 'helpus_cvss',
+    defaultName: 'HelpUS CVSS • Cibersegurança & IA Watcher',
+    defaultDesc: 'Plataforma científica para cálculo do FIRST CVSS v4.0 com IA Watcher contextual, simulador de impacto e mitigação reversa ("What-If").',
+    imagem: '/img/parceiros/cvss-logo.png',
+    video: '/img/parceiros/video-cvss.mp4',
+    link: partnerLinks.cvss,
+  },
+  {
     id: 'escola_estacao_musical',
     defaultName: 'Escola Estação Musical',
     defaultDesc:
@@ -197,6 +205,16 @@ const solutionCategories = [
     video: '/img/parceiros/video-medico.mp4',
     partnerName: 'CardioIA & USMLE Prep',
     link: '/solucoes/plataformas-medicas',
+  },
+  {
+    id: 'cybersecurity_cvss',
+    title: 'Cibersegurança & Gestão de Vulnerabilidades (CVSS v4.0)',
+    category: 'Cybersecurity & AI Risk Watcher',
+    description: 'Plataforma científica de governança e priorização contextual com cálculo oficial FIRST CVSS v4.0, IA Watcher explicável baseada em evidências reais de rede, calculadora reversa "What-If" e auditoria de conformidade (PCI-DSS, LGPD, ISO 27001).',
+    imagem: '/img/parceiros/cvss-logo.png',
+    video: '/img/parceiros/video-cvss.mp4',
+    partnerName: 'HelpUS CVSS • AI Watcher',
+    link: '/solucoes/ciberseguranca-cvss',
   },
 ];
 

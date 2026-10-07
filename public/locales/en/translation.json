@@ -73,6 +73,10 @@
     }
   },
   "partners": {
+    "helpus_cvss": {
+      "name": "HelpUS CVSS • Cybersecurity & AI Watcher",
+      "desc": "Scientific platform for FIRST CVSS v4.0 computation with contextual AI Watcher, reverse \"What-If\" mitigation, and network topology scanner."
+    },
     "escola_estacao_musical": {
       "name": "Estação Musical School",
       "desc": "Music lessons in João Pessoa—guitar, keyboard, singing, and more—with a practical and motivating methodology."
