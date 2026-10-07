@@ -34,7 +34,6 @@ export default function Hero() {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
-        <source src="/img/6804109-uhd_4096_2160_25fps.mp4" type="video/mp4" />
         <source src="/img/bg-main.mp4" type="video/mp4" />
         {t('hero.no_video')}
       </video>
