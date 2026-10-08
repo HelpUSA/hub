@@ -155,16 +155,6 @@ const partnersCatalog = [
 
 const solutionCategories = [
   {
-    id: 'adtech_advert',
-    title: 'Publicidade, Mídia & Marketing com IA (HelpUS Advert)',
-    category: 'AdTech & Operações de Mídia',
-    description: 'Plataforma proprietária de operações de publicidade para marcas e empresas: planejamento estratégico, criação de conteúdo e criativos com IA, calendário editorial contínuo e esteira de aprovações sem intermediários.',
-    imagem: '/img/helpus-logo.png',
-    video: '/img/parceiros/video-ecommerce.mp4',
-    partnerName: 'Acessar HelpUS Advert',
-    link: partnerLinks.advert,
-  },
-  {
     id: 'fiscal_tech',
     title: 'Soluções Contábeis, Portais & Automação Fiscal',
     category: 'Fiscal Tech & Web Design',
@@ -233,6 +223,16 @@ const solutionCategories = [
     video: '/img/parceiros/video-cvss.mp4',
     partnerName: 'HelpUS CVSS • AI Watcher',
     link: '/solucoes/ciberseguranca-cvss',
+  },
+  {
+    id: 'adtech_advert',
+    title: 'Publicidade, Mídia & Marketing com IA (HelpUS Advert)',
+    category: 'AdTech & Operações de Mídia',
+    description: 'Plataforma proprietária de operações de publicidade para marcas e empresas: planejamento estratégico, criação de conteúdo e criativos com IA, calendário editorial contínuo e esteira de aprovações sem intermediários.',
+    imagem: '/img/helpus-logo.png',
+    video: '/img/parceiros/video-ecommerce.mp4',
+    partnerName: 'Conhecer HelpUS Advert',
+    link: '/solucoes/publicidade-advert',
   },
 ];
 
