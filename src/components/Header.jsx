@@ -3,8 +3,10 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FaBars, FaTimes, FaUserCircle, FaChevronDown } from 'react-icons/fa';
+import { FaBars, FaTimes, FaUserCircle, FaChevronDown, FaExternalLinkAlt } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
+import { useGoogleAuth } from '../shared/googleAuth/useGoogleAuth';
+import { GoogleLoginButton } from '../shared/googleAuth/GoogleLoginButton';
 
 export default function Header() {
   const { t, i18n } = useTranslation();
@@ -123,8 +125,24 @@ export default function Header() {
     return p === base || p.startsWith(base + '/');
   };
 
+  // Google Auth hook padronizado
+  const {
+    login: loginGoogle,
+    isLoading: googleLoading,
+    error: googleError,
+    logout: logoutGoogle,
+  } = useGoogleAuth({
+    allowedEmails: ['helpus.ecommerce@gmail.com'],
+    onSuccess: (usr) => {
+      // Abre a nova janela / aba com a apresentação da área administrativa
+      window.open('/admin', '_blank');
+      setUserOpen(false);
+    },
+  });
+
   // account actions
   const handleLogout = () => {
+    logoutGoogle();
     try {
       localStorage.removeItem('usuario');
       localStorage.removeItem('token');
@@ -243,78 +261,102 @@ export default function Header() {
               aria-label={t('menu.login', { defaultValue: 'Account' })}
               title={usuario?.email || ''}
             >
-              <FaUserCircle className={`text-lg ${usuario ? 'text-green-400' : ''}`} />
+              {usuario?.picture ? (
+                <img
+                  src={usuario.picture}
+                  alt="Avatar"
+                  className="w-5 h-5 rounded-full object-cover border border-emerald-400"
+                />
+              ) : (
+                <FaUserCircle className={`text-lg ${usuario ? 'text-green-400' : ''}`} />
+              )}
               <FaChevronDown className="text-xs opacity-70" />
             </button>
 
             {userOpen && (
               <div
-                className="absolute right-0 mt-2 w-56 bg-white text-gray-800 rounded-lg shadow-lg overflow-hidden"
+                className="absolute right-0 mt-2 w-60 bg-white text-gray-800 rounded-xl shadow-2xl overflow-hidden border border-gray-200"
                 role="menu"
               >
                 {usuario ? (
                   <>
                     {/* Cabeçalho com nome + e-mail */}
-                    <div className="px-4 py-2 text-xs text-gray-500 border-b">
-                      <div className="font-semibold text-gray-800 truncate">
-                        {usuario.nome || usuario.name || usuario.fullname || usuario.email}
+                    <div className="px-4 py-2.5 text-xs text-gray-500 border-b bg-gray-50">
+                      <div className="font-bold text-gray-800 truncate flex items-center gap-1.5">
+                        <span>{usuario.nome || usuario.name || usuario.fullname || 'SuperAdmin'}</span>
+                        <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-extrabold uppercase">
+                          SuperAdmin
+                        </span>
                       </div>
-                      <div className="truncate">{usuario.email}</div>
+                      <div className="truncate text-gray-600 font-mono text-[11px] mt-0.5">{usuario.email}</div>
                     </div>
 
-                    {isAdmin && (
-                      <Link
-                        to="/admin"
-                        className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                        onClick={() => setUserOpen(false)}
-                        role="menuitem"
-                      >
-                        {t('account.admin', { defaultValue: 'Admin' })}
-                      </Link>
-                    )}
-                    <Link
-                      to={profileHref}
-                      className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                    <a
+                      href="/admin"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between w-full text-left px-4 py-2.5 text-xs font-bold text-blue-600 bg-blue-50 hover:bg-blue-100 transition border-b border-blue-100"
                       onClick={() => setUserOpen(false)}
                       role="menuitem"
                     >
-                      {t('account.profile', { defaultValue: 'Perfil' })}
-                    </Link>
+                      <span className="flex items-center gap-1.5">
+                        <span>⚡ Painel Administrativo</span>
+                      </span>
+                      <FaExternalLinkAlt className="text-[10px]" />
+                    </a>
+
                     <Link
-                      to={passwordHref}
-                      className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                      to="/admin/usuarios"
+                      className="block w-full text-left px-4 py-2 text-xs text-gray-700 hover:bg-gray-100"
                       onClick={() => setUserOpen(false)}
                       role="menuitem"
                     >
-                      {t('account.change_password', { defaultValue: 'Alterar senha' })}
+                      Gerenciar Usuários
                     </Link>
+
                     <button
                       onClick={handleLogout}
-                      className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 border-t"
+                      className="block w-full text-left px-4 py-2 text-xs text-red-600 hover:bg-red-50 border-t font-semibold cursor-pointer"
                       role="menuitem"
                     >
                       {t('account.logout', { defaultValue: 'Sair' })}
                     </button>
                   </>
                 ) : (
-                  <>
-                    <Link
-                      to="/login"
-                      className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                      onClick={() => setUserOpen(false)}
-                      role="menuitem"
-                    >
-                      {t('menu.login')}
-                    </Link>
-                    <Link
-                      to="/esqueci-senha"
-                      className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                      onClick={() => setUserOpen(false)}
-                      role="menuitem"
-                    >
-                      {t('menu.forgot')}
-                    </Link>
-                  </>
+                  <div className="p-3 text-center space-y-2.5">
+                    <div className="text-left pb-1">
+                      <span className="text-xs font-bold text-gray-800 block">
+                        Acesso Administrativo
+                      </span>
+                      <span className="text-[10px] text-gray-500 block">
+                        Apenas SuperAdmin HelpUS
+                      </span>
+                    </div>
+
+                    <GoogleLoginButton
+                      onClick={loginGoogle}
+                      isLoading={googleLoading}
+                      label="Entrar com o Google"
+                      variant="dark"
+                      className="text-xs py-2 px-3 shadow-sm bg-blue-600 hover:bg-blue-700 text-white rounded-xl"
+                    />
+
+                    {googleError && (
+                      <p className="text-[10px] text-red-600 leading-tight text-left bg-red-50 p-2 rounded border border-red-200">
+                        {googleError}
+                      </p>
+                    )}
+
+                    <div className="pt-2 border-t border-gray-100 flex flex-col gap-1 text-[11px] text-center">
+                      <Link
+                        to="/login"
+                        className="text-blue-600 hover:underline"
+                        onClick={() => setUserOpen(false)}
+                      >
+                        Outras opções de login
+                      </Link>
+                    </div>
+                  </div>
                 )}
               </div>
             )}

@@ -17,6 +17,7 @@ import Sobre from './pages/Sobre';
 import Contato from './pages/Contato';
 import PoliticaDePrivacidade from './pages/PoliticaDePrivacidade';
 import Login from './pages/Login';
+import AdminDashboard from './pages/admin/AdminDashboard';
 import ListaUsuariosAdmin from './pages/admin/ListaUsuariosAdmin';
 import CadastroUsuario from './pages/admin/CadastroUsuario';
 import EditarUsuario from './pages/admin/EditarUsuario';
@@ -73,7 +74,8 @@ function App() {
             <Route path="/contato" element={<Contato />} />
             <Route path="/politica-de-privacidade" element={<PoliticaDePrivacidade />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/admin" element={<ListaUsuariosAdmin />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/usuarios" element={<ListaUsuariosAdmin />} />
             <Route path="/admin/cadastro-usuario" element={<CadastroUsuario />} />
             <Route path="/admin/editar-usuario/:id" element={<EditarUsuario />} />
 
