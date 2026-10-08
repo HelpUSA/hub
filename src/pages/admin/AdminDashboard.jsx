@@ -2,10 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  FaShieldAlt,
   FaBullhorn,
-  FaPassport,
-  FaFileInvoiceDollar,
   FaUsersCog,
   FaExternalLinkAlt,
   FaSignOutAlt,
@@ -141,14 +138,14 @@ export default function AdminDashboard() {
         <section className="space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold text-white tracking-tight">
-              Aplicações & Plataformas Integradas
+              Aplicações & Módulos da Gestão
             </h2>
-            <span className="text-xs text-slate-400">Total: 5 Módulos</span>
+            <span className="text-xs text-slate-400">Total: 2 Módulos</span>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid lg:grid-cols-3 gap-6">
             {/* CARD 1: ADVERT (DESTAQUE MÁXIMO) */}
-            <div className="md:col-span-2 lg:col-span-2 bg-gradient-to-br from-slate-900 via-slate-900 to-blue-950/40 border-2 border-blue-500/60 rounded-3xl p-8 shadow-2xl relative overflow-hidden flex flex-col justify-between group hover:border-blue-400 transition-all duration-300">
+            <div className="lg:col-span-2 bg-gradient-to-br from-slate-900 via-slate-900 to-blue-950/40 border-2 border-blue-500/60 rounded-3xl p-8 shadow-2xl relative overflow-hidden flex flex-col justify-between group hover:border-blue-400 transition-all duration-300">
               <div className="absolute top-4 right-4 bg-blue-500 text-slate-950 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
                 ⭐ Em Destaque
               </div>
@@ -217,94 +214,24 @@ export default function AdminDashboard() {
               </div>
             </div>
 
-            {/* CARD 2: HELPUS CVSS */}
+            {/* CARD 2: GESTÃO DE USUÁRIOS */}
             <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl flex flex-col justify-between hover:border-slate-700 transition">
-              <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-sky-600/20 border border-sky-500/30 flex items-center justify-center text-sky-400 text-xl">
-                  <FaShieldAlt />
-                </div>
-                <h3 className="text-lg font-bold text-white">HelpUS CVSS</h3>
-                <p className="text-slate-400 text-xs leading-relaxed">
-                  Plataforma científica para cálculo do FIRST CVSS v4.0 com IA Watcher contextual, simulador de risco e mitigação reversa ("What-If").
-                </p>
-              </div>
-
-              <div className="pt-6 mt-6 border-t border-slate-800">
-                <a
-                  href="https://cvss.helpusbr.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition flex items-center justify-center gap-2"
-                >
-                  <FaExternalLinkAlt /> Abrir CVSS
-                </a>
-              </div>
-            </div>
-
-            {/* CARD 3: HELPUS VISTOS */}
-            <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl flex flex-col justify-between hover:border-slate-700 transition">
-              <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-xl">
-                  <FaPassport />
-                </div>
-                <h3 className="text-lg font-bold text-white">HelpUS Vistos</h3>
-                <p className="text-slate-400 text-xs leading-relaxed">
-                  Portal consular de assessoria com simulação de perfil e gerador oficial de formulários de vistos americanos (DS-160, I-140, I-129).
-                </p>
-              </div>
-
-              <div className="pt-6 mt-6 border-t border-slate-800">
-                <a
-                  href="https://visa.helpusbr.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition flex items-center justify-center gap-2"
-                >
-                  <FaExternalLinkAlt /> Abrir Portal Vistos
-                </a>
-              </div>
-            </div>
-
-            {/* CARD 4: TÁTICA CONTÁBIL */}
-            <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl flex flex-col justify-between hover:border-slate-700 transition">
-              <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl">
-                  <FaFileInvoiceDollar />
-                </div>
-                <h3 className="text-lg font-bold text-white">Tática Contábil</h3>
-                <p className="text-slate-400 text-xs leading-relaxed">
-                  Portal institucional contábil e ecossistema de captura de notas fiscais (NFS-e/CT-e) com certificado A1.
-                </p>
-              </div>
-
-              <div className="pt-6 mt-6 border-t border-slate-800">
-                <a
-                  href="https://tatica.helpusbr.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition flex items-center justify-center gap-2"
-                >
-                  <FaExternalLinkAlt /> Abrir Tática
-                </a>
-              </div>
-            </div>
-
-            {/* CARD 5: GESTÃO DE USUÁRIOS */}
-            <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl flex flex-col justify-between hover:border-slate-700 transition">
-              <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-amber-600/20 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xl">
+              <div className="space-y-4">
+                <div className="w-14 h-14 rounded-2xl bg-amber-600/20 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl">
                   <FaUsersCog />
                 </div>
-                <h3 className="text-lg font-bold text-white">Contas & Usuários</h3>
-                <p className="text-slate-400 text-xs leading-relaxed">
-                  Listagem completa de contas, gerenciamento de permissões e cadastro de novos usuários administradores.
-                </p>
+                <div>
+                  <h3 className="text-xl font-bold text-white">Contas & Usuários</h3>
+                  <p className="text-slate-400 text-sm mt-2 leading-relaxed">
+                    Listagem completa de contas, gerenciamento de permissões e cadastro de novos administradores do ecossistema HelpUS.
+                  </p>
+                </div>
               </div>
 
               <div className="pt-6 mt-6 border-t border-slate-800">
                 <Link
                   to="/admin/usuarios"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition flex items-center justify-center gap-2"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition flex items-center justify-center gap-2"
                 >
                   <FaUsersCog /> Gerenciar Usuários
                 </Link>
