@@ -22,6 +22,7 @@ export const partners = {
   accounting:          `https://accounting.${BASE}`,
   cpf:                 `https://cpf.${BASE}`,
   cvss:                `https://cvss.${BASE}`,
+  advert:              `https://advert.${BASE}`,
 };
 
 

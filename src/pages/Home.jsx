@@ -26,6 +26,14 @@ const partnersCatalog = [
     link: partnerLinks.cvss,
   },
   {
+    id: 'helpus_advert',
+    defaultName: 'HelpUS Advert • Publicidade & Marketing com IA',
+    defaultDesc: 'Plataforma proprietária de operações de publicidade para marcas e empresas: campanhas multicanal, criação com IA e esteira de aprovações sem intermediários.',
+    imagem: '/img/helpus-logo.png',
+    video: '/img/parceiros/video-ecommerce.mp4',
+    link: partnerLinks.advert,
+  },
+  {
     id: 'escola_estacao_musical',
     defaultName: 'Escola Estação Musical',
     defaultDesc:
@@ -146,6 +154,16 @@ const partnersCatalog = [
 ];
 
 const solutionCategories = [
+  {
+    id: 'adtech_advert',
+    title: 'Publicidade, Mídia & Marketing com IA (HelpUS Advert)',
+    category: 'AdTech & Operações de Mídia',
+    description: 'Plataforma proprietária de operações de publicidade para marcas e empresas: planejamento estratégico, criação de conteúdo e criativos com IA, calendário editorial contínuo e esteira de aprovações sem intermediários.',
+    imagem: '/img/helpus-logo.png',
+    video: '/img/parceiros/video-ecommerce.mp4',
+    partnerName: 'Acessar HelpUS Advert',
+    link: partnerLinks.advert,
+  },
   {
     id: 'fiscal_tech',
     title: 'Soluções Contábeis, Portais & Automação Fiscal',
@@ -309,12 +327,23 @@ const Home = () => {
 
                 <div className="w-full pt-4 border-t border-gray-700 flex flex-col gap-2">
                   <span className="text-xs text-gray-400">Ver detalhes da solução:</span>
-                  <Link
-                    to={sol.link}
-                    className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
-                  >
-                    {sol.partnerName} &rarr;
-                  </Link>
+                  {sol.link?.startsWith('http') ? (
+                    <a
+                      href={sol.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
+                    >
+                      {sol.partnerName} &rarr;
+                    </a>
+                  ) : (
+                    <Link
+                      to={sol.link}
+                      className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
+                    >
+                      {sol.partnerName} &rarr;
+                    </Link>
+                  )}
                 </div>
               </motion.div>
             ))}
