@@ -8,13 +8,13 @@ import {
   FaSignOutAlt,
   FaLock,
   FaGlobe,
-  FaRobot,
   FaCalendarAlt,
   FaCheckDouble,
   FaChartLine,
 } from 'react-icons/fa';
 import { useGoogleAuth } from '../../shared/googleAuth/useGoogleAuth';
 import { GoogleLoginButton } from '../../shared/googleAuth/GoogleLoginButton';
+import { partners } from '../../config/partners';
 
 const SUPERADMIN_EMAIL = 'helpus.ecommerce@gmail.com';
 
@@ -160,8 +160,8 @@ export default function AdminDashboard() {
                     <h3 className="text-2xl font-extrabold text-white group-hover:text-blue-300 transition">
                       Advert HelpUS BR
                     </h3>
-                    <span className="text-[11px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">
-                      Next.js • Vercel
+                    <span className="text-[11px] bg-blue-500/20 text-blue-300 px-2.5 py-0.5 rounded-full border border-blue-500/40 font-semibold">
+                      AdTech • Operações com IA
                     </span>
                   </div>
                   <p className="text-slate-300 text-sm mt-2 leading-relaxed">
@@ -172,7 +172,7 @@ export default function AdminDashboard() {
 
                 <div className="grid sm:grid-cols-4 gap-3 pt-2">
                   <div className="bg-slate-950/70 p-3 rounded-2xl border border-slate-800 text-xs text-slate-300 flex items-center gap-2">
-                    <FaRobot className="text-blue-400" /> IA Watcher
+                    <FaBullhorn className="text-blue-400" /> Campanhas
                   </div>
                   <div className="bg-slate-950/70 p-3 rounded-2xl border border-slate-800 text-xs text-slate-300 flex items-center gap-2">
                     <FaCalendarAlt className="text-green-400" /> Calendário
@@ -186,30 +186,14 @@ export default function AdminDashboard() {
                 </div>
               </div>
 
-              <div className="pt-6 mt-6 border-t border-slate-800 flex flex-wrap gap-3">
+              <div className="pt-6 mt-6 border-t border-slate-800 flex items-center">
                 <a
-                  href="https://advert-coral.vercel.app"
+                  href={partners.advert || 'https://advert.helpusbr.com'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition shadow-lg shadow-blue-600/30 flex items-center gap-2"
+                  className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition shadow-lg shadow-blue-600/30 flex items-center gap-2"
                 >
-                  <FaExternalLinkAlt /> Acessar Aplicação Advert (Vercel)
-                </a>
-                <a
-                  href="https://advert.helpusbr.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition flex items-center gap-2"
-                >
-                  <FaGlobe /> Domínio Corporativo
-                </a>
-                <a
-                  href="https://github.com/HelpUSA/advert"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2.5 rounded-xl bg-slate-800/60 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700 transition flex items-center gap-2"
-                >
-                  GitHub
+                  <FaExternalLinkAlt /> Acessar Aplicação Advert
                 </a>
               </div>
             </div>
