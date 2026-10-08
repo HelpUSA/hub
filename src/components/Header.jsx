@@ -347,15 +347,6 @@ export default function Header() {
                       </p>
                     )}
 
-                    <div className="pt-2 border-t border-gray-100 flex flex-col gap-1 text-[11px] text-center">
-                      <Link
-                        to="/login"
-                        className="text-blue-600 hover:underline"
-                        onClick={() => setUserOpen(false)}
-                      >
-                        Outras opções de login
-                      </Link>
-                    </div>
                   </div>
                 )}
               </div>
