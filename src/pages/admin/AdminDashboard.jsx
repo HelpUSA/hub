@@ -188,12 +188,12 @@ export default function AdminDashboard() {
 
               <div className="pt-6 mt-6 border-t border-slate-800 flex items-center">
                 <a
-                  href={partners.advert || 'https://advert.helpusbr.com'}
+                  href="https://advert.helpusbr.com/brands"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition shadow-lg shadow-blue-600/30 flex items-center gap-2"
                 >
-                  <FaExternalLinkAlt /> Acessar Aplicação Advert
+                  <FaExternalLinkAlt /> Acessar Mesa de Operações (Advert)
                 </a>
               </div>
             </div>
