@@ -2,29 +2,20 @@
 // Updated: i18n persist + links Ebooks/Documentos + active startsWith + a11y polish
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FaBars, FaTimes, FaUserCircle, FaChevronDown, FaExternalLinkAlt } from 'react-icons/fa';
+import { Link, useLocation } from 'react-router-dom';
+import { FaBars, FaTimes, FaUserCircle, FaChevronDown } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import { useGoogleAuth } from '../shared/googleAuth/useGoogleAuth';
-import { GoogleLoginButton } from '../shared/googleAuth/GoogleLoginButton';
 
 export default function Header() {
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const [usuario, setUsuario] = useState(null);
 
   // language dropdown
   const [langOpen, setLangOpen] = useState(false);
   const langRef = useRef(null);
   const langBtnRef = useRef(null);
 
-  // user dropdown
-  const [userOpen, setUserOpen] = useState(false);
-  const userRef = useRef(null);
-  const userBtnRef = useRef(null);
-
   const location = useLocation();
-  const navigate = useNavigate();
 
   // apply persisted language (if any)
   useEffect(() => {
@@ -37,34 +28,9 @@ export default function Header() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // load user from localStorage
-  useEffect(() => {
-    try {
-      const userStorage = localStorage.getItem('usuario');
-      if (userStorage) setUsuario(JSON.parse(userStorage));
-    } catch {}
-  }, []);
-
-  // re-sync user when route changes
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem('usuario');
-      setUsuario(raw ? JSON.parse(raw) : null);
-    } catch {
-      setUsuario(null);
-    }
-  }, [location.pathname]);
-
   // listen storage events (other tabs)
   useEffect(() => {
     const onStorage = (e) => {
-      if (e.key === 'usuario') {
-        try {
-          setUsuario(e.newValue ? JSON.parse(e.newValue) : null);
-        } catch {
-          setUsuario(null);
-        }
-      }
       if (e.key === 'lang' && e.newValue) {
         i18n.changeLanguage(e.newValue);
       }
@@ -78,7 +44,6 @@ export default function Header() {
   useEffect(() => {
     const onDoc = (e) => {
       if (langRef.current && !langRef.current.contains(e.target)) setLangOpen(false);
-      if (userRef.current && !userRef.current.contains(e.target)) setUserOpen(false);
     };
     document.addEventListener('mousedown', onDoc);
     document.addEventListener('touchstart', onDoc);
@@ -93,14 +58,13 @@ export default function Header() {
     const onKey = (e) => {
       if (e.key === 'Escape') {
         setLangOpen(false);
-        setUserOpen(false);
         setIsOpen(false);
-        (userOpen ? userBtnRef.current : langBtnRef.current)?.focus();
+        langBtnRef.current?.focus();
       }
     };
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
-  }, [userOpen]);
+  }, []);
 
   // languages
   const languages = [
@@ -124,46 +88,6 @@ export default function Header() {
     const p = location.pathname;
     return p === base || p.startsWith(base + '/');
   };
-
-  // Google Auth hook padronizado
-  const {
-    login: loginGoogle,
-    isLoading: googleLoading,
-    error: googleError,
-    logout: logoutGoogle,
-  } = useGoogleAuth({
-    allowedEmails: ['helpus.ecommerce@gmail.com'],
-    onSuccess: (usr) => {
-      // Abre a nova janela / aba com a apresentação da área administrativa
-      window.open('/admin', '_blank');
-      setUserOpen(false);
-    },
-  });
-
-  // account actions
-  const handleLogout = () => {
-    logoutGoogle();
-    try {
-      localStorage.removeItem('usuario');
-      localStorage.removeItem('token');
-      localStorage.removeItem('auth');
-      localStorage.removeItem('session');
-    } catch {}
-    setUsuario(null);
-    setUserOpen(false);
-    navigate('/');
-  };
-
-  const profileHref = '/perfil';
-  const passwordHref = '/alterar-senha';
-
-  // detect admin user
-  const isAdmin =
-    !!usuario &&
-    (usuario.role_id === 1 ||
-      String(usuario.role_nome || usuario.role || usuario.tipo || '')
-        .toLowerCase()
-        .includes('admin'));
 
   return (
     <header className="fixed top-0 left-0 w-full bg-gray-900 text-white shadow-md z-50">
@@ -250,108 +174,16 @@ export default function Header() {
             )}
           </div>
 
-          {/* Account - Ícone sempre; dropdown muda conforme login */}
-          <div className="relative" ref={userRef}>
-            <button
-              ref={userBtnRef}
-              onClick={() => setUserOpen((v) => !v)}
-              className="flex items-center gap-2 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              aria-haspopup="menu"
-              aria-expanded={userOpen}
-              aria-label={t('menu.login', { defaultValue: 'Account' })}
-              title={usuario?.email || ''}
-            >
-              {usuario?.picture ? (
-                <img
-                  src={usuario.picture}
-                  alt="Avatar"
-                  className="w-5 h-5 rounded-full object-cover border border-emerald-400"
-                />
-              ) : (
-                <FaUserCircle className={`text-lg ${usuario ? 'text-green-400' : ''}`} />
-              )}
-              <FaChevronDown className="text-xs opacity-70" />
-            </button>
-
-            {userOpen && (
-              <div
-                className="absolute right-0 mt-2 w-60 bg-white text-gray-800 rounded-xl shadow-2xl overflow-hidden border border-gray-200"
-                role="menu"
-              >
-                {usuario ? (
-                  <>
-                    {/* Cabeçalho com nome + e-mail */}
-                    <div className="px-4 py-2.5 text-xs text-gray-500 border-b bg-gray-50">
-                      <div className="font-bold text-gray-800 truncate flex items-center gap-1.5">
-                        <span>{usuario.nome || usuario.name || usuario.fullname || 'SuperAdmin'}</span>
-                        <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-extrabold uppercase">
-                          SuperAdmin
-                        </span>
-                      </div>
-                      <div className="truncate text-gray-600 font-mono text-[11px] mt-0.5">{usuario.email}</div>
-                    </div>
-
-                    <a
-                      href="/admin"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-between w-full text-left px-4 py-2.5 text-xs font-bold text-blue-600 bg-blue-50 hover:bg-blue-100 transition border-b border-blue-100"
-                      onClick={() => setUserOpen(false)}
-                      role="menuitem"
-                    >
-                      <span className="flex items-center gap-1.5">
-                        <span>⚡ Painel Administrativo</span>
-                      </span>
-                      <FaExternalLinkAlt className="text-[10px]" />
-                    </a>
-
-                    <Link
-                      to="/admin/usuarios"
-                      className="block w-full text-left px-4 py-2 text-xs text-gray-700 hover:bg-gray-100"
-                      onClick={() => setUserOpen(false)}
-                      role="menuitem"
-                    >
-                      Gerenciar Usuários
-                    </Link>
-
-                    <button
-                      onClick={handleLogout}
-                      className="block w-full text-left px-4 py-2 text-xs text-red-600 hover:bg-red-50 border-t font-semibold cursor-pointer"
-                      role="menuitem"
-                    >
-                      {t('account.logout', { defaultValue: 'Sair' })}
-                    </button>
-                  </>
-                ) : (
-                  <div className="p-3 text-center space-y-2.5">
-                    <div className="text-left pb-1">
-                      <span className="text-xs font-bold text-gray-800 block">
-                        Acesso Administrativo
-                      </span>
-                      <span className="text-[10px] text-gray-500 block">
-                        Apenas SuperAdmin HelpUS
-                      </span>
-                    </div>
-
-                    <GoogleLoginButton
-                      onClick={loginGoogle}
-                      isLoading={googleLoading}
-                      label="Entrar com o Google"
-                      variant="dark"
-                      className="text-xs py-2 px-3 shadow-sm bg-blue-600 hover:bg-blue-700 text-white rounded-xl"
-                    />
-
-                    {googleError && (
-                      <p className="text-[10px] text-red-600 leading-tight text-left bg-red-50 p-2 rounded border border-red-200">
-                        {googleError}
-                      </p>
-                    )}
-
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
+          {/* Botão de Login Direto para a Área Administrativa */}
+          <Link
+            to="/admin"
+            className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-md text-xs font-semibold text-white hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            aria-label="Login Administrativo"
+            title="Acessar Área Administrativa"
+          >
+            <FaUserCircle className="text-sm text-slate-300" />
+            <span>Login</span>
+          </Link>
         </nav>
 
         {/* Mobile toggle */}
@@ -407,45 +239,18 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Account (mobile) */}
-          {usuario ? (
-            <div className="pt-3 border-t border-white/10">
-              <div className="flex items-center gap-2 text-green-400 mb-2">
-                <FaUserCircle className="text-lg" />
-                <span className="truncate" title={usuario.email}>
-                  {usuario.nome || usuario.name || usuario.fullname || usuario.email}
-                </span>
-              </div>
-              <div className="grid gap-2">
-                {isAdmin && (
-                  <Link to="/admin" onClick={() => setIsOpen(false)} className="block bg-white/10 px-3 py-2 rounded">
-                    {t('account.admin', { defaultValue: 'Admin' })}
-                  </Link>
-                )}
-                <Link to={profileHref} onClick={() => setIsOpen(false)} className="block bg-white/10 px-3 py-2 rounded">
-                  {t('account.profile', { defaultValue: 'Perfil' })}
-                </Link>
-                <Link to={passwordHref} onClick={() => setIsOpen(false)} className="block bg-white/10 px-3 py-2 rounded">
-                  {t('account.change_password', { defaultValue: 'Alterar senha' })}
-                </Link>
-                <button
-                  onClick={() => {
-                    setIsOpen(false);
-                    handleLogout();
-                  }}
-                  className="block text-left bg-white/10 px-3 py-2 rounded"
-                >
-                  {t('account.logout', { defaultValue: 'Sair' })}
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div className="pt-3 border-t border-white/10 grid gap-2">
-              <Link to="/login" onClick={() => setIsOpen(false)} className="block hover:text-blue-400 flex items-center gap-2">
-                <FaUserCircle /> {t('menu.login')}
-              </Link>
-            </div>
-          )}
+          {/* Botão de Login Direto para a Área Administrativa (Mobile) */}
+          <div className="pt-3 border-t border-white/10">
+            <Link
+              to="/admin"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-2 bg-white/10 hover:bg-white/20 px-3 py-2 rounded-md text-sm font-semibold text-white hover:text-blue-400 transition"
+              aria-label="Login Administrativo"
+            >
+              <FaUserCircle className="text-base text-slate-300" />
+              <span>Login</span>
+            </Link>
+          </div>
         </div>
       )}
     </header>

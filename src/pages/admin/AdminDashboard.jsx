@@ -30,14 +30,18 @@ export default function AdminDashboard() {
     return (
       <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-6">
         <div className="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl text-center space-y-6">
-          <div className="w-16 h-16 bg-blue-600/20 border border-blue-500/40 rounded-2xl flex items-center justify-center mx-auto text-blue-400">
-            <FaLock className="text-2xl" />
-          </div>
-
-          <div>
-            <h1 className="text-2xl font-extrabold text-white">Área Administrativa</h1>
-            <p className="text-sm text-slate-400 mt-2">
-              Acesso exclusivo para o SuperAdmin do ecossistema HelpUS.
+          {/* Logo Oficial HelpUS Padrão */}
+          <div className="text-center space-y-2">
+            <div className="relative w-14 h-14 mx-auto rounded-full border-2 border-blue-400 overflow-hidden shadow-lg shadow-blue-500/20">
+              <img
+                src="/img/helpus-logo.png"
+                alt="HelpUS Logo"
+                className="w-full h-full object-contain bg-slate-950"
+              />
+            </div>
+            <h1 className="text-2xl font-extrabold text-white tracking-tight">Login HelpUS</h1>
+            <p className="text-xs text-slate-400">
+              Acesso restrito ao painel e mesa de operações do ecossistema.
             </p>
           </div>
 
@@ -51,15 +55,11 @@ export default function AdminDashboard() {
             <GoogleLoginButton
               onClick={login}
               isLoading={isLoading}
-              label="Entrar com Google (SuperAdmin)"
-              variant="dark"
-              className="bg-blue-600 hover:bg-blue-700 text-white border-blue-500/50"
+              label="Continuar com o Google"
+              variant="light"
+              className="text-slate-900 font-bold"
             />
           </div>
-
-          <p className="text-[11px] text-slate-500 font-mono">
-            Apenas autorizado para: <span className="text-slate-400">{SUPERADMIN_EMAIL}</span>
-          </p>
 
           <div className="pt-4 border-t border-slate-800">
             <Link to="/" className="text-xs text-slate-400 hover:text-white transition">
