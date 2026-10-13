@@ -6,7 +6,6 @@ import {
   FaUsersCog,
   FaExternalLinkAlt,
   FaSignOutAlt,
-  FaLock,
   FaGlobe,
   FaCalendarAlt,
   FaCheckDouble,
@@ -14,7 +13,6 @@ import {
 } from 'react-icons/fa';
 import { useGoogleAuth } from '../../shared/googleAuth/useGoogleAuth';
 import { GoogleLoginButton } from '../../shared/googleAuth/GoogleLoginButton';
-import { partners } from '../../config/partners';
 
 const SUPERADMIN_EMAIL = 'helpus.ecommerce@gmail.com';
 
