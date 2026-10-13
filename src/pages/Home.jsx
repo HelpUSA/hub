@@ -103,6 +103,14 @@ const partnersCatalog = [
     video: '/img/parceiros/video-marcio.mp4',
     link: partnerLinks.marciotopbarber,
   },
+  {
+    id: 'studio_naldo_hair',
+    defaultName: 'Studio Naldo Hair',
+    defaultDesc: 'Salão de beleza e estética em João Pessoa: mechas, loiros, cortes, visagismo e penteados.',
+    imagem: '/img/parceiros/naldo-logo.png',
+    poster: '/img/parceiros/naldo-site.png',
+    link: partnerLinks.studionaldohair,
+  },
   // Tática com caminhos padronizados + alternativas
   {
     id: 'tatica',

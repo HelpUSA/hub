@@ -120,6 +120,10 @@
     "tatica": {
       "name": "Tática Assessoria Contábil",
       "desc": "Accounting, company formation, payroll, taxes and fiscal consulting."
+    },
+    "studio_naldo_hair": {
+      "name": "Studio Naldo Hair",
+      "desc": "Beauty and hair styling salon in João Pessoa: highlights, blonde, haircuts, visagism and hairstyles."
     }
   },
   "sites": {

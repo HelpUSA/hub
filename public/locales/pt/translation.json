@@ -120,6 +120,10 @@
     "tatica": {
       "name": "Tática Assessoria Contábil",
       "desc": "Contabilidade, abertura de empresa, folha, impostos e consultoria fiscal."
+    },
+    "studio_naldo_hair": {
+      "name": "Studio Naldo Hair",
+      "desc": "Salão de beleza e estética em João Pessoa: mechas, loiros, cortes, visagismo e penteados."
     }
   },
   "sites": {
@@ -169,16 +173,46 @@
       "examples_title": "📋 Exemplos de casos atendidos:",
       "examples_title_docs": "📋 Exemplos de documentos:",
       "list": {
-        "B1B2": { "title": "B1/B2", "desc": "Roteiro e DS-160 para turismo/negócios." },
-        "F1": { "title": "F1", "desc": "Suporte para visto de estudante (I-20 e entrevista)." },
-        "F2": { "title": "F2", "desc": "Dependentes de F1 — formulários e documentos." },
-        "EB1A": { "title": "EB1-A", "desc": "Estratégia e petição para habilidade extraordinária." },
-        "EB2NIW": { "title": "EB2-NIW", "desc": "Waiver por Interesse Nacional — elegibilidade e evidências." },
-        "Renovacao": { "title": "Renovação", "desc": "Fluxo simplificado para vistos elegíveis." },
-        "Familia": { "title": "Família", "desc": "Categorias baseadas em família e checklists." },
-        "CasosEspeciais": { "title": "Casos Especiais", "desc": "Cenários complexos e waivers (orientação inicial)." },
-        "Complementares": { "title": "Complementares", "desc": "EAD, Advance Parole e etapas relacionadas." },
-        "OutrosTrabalho": { "title": "Outros Vistos de Trabalho", "desc": "H1B, L1, O1 e outros, conforme seu perfil." }
+        "B1B2": {
+          "title": "B1/B2",
+          "desc": "Roteiro e DS-160 para turismo/negócios."
+        },
+        "F1": {
+          "title": "F1",
+          "desc": "Suporte para visto de estudante (I-20 e entrevista)."
+        },
+        "F2": {
+          "title": "F2",
+          "desc": "Dependentes de F1 — formulários e documentos."
+        },
+        "EB1A": {
+          "title": "EB1-A",
+          "desc": "Estratégia e petição para habilidade extraordinária."
+        },
+        "EB2NIW": {
+          "title": "EB2-NIW",
+          "desc": "Waiver por Interesse Nacional — elegibilidade e evidências."
+        },
+        "Renovacao": {
+          "title": "Renovação",
+          "desc": "Fluxo simplificado para vistos elegíveis."
+        },
+        "Familia": {
+          "title": "Família",
+          "desc": "Categorias baseadas em família e checklists."
+        },
+        "CasosEspeciais": {
+          "title": "Casos Especiais",
+          "desc": "Cenários complexos e waivers (orientação inicial)."
+        },
+        "Complementares": {
+          "title": "Complementares",
+          "desc": "EAD, Advance Parole e etapas relacionadas."
+        },
+        "OutrosTrabalho": {
+          "title": "Outros Vistos de Trabalho",
+          "desc": "H1B, L1, O1 e outros, conforme seu perfil."
+        }
       },
       "pages": {
         "B1B2": {
@@ -349,17 +383,41 @@
         "cta": "Solicitar via WhatsApp",
         "whatsapp_msg": "Olá! Tenho interesse no serviço de Operating Agreement Personalizado."
       },
-      "ITIN": { "title": "ITIN", "desc": "Montagem do pacote W-7 com documentos comprobatórios." },
-      "W7": { "title": "Formulário W-7", "desc": "Solicitação do ITIN com carta de apresentação e formulários." }
+      "ITIN": {
+        "title": "ITIN",
+        "desc": "Montagem do pacote W-7 com documentos comprobatórios."
+      },
+      "W7": {
+        "title": "Formulário W-7",
+        "desc": "Solicitação do ITIN com carta de apresentação e formulários."
+      }
     },
     "tax": {
       "title": "Fiscal",
-      "IRPF": { "title": "Declaração Individual", "desc": "Entrega federal e orientação para imigrantes e residentes." },
-      "ScheduleC": { "title": "Schedule C", "desc": "Renda como autônomo, deduções e apoio contábil." },
-      "W9": { "title": "Formulário W-9", "desc": "Preenchimento do formulário de informações do contribuinte." },
-      "Dependentes": { "title": "Dependentes", "desc": "Regras para declarar dependentes e maximizar reembolsos." },
-      "Formularios": { "title": "Formulários", "desc": "Listas e formulários auxiliares do IRS." },
-      "Envio": { "title": "Envio", "desc": "Instruções para envio seguro e acompanhamento." },
+      "IRPF": {
+        "title": "Declaração Individual",
+        "desc": "Entrega federal e orientação para imigrantes e residentes."
+      },
+      "ScheduleC": {
+        "title": "Schedule C",
+        "desc": "Renda como autônomo, deduções e apoio contábil."
+      },
+      "W9": {
+        "title": "Formulário W-9",
+        "desc": "Preenchimento do formulário de informações do contribuinte."
+      },
+      "Dependentes": {
+        "title": "Dependentes",
+        "desc": "Regras para declarar dependentes e maximizar reembolsos."
+      },
+      "Formularios": {
+        "title": "Formulários",
+        "desc": "Listas e formulários auxiliares do IRS."
+      },
+      "Envio": {
+        "title": "Envio",
+        "desc": "Instruções para envio seguro e acompanhamento."
+      },
       "ITINPage": {
         "title": "Solicitação de ITIN",
         "intro": "O ITIN é essencial para quem precisa declarar impostos nos EUA, mas não possui direito a um SSN.",

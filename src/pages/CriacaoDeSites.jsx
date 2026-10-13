@@ -69,6 +69,16 @@ export default function CriacaoDeSites() {
       href: partners.marciotopbarber,
       isVideo: true,
     },
+    {
+      src: '/img/parceiros/naldo-site.png',
+      poster: '/img/parceiros/naldo-site.png',
+      logo: '/img/parceiros/naldo-logo.png',
+      alt: t('partners.studio_naldo_hair.name', { defaultValue: 'Studio Naldo Hair' }),
+      title: t('partners.studio_naldo_hair.name', { defaultValue: 'Studio Naldo Hair' }),
+      caption: t('partners.studio_naldo_hair.desc', { defaultValue: 'Salão de beleza e estética em João Pessoa: mechas, loiros, cortes, visagismo e penteados.' }),
+      href: partners.studionaldohair,
+      isVideo: false,
+    },
 
     // === NOVO: Tática Assessoria Contábil ===
     {
