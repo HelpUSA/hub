@@ -78,7 +78,7 @@ export default function ReservasAgendamentos() {
         {/* CTA */}
         <div className="bg-gray-900 text-white rounded-3xl p-10 text-center shadow-xl">
           <h2 className="text-3xl font-bold mb-4">
-            Aplicações Reais Desenvolvidas: Ariticum Chalés & Wagner Driver
+            Aplicações Reais Desenvolvidas: Studio Naldo Hair, Ariticum Chalés, Wagner Driver & Márcio Barber
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto mb-8">
             Nossas soluções de agendamento e reserva garantem conveniência para o cliente e previsibilidade para o seu negócio.
