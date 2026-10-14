@@ -111,6 +111,22 @@ const partnersCatalog = [
     poster: '/img/parceiros/naldo-site.png',
     link: partnerLinks.studionaldohair,
   },
+  {
+    id: 'barraca_sertaneja',
+    defaultName: 'Barraca Sertaneja',
+    defaultDesc: 'Queijos artesanais, queijo de manteiga, carne de sol e tradição do sertão em João Pessoa.',
+    imagem: '/img/parceiros/barraca-sertaneja-logo.png',
+    poster: '/img/parceiros/barraca-sertaneja-site.jpg',
+    link: partnerLinks.barracasertaneja,
+  },
+  {
+    id: 'rodrigues_tur',
+    defaultName: 'Rodrigues Tur',
+    defaultDesc: 'Excursões em grupo aéreas e rodoviárias, turismo religioso e pacotes com saídas da Paraíba.',
+    imagem: '/img/parceiros/rodrigues-tur-logo.png',
+    poster: '/img/parceiros/rodrigues-tur-site.jpg',
+    link: partnerLinks.rodriguestur,
+  },
   // Tática com caminhos padronizados + alternativas
   {
     id: 'tatica',

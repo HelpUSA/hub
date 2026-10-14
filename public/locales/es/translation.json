@@ -124,6 +124,14 @@
     "studio_naldo_hair": {
       "name": "Studio Naldo Hair",
       "desc": "Salón de belleza y estética en João Pessoa: mechas, rubios, cortes, visagismo y peinados."
+    },
+    "barraca_sertaneja": {
+      "name": "Barraca Sertaneja",
+      "desc": "Quesos artesanales, queso de mantequilla, carne de sol y tradición del sertón en João Pessoa."
+    },
+    "rodrigues_tur": {
+      "name": "Rodrigues Tur",
+      "desc": "Excursiones en grupo aéreas y terrestres, turismo religioso y paquetes con salidas desde Paraíba."
     }
   },
   "sites": {

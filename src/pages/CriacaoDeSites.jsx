@@ -79,6 +79,26 @@ export default function CriacaoDeSites() {
       href: partners.studionaldohair,
       isVideo: false,
     },
+    {
+      src: '/img/parceiros/barraca-sertaneja-site.jpg',
+      poster: '/img/parceiros/barraca-sertaneja-site.jpg',
+      logo: '/img/parceiros/barraca-sertaneja-logo.png',
+      alt: t('partners.barraca_sertaneja.name', { defaultValue: 'Barraca Sertaneja' }),
+      title: t('partners.barraca_sertaneja.name', { defaultValue: 'Barraca Sertaneja' }),
+      caption: t('partners.barraca_sertaneja.desc', { defaultValue: 'Queijos artesanais, queijo de manteiga, carne de sol e tradição do sertão em João Pessoa.' }),
+      href: partners.barracasertaneja,
+      isVideo: false,
+    },
+    {
+      src: '/img/parceiros/rodrigues-tur-site.jpg',
+      poster: '/img/parceiros/rodrigues-tur-site.jpg',
+      logo: '/img/parceiros/rodrigues-tur-logo.png',
+      alt: t('partners.rodrigues_tur.name', { defaultValue: 'Rodrigues Tur' }),
+      title: t('partners.rodrigues_tur.name', { defaultValue: 'Rodrigues Tur' }),
+      caption: t('partners.rodrigues_tur.desc', { defaultValue: 'Excursões em grupo aéreas e rodoviárias, turismo religioso e pacotes com saídas da Paraíba.' }),
+      href: partners.rodriguestur,
+      isVideo: false,
+    },
 
     // === NOVO: Tática Assessoria Contábil ===
     {

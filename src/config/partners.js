@@ -12,6 +12,8 @@ export const partners = {
   waleska:             `https://waleska.${BASE}`,
   marciotopbarber:     `https://marciotopbarber.${BASE}`,
   studionaldohair:     `https://studionaldohair.${BASE}`,
+  barracasertaneja:    `https://barracasertaneja.${BASE}`,
+  rodriguestur:        `https://rodriguestur.${BASE}`,
   tatica:              `https://tatica.${BASE}`,
   tuliobicicletas:     `https://tuliobicicletas.${BASE}`,
   ariticumchales:      `https://ariticumchales.vercel.app`,

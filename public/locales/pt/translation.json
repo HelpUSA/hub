@@ -124,6 +124,14 @@
     "studio_naldo_hair": {
       "name": "Studio Naldo Hair",
       "desc": "Salão de beleza e estética em João Pessoa: mechas, loiros, cortes, visagismo e penteados."
+    },
+    "barraca_sertaneja": {
+      "name": "Barraca Sertaneja",
+      "desc": "Queijos artesanais, queijo de manteiga, carne de sol e tradição do sertão em João Pessoa."
+    },
+    "rodrigues_tur": {
+      "name": "Rodrigues Tur",
+      "desc": "Excursões em grupo aéreas e rodoviárias, turismo religioso e pacotes com saídas da Paraíba."
     }
   },
   "sites": {

@@ -124,6 +124,14 @@
     "studio_naldo_hair": {
       "name": "Studio Naldo Hair",
       "desc": "Beauty and hair styling salon in João Pessoa: highlights, blonde, haircuts, visagism and hairstyles."
+    },
+    "barraca_sertaneja": {
+      "name": "Barraca Sertaneja",
+      "desc": "Artisanal cheeses, butter cheese, sun-cured beef and backcountry culinary tradition in João Pessoa."
+    },
+    "rodrigues_tur": {
+      "name": "Rodrigues Tur",
+      "desc": "Group air and bus tours, religious tourism and travel packages departing from Paraíba."
     }
   },
   "sites": {
