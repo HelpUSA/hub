@@ -320,7 +320,7 @@ export default function AdminDashboard() {
         <section className="bg-gradient-to-r from-blue-900/40 via-slate-900 to-indigo-950/40 border border-blue-500/30 rounded-3xl p-8 sm:p-10 shadow-2xl relative overflow-hidden">
           <div className="max-w-4xl space-y-4 relative z-10">
             <span className="text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-500/10 border border-blue-400/20 px-3 py-1 rounded-full">
-              Mesa de Operações & Gestão Central
+              Mesa de Operações & Gestão Central • {totalServices} Sistemas Conectados
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
               Portal de Administração & Serviços HelpUS
