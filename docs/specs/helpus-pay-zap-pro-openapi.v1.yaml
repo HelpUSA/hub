@@ -2,6 +2,9 @@ openapi: 3.1.0
 info:
   title: HelpUS Pay - PIX Gateway Internal API (Zap Pro Integration)
   version: 1.0.0-g3.draft
+  license:
+    name: Proprietary - HelpUS Ecosystem (All Rights Reserved)
+    identifier: Proprietary
   description: >
     Contrato cross-service formal para integracao entre o motor HelpUS Zap Pro
     (helpus-whatsapp-ia) e o servico financeiro HelpUS Pay (helpus-pay).
@@ -243,6 +246,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiError'
+        '422':
+          description: Rejeicao por violacao de regra semantica de negocio (ex. divergencia de valor liquidado vs pedido, ou conflito de idempotencia com hash divergente).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
 
 components:
   securitySchemes:
@@ -370,5 +379,5 @@ components:
           type: string
           example: CROSS_TENANT_VIOLATION
         details:
-          type: object
-          nullable: true
+          type: [object, "null"]
+          description: Detalhes estruturados adicionais ou mapeamento de validacao de campos.

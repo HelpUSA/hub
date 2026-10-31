@@ -1,11 +1,12 @@
 # Plano de Preparação Arquitetural e Técnica — Gate G3 (Zap Pro)
 
 **Data de Elaboração:** 31 de Outubro de 2026  
+**Revisão:** 3.0 (Atendimento ao QA Round 3 — Ordem Executiva 013)  
 **Status do Gate:** `G3_PLANNING_ONLY` (Planejamento Documental — Execução Operacional Bloqueada)  
-**Referência de Governança:** [HUB Issue #9](https://github.com/HelpUSA/hub/issues/9)  
+**Referência de Governança:** [HUB Issue #9](https://github.com/HelpUSA/hub/issues/9) (Parecer `G3_DOCUMENTATION_CHANGES_REQUIRED`, Comentário 6546701961)  
 **Origem do Gate:** [HUB Issue #8](https://github.com/HelpUSA/hub/issues/8) — Homologação restrita `G2_APPROVED_SANDBOX_ONLY`  
-**Escopo Autorizado:** Levantamento técnico somente-leitura, diagramas, contratos OpenAPI, modelagem de dados, matrizes de risco/RBAC e hygiene Git.  
-**Limites Estritos:** Sem merges, sem deploys em produção, sem provisionamento de infraestrutura real, sem números reais de WhatsApp e sem transações bancárias/PIX reais.
+**Escopo Autorizado:** Levantamento técnico somente-leitura, diagramas, contratos OpenAPI v3.1, modelagem relacional de dados, outbox durável, matrizes de risco/RBAC e hygiene Git.  
+**Limites Estritos de Segurança:** Sem merges, sem deploys em produção, sem provisionamento de infraestrutura real, sem números reais de WhatsApp e sem transações bancárias/PIX reais.
 
 ---
 
@@ -24,7 +25,7 @@
   - **CI**: Executado com `tsx` e `tsc --noEmit` estrito no Node 22 (4/4 testes aprovados).
 * **`helpus-auth`**:
   - Portal SPA React + Vite em `D:\AntiG\helpus-auth` contendo telas de autenticação e catálogo de destinos SSO.
-  - **Lacuna Técnica Crítica**: É estritamente uma aplicação frontend (client-side) e **NÃO possui backend emissor de tokens JWT** (signing authority). Não há chave privada para assinar tokens nem endpoint de validação/introspecção.
+  - **Lacuna Técnica Crítica Reconhecida**: É estritamente uma aplicação frontend (client-side) e **NÃO possui backend emissor de tokens JWT** (signing authority). Não há chave privada para assinar tokens nem endpoint de validação/introspecção. Esta funcionalidade é classificada como dependência pré-G3 não construída.
 * **`hub`**:
   - Repositório central de governança, documentação estratégica e gestão de Quality Gates.
 * **Ponto Crítico AS-IS**: Não existe qualquer chamada HTTP de rede entre `helpus-whatsapp-ia` e `helpus-pay`. Toda a integração E2E do G2 foi testada usando o mock interno local.
@@ -48,6 +49,7 @@ flowchart TD
     subgraph StorageLayer ["Camada de Persistência Durável (Planejada)"]
         DB[(PostgreSQL / Supabase)]
         RedisCache[(Redis - Sessões, Idempotência & Locks)]
+        OutboxQueue[(reconciliation_outbox - Fila de Estorno)]
     end
 
     MetaCloud -->|POST /webhooks/whatsapp (HMAC SHA-256)| WAppIA
@@ -58,27 +60,35 @@ flowchart TD
     WAppIA <--> DB
     PayService <--> DB
     WAppIA <--> RedisCache
+    DB --> OutboxQueue
 ```
 
 ---
 
 ## 2. Especificação OpenAPI v3.1 (Contrato Cross-Service)
 
-A especificação completa, validada e auditada offline conforme os padrões OpenAPI 3.1.0 encontra-se no arquivo dedicado:
+A especificação completa, validada e auditada offline conforme os padrões OpenAPI 3.1.0 (validada sem avisos nem erros pelo Redocly CLI v2.72.1) encontra-se no arquivo dedicado:
 📁 **[`docs/specs/helpus-pay-zap-pro-openapi.v1.yaml`](../specs/helpus-pay-zap-pro-openapi.v1.yaml)**
 
 ### 2.1. Visão Geral dos Endpoints do Contrato
-| Método | Endpoint | Autenticação | Função | Respostas |
+| Método | Endpoint | Autenticação | Função | Respostas Documentadas |
 | :--- | :--- | :--- | :--- | :--- |
-| `POST` | `/api/v1/charges/pix` | Bearer JWT + Headers Multi-Tenant | Cria cobrança PIX com chave copia-e-cola e QR Code | `201`, `400`, `401`, `409` |
-| `GET` | `/api/v1/charges/pix/{txid}` | Bearer JWT | Consulta status e detalhes da cobrança | `200`, `401`, `404` |
-| `POST` | `/api/v1/charges/pix/{txid}/cancel` | Bearer JWT | Cancelamento atômico de cobrança pendente | `200`, `400`, `401`, `404`, `409` |
+| `POST` | `/api/v1/charges/pix` | Bearer JWT + Headers Multi-Tenant | Cria cobrança PIX com chave copia-e-cola e QR Code | `201`, `400`, `401`, `403`, `409`, `500` |
+| `GET` | `/api/v1/charges/pix/{txid}` | Bearer JWT | Consulta status e detalhes da cobrança | `200`, `401`, `403`, `404` |
+| `POST` | `/api/v1/charges/pix/{txid}/cancel` | Bearer JWT | Cancelamento atômico de cobrança pendente | `200`, `400`, `401`, `403`, `404` |
 | `POST` | `/api/v1/webhooks/payment` | HMAC-SHA256 (`X-Signature-SHA256`) | Callback assíncrono de liquidação bancária | `200`, `400`, `401`, `422` |
 
-### 2.2. Conformidade OpenAPI 3.1
-1. **Parâmetros de Cabeçalho**: Todos os headers (`X-Tenant-Id`, `X-Idempotency-Key`) foram definidos estritamente em `parameters` com `in: header`.
-2. **Esquemas de Segurança**: `BearerAuth` (JWT HTTP Bearer) e `HmacSignatureAuth` (`X-Signature-SHA256`) centralizados em `components.securitySchemes`.
-3. **Respostas e Schemas**: Descrições textuais obrigatórias presentes em todos os códigos de resposta HTTP.
+### 2.2. Conformidade OpenAPI 3.1 e Validação Semântica
+1. **Sintaxe de Tipagem Nulável JSON Schema**: Em conformidade com o JSON Schema Draft 2020-12 utilizado no OAS 3.1, campos opcionais/nuláveis utilizam `type: [object, "null"]`, abandonando a sintaxe legada `nullable: true` do OAS 3.0.
+2. **Parâmetros de Cabeçalho**: Todos os headers de negócio (`X-Tenant-Id`, `X-Idempotency-Key`) foram definidos estritamente em `parameters` com `in: header`.
+3. **Esquemas de Segurança**: `BearerAuth` (JWT HTTP Bearer) e `HmacSignatureAuth` (`X-Signature-SHA256`) centralizados em `components.securitySchemes`.
+4. **Tratamento de Erros e 422**: Resposta HTTP `422 Unprocessable Entity` formalmente declarada no endpoint de webhook para rejeições semânticas (ex.: divergência de valores `amount mismatch` ou payloads de idempotência conflitantes).
+5. **Autenticação Service-to-Service (S2S)**: Toda chamada HTTP privada exige validação de assinatura digital JWT (emitida pelo futuro backend de auth) confrontando a claim `tenant_id` assinada contra o header `X-Tenant-Id`, impedindo que o cliente falsifique inquilinos.
+6. **Evidência de Validação Offline Reproduzível**:
+   ```bash
+   npx @redocly/cli lint docs/specs/helpus-pay-zap-pro-openapi.v1.yaml
+   # Resultado: Woohoo! Your API description is valid. 🎉 (0 warnings, 0 errors)
+   ```
 
 ---
 
@@ -86,19 +96,19 @@ A especificação completa, validada e auditada offline conforme os padrões Ope
 
 ### 3.1. Resolução Criptográfica de Identidade (Zero Trust na Origem)
 * **Insegurança do Payload**: Parâmetros como `tenant_id` ou números de remetente informados no corpo da mensagem pelo usuário final são **completamente não confiáveis** (vetor de Spoofing / IDOR).
-* **Derivação Segura**:
+* **Derivação Segura em Camadas**:
   1. A requisição HTTP do webhook da Meta é recebida em `helpus-whatsapp-ia`.
   2. O middleware calcula o digest HMAC-SHA256 sobre o **raw body binário** exato da requisição usando o secret compartilhado do app Meta (`x-hub-signature-256`).
   3. A verificação é executada via `crypto.timingSafeEqual` para prevenir ataques de temporização.
-  4. Se e somente se a assinatura for válida, o motor extrai `entry[0].changes[0].value.metadata.phone_number_id`.
-  5. O `phone_number_id` é mapeado na tabela durável `tenants` para resolver o `tenant_id` corporativo correspondente.
+  4. Se e somente se a assinatura for matematicamente comprovada, o motor extrai `entry[0].changes[0].value.metadata.phone_number_id`.
+  5. O `phone_number_id` é mapeado na tabela durável `tenants` (campo único e indexado) para resolver o `tenant_id` corporativo correspondente.
 
 ### 3.2. Lacuna do `helpus-auth` e Modelo de Token entre Serviços
-* **Diagnóstico**: O repositório `helpus-auth` atualmente contém apenas uma SPA React/Vite. Não há backend, base de dados de credenciais, nem autoridade de certificação/assinatura de tokens.
-* **Dependência G3 Não Implementada**: A emissão de JWTs para autenticação service-to-service (S2S) entre `helpus-whatsapp-ia` e `helpus-pay` depende de um backend de autenticação authoritative (ex.: microserviço Node/Go em `helpus-auth` ou Supabase/Auth0 corporativo).
-* **Política Fail-Closed**:
+* **Diagnóstico AS-IS**: O repositório `helpus-auth` contém apenas uma SPA React/Vite. Não há backend, base de dados de credenciais, nem autoridade de certificação/assinatura de tokens.
+* **Dependência G3 Prévia**: A emissão de JWTs para autenticação service-to-service (S2S) entre `helpus-whatsapp-ia` e `helpus-pay` depende de um backend de autenticação authoritative (ex.: microserviço em `helpus-auth` ou Supabase/Auth0 corporativo).
+* **Política Fail-Closed Mandatória**:
   - Requisições sem header `Authorization: Bearer <token>` ou com token inválido/expirado DEVEM ser rejeitadas com `401 Unauthorized`.
-  - Se o serviço de autenticação estiver indisponível, nenhuma requisição financeira ou transacional é aceita por fallback (comportamento estritamente fail-closed, nunca fail-open).
+  - Se o serviço de autenticação estiver indisponível ou inacessível, nenhuma requisição financeira ou transacional é aceita por fallback (comportamento estritamente fail-closed, nunca fail-open).
 
 ### 3.3. Matriz Granular de RBAC (Role-Based Access Control)
 | Recurso | Ação | `SUPER_ADMIN` | `TENANT_ADMIN` | `TENANT_OPERATOR` | `CUSTOMER` | `INTERNAL_SERVICE` |
@@ -111,6 +121,7 @@ A especificação completa, validada e auditada offline conforme os padrões Ope
 | **Charges (PIX)**| `CREATE` | ❌ Não | ❌ Não | ❌ Não | ❌ Não | ✅ `helpus-whatsapp-ia` |
 | **Charges (PIX)**| `CANCEL` | ✅ Auditoria | ✅ Somente Próprio | ❌ Não | ❌ Não | ✅ S2S Sync |
 | **Webhooks** | `INGEST` | ❌ Não | ❌ Não | ❌ Não | ❌ Não | ✅ Assinado (Meta/PSP)|
+| **Outbox** | `PROCESS_REFUND` | ❌ Não | ❌ Não | ❌ Não | ❌ Não | ✅ Worker Financeiro |
 | **Audit Logs** | `READ` | ✅ Completo | ✅ Somente Próprio | ❌ Não | ❌ Não | ❌ Não |
 | **Audit Logs** | `WRITE` | ❌ Não | ❌ Não | ❌ Não | ❌ Não | ✅ Sistema (Append-only) |
 
@@ -119,6 +130,9 @@ A especificação completa, validada e auditada offline conforme os padrões Ope
 ## 4. Persistência Durável e Consistência Transacional
 
 ### 4.1. Esquema Relacional de Dados Proposto (PostgreSQL DDL)
+> [!NOTE]
+> Este esquema é uma especificação arquitetural de design. A criação real de tabelas e migrações depende de autorização operacional futura.
+
 ```sql
 -- Extensões necessárias
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
@@ -174,6 +188,7 @@ CREATE TABLE charges (
     qr_code_url TEXT,
     expires_at TIMESTAMPTZ NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     paid_at TIMESTAMPTZ,
     cancelled_at TIMESTAMPTZ
 );
@@ -183,24 +198,52 @@ CREATE TABLE webhook_events (
     event_id VARCHAR(128) PRIMARY KEY,
     source VARCHAR(64) NOT NULL,
     payload_sha256 CHAR(64) NOT NULL,
-    processed_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     tenant_id UUID REFERENCES tenants(id),
     status VARCHAR(32) NOT NULL,
-    error_message TEXT
+    error_message TEXT,
+    processed_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- 6. Fila Durável de Reconciliação e Estorno (Outbox Pattern)
+CREATE TABLE reconciliation_outbox (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    tenant_id UUID NOT NULL REFERENCES tenants(id) ON DELETE RESTRICT,
+    event_id VARCHAR(128) NOT NULL,
+    txid VARCHAR(128) NOT NULL,
+    order_id UUID REFERENCES orders(id) ON DELETE RESTRICT,
+    amount NUMERIC(10, 2) NOT NULL,
+    reason VARCHAR(64) NOT NULL,
+    status VARCHAR(32) NOT NULL DEFAULT 'PENDING_REFUND' CHECK (status IN ('PENDING_REFUND', 'PROCESSING', 'REFUNDED', 'FAILED_MANUAL_REVIEW')),
+    retry_count INT NOT NULL DEFAULT 0,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- 7. Trilha de Auditoria de Consentimento LGPD
+CREATE TABLE consent_audit_log (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    tenant_id UUID NOT NULL REFERENCES tenants(id) ON DELETE RESTRICT,
+    customer_phone VARCHAR(32) NOT NULL,
+    action VARCHAR(32) NOT NULL CHECK (action IN ('OPT_IN', 'OPT_OUT', 'DATA_DELETION_REQUEST')),
+    raw_message_text TEXT NOT NULL,
+    recorded_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 -- Índices de Performance e Prevenção IDOR
 CREATE INDEX idx_orders_tenant_status ON orders(tenant_id, status);
 CREATE INDEX idx_charges_tenant_status ON charges(tenant_id, status);
 CREATE INDEX idx_sessions_tenant_phone ON sessions(tenant_id, customer_phone);
+CREATE INDEX idx_reconciliation_outbox_status ON reconciliation_outbox(status);
 ```
 
-### 4.2. Procedimento Executável de Liquidação e Invariante Financeiro
-> [!IMPORTANT]
-> **Invariante Crítico de Conciliação Financeira**:  
-> Um `ROLLBACK` em banco de dados relacional **NÃO estorna dinheiro bancário real**!  
-> Caso um webhook do PSP confirme que o dinheiro foi creditado na conta, mas o pedido local já esteja cancelado ou expirado, abortar o SQL com erro impede a inconsistência no banco local, mas gera uma divergência contábil real (dinheiro sem pedido).  
-> **Mitigação Arquitetural G3**: O sistema deve capturar a divergência, registrar um evento de reconciliação em `audit_reconciliation_queue` e acionar assincronamente a API de devolução do PSP (ex.: devolução PIX via BACEN) em vez de descartar a operação.
+### 4.2. Procedimento de Liquidação e Invariantes Financeiros
+
+> [!CRITICAL]
+> **Invariante Fundamental de Reconciliação Bancária vs. ACID**:  
+> 1. Um `ROLLBACK` em banco de dados relacional **NUNCA reverte dinheiro real já transferido pelo sistema bancário**. Se o webhook do PSP confirma que os fundos foram transferidos pelo consumidor, o dinheiro está sob custódia da conta recebedora. Abortar a transação SQL evita corrupção local dos dados, mas gera uma divergência contábil real externa.
+> 2. **Diferenciação Estrita de Mecanismos de Reversão**:
+>    - **Devolução Comercial Voluntária (API do PSP)**: Para pedidos cancelados, expirados ou com valor divergente, o sistema deve registrar a necessidade de estorno na tabela durável `reconciliation_outbox`. Um worker assíncrono posterior aciona a API de devolução oficial do PSP contratado (ex.: endpoint PIX `/v2/pix/{e2eid}/devolucao` do BACEN).
+>    - **MED (Mecanismo Especial de Devolução — Resolução BCB nº 1/2020)**: Mecanismo regulatório do Banco Central restrito exclusivamente a casos de **fundada suspeita de fraude** ou **falha operacional na grade de liquidação do SPI**. O MED **não** é uma ferramenta para cancelamentos rotineiros de compras pelo consumidor e requer abertura de notificação de infração entre instituições participantes.
 
 ```sql
 CREATE OR REPLACE FUNCTION process_pix_settlement(
@@ -212,46 +255,109 @@ CREATE OR REPLACE FUNCTION process_pix_settlement(
     p_payload_sha256 CHAR(64)
 ) RETURNS JSONB AS $$
 DECLARE
+    v_inserted_count BIGINT;
+    v_existing_payload_sha256 CHAR(64);
     v_order_id UUID;
     v_order_status VARCHAR(32);
+    v_order_amount NUMERIC(10, 2);
+    v_order_txid VARCHAR(128);
     v_charge_status VARCHAR(32);
+    v_charge_amount NUMERIC(10, 2);
     v_customer_phone VARCHAR(32);
-    v_already_processed BOOLEAN;
 BEGIN
-    -- 1. Deduplicação Atômica de Evento
+    -- 1. Deduplicação Atômica de Evento e Detecção de Colisão de Payload
     INSERT INTO webhook_events (event_id, source, payload_sha256, processed_at, tenant_id, status)
     VALUES (p_event_id, 'helpus-pay', p_payload_sha256, NOW(), p_tenant_id, 'PROCESSING')
     ON CONFLICT (event_id) DO NOTHING;
 
-    GET DIAGNOSTICS v_already_processed = ROW_COUNT;
-    IF v_already_processed = 0 THEN
+    GET DIAGNOSTICS v_inserted_count = ROW_COUNT;
+    IF v_inserted_count = 0 THEN
+        -- O evento já existe no banco: verificar se o payload coincide ou se é uma colisão/tampering
+        SELECT payload_sha256 INTO v_existing_payload_sha256
+        FROM webhook_events
+        WHERE event_id = p_event_id;
+
+        IF v_existing_payload_sha256 <> p_payload_sha256 THEN
+            RETURN jsonb_build_object(
+                'success', false,
+                'error', 'EVENT_ID_PAYLOAD_MISMATCH',
+                'message', 'Mesmo event_id recebido com payload hash divergente. Rejeitado por segurança.'
+            );
+        END IF;
+
         RETURN jsonb_build_object('success', true, 'action', 'IDEMPOTENT_REPLAY_IGNORED');
     END IF;
 
-    -- 2. Lock Pessimista de Linha (Pessimistic Locking)
-    SELECT status, order_id INTO v_charge_status, v_order_id
+    -- 2. Lock Pessimista na Cobrança (Pessimistic Row Locking)
+    SELECT status, order_id, amount INTO v_charge_status, v_order_id, v_charge_amount
     FROM charges
     WHERE txid = p_txid AND tenant_id = p_tenant_id
     FOR UPDATE;
 
     IF NOT FOUND THEN
-        UPDATE webhook_events SET status = 'FAILED_CHARGE_NOT_FOUND' WHERE event_id = p_event_id;
-        RAISE EXCEPTION 'CHARGE_NOT_FOUND: txid % tenant %', p_txid, p_tenant_id;
+        UPDATE webhook_events 
+        SET status = 'FAILED_CHARGE_NOT_FOUND', 
+            error_message = format('Charge %s not found for tenant %s', p_txid, p_tenant_id)
+        WHERE event_id = p_event_id;
+        
+        RETURN jsonb_build_object('success', false, 'error', 'CHARGE_NOT_FOUND');
     END IF;
 
-    SELECT status, customer_phone INTO v_order_status, v_customer_phone
+    -- 3. Lock Pessimista no Pedido
+    SELECT status, customer_phone, total_amount, txid 
+    INTO v_order_status, v_customer_phone, v_order_amount, v_order_txid
     FROM orders
     WHERE id = v_order_id AND tenant_id = p_tenant_id
     FOR UPDATE;
 
-    -- 3. Invariante: Verificação de Pedido Cancelado/Expirado
-    IF v_order_status IN ('CANCELLED', 'EXPIRED') OR v_charge_status IN ('CANCELLED', 'EXPIRED') THEN
-        -- Registrar para estorno bancário assíncrono (reconciliação financeira)
+    IF NOT FOUND THEN
         UPDATE webhook_events 
-        SET status = 'REQUIRES_BANKING_REFUND', 
-            error_message = format('Settlement received for cancelled/expired order %s. Enqueueing PSP refund.', v_order_id)
+        SET status = 'FAILED_ORDER_NOT_FOUND', 
+            error_message = format('Order %s not found for charge %s', v_order_id, p_txid)
         WHERE event_id = p_event_id;
         
+        RETURN jsonb_build_object('success', false, 'error', 'ORDER_NOT_FOUND');
+    END IF;
+
+    -- 4. Guard de Integridade de TXID e Associação Cruzada
+    IF v_order_txid IS DISTINCT FROM p_txid THEN
+        UPDATE webhook_events 
+        SET status = 'FAILED_TXID_MISMATCH', 
+            error_message = format('Order txid %s diverges from callback txid %s', v_order_txid, p_txid)
+        WHERE event_id = p_event_id;
+        
+        RETURN jsonb_build_object('success', false, 'error', 'TXID_MISMATCH');
+    END IF;
+
+    -- 5. Guard de Concordância de Valor (Amount Matching Guard)
+    IF p_amount <> v_charge_amount OR p_amount <> v_order_amount THEN
+        -- Divergência de valor pago: registrar na outbox para estorno via API do PSP
+        INSERT INTO reconciliation_outbox (tenant_id, event_id, txid, order_id, amount, reason, status)
+        VALUES (p_tenant_id, p_event_id, p_txid, v_order_id, p_amount, 'AMOUNT_MISMATCH', 'PENDING_REFUND');
+
+        UPDATE webhook_events 
+        SET status = 'REQUIRES_BANKING_REFUND', 
+            error_message = format('Amount mismatch: paid %s vs charge %s / order %s', p_amount, v_charge_amount, v_order_amount)
+        WHERE event_id = p_event_id;
+
+        RETURN jsonb_build_object(
+            'success', false, 
+            'error', 'AMOUNT_MISMATCH', 
+            'action', 'REFUND_ENQUEUED'
+        );
+    END IF;
+
+    -- 6. Invariante: Verificação de Pedido ou Cobrança Cancelados/Expirados
+    IF v_order_status IN ('CANCELLED', 'EXPIRED') OR v_charge_status IN ('CANCELLED', 'EXPIRED') THEN
+        -- Inserção comprovada na outbox durável para devolução comercial
+        INSERT INTO reconciliation_outbox (tenant_id, event_id, txid, order_id, amount, reason, status)
+        VALUES (p_tenant_id, p_event_id, p_txid, v_order_id, p_amount, 'SETTLEMENT_AFTER_CANCELLED_OR_EXPIRED', 'PENDING_REFUND');
+
+        UPDATE webhook_events 
+        SET status = 'REQUIRES_BANKING_REFUND', 
+            error_message = format('Settlement received for %s order %s. Enqueued to reconciliation_outbox.', v_order_status, v_order_id)
+        WHERE event_id = p_event_id;
+
         RETURN jsonb_build_object(
             'success', false, 
             'error', 'CANNOT_SETTLE_CANCELLED_OR_EXPIRED_ORDER',
@@ -259,7 +365,17 @@ BEGIN
         );
     END IF;
 
-    -- 4. Transição Atômica de Sucesso
+    -- 7. Guard de Transições de Estado Válidas
+    IF v_charge_status <> 'PENDING' OR v_order_status NOT IN ('PENDING', 'WAITING_PAYMENT') THEN
+        UPDATE webhook_events 
+        SET status = 'FAILED_INVALID_STATE_TRANSITION', 
+            error_message = format('Invalid transition: charge status %s, order status %s', v_charge_status, v_order_status)
+        WHERE event_id = p_event_id;
+
+        RETURN jsonb_build_object('success', false, 'error', 'INVALID_STATE_TRANSITION');
+    END IF;
+
+    -- 8. Transição Atômica de Sucesso Conjunto
     UPDATE charges 
     SET status = 'PAID', paid_at = p_paid_at, updated_at = NOW()
     WHERE txid = p_txid;
@@ -293,20 +409,24 @@ $$ LANGUAGE plpgsql;
 | **Denial of Service** | Inundação de webhooks ou mensagens em loop | Rate limiting por IP e por telefone (máx. 60 requisições/minuto), timeout de 10s e body cap de 64KB no parser. |
 | **Elevation of Privilege** | Operador acessa pedidos de outro inquilino | Tokens JWT assinados digitalmente com declaração estrita de escopo `tenant_id` e verificação fail-closed. |
 
-### 5.2. Conformidade LGPD (Lei 13.709/2018) & Gestão do Ciclo de Vida dos Dados
-1. **Distinção entre Cancelamento e Esquecimento**:
-   - **Cancelamento Operacional**: O comando "cancelar" interrompe o pedido ativo e atualiza seu status para `CANCELLED`. Ele **não** remove o histórico fiscal nem apaga o cadastro.
-   - **Direito à Exclusão / Anonimização (Art. 18 LGPD)**: Requisitado pelo titular ("apagar meus dados"), aciona a rotina de anonimização: substituição do telefone e nome por hash irreversível em sessões e pedidos finalizados.
-2. **Políticas de Retenção e Expiração de Dados**:
-   - **Dados Fiscais e Contábeis (Art. 16, I da LGPD)**: Pedidos pagos e comprovantes de transação PIX devem ser retidos por **5 anos** para cumprimento de obrigação legal e tributária (Código Tributário Nacional / Código de Defesa do Consumidor).
-   - **Logs de Conversação e Transcrições Efêmeras**: Histórico de mensagens de chat e mídias descartáveis devem ser expurgados após **90 dias** (ou conforme o Marco Civil da Internet para logs de conexão - 6 meses).
-3. **Gestão de Consentimento (Opt-in e Opt-out)**:
-   - **Opt-in Explicito**: Antes de iniciar o pedido, o usuário deve consentir expressamente ("SIM" no estado `TRIAGEM`).
-   - **Opt-out Imediato**: Se o usuário enviar termos de parada ("PARAR", "SAIR", "REVOGAR"), a sessão marca `consent_revoked = TRUE` e o bot cessa imediatamente o envio de qualquer mensagem promocional.
-4. **Políticas Oficiais da Meta Cloud API**:
-   - **Janela de Atendimento de 24 Horas**: Mensagens livres de sessão só são permitidas durante a janela de 24h após a última mensagem recebida do usuário.
-   - **Templates Aprovados**: Qualquer contato posterior à janela de 24h exige Message Templates pré-aprovados pela Meta nas categorias *Utility* ou *Marketing*.
-   - **Módulo de Voz (TTS)**: Opcional e inativo na arquitetura G3 preliminar.
+### 5.2. Conformidade LGPD (Lei 13.709/2018) por Classe de Dados e Fundamento Legal
+1. **Régua de Retenção e Descarte Estruturado**:
+   - **Dados Fiscais e Contábeis (Pedidos, Notas, Cobranças PIX)**: Retenção obrigatória por **5 anos** com base no Código Tributário Nacional (Arts. 173/174), Código de Defesa do Consumidor (Art. 27) e fundamentado pelo **Art. 16, I da LGPD** (cumprimento de obrigação legal ou regulatória pelo controlador). Estes dados **não podem ser excluídos** mediante solicitação de "direito ao esquecimento" antes de decorrido o prazo prescricional.
+   - **Registros de Conexão e Acesso a Aplicações**: Retenção obrigatória por **6 meses** com base no **Art. 15 da Lei 12.965/2014 (Marco Civil da Internet)**.
+   - **Transcrições de Conversação e Estado Efêmero de Sessão**: Retenção limitada a **90 dias** como princípio de minimização (Art. 6º, III da LGPD), elimináveis a qualquer momento mediante requisição expressa do titular conforme o **Art. 18, VI da LGPD**.
+2. **Padrão Técnico de Anonimização vs. Pseudonimização**:
+   - *Alerta de Risco*: A aplicação de hash SHA-256 simples sobre números de telefone (`+55...`) configura **pseudonimização**, e **não anonimização irreversível**, devido à vulnerabilidade a ataques de dicionário e tabelas rainbow pelo espaço finito de números celulares brasileiros.
+   - *Critério G3*: A anonimização efetiva exigirá descarte completo do telefone e nome (data scrubbing/truncation) ou criptografia com destruição irrevogável da chave privada de descarte.
+3. **Auditoria de Consentimento (Opt-in e Opt-out)**:
+   - Registro imutável de eventos na tabela `consent_audit_log` contendo timestamp, canal, número e mensagem exata enviada pelo titular.
+   - Opt-in ativo obrigatório na triagem ("SIM"). Opt-out imediato caso o titular envie comandos de cessação ("PARAR", "SAIR", "REVOGAR").
+
+### 5.3. Políticas Oficiais da Meta WhatsApp Business Platform (Vigência 31/10/2026)
+* **Novo Modelo de Tarifação por Mensagem**:
+  - A Meta realizou a transição para precificação baseada em mensagem (*per-message pricing*), superando o modelo baseado em conversas de 24 horas.
+  - **Franquia Gratuita Oficial**: São concedidas **1.000 mensagens de serviço gratuitas por mês por número de telefone comercial (WABA)**. Mensagens de serviço são aquelas iniciadas pelo usuário final e respondidas pelo bot/operador dentro da janela de atendimento de 24 horas.
+  - **Mensagens Fora da Janela e de Marketing/Utilidade**: Mensagens ativas iniciadas pelo bot (ou enviadas após transcorridas 24 horas da última interação do usuário) exigem Message Templates aprovados pela Meta nas categorias *Utility* ou *Marketing* e são tarifadas por mensagem conforme a tabela regional da Meta para o Brasil.
+* **Módulo de Voz (TTS)**: Opcional e completamente desativado no plano técnico do piloto.
 
 ---
 
@@ -318,25 +438,30 @@ $$ LANGUAGE plpgsql;
 | Banimento de Número pelo WhatsApp | Baixa | Crítico | **Alto** | Respeito estrito à janela de 24h, botões de opt-out, proibição de spam frio e limites de taxa. |
 | Violação de Dados Cross-Tenant (IDOR) | Baixa | Crítico | **Alto** | Cláusulas compostas no banco (`tenant_id`), RBAC estrito e testes automatizados de injeção cruzada. |
 | Multas Regulatórias LGPD | Muito Baixa | Alto | **Médio** | Consentimento rastreável, expurgo em 90 dias de dados de conversação e trilha de auditoria. |
-| Divergência Financeira PIX (Race Condition)| Baixa | Alto | **Médio** | Locks pessimistas (`FOR UPDATE`), idempotência atômica e fila assíncrona de estorno no PSP. |
+| Divergência Financeira PIX (Race Condition)| Baixa | Alto | **Médio** | Locks pessimistas (`FOR UPDATE`), idempotência atômica e outbox durável (`reconciliation_outbox`). |
 | Indisponibilidade de Provedor Cloud | Média | Médio | **Médio** | Fallback graceful, retentativas exponenciais com jitter e persistência durável em PostgreSQL gerenciado. |
 
-### 6.2. Estimativa de Custos de Infraestrutura (Projeção Piloto Controlado)
-| Componente | Provedor / Serviço | Dimensionamento Piloto | Custo Mensal Estimado |
-| :--- | :--- | :--- | :--- |
-| **Runtime Motor Zap Pro** | VPS / Fly.io / Railway | 1 vCPU, 1GB RAM | US$ 5 – US$ 10 |
-| **Backend Financeiro (HelpUS Pay)**| Cloudflare Workers / Serverless | Até 10.000 requisições/mês | Gratuito / US$ 5 |
-| **Banco de Dados Relacional** | Neon / Supabase PostgreSQL | Free Tier / Shared Compute | Gratuito / US$ 25 |
-| **Redis Cache & Idempotência** | Upstash Redis | Até 10.000 comandos/dia | Gratuito |
-| **Meta Cloud API** | Meta for Developers | Primeiras 1.000 conversas gratuitas | Gratuito |
-| **Total Estimado** | — | **Operação de Piloto (1 Tenant)** | **US$ 5 – US$ 40 / mês** |
+### 6.2. Estimativa de Custos de Infraestrutura (Hipótese Preliminar Não Validada)
+> [!NOTE]
+> A tabela abaixo reflete uma **hipótese preliminar de dimensionamento e não um orçamento aprovado**. Custos de infraestrutura reais dependem de cotações com provedores e volumetria do piloto.
+
+| Componente | Provedor / Serviço | Dimensionamento Piloto | Premissas e Fontes | Custo Mensal Estimado |
+| :--- | :--- | :--- | :--- | :--- |
+| **Runtime Motor Zap Pro** | VPS / Fly.io / Railway | 1 vCPU, 1GB RAM | Instância containerizada básica | US$ 5 – US$ 10 |
+| **Backend Financeiro (HelpUS Pay)**| Cloudflare Workers / Serverless | Até 10.000 requisições/mês | Serverless execution | Gratuito / US$ 5 |
+| **Banco de Dados Relacional** | Neon / Supabase PostgreSQL | Shared Compute | Nível inicial gerenciado | Gratuito / US$ 25 |
+| **Redis Cache & Idempotência** | Upstash Redis | Até 10.000 comandos/dia | Free tier de mensageria rápida | Gratuito |
+| **Meta Cloud API** | Meta Business Platform | 1.000 msgs serviço gratuitas | Tabela oficial Meta (31/10/2026) | Gratuito (piloto inicial) |
+| **Total Estimado** | — | **Operação de Piloto (1 Tenant)** | **Hipótese de Trabalho** | **US$ 5 – US$ 40 / mês** |
 
 ### 6.3. Matriz de Cenários Negativos Cruzados
 1. **Divergência Multi-Tenant**: Tenant B tenta liquidar cobrança de Tenant A $\rightarrow$ `400 Bad Request / CROSS_TENANT_VIOLATION`.
-2. **Corrida Concorrente (Race Condition)**: Cliente cancela pedido no mesmo milissegundo em que o webhook bancário bate $\rightarrow$ Pedido permanece `CANCELLED`, cobrança não vira `PAID`, rotina enfileira devolução bancária.
-3. **Replay de Webhook**: Reenvio de payload idêntico 100 vezes $\rightarrow$ Processado 1 vez, 99 respostas idempotentes sem alteração de saldo.
-4. **Assinatura Malformada**: Assinatura com comprimento incorreto, caracteres especiais ou não-hexadecimais $\rightarrow$ Rejeição silenciosa `401 Unauthorized` sem crash.
-5. **Simulação de Crash/Restart**: Derrubar o servidor enquanto a sessão está em `AGUARDANDO_PIX` $\rightarrow$ Ao reiniciar, restaurar estado exato a partir do banco durável.
+2. **Corrida Concorrente (Race Condition)**: Cliente cancela pedido no mesmo milissegundo em que o webhook bancário bate $\rightarrow$ Pedido permanece `CANCELLED`, cobrança não vira `PAID`, rotina enfileira devolução comercial em `reconciliation_outbox`.
+3. **Replay de Webhook Idêntico**: Reenvio de payload idêntico 100 vezes $\rightarrow$ Processado 1 vez, 99 respostas idempotentes (`IDEMPOTENT_REPLAY_IGNORED`) sem alteração de saldo.
+4. **Colisão de EventId com Payload Divergente**: Reenvio de mesmo `eventId` com payload alterado $\rightarrow$ Rejeição `409 / EVENT_ID_PAYLOAD_MISMATCH` sem mutação de dados.
+5. **Divergência de Valor (Amount Mismatch)**: Callback informa valor diferente da cobrança/pedido $\rightarrow$ Registro marcado como `REQUIRES_BANKING_REFUND`, enfileirado na outbox e recusado no pedido.
+6. **Assinatura Malformada**: Assinatura com comprimento incorreto, caracteres especiais ou não-hexadecimais $\rightarrow$ Rejeição silenciosa `401 Unauthorized` sem crash.
+7. **Simulação de Crash/Restart**: Derrubar o servidor enquanto a sessão está em `AGUARDANDO_PIX` $\rightarrow$ Ao reiniciar, restaurar estado exato a partir do banco durável.
 
 ---
 
@@ -374,10 +499,10 @@ flowchart LR
     GateReview2 -->|Autorização SuperAdmin| G3C[Fase G3-C: Piloto Controlado]
 ```
 
-1. **Fase G3-A: Especificação e Design de Dados (Concluída Documentalmente)**:
-   - Conclusão das especificações OpenAPI v3.1 sanitizadas (`docs/specs/helpus-pay-zap-pro-openapi.v1.yaml`).
-   - Modelagem de esquemas SQL e procedimentos de liquidação transacional atômica.
-   - Matriz STRIDE, conformidade LGPD e higiene de branches.
+1. **Fase G3-A: Especificação e Design de Dados (Em Revisão Documental de QA)**:
+   - Especificações OpenAPI v3.1 sanitizadas e validadas sem erros (`docs/specs/helpus-pay-zap-pro-openapi.v1.yaml`).
+   - Modelagem de esquemas SQL e procedimentos de liquidação com outbox durável (`reconciliation_outbox`).
+   - Matriz STRIDE, conformidade LGPD estruturada e higiene de branches.
 2. **Fase G3-B: Integração Local em Mocks sob Nova Autorização (Estimativa: 3 a 5 dias úteis)**:
    - Subir instâncias locais de `helpus-whatsapp-ia` e `helpus-pay` comunicando-se via HTTP em loopback.
    - Validar contratos de cobrança e cancelamento entre serviços separados.
