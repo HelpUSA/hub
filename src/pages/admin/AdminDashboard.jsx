@@ -18,6 +18,7 @@ import {
   FaBook,
   FaKey,
   FaLaptopCode,
+  FaNetworkWired,
 } from 'react-icons/fa';
 import { useGoogleAuth } from '../../shared/googleAuth/useGoogleAuth';
 import { GoogleLoginButton } from '../../shared/googleAuth/GoogleLoginButton';
@@ -138,6 +139,21 @@ export default function AdminDashboard() {
       category: 'Inteligência Artificial, Busca & Apresentações',
       badge: 'AI Ecosystem',
       items: [
+        {
+          id: 'ai-bridge-local',
+          name: 'AI Bridge Local (Multiagente)',
+          badge: 'Gateway Local HTTP (8766)',
+          badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+          description: 'Ponte local de comunicação entre ChatGPT e Antigravity (porta 8766). Gerenciamento de rotas por canal, visualizador de filas e monitor de mensagens ao vivo.',
+          url: 'http://127.0.0.1:8766/',
+          secondaryUrl: 'http://127.0.0.1:8766/control/admin',
+          icon: <FaNetworkWired className="text-emerald-400 text-2xl" />,
+          iconBg: 'bg-emerald-600/20 border-emerald-500/30',
+          btnText: 'Abrir Monitor (8766)',
+          btnColor: 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-600/30 text-white',
+          secondaryBtnText: 'Rotas & Vínculos',
+          highlight: true
+        },
         {
           id: 'agent',
           name: 'AI Agent Studio',
@@ -376,7 +392,26 @@ export default function AdminDashboard() {
                   </div>
 
                   <div className="pt-6 mt-6 border-t border-slate-800/80">
-                    {item.internalRoute ? (
+                    {item.secondaryUrl ? (
+                      <div className="flex gap-2">
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`flex-1 py-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 border transition shadow-md ${item.btnColor}`}
+                        >
+                          <FaExternalLinkAlt className="text-[10px]" /> {item.btnText}
+                        </a>
+                        <a
+                          href={item.secondaryUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="py-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200 transition shadow-md"
+                        >
+                          <FaExternalLinkAlt className="text-[10px]" /> {item.secondaryBtnText || 'Rotas'}
+                        </a>
+                      </div>
+                    ) : item.internalRoute ? (
                       <Link
                         to={item.internalRoute}
                         className={`w-full py-2.5 px-4 rounded-xl font-bold text-xs flex items-center justify-center gap-2 border transition ${item.btnColor}`}
