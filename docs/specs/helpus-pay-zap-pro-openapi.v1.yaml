@@ -4,7 +4,7 @@ info:
   version: 1.0.0-g3.draft
   license:
     name: Proprietary - HelpUS Ecosystem (All Rights Reserved)
-    identifier: Proprietary
+    identifier: LicenseRef-Proprietary-HelpUS
   description: >
     Contrato cross-service formal para integracao entre o motor HelpUS Zap Pro
     (helpus-whatsapp-ia) e o servico financeiro HelpUS Pay (helpus-pay).
@@ -246,8 +246,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Conflito de integridade de evento (mesmo eventId recebido com payload hash divergente).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
         '422':
-          description: Rejeicao por violacao de regra semantica de negocio (ex. divergencia de valor liquidado vs pedido, ou conflito de idempotencia com hash divergente).
+          description: Rejeicao por violacao de regra semantica de negocio (ex. divergencia de valor liquidado vs pedido).
           content:
             application/json:
               schema:
