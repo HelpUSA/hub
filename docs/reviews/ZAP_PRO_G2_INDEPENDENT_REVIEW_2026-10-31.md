@@ -93,3 +93,39 @@
 - A Issue HUB #8 segue **aberta**; PRs permanecem **Draft**.
 - **Não autorizado**: merge, deploy de produção, onboarding de clientes, integração real PIX/Meta, piloto controlado ou promoção a G3.
 - **Permitido**: remediação em branches isoladas e CI/testes de sandbox com fixtures sintéticas. Só reavaliar o G2 após novos commits e ambos os checks verdes, com consistência de status e E2E de HTTP local comprovados.
+
+
+---
+
+## Parecer final — Ordem 008 / Gate G2, 2026-10-31
+
+**Decisão final: `G2_APPROVED_SANDBOX_ONLY`.** As decisões anteriores `G2_REVIEW_BLOCKED` e `G2_CHANGES_REQUIRED` ficam **superadas exclusivamente para o escopo de sandbox local sintético**. A validação confirma que a implementação pode ser aceita como demonstração técnica **offline, em 127.0.0.1**, sem PSP, contas, WhatsApp, clientes ou cobranças reais.
+
+### Evidência independente verificada
+
+| PR | HEAD verificado | Runs remotos | Testes verificados nos logs |
+|---|---|---|---|
+| [HelpUS Pay #2](https://github.com/HelpUSA/helpus-pay/pull/2) | `5dde90293660c438b9e4f7524fd2c1064b1faa3d` | [PR 41215370886](https://github.com/HelpUSA/helpus-pay/actions/runs/41215370886) e push 41215366033 — SUCCESS | 4/4, além de `npm ci` e `npx tsc --noEmit` executados com sucesso |
+| [WhatsApp IA #1 (privado)](https://github.com/HelpUSA/helpus-whatsapp-ia/pull/1) | `9f9c8bae3570807e831ca97ec0c17d7c6121f240` | [PR 41215804189](https://github.com/HelpUSA/helpus-whatsapp-ia/actions/runs/41215804189) e push 41215800530 — SUCCESS | 15/15 testes de invariantes + 4/4 HTTP E2E com servidor em loopback |
+
+Revisão estática confirmou guard incondicional para `NODE_ENV=production`, validação segura de formato HMAC, verificação de vínculos básicos de tenant/order/cobrança, bloqueio de liquidação de pedido/cobrança CANCELLED e prova de fluxo WhatsApp fixture → pedido → webhook PIX mock pelo servidor HTTP **do repositório privado WhatsApp IA**. Nenhum teste foi executado localmente pelo ChatGPT; logs e código foram inspecionados via GitHub conectado.
+
+### Limites explícitos da decisão e requisitos de G3
+
+A aprovação de G2 **não** homologa segurança de serviço público, autenticidade de PIX comercial, integração entre dois serviços independentes, operacionalização multi-tenant em produção ou piloto. Os seguintes pontos permanecem abertos em [HUB #9 / Gate G3](https://github.com/HelpUSA/hub/issues/9):
+
+- O E2E HTTP roda a classe de pagamento incorporada a `helpus-whatsapp-ia`. A biblioteca `helpus-pay#2` não participa da chamada HTTP do teste. O PR público do Pay **não fornece** os endpoints HTTP de checkout/webhook prometidos no roadmap.
+- Segredos HMAC usados nos testes são constantes conhecidas, válidas como fixtures de sandbox local e **não** como credenciais de segurança de serviço hospedado. Persistência está em `Map`/`Set` e não oferece idempotência durável ou recuperação após reinício.
+- O servidor de testes é restrito a loopback, mas não tem limites de corpo bruto e controles operacionais completos; não deve ser exposto. Não houve autorização de integração do servidor `server.js` de WhatsApp existente.
+- O repositório privado WhatsApp tem branch padrão `feat/zap-pro-sandbox-engine-20261031`, embora o PR tenha base `main`; requer correção/proteção antes de trabalho de release.
+- Faltam testes distribuídos envolvendo `helpus-auth` e `helpus-pay`, cenários concorrentes, resilientes a restart, limites operacionais, consentimento e políticas aplicáveis.
+
+**Consequências de governança:** manter PRs Draft; **não autorizar merge, deploy (inclusive preview público), números WhatsApp reais, PIX real, onboarding, clientes, piloto controlado ou Gate G3** sem ordem e aprovação separadas. O resultado é aceite **funcional limitado ao ambiente de demonstração**, e não aprovação de prontidão comercial.
+
+### Registros formais
+
+- [PR Pay #2](https://github.com/HelpUSA/helpus-pay/pull/2): review `COMMENT` ID `5723611184`.
+- [PR WhatsApp IA #1](https://github.com/HelpUSA/helpus-whatsapp-ia/pull/1): review `COMMENT` ID `5723611336`.
+- `COMMENT`, e não `APPROVE`, pois a conta conectada é a mesma do autor dos PRs. O parecer é aprovação **documental de gate**, sem habilitação de merge.
+- [HUB #8](https://github.com/HelpUSA/hub/issues/8): gate G2 sandbox concluído com escopo restrito.
+- [HUB #9](https://github.com/HelpUSA/hub/issues/9): backlog de requisitos e de autorização para eventual G3.
