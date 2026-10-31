@@ -1,0 +1,131 @@
+# Parecer de revisão independente — HelpUS Zap Pro / Gate G2
+
+**Data:** 2026-10-31  
+**Ordem:** HU-HUB-ZAP-PRO-SANDBOX-20261031-005  
+**Evidência apresentada:** relatório Antigravity com 10/10 testes locais reportados  
+**Decisão:** **G2_REVIEW_BLOCKED — NÃO HOMOLOGADO** (ausência de código revisável e evidências anexadas no GitHub).  
+**Escopo:** sandbox sintético apenas; sem autorização de produção, clientes ou pagamentos reais.
+
+## Elementos reportados pelo executor
+- `sandbox/crypto_utils.js`: verificação HMAC Meta e PIX, comparação constante.
+- `sandbox/tenant_manager.js`: tenants sintéticos, preço autoritativo.
+- `sandbox/payment_mock_service.js`: cobrança falsa com TTL de 15 minutos, QR sintético, deduplicação por `eventId`.
+- `sandbox/state_machine.js`: dez estados e bloqueio de confirmação por mensagem de usuário/LLM.
+- `sandbox/whatsapp_adapter.js`: payload WhatsApp e resolução de tenant via `phone_number_id`.
+- `sandbox/openapi.json`: rotas de webhook e mock payment.
+- `sandbox/test_zap_pro_sandbox.js`: 10 cenários PASS informados, sem execução independente.
+
+## Verificação efetiva do ChatGPT no GitHub
+1. A organização/conta HelpUSA conectada retorna **65 repositórios**, sem `helpus-whatsapp-ia`.
+2. `HelpUSA/helpus-pay` só exibe branch `master`; `feat/pix-mock-backend-20261031` não está no remoto consultado.
+3. `e5d2446f25414cf134bb4eeecb4382bf7913340f` não foi encontrado via API de commits do `HelpUSA/helpus-pay` (422 No commit found).
+4. `c5af315c106487ff69dfd4a2b9e289bf4070a259` não foi encontrado em `HelpUSA/helpus-ai`; o repositório local `helpus-whatsapp-ia` não tem remote homônimo acessível ao ChatGPT.
+5. Não há PR de implementação do mock PIX no repositório helpus-pay no momento da revisão.
+6. Portanto, o ChatGPT **não leu os arquivos da branch local, não executou os testes e não pode validar o Gate G2**.
+
+## Pontos que precisam de prova adicional antes de G2
+- **Webhook Meta:** HMAC sobre bytes brutos da requisição; `x-hub-signature-256` malformado/tamanho inválido; rejeição de replay, payload/tenant incompatível, entradas de grande tamanho.
+- **PIX mock:** assinatura do simulador diferente do canal Meta; cobranças expiradas não podem ser liquidadas; evento assinado sem vínculo a `tenant_id`/`charge_id` não pode pagar pedido incorreto; duplicate `eventId` com payload contraditório; callback fora de ordem e forjado.
+- **Tenant isolation:** dois tenants sintéticos, tentativas cruzadas para mensagens, pedidos, preços, pagamento e credenciais; identidades derivadas em servidor.
+- **Concorrência/persistência:** dois pagamentos ou mensagens simultâneas, reinício durante cobrança, TTL, crash/retry; testes que provem exatamente uma transição de pagamento.
+- **LLM:** prompt injection não deve chamar ferramentas com escopos ampliados, alterar preço ou forçar `PEDIDO_PAGO`.
+- **Fluxos alternativos:** cancelamento/expiração/timeout, falha do provedor, handoff humano, fallback texto se TTS indisponível.
+- **CI/reprodutibilidade:** comando exato de testes, versão Node, fixtures sintéticos, dependências lockadas, logs sanitizados e status de CI por SHA.
+
+## Próximas ações solicitadas ao Antigravity
+1. Validar e sanitizar o código antes do Git push (secrets scan, nada de tokens, números de telefone ou dados reais).
+2. Publicar `helpus-pay` branch e PR **Draft**, com SHA remoto real e instruções de testes.
+3. Disponibilizar `helpus-whatsapp-ia` em repositório **privado apropriado** ou outro destino privado de review aprovado, sem introduzir um repositório público de WhatsApp não revisado. Preferir PR Draft em branch própria; informar link e SHA.
+4. Anexar a saída de `npm test`/equivalente, evidência sanitizada e execução reproduzível da suíte, cobrindo testes negativos indicados.
+5. Atualizar [Issue HUB #8](https://github.com/HelpUSA/hub/issues/8), [AI #5](https://github.com/HelpUSA/helpus-ai/issues/5), [AI #6](https://github.com/HelpUSA/helpus-ai/issues/6), [Pay #1](https://github.com/HelpUSA/helpus-pay/issues/1).
+6. Após disponibilidade do código, ChatGPT revisa os diffs, implementações, cobertura e CI, registrando decisão G2_ACCEPTED ou G2_REJECTED com fundamentos.
+
+**Critério mínimo:** o relatório de dez testes positivos relatados é evidência preliminar, não prova independente. Manter `G2_REVIEW_BLOCKED` até a revisão efetiva de código e testes.
+
+
+---
+
+## Revisão atualizada após publicação dos PRs — 2026-10-31
+**A decisão anterior `G2_REVIEW_BLOCKED` foi substituída por `G2_CHANGES_REQUIRED`.** Agora o código está acessível e os PRs foram inspecionados; o gate continua **não aprovado** por falhas reais de implementação e testes pendentes.
+
+### Evidências remotas confirmadas
+- [HelpUS Pay PR Draft #2](https://github.com/HelpUSA/helpus-pay/pull/2), branch `feat/pix-mock-backend-20261031`, HEAD remoto verificado **`e5d2446ca2bd6f24b674af667a999ab8ec603630`**. O SHA antes informado pelo executor não corresponde ao remoto.
+- [WhatsApp IA PR Draft #1](https://github.com/HelpUSA/helpus-whatsapp-ia/pull/1), branch `feat/zap-pro-sandbox-engine-20261031`, HEAD **`c5af315d7d8c53d560be326565e47e34ddd701ac`**, 7 arquivos alterados. **Repositório privado**; detalhes técnicos específicos ficam restritos aos comentários do PR privado.
+- A suíte de dez testes está presente no código do repositório privado, mas não foi executada independentemente pelo ChatGPT. Não foram localizados workflow runs vinculados aos SHAs avaliados. O commit do PIX apresenta status Vercel de sucesso, mas isso não é evidência de teste do fluxo transacional.
+
+### Gaps remanescentes (resumo público sem detalhes exploráveis)
+1. Integridade transacional de callback/pedido, validação de estados terminais e autorização/isolamento por tenant precisam de reforço e testes negativos.
+2. A camada de pagamentos oferece funções de mock, mas não demonstra implementação e integração dos endpoints HTTP prometidos; manter endpoints fictícios desligados fora de sandbox.
+3. Gestão de segredos, tratamento de assinaturas inválidas e separação explícita entre dados sintéticos e operação real precisam de revisão.
+4. Estado de conversa/cobrança/deduplicação permanece em memória e não comprova comportamento após reinício/concorrência.
+5. Não existe CI automatizado de teste integrado vinculado aos commits analisados; é preciso evidência reproduzível dos cenários novos.
+
+### Reviews formais registradas no GitHub
+- Pay PR #2: review de comentários com decisão de mudanças obrigatórias, ID `5722868620`.
+- WhatsApp IA PR #1: review de comentários com decisão de mudanças obrigatórias, ID `5722868503`.
+- Ambas seguem **Draft, sem merge, sem deploy**. Como a revisão foi publicada pela mesma conta proprietária que criou os PRs, o evento da review foi `COMMENT`, e não uma aprovação/rejeição formal de um revisor independente no sistema de proteção do GitHub. O bloqueio de governança fica documentado aqui e na issue HUB #8.
+
+**Próxima etapa:** corrigir os bloqueadores P0, acrescentar CI e testes negativos E2E, atualizar PRs Draft e solicitar nova revisão por SHA. Não declarar Gate G2 homologado antes da verificação.
+
+
+---
+
+## Revisão da Ordem 007 — rodada 2, 2026-10-31
+
+**Decisão: G2_CHANGES_REQUIRED — homologação NEGADA neste SHA.** Foram verificados os novos PR heads e os workflows reais via GitHub Actions.
+
+| Repositório | HEAD verificado | CI do PR | Evidência |
+|---|---|---|---|
+| helpus-pay PR #2 | `42be67f37797a481846e19da5a477bf044f4622d` | **FAILURE** | [Run #41205426912](https://github.com/HelpUSA/helpus-pay/actions/runs/41205426912) |
+| helpus-whatsapp-ia PR #1 (privado) | `f961a4018bb97a1e9fb850e78e12f476f8fde9ae` | **SUCCESS (13/13)** | [Run #41214798471](https://github.com/HelpUSA/helpus-whatsapp-ia/actions/runs/41214798471) |
+
+### Constatações de revisão
+
+- O GitHub Actions do HelpUS Pay executou Node.js **20.20.2**, mas o teste importa diretamente arquivo **.ts**. O log registra `ERR_UNKNOWN_FILE_EXTENSION`; dois runs (push/PR) falharam. O typecheck `npx tsc --noEmit || true` mascara eventual falha de tipagem. Os 3/3 testes locais reportados pelo executor não representam sucesso do CI remoto.
+- O GitHub Actions do WhatsApp IA comprovou 13 testes passando. Melhorias em assinaturas e checagens iniciais de vínculo foram confirmadas. Mas o fluxo de cancelamento e webhook ainda não garante consistência atômica de **pedido vs. cobrança**; o teste de cancelamento cobre a exceção, não o estado final de ambos os recursos.
+- Os PRs não apresentam implementação testada de servidor HTTP sandbox isolado com endpoints reais e HMAC de corpo bruto. Permanecem funções/classes e suíte de módulo, não E2E HTTP entre os dois repositórios.
+- Segredos estáticos de demonstração e guards de sandbox permissivos exigem reforço antes de qualquer exposição. Há lacunas em validação de valores/estados, persistência/restart e isolamento por contexto autenticado.
+- *Níveis de prova:* testes existentes verificados via CI somente no repositório privado; a revisão estática identificou riscos remanescentes. Não houve teste de integração independente executado diretamente pelo ChatGPT.
+
+### Resultado no GitHub
+- Review `COMMENT` registrada no [Pay PR #2](https://github.com/HelpUSA/helpus-pay/pull/2), ID `5723547465`.
+- Review `COMMENT` registrada no [WhatsApp IA PR #1](https://github.com/HelpUSA/helpus-whatsapp-ia/pull/1), ID `5723547594`. Por ser privada, detalhes de código permanecem na review do PR.
+- A Issue HUB #8 segue **aberta**; PRs permanecem **Draft**.
+- **Não autorizado**: merge, deploy de produção, onboarding de clientes, integração real PIX/Meta, piloto controlado ou promoção a G3.
+- **Permitido**: remediação em branches isoladas e CI/testes de sandbox com fixtures sintéticas. Só reavaliar o G2 após novos commits e ambos os checks verdes, com consistência de status e E2E de HTTP local comprovados.
+
+
+---
+
+## Parecer final — Ordem 008 / Gate G2, 2026-10-31
+
+**Decisão final: `G2_APPROVED_SANDBOX_ONLY`.** As decisões anteriores `G2_REVIEW_BLOCKED` e `G2_CHANGES_REQUIRED` ficam **superadas exclusivamente para o escopo de sandbox local sintético**. A validação confirma que a implementação pode ser aceita como demonstração técnica **offline, em 127.0.0.1**, sem PSP, contas, WhatsApp, clientes ou cobranças reais.
+
+### Evidência independente verificada
+
+| PR | HEAD verificado | Runs remotos | Testes verificados nos logs |
+|---|---|---|---|
+| [HelpUS Pay #2](https://github.com/HelpUSA/helpus-pay/pull/2) | `5dde90293660c438b9e4f7524fd2c1064b1faa3d` | [PR 41215370886](https://github.com/HelpUSA/helpus-pay/actions/runs/41215370886) e push 41215366033 — SUCCESS | 4/4, além de `npm ci` e `npx tsc --noEmit` executados com sucesso |
+| [WhatsApp IA #1 (privado)](https://github.com/HelpUSA/helpus-whatsapp-ia/pull/1) | `9f9c8bae3570807e831ca97ec0c17d7c6121f240` | [PR 41215804189](https://github.com/HelpUSA/helpus-whatsapp-ia/actions/runs/41215804189) e push 41215800530 — SUCCESS | 15/15 testes de invariantes + 4/4 HTTP E2E com servidor em loopback |
+
+Revisão estática confirmou guard incondicional para `NODE_ENV=production`, validação segura de formato HMAC, verificação de vínculos básicos de tenant/order/cobrança, bloqueio de liquidação de pedido/cobrança CANCELLED e prova de fluxo WhatsApp fixture → pedido → webhook PIX mock pelo servidor HTTP **do repositório privado WhatsApp IA**. Nenhum teste foi executado localmente pelo ChatGPT; logs e código foram inspecionados via GitHub conectado.
+
+### Limites explícitos da decisão e requisitos de G3
+
+A aprovação de G2 **não** homologa segurança de serviço público, autenticidade de PIX comercial, integração entre dois serviços independentes, operacionalização multi-tenant em produção ou piloto. Os seguintes pontos permanecem abertos em [HUB #9 / Gate G3](https://github.com/HelpUSA/hub/issues/9):
+
+- O E2E HTTP roda a classe de pagamento incorporada a `helpus-whatsapp-ia`. A biblioteca `helpus-pay#2` não participa da chamada HTTP do teste. O PR público do Pay **não fornece** os endpoints HTTP de checkout/webhook prometidos no roadmap.
+- Segredos HMAC usados nos testes são constantes conhecidas, válidas como fixtures de sandbox local e **não** como credenciais de segurança de serviço hospedado. Persistência está em `Map`/`Set` e não oferece idempotência durável ou recuperação após reinício.
+- O servidor de testes é restrito a loopback, mas não tem limites de corpo bruto e controles operacionais completos; não deve ser exposto. Não houve autorização de integração do servidor `server.js` de WhatsApp existente.
+- O repositório privado WhatsApp tem branch padrão `feat/zap-pro-sandbox-engine-20261031`, embora o PR tenha base `main`; requer correção/proteção antes de trabalho de release.
+- Faltam testes distribuídos envolvendo `helpus-auth` e `helpus-pay`, cenários concorrentes, resilientes a restart, limites operacionais, consentimento e políticas aplicáveis.
+
+**Consequências de governança:** manter PRs Draft; **não autorizar merge, deploy (inclusive preview público), números WhatsApp reais, PIX real, onboarding, clientes, piloto controlado ou Gate G3** sem ordem e aprovação separadas. O resultado é aceite **funcional limitado ao ambiente de demonstração**, e não aprovação de prontidão comercial.
+
+### Registros formais
+
+- [PR Pay #2](https://github.com/HelpUSA/helpus-pay/pull/2): review `COMMENT` ID `5723611184`.
+- [PR WhatsApp IA #1](https://github.com/HelpUSA/helpus-whatsapp-ia/pull/1): review `COMMENT` ID `5723611336`.
+- `COMMENT`, e não `APPROVE`, pois a conta conectada é a mesma do autor dos PRs. O parecer é aprovação **documental de gate**, sem habilitação de merge.
+- [HUB #8](https://github.com/HelpUSA/hub/issues/8): gate G2 sandbox concluído com escopo restrito.
+- [HUB #9](https://github.com/HelpUSA/hub/issues/9): backlog de requisitos e de autorização para eventual G3.
