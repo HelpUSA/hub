@@ -41,3 +41,28 @@
 6. Após disponibilidade do código, ChatGPT revisa os diffs, implementações, cobertura e CI, registrando decisão G2_ACCEPTED ou G2_REJECTED com fundamentos.
 
 **Critério mínimo:** o relatório de dez testes positivos relatados é evidência preliminar, não prova independente. Manter `G2_REVIEW_BLOCKED` até a revisão efetiva de código e testes.
+
+
+---
+
+## Revisão atualizada após publicação dos PRs — 2026-10-31
+**A decisão anterior `G2_REVIEW_BLOCKED` foi substituída por `G2_CHANGES_REQUIRED`.** Agora o código está acessível e os PRs foram inspecionados; o gate continua **não aprovado** por falhas reais de implementação e testes pendentes.
+
+### Evidências remotas confirmadas
+- [HelpUS Pay PR Draft #2](https://github.com/HelpUSA/helpus-pay/pull/2), branch `feat/pix-mock-backend-20261031`, HEAD remoto verificado **`e5d2446ca2bd6f24b674af667a999ab8ec603630`**. O SHA antes informado pelo executor não corresponde ao remoto.
+- [WhatsApp IA PR Draft #1](https://github.com/HelpUSA/helpus-whatsapp-ia/pull/1), branch `feat/zap-pro-sandbox-engine-20261031`, HEAD **`c5af315d7d8c53d560be326565e47e34ddd701ac`**, 7 arquivos alterados. **Repositório privado**; detalhes técnicos específicos ficam restritos aos comentários do PR privado.
+- A suíte de dez testes está presente no código do repositório privado, mas não foi executada independentemente pelo ChatGPT. Não foram localizados workflow runs vinculados aos SHAs avaliados. O commit do PIX apresenta status Vercel de sucesso, mas isso não é evidência de teste do fluxo transacional.
+
+### Gaps remanescentes (resumo público sem detalhes exploráveis)
+1. Integridade transacional de callback/pedido, validação de estados terminais e autorização/isolamento por tenant precisam de reforço e testes negativos.
+2. A camada de pagamentos oferece funções de mock, mas não demonstra implementação e integração dos endpoints HTTP prometidos; manter endpoints fictícios desligados fora de sandbox.
+3. Gestão de segredos, tratamento de assinaturas inválidas e separação explícita entre dados sintéticos e operação real precisam de revisão.
+4. Estado de conversa/cobrança/deduplicação permanece em memória e não comprova comportamento após reinício/concorrência.
+5. Não existe CI automatizado de teste integrado vinculado aos commits analisados; é preciso evidência reproduzível dos cenários novos.
+
+### Reviews formais registradas no GitHub
+- Pay PR #2: review de comentários com decisão de mudanças obrigatórias, ID `5722868620`.
+- WhatsApp IA PR #1: review de comentários com decisão de mudanças obrigatórias, ID `5722868503`.
+- Ambas seguem **Draft, sem merge, sem deploy**. Como a revisão foi publicada pela mesma conta proprietária que criou os PRs, o evento da review foi `COMMENT`, e não uma aprovação/rejeição formal de um revisor independente no sistema de proteção do GitHub. O bloqueio de governança fica documentado aqui e na issue HUB #8.
+
+**Próxima etapa:** corrigir os bloqueadores P0, acrescentar CI e testes negativos E2E, atualizar PRs Draft e solicitar nova revisão por SHA. Não declarar Gate G2 homologado antes da verificação.
