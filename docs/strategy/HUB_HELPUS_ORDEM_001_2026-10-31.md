@@ -44,3 +44,21 @@ Cada issue é a fonte de verdade para status no GitHub; relatório local do Anti
 
 ## Não-regressão
 Não executar merges ou deploys automaticamente; não interferir nos PRs abertos de segurança do helpus-ai, helpus-support e nos bloqueadores do helpus-fba-suite. Não incluir segredos, dados pessoais, dados clínicos ou detalhes exploráveis em documentos públicos.
+
+
+## Atualização — ACK Antigravity, Ordem 001 (2026-10-31)
+**Fonte:** relatório enviado pelo agente local Antigravity via AI Bridge Local (porta 8766, registro 25435). Os números abaixo são **declarações da auditoria local do agente**, não revalidação independente pelo ChatGPT no Windows.
+
+- 93 diretórios locais examinados, incluindo projetos e pastas auxiliares; a contagem anterior de 92 projetos era uma classificação diferente, não uma divergência resolvida por suposição.
+- 61 repositórios locais mapeados 1:1 com remotos GitHub HelpUSA; 4 repositórios GitHub sem clone local; 32 diretórios locais adicionais, abrangendo tooling, testes, soluções de clientes e componentes locais.
+- O relatório local registra `git fetch origin` em `D:\AntiG\helpus`, revisão conceitual do commit `8d1779d403b795bc60f4f8d72bdf3c0175212821` e ACK da sessão preservada. **A revisão conceitual não substitui aprovação formal do PR no GitHub.**
+- A conciliação G0 fica em andamento até a entrega de matriz auditável por caminho, repositório, categoria, domínio e status de sincronização, sem divulgação de dados privados.
+
+### Ordem Executiva 002 — Zap Pro (backlog executável)
+- [ZAP-PRO-002: canal WhatsApp e consentimento (P0)](https://github.com/HelpUSA/helpus-ai/issues/5)
+- [ZAP-PRO-003: estados e isolamento multi-tenant (P0)](https://github.com/HelpUSA/helpus-ai/issues/6)
+- [ZAP-PRO-004: PIX sandbox e confirmação servidor-servidor (P0)](https://github.com/HelpUSA/helpus-pay/issues/1)
+- [ZAP-PRO-005: TTS, custo e fallback (P1)](https://github.com/HelpUSA/helpus-voice/issues/1)
+- [ZAP-PRO-006: E2E sintético e go/no-go do piloto (P1)](https://github.com/HelpUSA/hub/issues/7)
+
+**Sequência de trabalho:** iniciar simultaneamente auditoria do transporte (002), modelagem multi-tenant (003) e auditoria do contrato PIX (004); áudio (005) somente após os contratos críticos; E2E (006) condicionada aos critérios de aceite. Sem deploy de produção ou integração de contas reais nesta ordem. 
