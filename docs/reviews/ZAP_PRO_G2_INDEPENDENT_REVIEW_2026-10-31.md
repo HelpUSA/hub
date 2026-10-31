@@ -66,3 +66,30 @@
 - Ambas seguem **Draft, sem merge, sem deploy**. Como a revisão foi publicada pela mesma conta proprietária que criou os PRs, o evento da review foi `COMMENT`, e não uma aprovação/rejeição formal de um revisor independente no sistema de proteção do GitHub. O bloqueio de governança fica documentado aqui e na issue HUB #8.
 
 **Próxima etapa:** corrigir os bloqueadores P0, acrescentar CI e testes negativos E2E, atualizar PRs Draft e solicitar nova revisão por SHA. Não declarar Gate G2 homologado antes da verificação.
+
+
+---
+
+## Revisão da Ordem 007 — rodada 2, 2026-10-31
+
+**Decisão: G2_CHANGES_REQUIRED — homologação NEGADA neste SHA.** Foram verificados os novos PR heads e os workflows reais via GitHub Actions.
+
+| Repositório | HEAD verificado | CI do PR | Evidência |
+|---|---|---|---|
+| helpus-pay PR #2 | `42be67f37797a481846e19da5a477bf044f4622d` | **FAILURE** | [Run #41205426912](https://github.com/HelpUSA/helpus-pay/actions/runs/41205426912) |
+| helpus-whatsapp-ia PR #1 (privado) | `f961a4018bb97a1e9fb850e78e12f476f8fde9ae` | **SUCCESS (13/13)** | [Run #41214798471](https://github.com/HelpUSA/helpus-whatsapp-ia/actions/runs/41214798471) |
+
+### Constatações de revisão
+
+- O GitHub Actions do HelpUS Pay executou Node.js **20.20.2**, mas o teste importa diretamente arquivo **.ts**. O log registra `ERR_UNKNOWN_FILE_EXTENSION`; dois runs (push/PR) falharam. O typecheck `npx tsc --noEmit || true` mascara eventual falha de tipagem. Os 3/3 testes locais reportados pelo executor não representam sucesso do CI remoto.
+- O GitHub Actions do WhatsApp IA comprovou 13 testes passando. Melhorias em assinaturas e checagens iniciais de vínculo foram confirmadas. Mas o fluxo de cancelamento e webhook ainda não garante consistência atômica de **pedido vs. cobrança**; o teste de cancelamento cobre a exceção, não o estado final de ambos os recursos.
+- Os PRs não apresentam implementação testada de servidor HTTP sandbox isolado com endpoints reais e HMAC de corpo bruto. Permanecem funções/classes e suíte de módulo, não E2E HTTP entre os dois repositórios.
+- Segredos estáticos de demonstração e guards de sandbox permissivos exigem reforço antes de qualquer exposição. Há lacunas em validação de valores/estados, persistência/restart e isolamento por contexto autenticado.
+- *Níveis de prova:* testes existentes verificados via CI somente no repositório privado; a revisão estática identificou riscos remanescentes. Não houve teste de integração independente executado diretamente pelo ChatGPT.
+
+### Resultado no GitHub
+- Review `COMMENT` registrada no [Pay PR #2](https://github.com/HelpUSA/helpus-pay/pull/2), ID `5723547465`.
+- Review `COMMENT` registrada no [WhatsApp IA PR #1](https://github.com/HelpUSA/helpus-whatsapp-ia/pull/1), ID `5723547594`. Por ser privada, detalhes de código permanecem na review do PR.
+- A Issue HUB #8 segue **aberta**; PRs permanecem **Draft**.
+- **Não autorizado**: merge, deploy de produção, onboarding de clientes, integração real PIX/Meta, piloto controlado ou promoção a G3.
+- **Permitido**: remediação em branches isoladas e CI/testes de sandbox com fixtures sintéticas. Só reavaliar o G2 após novos commits e ambos os checks verdes, com consistência de status e E2E de HTTP local comprovados.
