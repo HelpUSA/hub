@@ -3,6 +3,14 @@
 **Referência:** [HUB #10](https://github.com/HelpUSA/hub/issues/10), ADR-020 e `contracts/mesh-controlplane.openapi.yaml`.  
 **Escopo atual:** arquitetura/contratos **Draft**; execução local Antigravity limitada a leitura/auditoria não destrutiva. Nenhum deploy, alteração no Windows, integração com produção ou G3-C do Zap Pro autorizado.
 
+## Resultado da Ordem 021 — inventário N0 concluído
+
+**Relatório completo:** `N0-order-021-windows-audit-findings.md`. O workspace Windows `D:\\AntiG\\nexosai` apontou para `HelpUSA/nexosai-frontend@main:b73bc135`, **não** para o repositório homônimo `HelpUSA/nexosai`. GitHub informa default `master` para `nexosai-frontend`: fixar explicitamente `main`/SHA para qualquer QA futuro e não modificar branch default.
+
+O inventário encontrou apenas a rota auth NextAuth, **sem migrations** ou APIs Mesh, middleware sem bloqueios, auth sem organização/role e segredo de fallback no código (não republicar o valor). Admin e Nodes exibem fixtures; métricas do `helpus-admin` são hardcoded. As portas locais 8765/8766 foram informadas como loopback/outbound-only pelo Antigravity; nenhuma alteração foi realizada. Preservar `vercel.json`/`.gitignore` modificados localmente e arquivos untracked.
+
+**Trabalho adicional requer autorização específica:** PRs Draft para remover fallback de secret em código, proteção de rotas e marcações DEMO; somente depois fixtures/contratos Mesh N1. O inventário N0 pode ser encerrado, mas a arquitetura permanece em Draft com P0 pendentes.
+
 ## 1. Entregas por executor
 
 | Passo | ChatGPT (GitHub) | Antigravity (Windows `D:\AntiG`) | Evidência de saída |
