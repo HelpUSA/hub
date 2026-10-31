@@ -28,6 +28,12 @@ flowchart LR
 - Antigravity relatou NexosAI no host `D:\AntiG\nexosai` e gateway `127.0.0.1:8765`, além do Admin em `D:\AntiG\helpus-admin`. Versão e diffs do host exigem relatório independente e sanitizado. Não modificar workspace local nesta etapa.
 - `HelpUSA/helpus-auth` Draft PR #1 é autoridade JWT **somente de laboratório**, não identidade corporativa operacional. `HelpUSA/helpus-pay` PR #4 e `helpus-whatsapp-ia` PR #3 são G3-B+ testes sandbox. Jamais tratá-los como backend produtivo de billing.
 
+## 2A. Proveniência corrigida após inventário Windows — Ordem 021
+
+**A referência canônica do workspace NexosAI auditado é `HelpUSA/nexosai-frontend@main:b73bc1353175ee85c3110f5eaaf73f9a2a09cd5a`, e não `HelpUSA/nexosai`.** Os dois repositórios são distintos, embora possam compartilhar código/schema. O GitHub informa que `nexosai-frontend` possui `master` como branch default, enquanto o Windows utiliza `main`; impedir que qualquer PR/build/deploy adote um ref implícito. Veja `N0-order-021-windows-audit-findings.md`.
+
+**Achados P0:** (1) rota NextAuth do frontend com segredo de fallback embutido (valor não reproduzido aqui), (2) middleware permissivo e sessão sem autorização por `organizationId`/membership, (3) health/admin estáticos não identificados como telemetria demonstrativa. Antes de qualquer N1/N2/N3 funcional, design e testes de segurança precisam cobrir esses bloqueios. Nenhuma correção de runtime, migração ou deploy foi autorizada no escopo documental atual.
+
 ## 3. Bounded contexts
 
 | Contexto | Proprietário dos dados | Publica | Consome | Limite |
