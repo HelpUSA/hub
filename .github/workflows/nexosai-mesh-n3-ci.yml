@@ -1,0 +1,16 @@
+name: NexosAI Mesh N3 Synthetic Lab
+on:
+  push:
+    branches: ['feat/n3-nexosai-*']
+  pull_request:
+    branches: ['docs/nexosai-cloud-mesh-architecture-20261031']
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test sandbox/nexosai-mesh/ingest.test.mjs
