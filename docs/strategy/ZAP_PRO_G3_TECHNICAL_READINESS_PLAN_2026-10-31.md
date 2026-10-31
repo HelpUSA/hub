@@ -314,6 +314,17 @@ BEGIN
             );
         END IF;
 
+        -- Reconciliation is a durable exception, NEVER a successful bank settlement.
+        -- Preserve the prior negative outcome across retries (proven by PostgreSQL QA).
+        IF v_existing_status = 'REQUIRES_BANKING_REFUND' THEN
+            RETURN jsonb_build_object(
+                'success', false,
+                'error', 'REQUIRES_BANKING_REFUND',
+                'action', 'PENDING_RECONCILIATION_REPLAYED',
+                'status', v_existing_status
+            );
+        END IF;
+
         RETURN jsonb_build_object('success', true, 'action', 'IDEMPOTENT_REPLAY_IGNORED', 'status', v_existing_status);
     END IF;
 
