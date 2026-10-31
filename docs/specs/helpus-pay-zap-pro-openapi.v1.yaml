@@ -1,0 +1,374 @@
+openapi: 3.1.0
+info:
+  title: HelpUS Pay - PIX Gateway Internal API (Zap Pro Integration)
+  version: 1.0.0-g3.draft
+  description: >
+    Contrato cross-service formal para integracao entre o motor HelpUS Zap Pro
+    (helpus-whatsapp-ia) e o servico financeiro HelpUS Pay (helpus-pay).
+    Exclusivamente para avaliacao de planejamento do Gate G3.
+servers:
+  - url: http://127.0.0.1:3001
+    description: Servidor Local de Desenvolvimento / Teste de Loopback (G3-B)
+  - url: https://pay.helpusbr.com
+    description: Endpoint Planejado de Producao (Bloqueado)
+
+security:
+  - BearerAuth: []
+
+paths:
+  /api/v1/charges/pix:
+    post:
+      summary: Criacao de Cobranca PIX Dinamica com TTL
+      operationId: createPixCharge
+      description: Requisitado pelo motor WhatsApp para gerar cobranca PIX com chave copia-e-cola e QR Code.
+      parameters:
+        - name: X-Tenant-Id
+          in: header
+          required: true
+          description: Identificador do inquilino comercial derivado pelo servidor.
+          schema:
+            type: string
+            example: tenant_barbearia
+        - name: X-Idempotency-Key
+          in: header
+          required: true
+          description: Chave UUIDv4 para garantia de idempotencia na criacao.
+          schema:
+            type: string
+            format: uuid
+            example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePixChargeRequest'
+      responses:
+        '201':
+          description: Cobranca criada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PixChargeResponse'
+        '400':
+          description: Requisicao invalida, quantidade nao-inteira ou valores fora dos limites.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Token de servico ausente, invalido ou expirado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Inquilino suspenso ou sem permissao para gerar cobrancas.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Conflito de idempotencia (mesma chave com payload divergente).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: Erro interno de processamento no gateway financeiro.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+
+  /api/v1/charges/pix/{txid}:
+    get:
+      summary: Consulta de Status da Cobranca PIX
+      operationId: getPixChargeStatus
+      description: Consulta pontual de conciliacao de status pelo identificador da transacao.
+      parameters:
+        - name: txid
+          in: path
+          required: true
+          description: Identificador unico da transacao PIX.
+          schema:
+            type: string
+            example: tx_mock_1730389000_abcd
+        - name: X-Tenant-Id
+          in: header
+          required: true
+          description: Tenant proprietario da cobranca para prevencao de IDOR.
+          schema:
+            type: string
+            example: tenant_barbearia
+      responses:
+        '200':
+          description: Detalhes da cobranca retornados com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PixChargeResponse'
+        '401':
+          description: Nao autorizado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Acesso negado por violacao de inquilino (IDOR).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Cobranca nao encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+
+  /api/v1/charges/pix/{txid}/cancel:
+    post:
+      summary: Cancelamento Atomico de Cobranca PIX
+      operationId: cancelPixCharge
+      description: Cancela a cobranca no gateway financeiro se estiver PENDING, impedindo pagamento posterior.
+      parameters:
+        - name: txid
+          in: path
+          required: true
+          description: Identificador unico da transacao PIX.
+          schema:
+            type: string
+            example: tx_mock_1730389000_abcd
+        - name: X-Tenant-Id
+          in: header
+          required: true
+          description: Tenant proprietario da cobranca para prevencao de IDOR.
+          schema:
+            type: string
+            example: tenant_barbearia
+      responses:
+        '200':
+          description: Cobranca cancelada com sucesso.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [txid, status, cancelledAt]
+                properties:
+                  txid:
+                    type: string
+                  status:
+                    type: string
+                    enum: [CANCELLED]
+                  cancelledAt:
+                    type: string
+                    format: date-time
+        '400':
+          description: Cobranca ja liquidada (PAID), nao sendo possivel cancelar via API simples.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Nao autorizado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Violacao de inquilino (IDOR).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Cobranca nao encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+
+  /api/v1/webhooks/payment:
+    post:
+      summary: Callback Assincrono de Liquidacao PIX
+      operationId: processPaymentWebhook
+      description: >
+        Disparado pelo HelpUS Pay para o motor Zap Pro apos confirmacao bancaria.
+        Protegido exclusivamente por assinatura HMAC-SHA256 no header.
+      security:
+        - HmacSignatureAuth: []
+      parameters:
+        - name: X-Signature-SHA256
+          in: header
+          required: true
+          description: Hash HMAC-SHA256 em hexadecimal de 64 caracteres calculado sobre o raw body.
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{64}$'
+            example: 5d41402abc4b2a76b9719d911017c5925d41402abc4b2a76b9719d911017c592
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentWebhookEvent'
+      responses:
+        '200':
+          description: Webhook processado e pedido liquidado com sucesso (ou deduplicado).
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [ok, status]
+                properties:
+                  ok:
+                    type: boolean
+                    example: true
+                  status:
+                    type: string
+                    enum: [PROCESSED, ALREADY_PROCESSED]
+                  orderId:
+                    type: string
+                    example: ord_1730389000_123
+        '400':
+          description: Rejeicao por pedido cancelado, expirado ou divergencia de inquilino.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Assinatura HMAC invalida, adulterada ou com formato incorreto.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Token de servico emitido pelo backend HelpUS Auth com escopo de tenant.
+    HmacSignatureAuth:
+      type: apiKey
+      in: header
+      name: X-Signature-SHA256
+      description: Assinatura HMAC-SHA256 calculada com o segredo compartilhado de webhook.
+
+  schemas:
+    CreatePixChargeRequest:
+      type: object
+      required: [orderId, amount, customerPhone]
+      properties:
+        orderId:
+          type: string
+          description: Identificador unico do pedido gerado pelo orquestrador.
+          example: ord_1730389000_123
+        amount:
+          type: number
+          minimum: 0.01
+          maximum: 10000.00
+          description: Valor exato calculado no servidor pelo catalogo.
+          example: 45.00
+        customerPhone:
+          type: string
+          pattern: '^[0-9]{10,15}$'
+          description: Telefone do cliente com DDI e DDD para conciliacao.
+          example: '5583999990000'
+
+    PixChargeResponse:
+      type: object
+      required: [txid, tenantId, orderId, amount, status, pixCopiaECola, expiresAt, createdAt]
+      properties:
+        txid:
+          type: string
+          example: tx_mock_1730389000_abcd
+        tenantId:
+          type: string
+          example: tenant_barbearia
+        orderId:
+          type: string
+          example: ord_1730389000_123
+        amount:
+          type: number
+          example: 45.00
+        status:
+          type: string
+          enum: [PENDING, PAID, EXPIRED, CANCELLED]
+          example: PENDING
+        pixCopiaECola:
+          type: string
+          example: 00020126580014br.gov.bcb.pix0136tx_mock...
+        qrCodeUrl:
+          type: string
+          example: data:image/svg+xml;utf8,<svg>...</svg>
+        expiresAt:
+          type: string
+          format: date-time
+          example: '2026-10-31T15:45:00Z'
+        createdAt:
+          type: string
+          format: date-time
+          example: '2026-10-31T15:30:00Z'
+
+    PaymentWebhookEvent:
+      type: object
+      required: [event, eventId, timestamp, data]
+      properties:
+        event:
+          type: string
+          enum: [PIX_RECEIVED]
+          example: PIX_RECEIVED
+        eventId:
+          type: string
+          description: Identificador unico do evento para garantia de idempotencia.
+          example: evt_1730389500_abcd1234
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+          required: [txid, orderId, tenantId, amount, status, paidAt]
+          properties:
+            txid:
+              type: string
+              example: tx_mock_1730389000_abcd
+            orderId:
+              type: string
+              example: ord_1730389000_123
+            tenantId:
+              type: string
+              example: tenant_barbearia
+            amount:
+              type: number
+              example: 45.00
+            status:
+              type: string
+              enum: [PAID]
+              example: PAID
+            paidAt:
+              type: string
+              format: date-time
+              example: '2026-10-31T15:32:00Z'
+            endToEndId:
+              type: string
+              example: E12345678202610311532MOCK
+
+    ApiError:
+      type: object
+      required: [ok, error, code]
+      properties:
+        ok:
+          type: boolean
+          example: false
+        error:
+          type: string
+          example: 'CROSS_TENANT_VIOLATION: Tentativa de liquidar cobranca de outro tenant.'
+        code:
+          type: string
+          example: CROSS_TENANT_VIOLATION
+        details:
+          type: object
+          nullable: true
