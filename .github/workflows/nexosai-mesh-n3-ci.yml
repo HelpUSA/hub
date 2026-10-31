@@ -6,7 +6,11 @@ on:
     branches: ['docs/nexosai-cloud-mesh-architecture-20261031']
 jobs:
   contract:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-2025]
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
